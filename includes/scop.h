@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 11:34:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 13:17:25 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdarg.h>
 # include <math.h>
 # include <time.h>
 
 /*
-** External Library
+** External Libraries
 */
  
 # include "../libft/header/libft.h"
 
 /*
-** Internl Library
+** Internal Libraries
 */
 
 # include "cleaner.h"
-# include "parser.h"
-# include "render.h"
+# include "error.h"
 # include "tools.h"
 
 /*
