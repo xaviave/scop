@@ -1,3 +1,3 @@
 # scop
 
-Stable Xav's branch
+Stable Louis' branch
