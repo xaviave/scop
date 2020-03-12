@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 13:17:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 15:38:27 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_parser
 {
 	int				nb_args;
 	char			**args;
+	t_obj			*obj;
 }					t_parser;
 
 

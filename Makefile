@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 11:27:57 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/12 11:29:37 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/12 15:57:30 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,17 +26,21 @@ CFLAGS = -Wall -Wextra -Werror -O2 -g
 
 SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
+# todo: function to create objs dir and dependancies before make
 
 FILES = main.c \
+		parser/reader.c \
 		parser/launch_parser.c \
+		error/handle_error_parser.c \
+		cleaner/clean_type.c \
+		tools/list_parser.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
 
-
 #RULES
 
-all: $(NAME)
+all: $(NAME) | $(OBJDIR)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)

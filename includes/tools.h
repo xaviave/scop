@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 13:18:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 15:57:59 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct		s_list_parser
 /*
 ** Functions
 */
+
+void				add_list_parser(t_list_parser **list, char *raw_data);
 
 #endif
