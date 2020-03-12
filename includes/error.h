@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 13:17:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/12 14:46:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@
 ** Functions
 */
 
-void		handle_error_parser(char *message, ...)
+void		handle_error_parser(char *message, ...);
 
 #endif
