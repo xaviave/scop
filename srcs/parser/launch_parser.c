@@ -39,7 +39,7 @@ static void	check_args(int ac, char **av)
 	{
 		tmp = ft_strsub(av[i], ft_strlen(av[i]) - 4, ft_strlen(av[i]));
 		err = ft_strlen(av[i]) < 5 || ft_strcmp(".obj", tmp);
-		free_str(tmp);
+//		free_str(tmp);
 		if (err)
 			handle_error_parser("Invalid file name");
 	}

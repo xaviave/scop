@@ -20,7 +20,7 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 	ft_printf("name of args = %s\n", parser->args[obj_index]);
 	while(get_next_line(fd, &line))
 	{
-		add_list_parser(&list, line);
+//		add_list_parser(&list, line);
 		free(line);
 	}
 	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c l.26");
