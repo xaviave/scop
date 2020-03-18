@@ -45,9 +45,11 @@ static void	check_args(int ac, char **av)
 	}
 }
 
-void		launch_parser(t_parser *parser, int ac, char **av)
+int 		launch_parser(t_parser *parser, int ac, char **av)
 {
+    return (0);
 	check_args(ac, av);
 	init_parser(parser, ac, av);
 	reader(parser);
+	return (0);
 }

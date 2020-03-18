@@ -29,6 +29,7 @@
 */
  
 # include "../libft/header/libft.h"
+# include <SDL2/SDL.h>
 
 /*
 ** Internal Libraries
@@ -39,6 +40,12 @@
 # include "tools.h"
 
 /*
+** Defines
+*/
+
+# define PROG_NAME "Scop"
+
+/*
 ** Structures
 */
 
@@ -46,6 +53,13 @@ typedef struct		s_obj
 {
 	char			**raw_obj;
 }					t_obj;
+
+typedef struct      s_prog
+{
+    int             exit_state;
+    SDL_Window      *win;
+    SDL_Event       ev;
+}                   t_prog;
 
 /*
 ** Functions

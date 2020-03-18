@@ -22,5 +22,6 @@
 */
 
 void		handle_error_parser(char *message, ...);
+int 		handle_error_sdl(char *message, ...);
 
 #endif

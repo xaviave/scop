@@ -45,7 +45,8 @@ all: $(NAME) | $(OBJDIR)
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(MINILIBX) -L $(LIBFT) -lft
-#   srcs/main.c srcs/error/*.c srcs/parser/*.c -o scop -I includes/ -I libft/ -L libft -lft -L Frameworks/libsdl2 -lSDL2-2.0.0
+#   gcc srcs/main.c srcs/error/*.c srcs/parser/*.c srcs/render/*.c -o scop -I includes/ -I libft/ -L libft -lft -L Frameworks/libsdl2 -lSDL2-2.0.0 && ./scop
+
 
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)

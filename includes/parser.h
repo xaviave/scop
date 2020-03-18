@@ -35,7 +35,7 @@ typedef struct		s_parser
 ** Functions
 */
 
-void				launch_parser(t_parser *parser,  int ac, char **av);
+int				    launch_parser(t_parser *parser,  int ac, char **av);
 void				reader(t_parser *parser);
 
 #endif

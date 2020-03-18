@@ -20,6 +20,13 @@
 # include "scop.h"
 
 /*
+** Defines
+*/
+
+# define W 640
+# define H 480
+
+/*
 ** Structures
 */
 
@@ -27,5 +34,7 @@
 /*
 ** Functions
 */
+
+int         manage_sdl(t_prog *p);
 
 #endif
