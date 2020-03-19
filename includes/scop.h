@@ -6,7 +6,7 @@
 /*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/19 21:27:02 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/19 22:07:20 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,21 @@
 */
 
 /*
-** t_vertice defines a geometrical vertice
+** t_vertex defines a geometrical vertex.
+** parsing: v x, y, z[, w]
 */
 
-typedef struct      s_vertice
+typedef struct      s_vertex
 {
 	float			x;
 	float			y;
 	float			z;
 	float			w; // optionnal | default value 1.0
-}					t_vertice;
+}					t_vertex;
 
 /*
-** t_texture defines the texture's coordinate
+** t_texture defines the texture's coordinate.
+** parsing: vp u, [, v, w]
 */
 
 typedef struct		s_texture
@@ -74,6 +76,7 @@ typedef struct		s_texture
 
 /*
 ** t_normal defines the vertex normals
+** parsing: vn x y z
 */
 
 typedef struct		s_normal
@@ -84,18 +87,22 @@ typedef struct		s_normal
 }					t_normal;
 
 /*
-** t_space_vertices defines the paramter space vertices
+** t_space_vertexs defines the paramter space vertexs.
+** Define points in parameter space of a curve or surface.
+** parsing: vp u [,v] [,w]
 */
 
-typedef struct		s_space_vertice
+typedef struct		s_space_vertex
 {
 	float			u;
-	float			v;
+	float			v; 
 	float			w;
-}					t_space_vertice;
+}					t_space_vertex;
 
 /*
-** t_face defines a ploygonal face element
+** t_face defines a ploygonal face element.
+** Faces are defined using lists of vertex, texture and normal indices.
+** parsing: f v1 v2[/vt2] v3[//vn3] v4[/vt4][/vn4] ...
 */
 
 typedef struct		s_face
@@ -104,7 +111,8 @@ typedef struct		s_face
 }					t_face;
 
 /*
-** t_line defines a line element
+** t_line defines a polyline element.
+** parsing: l v1 v2 v3
 */
 
 typedef struct		s_line
@@ -113,17 +121,20 @@ typedef struct		s_line
 }					t_line;
 
 /*
-** t_obj have all the components of an obj
+** t_obj have all the components of an obj.
 */
 
 typedef struct		s_obj
 {
+	char			*mtllib;
+	char			*usemtl;
+	
 	t_face			*faces;
 	t_line			*lines;
 	t_normal		*normals;
-	t_space_vertice	*space_vertices;
+	t_space_vertex	*space_vertexes;
 	t_texture		*textures;
-	t_vertice		*vertices;
+	t_vertex		*vertexes;
 }					t_obj;
 
 typedef struct      s_prog
