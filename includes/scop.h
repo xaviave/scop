@@ -6,7 +6,7 @@
 /*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/19 22:07:20 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/19 22:51:50 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct      s_vertex
 
 /*
 ** t_texture defines the texture's coordinate.
-** parsing: vp u, [, v, w]
+** parsing: vt u, [, v, w]
 */
 
 typedef struct		s_texture
@@ -121,6 +121,24 @@ typedef struct		s_line
 }					t_line;
 
 /*
+**
+*/
+
+typedef struct		s_group
+{
+	char			*name;
+}					t_group;
+
+/*
+** 
+*/
+
+typedef struct		s_object
+{
+	char			*name;
+}					t_object;
+
+/*
 ** t_obj have all the components of an obj.
 */
 
@@ -128,10 +146,11 @@ typedef struct		s_obj
 {
 	char			*mtllib;
 	char			*usemtl;
-	
 	t_face			*faces;
+	t_group			*groups;
 	t_line			*lines;
 	t_normal		*normals;
+	t_object		*objects;
 	t_space_vertex	*space_vertexes;
 	t_texture		*textures;
 	t_vertex		*vertexes;
