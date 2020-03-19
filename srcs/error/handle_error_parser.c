@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_error_parser.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 15:39:15 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/19 20:48:44 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 void handle_error_parser(char *message, ...)
 {
 	ft_printf("%s\n", message);
+	ft_printf("must free everything lol");
+	exit(0);
 }
