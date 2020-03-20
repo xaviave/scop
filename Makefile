@@ -37,7 +37,7 @@ FILES = main.c \
         parser/launch_parser.c \
         parser/reader.c \
         tools/list_parser.c \
-		render/manage_sdl.c \
+		render/launch_render.c \
 
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))

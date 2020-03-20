@@ -1,5 +1,13 @@
 #include "../../includes/render.h"
 
+static int  init_t_prog(t_prog *p)
+{
+    p->exit_state = 0;
+    p->win = NULL;
+    p->gl_context = NULL;
+    return (p->exit_state);
+}
+
 static int  graphic_loop(t_prog *p)
 {
     while (True)
@@ -43,8 +51,9 @@ static int  init_graphic_context(t_prog *p)
     return (p->exit_state);
 }
 
-int         manage_sdl(t_prog *p)
+int         launch_render(t_prog *p)
 {
+    init_t_prog(p);
     if (init_graphic_context(p) != -1)
         graphic_loop(p);
     return (p->exit_state);

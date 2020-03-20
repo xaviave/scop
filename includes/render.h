@@ -35,6 +35,6 @@
 ** Functions
 */
 
-int         manage_sdl(t_prog *p);
+int         launch_render(t_prog *p);
 
 #endif
