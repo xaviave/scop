@@ -16,6 +16,7 @@
 static int      init_t_prog(t_prog *p)
 {
     p->win = NULL;
+    p->gl_context = NULL;
     return (p->exit_state);
 }
 

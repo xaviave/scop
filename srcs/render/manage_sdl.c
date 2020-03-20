@@ -8,8 +8,11 @@ static int  sdl_loop(t_prog *p)
         if (p->ev.type == SDL_QUIT ||
             (p->ev.type == SDL_KEYDOWN && p->ev.key.keysym.sym == SDLK_ESCAPE))
             break;
+        SDL_GL_SwapWindow(p->win);
     }
     SDL_DestroyWindow(p->win);
+    SDL_GL_DeleteContext(p->gl_context);
+    SDL_Quit();
     return (p->exit_state);
 }
 
@@ -19,10 +22,18 @@ static int  init_sdl(t_prog *p)
         p->exit_state = handle_error_sdl("SDL could not initialize.");
     else
     {
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+//        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+        SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
         if (!(p->win = SDL_CreateWindow(PROG_NAME, SDL_WINDOWPOS_UNDEFINED,
                                         SDL_WINDOWPOS_UNDEFINED, W, H,
-                                        SDL_WINDOW_SHOWN)))
+                                        SDL_WINDOW_OPENGL)))
             p->exit_state = handle_error_sdl("Window could not be created.");
+        else
+        {
+            p->gl_context = SDL_GL_CreateContext(p->win);
+        }
     }
     return (p->exit_state);
 }
@@ -31,6 +42,5 @@ int         manage_sdl(t_prog *p)
 {
     if (init_sdl(p) != -1)
         sdl_loop(p);
-    SDL_Quit();
     return (p->exit_state);
 }
