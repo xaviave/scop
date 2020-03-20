@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 15:38:27 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 14:19:24 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ typedef struct		s_parser
 
 int				    launch_parser(t_parser *parser,  int ac, char **av);
 void				reader(t_parser *parser);
+
+void				parser_vt(t_obj *obj, char *raw_data);
+void				parser_vn(t_obj *obj, char *raw_data);
+void				parser_vp(t_obj *obj, char *raw_data);
+void				parser_v(t_obj *obj, char *raw_data);
+void				parser_f(t_obj *obj, char *raw_data);
+void				parser_l(t_obj *obj, char *raw_data);
+void				parser_pass(t_obj *obj, char *raw_data);
 
 #endif

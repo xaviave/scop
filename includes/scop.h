@@ -6,7 +6,7 @@
 /*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/19 22:51:50 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 17:10:25 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 
 typedef struct      s_vertex
 {
+	int				id;
 	float			x;
 	float			y;
 	float			z;
@@ -64,11 +65,12 @@ typedef struct      s_vertex
 
 /*
 ** t_texture defines the texture's coordinate.
-** parsing: vt u, [, v, w]
+** parsing: vt u[, v, w]
 */
 
 typedef struct		s_texture
 {
+	int				id;
 	float			u;
 	float			v; //need to be between 0 and 1 | default 0
 	float			w; //need to be between 0 and 1 | default 0
@@ -81,6 +83,7 @@ typedef struct		s_texture
 
 typedef struct		s_normal
 {
+	int				id;
 	float			x;
 	float			y;
 	float			z;
@@ -89,14 +92,15 @@ typedef struct		s_normal
 /*
 ** t_space_vertexs defines the paramter space vertexs.
 ** Define points in parameter space of a curve or surface.
-** parsing: vp u [,v] [,w]
+** parsing: vp u, v[, w]
 */
 
 typedef struct		s_space_vertex
 {
+	int				id;
 	float			u;
 	float			v; 
-	float			w;
+	float			w; // default to 1.0
 }					t_space_vertex;
 
 /*
@@ -107,6 +111,7 @@ typedef struct		s_space_vertex
 
 typedef struct		s_face
 {
+	int				id;
 	int				nb; // nb of ?
 }					t_face;
 
@@ -117,6 +122,7 @@ typedef struct		s_face
 
 typedef struct		s_line
 {
+	int				id;
 	int				nb; // nb of ?
 }					t_line;
 
@@ -126,6 +132,7 @@ typedef struct		s_line
 
 typedef struct		s_group
 {
+	int				id;
 	char			*name;
 }					t_group;
 
@@ -135,6 +142,7 @@ typedef struct		s_group
 
 typedef struct		s_object
 {
+	int				id;
 	char			*name;
 }					t_object;
 
@@ -144,16 +152,33 @@ typedef struct		s_object
 
 typedef struct		s_obj
 {
+	int				id;
 	char			*mtllib;
 	char			*usemtl;
+
 	t_face			*faces;
+	int				len_faces;
+
 	t_group			*groups;
+	int				len_groups;
+
 	t_line			*lines;
+	int				len_lines;
+
 	t_normal		*normals;
+	int				len_normals;
+
 	t_object		*objects;
+	int				len_objects;
+
 	t_space_vertex	*space_vertexes;
+	int				len_space_vertexes;
+
 	t_texture		*textures;
+	int				len_textures;
+	
 	t_vertex		*vertexes;
+	int				len_vertexes;
 }					t_obj;
 
 typedef struct      s_prog

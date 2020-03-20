@@ -6,7 +6,7 @@
 /*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/19 23:28:46 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 16:58:21 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static int					define_id(char *raw_data)
 {
 	if (ft_strstr(raw_data, "vt"))
-		return (1);
+		return (0);
 	else if (ft_strstr(raw_data, "vn"))
-		return (2);
+		return (1);
 	else if (ft_strstr(raw_data, "vp"))
-		return (3);
+		return (2);
 	else if (ft_strstr(raw_data, "v"))
-		return (4);
+		return (3);
 	else if (ft_strstr(raw_data, "f"))
-		return (5);
+		return (4);
 	else if (ft_strstr(raw_data, "l"))
-		return (6);
+		return (5);
 	else
-		return (0);	
+		return (6);	
 }
 
 static t_list_parser		*new_list_parser(char *raw_data)
@@ -38,6 +38,7 @@ static t_list_parser		*new_list_parser(char *raw_data)
 		handle_error_parser("Error during memroy allocation");
 	new->id = define_id(raw_data);
 	new->data = raw_data;
+	ft_printf("NEED TO CHECK IF LINE OK THANKS TO THE ID\n");
 	new->next = NULL;
 	return new;
 }

@@ -6,28 +6,66 @@
 /*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/19 23:29:23 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 15:51:45 by xavier_mart      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-static void			list_parser_to_obj(t_obj *obj, t_list_parser *list)
+static void			init_ptr(void (*f[7])(t_obj *, char *))
+{
+	f[0] = &parser_vt;
+	f[1] = &parser_vn;
+	f[2] = &parser_vp;
+	f[3] = &parser_v;
+	f[4] = &parser_f;
+	f[5] = &parser_l;
+	f[6] = &parser_pass;
+}
+
+/*
+** check_obj simply check the lenght of every obj
+** if a len is NULL, it's due to an error during the parsing
+*/
+
+static int			check_obj(t_obj *obj)
 {
 	short			err;
-	char *f; // balek ca sera un pointeur sur fonction
+
+	err = 1;
+	err = (obj->len_faces) ? 1 : 0;
+	err = (err && obj->len_groups) ? 1 : 0;
+	err = (err && obj->len_lines) ? 1 : 0;
+	err = (err && obj->len_normals) ? 1 : 0;
+	err = (err && obj->len_objects) ? 1 : 0;
+	err = (err && obj->len_space_vertexes) ? 1 : 0;
+	err = (err && obj->len_textures) ? 1 : 0;
+	err = (err && obj->len_vertexes > 2) ? 1 : 0;
+	return (err);
+}
+
+static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
+{
+	short			err;
+	void			(*f[7])(t_obj *, char *);
 	t_list_parser	*tmp;
 
+	err = 0;
 	tmp = list;
+	init_ptr(f);
+	init_obj(obj);
 	while (tmp->next)
 	{
-		err = f[tmp->id](obj, tmp->data); // neeed pointer sur fonction
-		if (err)
-			break;
+		if (err <= tmp->id || err < 4)
+		{
+			err = tmp->id;
+			f[tmp->id](obj, tmp->data);
+		}
 		tmp = list->next;
 		free(list->data);
 		free(list);
 	}
+	return (check_obj(obj));
 }
 
 static void			open_file(int fd, int obj_index, t_parser *parser)
@@ -48,7 +86,8 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 			free(line);
 		}
 	}
-	list_parser_to_obj(parser->obj[obj_index], list);
+	if (list_parser_to_obj(&parser->obj[obj_index], list))
+		handle_error_parser("Error durring Parsing");
 	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c l.26");
 }
 
