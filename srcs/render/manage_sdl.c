@@ -1,6 +1,6 @@
 #include "../../includes/render.h"
 
-static int  sdl_loop(t_prog *p)
+static int  graphic_loop(t_prog *p)
 {
     while (True)
     {
@@ -16,7 +16,7 @@ static int  sdl_loop(t_prog *p)
     return (p->exit_state);
 }
 
-static int  init_sdl(t_prog *p)
+static int  init_graphic_context(t_prog *p)
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
         p->exit_state = handle_error_sdl("SDL could not initialize.");
@@ -24,15 +24,20 @@ static int  init_sdl(t_prog *p)
     {
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-//        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
         SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+        // ^^^^ Useless lines ?
         if (!(p->win = SDL_CreateWindow(PROG_NAME, SDL_WINDOWPOS_UNDEFINED,
                                         SDL_WINDOWPOS_UNDEFINED, W, H,
                                         SDL_WINDOW_OPENGL)))
             p->exit_state = handle_error_sdl("Window could not be created.");
         else
         {
-            p->gl_context = SDL_GL_CreateContext(p->win);
+            if (!(p->gl_context = SDL_GL_CreateContext(p->win)))
+                p->exit_state = handle_error_sdl("GL Context could not be created.");
+            glewExperimental = GL_TRUE; //          useless in this version ?
+            if (glewInit())
+                p->exit_state = handle_error_sdl("Glew could not initialize.");
         }
     }
     return (p->exit_state);
@@ -40,7 +45,7 @@ static int  init_sdl(t_prog *p)
 
 int         manage_sdl(t_prog *p)
 {
-    if (init_sdl(p) != -1)
-        sdl_loop(p);
+    if (init_graphic_context(p) != -1)
+        graphic_loop(p);
     return (p->exit_state);
 }

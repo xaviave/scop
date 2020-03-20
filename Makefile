@@ -19,7 +19,9 @@ CC = gcc
 RM = rm -f
 NAME = scop
 LIBFT = libft/
-LIBSDL2 = Frameworks/libsdl2
+FW = Frameworks/
+LIBSDL2 = $(addprefix $(FW), libsdl2)
+LIBGLEW = $(addprefix $(FW), libglew)
 INC = includes/
 CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 # LIB_FLAG = -framework OpenGl -framework AppKit
@@ -48,7 +50,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
 
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)
