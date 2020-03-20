@@ -34,7 +34,7 @@ static int  init_graphic_context(t_prog *p)
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
         SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+//        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         // ^^^^ Useless lines ?
         if (!(p->win = SDL_CreateWindow(PROG_NAME, SDL_WINDOWPOS_UNDEFINED,
                                         SDL_WINDOWPOS_UNDEFINED, W, H,
