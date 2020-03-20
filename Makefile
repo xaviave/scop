@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+         #
+#    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/20 17:14:51 by xavier_mart      ###   ########lyon.fr    #
+#    Updated: 2020/03/20 21:51:22 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,8 @@ FILES = main.c \
 		render/manage_sdl.c \
 		tools/ft_atof.c \
 		tools/init_obj.c \
+		tools/init_ptr.c \
+		tools/init_parser.c \
 		tools/list_parser.c \
 		tools/optionnal_argument.c \
 		tools/pass_whitespace_float.c \
