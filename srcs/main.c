@@ -13,19 +13,12 @@
 #include "../includes/parser.h"
 #include "../includes/render.h"
 
-static int      init_t_prog(t_prog *p)
-{
-    p->win = NULL;
-    return (p->exit_state);
-}
-
 int             main(int ac, char **av)
 {
     t_parser    parser;
     t_prog      p;
 
-	p.exit_state = launch_parser(&parser, ac, av);
-    init_t_prog(&p); // try to launch everythings in functions not in the main please
-    manage_sdl(&p);
+	launch_parser(&parser, ac, av);
+	launch_render(&p);
     return (p.exit_state);
 }

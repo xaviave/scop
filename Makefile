@@ -19,7 +19,9 @@ CC = gcc
 RM = rm -f
 NAME = scop
 LIBFT = libft/
-LIBSDL2 = Frameworks/libsdl2
+FW = Frameworks/
+LIBSDL2 = $(addprefix $(FW), libsdl2)
+LIBGLEW = $(addprefix $(FW), libglew)
 INC = includes/
 CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 # LIB_FLAG = -framework OpenGl -framework AppKit
@@ -34,7 +36,8 @@ FILES = main.c \
         error/handle_error_sdl.c \
         parser/launch_parser.c \
         parser/reader.c \
-		render/manage_sdl.c \
+        tools/list_parser.c \
+		render/launch_render.c \
 
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
@@ -47,7 +50,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) -L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0
+	$(CC) $(CFLAGS) -o $@ $(OBJS) -L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
 
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)
