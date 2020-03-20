@@ -34,6 +34,7 @@ FILES = main.c \
         error/handle_error_sdl.c \
         parser/launch_parser.c \
         parser/reader.c \
+        tools/list_parser.c \
 		render/manage_sdl.c \
 
 
