@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/20 16:02:17 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 20:35:14 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/parser.h"
+# include "../../includes/scop.h"
 
 void    init_obj(t_obj *obj)
 {

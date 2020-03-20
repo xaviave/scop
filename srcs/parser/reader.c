@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   reader.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 15:51:45 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 21:49:15 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
-
-static void			init_ptr(void (*f[7])(t_obj *, char *))
-{
-	f[0] = &parser_vt;
-	f[1] = &parser_vn;
-	f[2] = &parser_vp;
-	f[3] = &parser_v;
-	f[4] = &parser_f;
-	f[5] = &parser_l;
-	f[6] = &parser_pass;
-}
+#include "../../includes/scop.h"
 
 /*
 ** check_obj simply check the lenght of every obj
@@ -46,10 +35,12 @@ static int			check_obj(t_obj *obj)
 
 static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
+	int				id;
 	short			err;
-	void			(*f[7])(t_obj *, char *);
+	void			(*f[7])(t_obj *, char *, int);
 	t_list_parser	*tmp;
 
+	id = 0;
 	err = 0;
 	tmp = list;
 	init_ptr(f);
@@ -59,11 +50,12 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 		if (err <= tmp->id || err < 4)
 		{
 			err = tmp->id;
-			f[tmp->id](obj, tmp->data);
+			f[tmp->id](obj, tmp->data, id);
 		}
 		tmp = list->next;
 		free(list->data);
 		free(list);
+		id++;
 	}
 	return (check_obj(obj));
 }
@@ -75,17 +67,20 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 	t_list_parser	*list;
 
 	i = 0;
-	ft_printf("Parsing file: %s\n", parser->args[obj_index]);
+	list = NULL;
+	ft_printf("Opening file: %s\n", parser->args[obj_index]);
 	while(get_next_line(fd, &line))
 	{
-		if (ft_strlen(line) && ft_strchr(line, '#'))
+		ft_printf("|%s|\t", line);
+		if (line && ft_strlen(line) && ft_strchr(line, '#'))
 			add_list_parser(&list, line);			
 		else
-		{
-			ft_printf("ENTER HERE FOR COMMENT\n");
-			free(line);
-		}
+			if (line)
+				free(line);
 	}
+	if (list == NULL || !list_parser_len(&list))
+		handle_error_parser("File is empty");
+	ft_printf("Parsing file: %s\n", parser->args[obj_index]);
 	if (list_parser_to_obj(&parser->obj[obj_index], list))
 		handle_error_parser("Error durring Parsing");
 	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c l.26");
@@ -101,7 +96,7 @@ void				reader(t_parser *parser)
 	int				fd;
 	
 	i = 0;
-	while (++i < parser->nb_args)
+	while (++i < parser->nb_args + 1)
 	{
 		fd = open(parser->args[i], O_RDONLY);
 		open_file(fd, i, parser);

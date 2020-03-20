@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:10:50 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/20 17:12:19 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 20:34:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/parser.h"
+# include "../../includes/scop.h"
 
 float		ft_atof(char *str)
 {
 	float	f;
 
 	f = 0.0;
+	printf("%s\n", str);
 	return f;
 }

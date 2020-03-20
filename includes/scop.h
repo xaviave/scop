@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 17:10:25 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 21:46:35 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +191,83 @@ typedef struct      s_prog
 /*
 ** Functions
 */
+
+/*
+** Render.h
+*/
+
+
+# define W 640
+# define H 480
+
+# define True 1
+# define False 0
+
+
+int         manage_sdl(t_prog *p);
+
+/*
+** Parser.h
+*/
+
+/*
+** Structures
+*/
+
+typedef struct		s_parser
+{
+	int				nb_args;
+	char			**args;
+	t_obj			*obj;
+}					t_parser;
+
+
+/*
+** Functions
+*/
+
+int				    launch_parser(t_parser *parser,  int ac, char **av);
+void				reader(t_parser *parser);
+
+void				parser_vt(t_obj *obj, char *raw_data, int id);
+void				parser_vn(t_obj *obj, char *raw_data, int id);
+void				parser_vp(t_obj *obj, char *raw_data, int id);
+void				parser_v(t_obj *obj, char *raw_data, int id);
+void				parser_f(t_obj *obj, char *raw_data, int id);
+void				parser_l(t_obj *obj, char *raw_data, int id);
+void				parser_pass(t_obj *obj, char *raw_data, int id);
+
+/*
+** Tools.h
+*/
+
+/*
+** Structures
+*/
+
+typedef struct		s_list_parser
+{
+    short           id; // id define the first type of objects
+	char			*data;
+	void			*next;
+}					t_list_parser;
+
+/*
+** Functions
+*/
+
+void				add_list_parser(t_list_parser **list, char *raw_data);
+int					list_parser_len(t_list_parser **list);
+
+void                init_obj(t_obj *obj);
+void				init_parser(t_parser *parser, int ac, char **av);
+void				init_ptr(void (*f[7])(t_obj *, char *, int));
+
+int					pass_whitespace_float(int i,char *str);
+
+float				optionnal_value_float(char *str, float d);
+
+float				ft_atof(char *str);
+
 
 #endif

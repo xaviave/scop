@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   list_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/20 16:58:21 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 21:46:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "includes/parser.h"
+# include "../../includes/scop.h"
 
 static int					define_id(char *raw_data)
 {
@@ -56,4 +56,16 @@ void                        add_list_parser(t_list_parser **list, char *raw_data
 			tmp = tmp->next;
 		tmp->next = new_list_parser(raw_data);
 	}
+}
+
+int							list_parser_len(t_list_parser **list)
+{
+	int						i;
+	t_list_parser			*tmp;
+
+	i = 0;
+	tmp = *list;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (i);
 }

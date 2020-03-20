@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   optionnal_argument.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:00:54 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/20 17:06:55 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 20:35:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/parser.h"
+# include "../../includes/scop.h"
 
 float		optionnal_value_float(char *str, float d)
 {

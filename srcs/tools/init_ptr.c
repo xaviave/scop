@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_ptr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 11:19:28 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 21:33:44 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
+/*   Updated: 2020/03/20 21:46:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/scop.h"
+#include "../../includes/scop.h"
 
-static int      init_t_prog(t_prog *p)
+void		init_ptr(void (*f[7])(t_obj *, char *, int))
 {
-    p->win = NULL;
-    return (p->exit_state);
-}
-
-int             main(int ac, char **av)
-{
-    t_parser    parser;
-    t_prog      p;
-
-	p.exit_state = launch_parser(&parser, ac, av);
-    init_t_prog(&p); // try to launch everythings in functions not in the main please
-    // manage_sdl(&p);
-    return (p.exit_state);
+	f[0] = &parser_vt;
+	f[1] = &parser_vn;
+	f[2] = &parser_vp;
+	f[3] = &parser_v;
+	f[4] = &parser_f;
+	f[5] = &parser_l;
+	f[6] = &parser_pass;
 }
