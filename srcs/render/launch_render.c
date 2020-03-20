@@ -16,7 +16,8 @@ static int  graphic_loop(t_prog *p)
         if (p->ev.type == SDL_QUIT ||
             (p->ev.type == SDL_KEYDOWN && p->ev.key.keysym.sym == SDLK_ESCAPE))
             break;
-        SDL_GL_SwapWindow(p->win);
+//        SDL_GL_SwapWindow(p->win);
+//      ^^^  Make the window peter un cable, check if it's good idea when we'll fill the screen.
     }
     SDL_DestroyWindow(p->win);
     SDL_GL_DeleteContext(p->gl_context);
