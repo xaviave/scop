@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 17:50:00 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 21:32:59 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,9 @@ typedef struct		s_group
 {
 	int				id;
 	char			*name;
-	int				first_id;
-	int				nb_id;
+	int				type;
+	int				first_entity;
+	int				nb_entity;
 }					t_group;
 
 /*
@@ -146,8 +147,9 @@ typedef struct		s_object
 {
 	int				id;
 	char			*name;
-	int				first_id;
-	int				nb_id;
+	int				type;
+	int				first_entity;
+	int				nb_entity;
 }					t_object;
 
 /*
@@ -242,8 +244,8 @@ void				parser_v(t_obj *obj, char *raw_data, int id);
 void				parser_f(t_obj *obj, char *raw_data, int id);
 void				parser_l(t_obj *obj, char *raw_data, int id);
 void				parser_pass(t_obj *obj, char *raw_data, int id);
-void				parser_o(t_obj *obj, char *raw_data, int id, int nb_id);
-void				parser_g(t_obj *obj, char *raw_data, int id, int nb_id);
+void				parser_o(t_obj *obj, char *raw_data, int id, int type, int nb_id);
+void				parser_g(t_obj *obj, char *raw_data, int id, int type, int nb_id);
 
 /*
 ** Tools.h
@@ -265,11 +267,16 @@ typedef struct				s_list_parser
 */
 
 int							list_parser_len(t_list_parser **list);
+void						add_list_parser(t_list_parser **list, char *raw_data);
+
+int							get_lenght_entity(t_list_parser *list, int id);
 int							len_list_parser_id(t_list_parser *list, int id);
-void						add_list_parser(t_obj *obj, t_list_parser **list, char *raw_data);
 
 void                		init_obj(t_obj *obj);
+void						init_obj_ptr(t_obj *obj, t_list_parser *list);
+
 void						init_ptr(void (*f[7])(t_obj *, char *, int));
+
 void						init_parser(t_parser *parser, int ac, char **av);
 
 int							pass_whitespace_float(int i,char *str);

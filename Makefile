@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/21 17:49:26 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/21 20:54:34 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ FILES = main.c \
 		tools/init_ptr.c \
 		tools/init_parser.c \
 		tools/list_parser.c \
+		tools/length_parser.c \
 		tools/optionnal_argument.c \
 		tools/pass_whitespace_float.c \
 

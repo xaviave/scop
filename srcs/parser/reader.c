@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 17:55:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 22:18:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 	while (tmp->next)
 	{
 		if (tmp->id == 7)
-			parser_g(obj, tmp->data, id, len_list_parser_id(tmp, tmp->next->id));
+			parser_g(obj, tmp->data, id, tmp->next->id, len_list_parser_id(tmp, tmp->next->id));
 		else if (tmp->id == 8)
-			parser_o(obj, tmp->data, id, len_list_parser_id(tmp, tmp->next->id));
+			parser_o(obj, tmp->data, id, tmp->next->id, len_list_parser_id(tmp, tmp->next->id));
 		tmp = tmp->next;
 		id++;
 	}
-	ft_printf("id = %d\n", id);
 }
 
 static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
@@ -63,6 +62,7 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 	err = -1;
 	tmp = list;
 	init_ptr(f);
+	init_obj_ptr(obj, list);
 	define_groups_and_objects(obj, list);
 	exit(0);
 	while (tmp->next)
@@ -97,7 +97,7 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 		if (line && ft_strlen(line) && !ft_strchr(line, '#'))
 		{
 			if (check_raw_data(line))
-				add_list_parser(&parser->obj[obj_index], &list, line);
+				add_list_parser(&list, line);
 			else
 				handle_error_parser("Error in line");
 		}
