@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 21:46:35 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 17:50:00 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,8 @@ typedef struct		s_group
 {
 	int				id;
 	char			*name;
+	int				first_id;
+	int				nb_id;
 }					t_group;
 
 /*
@@ -144,6 +146,8 @@ typedef struct		s_object
 {
 	int				id;
 	char			*name;
+	int				first_id;
+	int				nb_id;
 }					t_object;
 
 /*
@@ -229,6 +233,8 @@ typedef struct		s_parser
 int				    launch_parser(t_parser *parser,  int ac, char **av);
 void				reader(t_parser *parser);
 
+int					check_raw_data(char *raw_data);
+
 void				parser_vt(t_obj *obj, char *raw_data, int id);
 void				parser_vn(t_obj *obj, char *raw_data, int id);
 void				parser_vp(t_obj *obj, char *raw_data, int id);
@@ -236,6 +242,8 @@ void				parser_v(t_obj *obj, char *raw_data, int id);
 void				parser_f(t_obj *obj, char *raw_data, int id);
 void				parser_l(t_obj *obj, char *raw_data, int id);
 void				parser_pass(t_obj *obj, char *raw_data, int id);
+void				parser_o(t_obj *obj, char *raw_data, int id, int nb_id);
+void				parser_g(t_obj *obj, char *raw_data, int id, int nb_id);
 
 /*
 ** Tools.h
@@ -245,29 +253,29 @@ void				parser_pass(t_obj *obj, char *raw_data, int id);
 ** Structures
 */
 
-typedef struct		s_list_parser
+typedef struct				s_list_parser
 {
-    short           id; // id define the first type of objects
-	char			*data;
-	void			*next;
-}					t_list_parser;
+    short           		id; // id define the first type of objects
+	char					*data;
+	struct s_list_parser	*next;
+}							t_list_parser;
 
 /*
 ** Functions
 */
 
-void				add_list_parser(t_list_parser **list, char *raw_data);
-int					list_parser_len(t_list_parser **list);
+int							list_parser_len(t_list_parser **list);
+int							len_list_parser_id(t_list_parser *list, int id);
+void						add_list_parser(t_obj *obj, t_list_parser **list, char *raw_data);
 
-void                init_obj(t_obj *obj);
-void				init_parser(t_parser *parser, int ac, char **av);
-void				init_ptr(void (*f[7])(t_obj *, char *, int));
+void                		init_obj(t_obj *obj);
+void						init_ptr(void (*f[7])(t_obj *, char *, int));
+void						init_parser(t_parser *parser, int ac, char **av);
 
-int					pass_whitespace_float(int i,char *str);
+int							pass_whitespace_float(int i,char *str);
 
-float				optionnal_value_float(char *str, float d);
+float						optionnal_value_float(char *str, float d);
 
-float				ft_atof(char *str);
-
+float						ft_atof(char *str);
 
 #endif

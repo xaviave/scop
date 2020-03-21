@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/20 21:51:22 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/21 17:49:26 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ FILES = main.c \
         parser/reader.c \
 		parser/parser_f_l.c \
 		parser/parser_v.c \
+		parser/line_checker.c \
 		render/manage_sdl.c \
 		tools/ft_atof.c \
 		tools/init_obj.c \

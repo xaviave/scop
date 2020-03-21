@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 21:49:15 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 17:55:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ static int			check_obj(t_obj *obj)
 	return (err);
 }
 
+static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
+{
+	int				id;
+	t_list_parser	*tmp;
+
+	id = 0;
+	tmp = list;
+	while (tmp->next)
+	{
+		if (tmp->id == 7)
+			parser_g(obj, tmp->data, id, len_list_parser_id(tmp, tmp->next->id));
+		else if (tmp->id == 8)
+			parser_o(obj, tmp->data, id, len_list_parser_id(tmp, tmp->next->id));
+		tmp = tmp->next;
+		id++;
+	}
+	ft_printf("id = %d\n", id);
+}
+
 static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
 	int				id;
@@ -40,22 +59,24 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 	void			(*f[7])(t_obj *, char *, int);
 	t_list_parser	*tmp;
 
-	id = 0;
-	err = 0;
+	id = -1;
+	err = -1;
 	tmp = list;
 	init_ptr(f);
-	init_obj(obj);
+	define_groups_and_objects(obj, list);
+	exit(0);
 	while (tmp->next)
 	{
-		if (err <= tmp->id || err < 4)
+		if (tmp->id < 6 && err <= tmp->id)
 		{
+			id = -1;
 			err = tmp->id;
-			f[tmp->id](obj, tmp->data, id);
 		}
+		if (tmp->id < 7 && err == tmp->id)
+			f[tmp->id](obj, tmp->data, ++id);
 		tmp = list->next;
 		free(list->data);
 		free(list);
-		id++;
 	}
 	return (check_obj(obj));
 }
@@ -68,19 +89,24 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 
 	i = 0;
 	list = NULL;
-	ft_printf("Opening file: %s\n", parser->args[obj_index]);
-	while(get_next_line(fd, &line))
+	init_obj(&parser->obj[obj_index]);
+	ft_printf("Opening file: %s\tobj address %p\n", parser->args[obj_index + 1], &parser->obj[obj_index]);
+	ft_printf("CRASH WHEN FILE IS EMPTY\n\n");
+	while(get_next_line(fd, &line) > 0)
 	{
-		ft_printf("|%s|\t", line);
-		if (line && ft_strlen(line) && ft_strchr(line, '#'))
-			add_list_parser(&list, line);			
+		if (line && ft_strlen(line) && !ft_strchr(line, '#'))
+		{
+			if (check_raw_data(line))
+				add_list_parser(&parser->obj[obj_index], &list, line);
+			else
+				handle_error_parser("Error in line");
+		}
 		else
-			if (line)
-				free(line);
+			free(line);
 	}
 	if (list == NULL || !list_parser_len(&list))
 		handle_error_parser("File is empty");
-	ft_printf("Parsing file: %s\n", parser->args[obj_index]);
+	ft_printf("Parsing file: %s\n", parser->args[obj_index + 1]);
 	if (list_parser_to_obj(&parser->obj[obj_index], list))
 		handle_error_parser("Error durring Parsing");
 	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c l.26");
@@ -99,6 +125,6 @@ void				reader(t_parser *parser)
 	while (++i < parser->nb_args + 1)
 	{
 		fd = open(parser->args[i], O_RDONLY);
-		open_file(fd, i, parser);
+		open_file(fd, i - 1, parser);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:23:44 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 21:45:30 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 21:55:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static void	check_args(int ac, char **av)
 		handle_error_parser("No args provided, need at least one object file");
 	while (++i < ac)
 	{
-		if (access(av[i], F_OK) == -1)
-			handle_error_parser("File doesn't exist");
 		tmp = ft_strsub(av[i], ft_strlen(av[i]) - 4, ft_strlen(av[i]));
 		err = ft_strlen(av[i]) < 5 || ft_strcmp(".obj", tmp);
 		free(tmp);
