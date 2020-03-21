@@ -32,6 +32,8 @@
 # define GLEW_STATIC // useless ?
 # include <GLEW/glew.h>
 # include <SDL2/SDL.h>
+# include <SDL2/SDL_opengl.h>
+# include <OpenGl/gl.h>
 
 /*
 ** Internal Libraries
