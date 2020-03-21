@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 21:32:59 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 22:33:46 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,13 +237,13 @@ void				reader(t_parser *parser);
 
 int					check_raw_data(char *raw_data);
 
-void				parser_vt(t_obj *obj, char *raw_data, int id);
-void				parser_vn(t_obj *obj, char *raw_data, int id);
-void				parser_vp(t_obj *obj, char *raw_data, int id);
-void				parser_v(t_obj *obj, char *raw_data, int id);
-void				parser_f(t_obj *obj, char *raw_data, int id);
-void				parser_l(t_obj *obj, char *raw_data, int id);
-void				parser_pass(t_obj *obj, char *raw_data, int id);
+void				parser_vt(t_obj *obj, char *raw_data);
+void				parser_vn(t_obj *obj, char *raw_data);
+void				parser_vp(t_obj *obj, char *raw_data);
+void				parser_v(t_obj *obj, char *raw_data);
+void				parser_f(t_obj *obj, char *raw_data);
+void				parser_l(t_obj *obj, char *raw_data);
+void				parser_pass(t_obj *obj, char *raw_data);
 void				parser_o(t_obj *obj, char *raw_data, int id, int type, int nb_id);
 void				parser_g(t_obj *obj, char *raw_data, int id, int type, int nb_id);
 
@@ -275,7 +275,7 @@ int							len_list_parser_id(t_list_parser *list, int id);
 void                		init_obj(t_obj *obj);
 void						init_obj_ptr(t_obj *obj, t_list_parser *list);
 
-void						init_ptr(void (*f[7])(t_obj *, char *, int));
+void						init_ptr(void (*f[7])(t_obj *, char *));
 
 void						init_parser(t_parser *parser, int ac, char **av);
 

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 22:18:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 22:38:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,9 @@ static int			check_obj(t_obj *obj)
 
 	err = 1;
 	err = (obj->len_faces) ? 1 : 0;
-	err = (err && obj->len_groups) ? 1 : 0;
 	err = (err && obj->len_lines) ? 1 : 0;
-	err = (err && obj->len_normals) ? 1 : 0;
-	err = (err && obj->len_objects) ? 1 : 0;
-	err = (err && obj->len_space_vertexes) ? 1 : 0;
-	err = (err && obj->len_textures) ? 1 : 0;
 	err = (err && obj->len_vertexes > 2) ? 1 : 0;
+	ft_printf("%d %d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects,  obj->len_space_vertexes,  obj->len_textures, obj->len_vertexes);
 	return (err);
 }
 
@@ -53,30 +49,25 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 
 static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
-	int				id;
-	short			err;
-	void			(*f[7])(t_obj *, char *, int);
+	short			type;
+	void			(*f[7])(t_obj *, char *);
 	t_list_parser	*tmp;
 
-	id = -1;
-	err = -1;
-	tmp = list;
+	type = -1;
 	init_ptr(f);
 	init_obj_ptr(obj, list);
 	define_groups_and_objects(obj, list);
-	exit(0);
-	while (tmp->next)
+	while (list->next)
 	{
-		if (tmp->id < 6 && err <= tmp->id)
-		{
-			id = -1;
-			err = tmp->id;
-		}
-		if (tmp->id < 7 && err == tmp->id)
-			f[tmp->id](obj, tmp->data, ++id);
-		tmp = list->next;
-		free(list->data);
-		free(list);
+		if (list->id < 6 && type <= list->id)
+			type = list->id;
+		if (list->id < 7 && type == list->id)
+			f[list->id](obj, list->data);
+		ft_printf("type = %d\t", type);
+		tmp = list;
+		list = list->next;
+		free(tmp->data);
+		free(tmp);
 	}
 	return (check_obj(obj));
 }
@@ -107,7 +98,7 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 	if (list == NULL || !list_parser_len(&list))
 		handle_error_parser("File is empty");
 	ft_printf("Parsing file: %s\n", parser->args[obj_index + 1]);
-	if (list_parser_to_obj(&parser->obj[obj_index], list))
+	if (!list_parser_to_obj(&parser->obj[obj_index], list))
 		handle_error_parser("Error durring Parsing");
 	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c l.26");
 }

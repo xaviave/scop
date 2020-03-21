@@ -6,20 +6,20 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 22:14:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/21 22:42:27 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/scop.h"
 
-void				parser_f(t_obj *obj, char *raw_data, int id)
+void				parser_f(t_obj *obj, char *raw_data)
 {
-    ft_printf("parser_f | line: %s | obj = %p | id = %d\nNo parsing\n", raw_data, obj, id);
+    ft_printf("parser_f | line: %s | obj = %p\nNo parsing\n", raw_data, obj);
 }
 
-void				parser_l(t_obj *obj, char *raw_data, int id)
+void				parser_l(t_obj *obj, char *raw_data)
 {
-    ft_printf("parser_l | line: %s | obj = %p | id = %d\nNo parsing\n", raw_data, obj, id);
+    ft_printf("parser_l | line: %s | obj = %p\nNo parsing\n", raw_data, obj);
 }
 
 void				parser_o(t_obj *obj, char *raw_data, int entity_id,
@@ -54,7 +54,7 @@ void				parser_g(t_obj *obj, char *raw_data, int entity_id,
 	obj->len_groups++;
 }
 
-void				parser_pass(t_obj *obj, char *raw_data, int id)
+void				parser_pass(t_obj *obj, char *raw_data)
 {
-    ft_printf("Line: %s is not parse\nid = id | obj = %p\n", raw_data, obj, id);
+    ft_printf("Line: %s can not be parsed - obj = %p\n", raw_data, obj);
 }
