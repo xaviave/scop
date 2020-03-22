@@ -32,14 +32,14 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./srcs/
 
 FILES = main.c \
-        error/handle_error_parser.c \
-        error/handle_error_sdl.c \
-        parser/launch_parser.c \
-        parser/reader.c \
+		error/handle_error_parser.c \
+		error/handle_error_sdl.c \
+		parser/launch_parser.c \
+		parser/reader.c \
 		parser/parser_f_l.c \
 		parser/parser_v.c \
 		parser/line_checker.c \
-		render/manage_sdl.c \
+		render/launch_render.c \
 		tools/ft_atof.c \
 		tools/init_obj.c \
 		tools/init_ptr.c \
@@ -60,7 +60,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(FWGL) -L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(FWGL) \
+	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
 
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)
