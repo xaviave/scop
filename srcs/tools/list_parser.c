@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/22 21:56:01 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 21:57:10 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_list_parser		*new_list_parser(char *raw_data)
 	new->id = define_id(raw_data);
 	new->data = ft_strdup(raw_data);
 	new->next = NULL;
-	free(raw_data);
+	ft_strdel(&raw_data);
 	return new;
 }
 
