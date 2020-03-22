@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/21 21:42:15 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 15:37:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,18 @@ static int					define_id(char *raw_data)
 		return (0);
 	else if (ft_strstr(tmp, "vn"))
 		return (1);
-	else if (ft_strstr(tmp, "vp"))
-		return (2);
 	else if (ft_strstr(tmp, "v"))
-		return (3);
+		return (2);
 	else if (ft_strstr(tmp, "f"))
-		return (4);
+		return (3);
 	else if (ft_strstr(tmp, "l"))
-		return (5);
+		return (4);
 	else if (ft_strstr(tmp, "g"))
-		return (7);
+		return (6);
 	else if (ft_strstr(tmp, "o"))
-		return (8);
+		return (7);
 	else
-		return (6);	
+		return (5);	
 }
 
 static t_list_parser		*new_list_parser(char *raw_data)

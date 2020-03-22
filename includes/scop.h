@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 13:11:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 15:36:02 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,21 +90,7 @@ typedef struct		s_normal
 }					t_normal;
 
 /*
-** t_space_vertexs defines the paramter space vertexs.
-** Define points in parameter space of a curve or surface.
-** parsing: vp u, v[, w]
-*/
-
-typedef struct		s_space_vertex
-{
-	int				id;
-	double			u;
-	double			v; 
-	double			w; // default to 1.0
-}					t_space_vertex;
-
-/*
-** t_face defines a ploygonal face element.
+** t_face defines a polygonal face element.
 ** Faces are defined using lists of vertex, texture and normal indices.
 ** parsing: f v1 v2[/vt2] v3[//vn3] v4[/vt4][/vn4] ...
 */
@@ -112,7 +98,10 @@ typedef struct		s_space_vertex
 typedef struct		s_face
 {
 	int				id;
-	int				nb; // nb of ?
+	int				nb_vertexes;
+	int				*vertexes_id;
+	int				*textures_id;
+	int				*normals_id;
 }					t_face;
 
 /*
@@ -123,7 +112,8 @@ typedef struct		s_face
 typedef struct		s_line
 {
 	int				id;
-	int				nb; // nb of ?
+	int				nb_vertexes;
+	int				*vertexes_id;
 }					t_line;
 
 /*
@@ -177,9 +167,6 @@ typedef struct		s_obj
 
 	t_object		*objects;
 	int				len_objects;
-
-	t_space_vertex	*space_vertexes;
-	int				len_space_vertexes;
 
 	t_texture		*textures;
 	int				len_textures;
@@ -240,7 +227,6 @@ int					check_raw_data(char *raw_data);
 
 void				parser_vt(t_obj *obj, char *raw_data);
 void				parser_vn(t_obj *obj, char *raw_data);
-void				parser_vp(t_obj *obj, char *raw_data);
 void				parser_v(t_obj *obj, char *raw_data);
 void				parser_f(t_obj *obj, char *raw_data);
 void				parser_l(t_obj *obj, char *raw_data);

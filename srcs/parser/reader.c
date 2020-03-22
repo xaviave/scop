@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 15:21:11 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 15:39:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ static void			print_obj(t_obj *obj)
 {
 	int i = -1;
 	
-	ft_printf("%d %d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects,  obj->len_space_vertexes,  obj->len_textures, obj->len_vertexes);
+	ft_printf("%d %d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects, obj->len_textures, obj->len_vertexes);
 	ft_printf("\n--------------------------------------------------\nvertexes:\n");
 	if (obj->len_vertexes)
 		while (++i < obj->len_vertexes)
 			dprintf(1, "id = %4d | x = %10f | y = %10f | z = %10f | w = %10f | %p\n", obj->vertexes[i].id, obj->vertexes[i].x, obj->vertexes[i].y, obj->vertexes[i].z, obj->vertexes[i].w, &obj->vertexes[i]);
-	ft_printf("\n--------------------------------------------------\nspace vertexes:\n");
-	if (obj->len_space_vertexes)
-		while (++i < obj->len_space_vertexes)
-			dprintf(1, "id = %4d | u = %10f | v = %10f | w = %10f\n", obj->space_vertexes[i].id, obj->space_vertexes[i].u, obj->space_vertexes[i].v, obj->space_vertexes[i].w);
 	ft_printf("\n--------------------------------------------------\ntextures:\n");
 	if (obj->len_textures)
 		while (++i < obj->len_textures)
@@ -79,9 +75,9 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 	tmp = list;
 	while (tmp->next)
 	{
-		if (tmp->id == 7)
+		if (tmp->id == 6)
 			parser_g(obj, tmp->data, id, tmp->next->id, len_list_parser_id(tmp, tmp->next->id));
-		else if (tmp->id == 8)
+		else if (tmp->id == 7)
 			parser_o(obj, tmp->data, id, tmp->next->id, len_list_parser_id(tmp, tmp->next->id));
 		tmp = tmp->next;
 		id++;
@@ -91,7 +87,7 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
 	short			type;
-	void			(*f[7])(t_obj *, char *);
+	void			(*f[6])(t_obj *, char *);
 	t_list_parser	*tmp;
 
 	type = -1;
@@ -100,9 +96,9 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 	define_groups_and_objects(obj, list);
 	while (list->next)
 	{
-		if (list->id < 6 && type <= list->id)
+		if (list->id < 5 && type <= list->id)
 			type = list->id;
-		if (list->id < 7 && type == list->id)
+		if (list->id < 6 && type == list->id)
 			f[list->id](obj, list->data);
 		tmp = list;
 		list = list->next;
