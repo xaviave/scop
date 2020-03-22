@@ -41,11 +41,11 @@ static t_list_parser		*new_list_parser(char *raw_data)
 	t_list_parser			*new;
 
 	if (!(new = (t_list_parser *)malloc(sizeof(t_list_parser))))
-		return (NULL);
+		return (NULL); // return NULL ? handled in previous call or better call handel_error_parse ?
 	new->id = define_id(raw_data);
 	new->data = raw_data;
 	new->next = NULL;
-	return new;
+	return (new);
 }
 
 void                        add_list_parser(t_list_parser **list, char *raw_data)

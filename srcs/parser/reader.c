@@ -63,7 +63,6 @@ static int			check_obj(t_obj *obj)
 	err = (err && obj->len_vertexes > 2) ? 1 : 0;
 	print_obj(obj);
 	return (err);
-	print_obj(obj);
 }
 
 static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
@@ -115,29 +114,27 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 	char			*line;
 	t_list_parser	*list;
 
-	i = 0;
-	list = NULL;
 	init_obj(&parser->obj[obj_index]);
-	ft_printf("Opening file: %s\tobj address %p\n", parser->args[obj_index + 1], &parser->obj[obj_index]);
-	ft_printf("CRASH WHEN FILE IS EMPTY\n\n");
+	ft_printf("Opening file: %s\tobj address %p.\n", parser->args[obj_index + 1], &parser->obj[obj_index]);
+    i = 0;
+    list = NULL;
 	while(get_next_line(fd, &line) > 0)
 	{
-		if (line && ft_strlen(line) && !ft_strchr(line, '#'))
-		{
-			if (check_raw_data(line))
-				add_list_parser(&list, line);
-			else
-				handle_error_parser("Error in line");
-		}
-		else
-			free(line);
-	}
+        if (line && ft_strlen(line) && !ft_strchr(line, '#'))
+        {
+            if (check_raw_data(line))
+                add_list_parser(&list, line);
+            else
+                handle_error_parser("Error in line %s.", line);
+        }
+        ft_strdel(&line);
+    }
 	if (list == NULL || !list_parser_len(&list))
-		handle_error_parser("File is empty");
+		handle_error_parser("File is empty.");
 	ft_printf("Parsing file: %s\n", parser->args[obj_index + 1]);
 	if (!list_parser_to_obj(&parser->obj[obj_index], list))
-		handle_error_parser("Error durring Parsing");
-	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c l.26");
+		handle_error_parser("Error during parsing.");
+	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c open_file()");
 }
 
 /*
@@ -152,7 +149,8 @@ void				reader(t_parser *parser)
 	i = 0;
 	while (++i < parser->nb_args + 1)
 	{
-		fd = open(parser->args[i], O_RDONLY);
+		if ((fd = open(parser->args[i], O_RDONLY)) == -1)
+            handle_error_parser("Error when opening file.");
 		open_file(fd, i - 1, parser);
 	}
 }

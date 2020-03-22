@@ -273,6 +273,8 @@ void						init_parser(t_parser *parser, int ac, char **av);
 
 int							pass_whitespace_double(int i,char *str);
 
+int							pass_whitespace(int i,char *str);
+
 double						optionnal_value_double(char *str, double d);
 
 double						ft_atof(char *str);

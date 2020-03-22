@@ -47,7 +47,7 @@ FILES = main.c \
 		tools/list_parser.c \
 		tools/length_parser.c \
 		tools/optionnal_argument.c \
-		tools/pass_whitespace_double.c \
+		tools/pass_whitespace.c \
 
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))

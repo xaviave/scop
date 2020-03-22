@@ -25,14 +25,13 @@ static int					check_line_double(char *raw_data, int i)
 	{
 		p = 0;
 		m = 0;
-		while (raw_data[i] && (raw_data[i] == '\t' || raw_data[i] == ' '))
-			i++;
+		i = pass_whitespace(i, raw_data);
 		while (raw_data[i] == '.' || raw_data[i] == '/' ||
 			raw_data[i] == '-' || (raw_data[i] >= '0' && raw_data[i] <= '9'))
 		{
 			if (raw_data[i] == '.')
 				p++;
-			if (raw_data[i] == '-')
+			else if (raw_data[i] == '-')
 				m++;
 			if (p > 1 || m > 1)
 				return (0);
@@ -44,8 +43,7 @@ static int					check_line_double(char *raw_data, int i)
 
 static int					check_line_str(char *raw_data, int i)
 {
-	while (raw_data[i] && (raw_data[i] == '\t' || raw_data[i] == ' '))
-		i++;
+    i = pass_whitespace(i, str);
 	while (raw_data[i] && raw_data[i] != '\t' && raw_data[i] != ' ' &&
 		raw_data[i] != '\n' && raw_data[i] != '\r')
 		i++;
@@ -74,7 +72,5 @@ static int					dispatch_by_header(char *raw_data)
 
 int							check_raw_data(char *raw_data)
 {
-	if (ft_strlen(raw_data) < 4)
-		return (0);
-	return dispatch_by_header(raw_data);
+    return (ft_strlen(raw_data) < 4 ? 0 : dispatch_by_header(raw_data));
 }

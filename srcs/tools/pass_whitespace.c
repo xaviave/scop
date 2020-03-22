@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass_whitespace_double.c                           :+:      :+:    :+:   */
+/*   pass_whitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,14 +14,20 @@
 
 /*
 ** pass_whitespace_double pass all whitespaces and the first double
-** return the index of the first whitespace found after the mouvement
+** return the index of the first whitespace found after the movement
 */
 
 int			pass_whitespace_double(int i, char *str)
 {
-	while (str[i] == '\t' || str[i] == ' ')
-		i++;
+    i = pass_whitespace(i, str);
 	while (str[i] && str[i] != '\t' && str[i] != ' ')
 		i++;
 	return (i);
+}
+
+int         pass_whitespace(int i, char *str)
+{
+    while (str[i] && (str[i] == '\t' || str[i] == ' '))
+        i++;
+    return (i);
 }

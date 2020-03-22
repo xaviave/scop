@@ -1,4 +1,4 @@
-#include "../../includes/render.h"
+#include "../../includes/scop.h"
 
 static int  init_t_prog(t_prog *p)
 {
