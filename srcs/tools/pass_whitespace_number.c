@@ -26,7 +26,7 @@ int         pass_whitespace(int i, char *str)
 
 int			pass_whitespace_number(int i, char *str)
 {
-    i = pass_whitespace(str)
+    i = pass_whitespace(i, str);
 	while (str[i] && str[i] != '\t' && str[i] != ' ')
 		i++;
 	return (i);

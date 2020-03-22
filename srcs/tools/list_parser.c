@@ -45,7 +45,6 @@ static t_list_parser		*new_list_parser(char *raw_data)
 	new->id = define_id(raw_data);
     new->data = ft_strdup(raw_data);
 	new->next = NULL;
-    ft_strdel(&raw_data);
 	return (new);
 }
 

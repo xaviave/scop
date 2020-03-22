@@ -12,7 +12,6 @@
 
 # include "../../includes/scop.h"
 
-<<<<<<< HEAD
 int					count_entity(char *str)
 {
 	int				i;

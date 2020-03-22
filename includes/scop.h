@@ -29,6 +29,8 @@
 */
  
 # include "../libft/header/libft.h"
+# define GLEW_STATIC // useless ?
+# include <GLEW/glew.h>
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_opengl.h>
 # include <OpenGl/gl.h>
@@ -182,6 +184,7 @@ typedef struct      s_prog
 	int             exit_state;
 	SDL_Window      *win;
 	SDL_Event       ev;
+    SDL_GLContext   gl_context;
 }                   t_prog;
 
 /*
