@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xavier_martin <xavier_martin@student.le    +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/19 22:07:20 by xavier_mart      ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 17:47:47 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 */
  
 # include "../libft/header/libft.h"
-# define GLEW_STATIC // useless ?
-# include <GLEW/glew.h>
 # include <SDL2/SDL.h>
 
 /*
@@ -58,22 +56,24 @@
 
 typedef struct      s_vertex
 {
-	float			x;
-	float			y;
-	float			z;
-	float			w; // optionnal | default value 1.0
+	int				id;
+	double			x;
+	double			y;
+	double			z;
+	double			w; // optionnal | default value 1.0
 }					t_vertex;
 
 /*
 ** t_texture defines the texture's coordinate.
-** parsing: vp u, [, v, w]
+** parsing: vt u[, v, w]
 */
 
 typedef struct		s_texture
 {
-	float			u;
-	float			v; //need to be between 0 and 1 | default 0
-	float			w; //need to be between 0 and 1 | default 0
+	int				id;
+	double			u;
+	double			v; //need to be between 0 and 1 | default 0
+	double			w; //need to be between 0 and 1 | default 0
 }					t_texture;
 
 /*
@@ -83,33 +83,25 @@ typedef struct		s_texture
 
 typedef struct		s_normal
 {
-	float			x;
-	float			y;
-	float			z;
+	int				id;
+	double			x;
+	double			y;
+	double			z;
 }					t_normal;
 
 /*
-** t_space_vertexs defines the paramter space vertexs.
-** Define points in parameter space of a curve or surface.
-** parsing: vp u [,v] [,w]
-*/
-
-typedef struct		s_space_vertex
-{
-	float			u;
-	float			v; 
-	float			w;
-}					t_space_vertex;
-
-/*
-** t_face defines a ploygonal face element.
+** t_face defines a polygonal face element.
 ** Faces are defined using lists of vertex, texture and normal indices.
 ** parsing: f v1 v2[/vt2] v3[//vn3] v4[/vt4][/vn4] ...
 */
 
 typedef struct		s_face
 {
-	int				nb; // nb of ?
+	int				id;
+	int				nb_vertexes;
+	int				*vertexes_id;
+	int				*textures_id;
+	int				*normals_id;
 }					t_face;
 
 /*
@@ -119,8 +111,36 @@ typedef struct		s_face
 
 typedef struct		s_line
 {
-	int				nb; // nb of ?
+	int				id;
+	int				nb_vertexes;
+	int				*vertexes_id;
 }					t_line;
+
+/*
+**
+*/
+
+typedef struct		s_group
+{
+	int				id;
+	int				type;
+	int				nb_entity;
+	int				first_entity;
+	char			*name;
+}					t_group;
+
+/*
+** 
+*/
+
+typedef struct		s_object
+{
+	int				id;
+	int				type;
+	int				nb_entity;
+	int				first_entity;
+	char			*name;
+}					t_object;
 
 /*
 ** t_obj have all the components of an obj.
@@ -128,15 +148,31 @@ typedef struct		s_line
 
 typedef struct		s_obj
 {
+	int				id;
+	int				error;
 	char			*mtllib;
 	char			*usemtl;
-	
+
 	t_face			*faces;
+	int				len_faces;
+
+	t_group			*groups;
+	int				len_groups;
+
 	t_line			*lines;
+	int				len_lines;
+
 	t_normal		*normals;
-	t_space_vertex	*space_vertexes;
+	int				len_normals;
+
+	t_object		*objects;
+	int				len_objects;
+
 	t_texture		*textures;
+	int				len_textures;
+	
 	t_vertex		*vertexes;
+	int				len_vertexes;
 }					t_obj;
 
 typedef struct      s_prog
@@ -144,11 +180,96 @@ typedef struct      s_prog
 	int             exit_state;
 	SDL_Window      *win;
 	SDL_Event       ev;
-    SDL_GLContext   gl_context;
 }                   t_prog;
 
 /*
 ** Functions
 */
+
+/*
+** Render.h
+*/
+
+
+# define W 640
+# define H 480
+
+# define True 1
+# define False 0
+
+
+int         manage_sdl(t_prog *p);
+
+/*
+** Parser.h
+*/
+
+/*
+** Structures
+*/
+
+typedef struct		s_parser
+{
+	int				nb_args;
+	char			**args;
+	t_obj			*obj;
+}					t_parser;
+
+
+/*
+** Functions
+*/
+
+int				    launch_parser(t_parser *parser,  int ac, char **av);
+void				reader(t_parser *parser);
+
+int					check_raw_data(char *raw_data);
+
+void				parser_vt(t_obj *obj, char *raw_data);
+void				parser_vn(t_obj *obj, char *raw_data);
+void				parser_v(t_obj *obj, char *raw_data);
+void				parser_f(t_obj *obj, char *raw_data);
+void				parser_l(t_obj *obj, char *raw_data);
+void				parser_mtl_pass(t_obj *obj, char *raw_data);
+void				parser_o(t_obj *obj, char *raw_data, int id, int type, int nb_id);
+void				parser_g(t_obj *obj, char *raw_data, int id, int type, int nb_id);
+
+/*
+** Tools.h
+*/
+
+/*
+** Structures
+*/
+
+typedef struct				s_list_parser
+{
+    short           		id; // id define the first type of objects
+	char					*data;
+	struct s_list_parser	*next;
+}							t_list_parser;
+
+/*
+** Functions
+*/
+
+int							list_parser_len(t_list_parser **list);
+void						add_list_parser(t_list_parser **list, char *raw_data);
+
+int							get_lenght_entity(t_list_parser *list, int id);
+int							len_list_parser_id(t_list_parser *list, int id);
+
+void                		init_obj(t_obj *obj);
+void						init_obj_ptr(t_obj *obj, t_list_parser *list);
+
+void						init_parser_ptr(void (*f[7])(t_obj *, char *));
+
+void						init_parser(t_parser *parser, int ac, char **av);
+
+int							pass_whitespace_number(int i,char *str);
+
+double						optionnal_value_double(char *str, double d);
+
+double						ft_atof(char *str);
 
 #endif

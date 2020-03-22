@@ -6,19 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:23:44 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/12 15:39:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/20 21:55:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
-
-static void	init_parser(t_parser *parser, int ac, char **av)
-{
-	parser->nb_args = ac;
-	parser->args = av;
-	if ((parser->obj = (t_obj *)malloc(sizeof(t_obj) * ac - 1)))
-		handle_error_parser("Error during memory allocation");
-}
+#include "../../includes/scop.h"
 
 /*
 ** check_args: check every args of the main
@@ -39,7 +31,7 @@ static void	check_args(int ac, char **av)
 	{
 		tmp = ft_strsub(av[i], ft_strlen(av[i]) - 4, ft_strlen(av[i]));
 		err = ft_strlen(av[i]) < 5 || ft_strcmp(".obj", tmp);
-//		free_str(tmp);
+		free(tmp);
 		if (err)
 			handle_error_parser("Invalid file name");
 	}
@@ -47,7 +39,6 @@ static void	check_args(int ac, char **av)
 
 int 		launch_parser(t_parser *parser, int ac, char **av)
 {
-    return (0);
 	check_args(ac, av);
 	init_parser(parser, ac, av);
 	reader(parser);
