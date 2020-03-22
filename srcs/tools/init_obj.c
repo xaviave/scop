@@ -18,22 +18,22 @@ void	init_obj_ptr(t_obj *obj, t_list_parser *list)
 	if (get_lenght_entity(list, 3))
 		if (!(obj->faces = (t_face *)malloc(sizeof(t_face) * get_lenght_entity(list, 4))))
 			return ;
-	else if (get_lenght_entity(list, 6))
+	if (get_lenght_entity(list, 6))
 		if (!(obj->groups = (t_group *)malloc(sizeof(t_group) * get_lenght_entity(list, 7))))
 			return ;
-	else if (get_lenght_entity(list, 4))
+	if (get_lenght_entity(list, 4))
 		if (!(obj->lines = (t_line *)malloc(sizeof(t_line) * get_lenght_entity(list, 5))))
 			return ;
-	else if (get_lenght_entity(list, 1))
+	if (get_lenght_entity(list, 1))
 		if (!(obj->normals = (t_normal *)malloc(sizeof(t_normal) * get_lenght_entity(list, 1))))
 			return ;
-	else if (get_lenght_entity(list, 7))
+	if (get_lenght_entity(list, 7))
 		if (!(obj->objects = (t_object *)malloc(sizeof(t_object) * get_lenght_entity(list, 8))))
 			return ;
-	else if (get_lenght_entity(list, 0))
+	if (get_lenght_entity(list, 0))
 		if (!(obj->textures = (t_texture *)malloc(sizeof(t_texture) * get_lenght_entity(list, 0))))
 			return ;
-	else if (get_lenght_entity(list, 2))
+	if (get_lenght_entity(list, 2))
 		if (!(obj->vertexes = (t_vertex *)malloc(sizeof(t_vertex) * get_lenght_entity(list, 3))))
 			return ;
 }

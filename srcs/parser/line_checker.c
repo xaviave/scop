@@ -43,7 +43,7 @@ static int					check_line_double(char *raw_data, int i)
 
 static int					check_line_str(char *raw_data, int i)
 {
-    i = pass_whitespace(i, str);
+    i = pass_whitespace(i, raw_data);
 	while (raw_data[i] && raw_data[i] != '\t' && raw_data[i] != ' ' &&
 		raw_data[i] != '\n' && raw_data[i] != '\r')
 		i++;
