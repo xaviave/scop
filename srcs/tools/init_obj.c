@@ -14,6 +14,7 @@
 
 void	init_obj_ptr(t_obj *obj, t_list_parser *list)
 {
+    // Important de discuter de cette fonction.
 	if (get_lenght_entity(list, 3))
 		if (!(obj->faces = (t_face *)malloc(sizeof(t_face) * get_lenght_entity(list, 4))))
 			return ;
@@ -39,20 +40,6 @@ void	init_obj_ptr(t_obj *obj, t_list_parser *list)
 
 void    init_obj(t_obj *obj)
 {
-	obj->id = -1;
-	obj->error = 0;
-	obj->faces = NULL;
-	obj->len_faces = 0;
-	obj->groups = NULL;
-	obj->len_groups = 0;
-	obj->lines = NULL;
-	obj->len_lines = 0;
-	obj->normals = NULL;
-	obj->len_normals = 0;
-	obj->objects = NULL;
-	obj->len_objects = 0;
-	obj->textures = NULL;
-	obj->len_textures = 0;
-	obj->vertexes = NULL;
-	obj->len_vertexes = 0;
+	ft_memset(obj, 0, sizeof(t_obj));
+    obj->id = -1;
 }

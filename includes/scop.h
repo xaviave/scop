@@ -30,6 +30,8 @@
  
 # include "../libft/header/libft.h"
 # include <SDL2/SDL.h>
+# include <SDL2/SDL_opengl.h>
+# include <OpenGl/gl.h>
 
 /*
 ** Internal Libraries
@@ -198,7 +200,7 @@ typedef struct      s_prog
 # define False 0
 
 
-int         manage_sdl(t_prog *p);
+int         launch_render(t_prog *p);
 
 /*
 ** Parser.h
@@ -268,7 +270,11 @@ void						init_parser(t_parser *parser, int ac, char **av);
 
 int							pass_whitespace_number(int i,char *str);
 
-double						optionnal_value_double(char *str, double d);
+int							pass_whitespace_double(int i,char *str);
+
+int							pass_whitespace(int i,char *str);
+
+double						optional_value_double(char *str, double d);
 
 double						ft_atof(char *str);
 

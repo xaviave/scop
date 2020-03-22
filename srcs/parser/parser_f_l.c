@@ -12,6 +12,7 @@
 
 # include "../../includes/scop.h"
 
+<<<<<<< HEAD
 int					count_entity(char *str)
 {
 	int				i;
@@ -21,8 +22,7 @@ int					count_entity(char *str)
 	entity = 0;
 	while (str[i])
 	{
-		while (str[i] == ' ' || str[i] == '\t')
-			i++;
+		i = pass_whitespace(i, str);
 		if (str[i])
 			entity++;
 		while (str[i] && str[i] != ' ' && str[i] != '\t')
@@ -120,13 +120,13 @@ void				parser_mtl_pass(t_obj *obj, char *raw_data)
 
 	if (ft_strlen(raw_data) < 7)
 	{
-		ft_printf("Line: %s can not be parsed for now (or will be never - obj = %p\n", raw_data, obj);
+		ft_printf("Line: %s can not be parsed for now (or will be never - obj = %p.\n", raw_data, obj);
 		return ;
 	}
 	i = 6;
 	while (raw_data[i] && raw_data[i] == '\t' && raw_data[i] == ' ')
 		i++;
-	ft_printf("usemtl need to be a char **");
+	ft_printf("usemtl need to be a char **.");
 	if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "usemtl"))
 		obj->usemtl = ft_strdup(&raw_data[i]);
 	else if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "mtllib"))

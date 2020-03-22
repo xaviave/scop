@@ -22,9 +22,9 @@ void				parser_vt(t_obj *obj, char *raw_data)
 	obj->textures[id].id = id;
 	obj->textures[id].u = ft_atof(&raw_data[i]);
 	i = pass_whitespace_number(i, raw_data);
-	obj->textures[id].v = optionnal_value_double(&raw_data[i], 0.0);
+	obj->textures[id].v = optional_value_double(&raw_data[i], 0.0);
 	i = pass_whitespace_number(i, raw_data);
-	obj->textures[id].w = optionnal_value_double(&raw_data[i], 0.0);
+	obj->textures[id].w = optional_value_double(&raw_data[i], 0.0);
 	obj->len_textures++;
 }
 
@@ -58,6 +58,6 @@ void				parser_v(t_obj *obj, char *raw_data)
 	i = pass_whitespace_number(i, raw_data);
 	obj->vertexes[id].z = ft_atof(&raw_data[i]);
 	i = pass_whitespace_number(i, raw_data);
-	obj->vertexes[id].w = optionnal_value_double(&raw_data[i], 1.0);
+	obj->vertexes[id].w = optional_value_double(&raw_data[i], 1.0);
 	obj->len_vertexes++;
 }

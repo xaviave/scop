@@ -14,13 +14,19 @@
 
 /*
 ** pass_whitespace_number pass all whitespaces and the first number
-** return the index of the first whitespace found after the mouvement
+** return the index of the first whitespace found after the movement
 */
+
+int         pass_whitespace(int i, char *str)
+{
+    while (str[i] && (str[i] == '\t' || str[i] == ' '))
+        i++;
+    return (i);
+}
 
 int			pass_whitespace_number(int i, char *str)
 {
-	while (str[i] == '\t' || str[i] == ' ')
-		i++;
+    i = pass_whitespace(str)
 	while (str[i] && str[i] != '\t' && str[i] != ' ')
 		i++;
 	return (i);
