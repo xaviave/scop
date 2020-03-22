@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error_parser.c                              :+:      :+:    :+:   */
+/*   init_ptr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 13:06:45 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
+/*   Updated: 2020/03/22 15:38:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
 
-void handle_error_parser(char *message, ...)
+void		init_parser_ptr(void (*f[6])(t_obj *, char *))
 {
-	ft_printf("%s\n", message);
-	ft_printf("must free everything lol");
-	// while (1)
-	// 	;
-	exit(0);
+	f[0] = &parser_vt;
+	f[1] = &parser_vn;
+	f[2] = &parser_v;
+	f[3] = &parser_f;
+	f[4] = &parser_l;
+	f[5] = &parser_mtl_pass;
 }

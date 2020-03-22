@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/13 13:26:19 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/22 11:41:27 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FWGL = -framework OpenGl
 LIBSDL2 = $(addprefix $(FW), libsdl2)
 LIBGLEW = $(addprefix $(FW), libglew)
 INC = includes/
-CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
+CFLAGS = -Wall -Wextra -Werror -I $(INC) -I $(LIBFT) -O2 -g
 
 #PATH
 
@@ -36,8 +36,18 @@ FILES = main.c \
         error/handle_error_sdl.c \
         parser/launch_parser.c \
         parser/reader.c \
-        tools/list_parser.c \
-		render/launch_render.c \
+		parser/parser_f_l.c \
+		parser/parser_v.c \
+		parser/line_checker.c \
+		render/manage_sdl.c \
+		tools/ft_atof.c \
+		tools/init_obj.c \
+		tools/init_ptr.c \
+		tools/init_parser.c \
+		tools/list_parser.c \
+		tools/length_parser.c \
+		tools/optionnal_argument.c \
+		tools/pass_whitespace_double.c \
 
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))

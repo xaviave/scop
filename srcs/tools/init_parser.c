@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error_parser.c                              :+:      :+:    :+:   */
+/*   init_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 13:06:45 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/20 21:44:12 by xamartin          #+#    #+#             */
+/*   Updated: 2020/03/21 10:46:47 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
 
-void handle_error_parser(char *message, ...)
+void	init_parser(t_parser *parser, int ac, char **av)
 {
-	ft_printf("%s\n", message);
-	ft_printf("must free everything lol");
-	// while (1)
-	// 	;
-	exit(0);
+	parser->nb_args = ac - 1;
+	parser->args = av;
+	if (!(parser->obj = (t_obj *)malloc(sizeof(t_obj) * parser->nb_args)))
+		handle_error_parser("Error during memory allocation");
 }

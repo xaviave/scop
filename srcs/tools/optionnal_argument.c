@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error_parser.c                              :+:      :+:    :+:   */
+/*   optionnal_argument.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 13:06:45 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/20 17:00:54 by xavier_mart       #+#    #+#             */
+/*   Updated: 2020/03/22 15:05:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+# include "../../includes/scop.h"
 
-void handle_error_parser(char *message, ...)
+double		optionnal_value_double(char *str, double d)
 {
-	ft_printf("%s\n", message);
-	ft_printf("must free everything lol");
-	// while (1)
-	// 	;
-	exit(0);
+	return (ft_strlen(str) ? ft_atof(str) : d);
 }
