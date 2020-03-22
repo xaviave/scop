@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 22:38:24 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 15:21:11 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,46 @@
 ** if a len is NULL, it's due to an error during the parsing
 */
 
+static void			print_obj(t_obj *obj)
+{
+	int i = -1;
+	
+	ft_printf("%d %d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects,  obj->len_space_vertexes,  obj->len_textures, obj->len_vertexes);
+	ft_printf("\n--------------------------------------------------\nvertexes:\n");
+	if (obj->len_vertexes)
+		while (++i < obj->len_vertexes)
+			dprintf(1, "id = %4d | x = %10f | y = %10f | z = %10f | w = %10f | %p\n", obj->vertexes[i].id, obj->vertexes[i].x, obj->vertexes[i].y, obj->vertexes[i].z, obj->vertexes[i].w, &obj->vertexes[i]);
+	ft_printf("\n--------------------------------------------------\nspace vertexes:\n");
+	if (obj->len_space_vertexes)
+		while (++i < obj->len_space_vertexes)
+			dprintf(1, "id = %4d | u = %10f | v = %10f | w = %10f\n", obj->space_vertexes[i].id, obj->space_vertexes[i].u, obj->space_vertexes[i].v, obj->space_vertexes[i].w);
+	ft_printf("\n--------------------------------------------------\ntextures:\n");
+	if (obj->len_textures)
+		while (++i < obj->len_textures)
+			dprintf(1, "id = %4d | u = %10f | v = %10f | w = %10f\n", obj->textures[i].id, obj->textures[i].u, obj->textures[i].v, obj->textures[i].w);
+	ft_printf("\n--------------------------------------------------\nnormals:\n");
+	if (obj->len_normals)
+		while (++i < obj->len_normals)
+			dprintf(1, "id = %4d | x = %10f | y = %10f | z = %10f\n", obj->normals[i].id, obj->normals[i].x, obj->normals[i].y, obj->normals[i].z);
+	ft_printf("\n--------------------------------------------------\ngroups:\n");
+	if (obj->len_groups)
+		while (++i < obj->len_groups)
+			dprintf(1, "id = %4d | name = %10s | type = %d | first_id = %3d | nb_entity = %3d\n", obj->groups[i].id, obj->groups[i].name, obj->groups[i].type, obj->groups[i].first_entity, obj->groups[i].nb_entity);
+	ft_printf("\n--------------------------------------------------\nobjects:\n");
+	if (obj->len_objects)
+		while (++i < obj->len_objects)
+			dprintf(1, "id = %4d | name = %10s | type = %d | first_id = %3d | nb_entity = %3d\n", obj->objects[i].id, obj->objects[i].name, obj->objects[i].type, obj->objects[i].first_entity, obj->objects[i].nb_entity);
+	ft_printf("\n--------------------------------------------------\nlines:\n");
+	if (obj->len_lines)
+		while (++i < obj->len_lines)
+			dprintf(1, "id = %4d\n", obj->lines[i].id);
+	ft_printf("\n--------------------------------------------------\nfaces:\n");
+	if (obj->len_faces)
+		while (++i < obj->len_faces)
+			dprintf(1, "id = %4d\n", obj->faces[i].id);
+
+}
+
 static int			check_obj(t_obj *obj)
 {
 	short			err;
@@ -25,8 +65,9 @@ static int			check_obj(t_obj *obj)
 	err = (obj->len_faces) ? 1 : 0;
 	err = (err && obj->len_lines) ? 1 : 0;
 	err = (err && obj->len_vertexes > 2) ? 1 : 0;
-	ft_printf("%d %d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects,  obj->len_space_vertexes,  obj->len_textures, obj->len_vertexes);
+	print_obj(obj);
 	return (err);
+	print_obj(obj);
 }
 
 static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
@@ -54,7 +95,7 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 	t_list_parser	*tmp;
 
 	type = -1;
-	init_ptr(f);
+	init_parser_ptr(f);
 	init_obj_ptr(obj, list);
 	define_groups_and_objects(obj, list);
 	while (list->next)
@@ -63,12 +104,12 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 			type = list->id;
 		if (list->id < 7 && type == list->id)
 			f[list->id](obj, list->data);
-		ft_printf("type = %d\t", type);
 		tmp = list;
 		list = list->next;
-		free(tmp->data);
-		free(tmp);
+		// free(tmp->data);
+		// free(tmp);
 	}
+	ft_printf("\n--------------------\n");
 	return (check_obj(obj));
 }
 

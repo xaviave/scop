@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 22:42:27 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 14:37:54 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void				parser_f(t_obj *obj, char *raw_data)
 {
+	ft_printf("NEED TO HANDLE NEGATIV ID | -1 IS THE LAST ID\n");
     ft_printf("parser_f | line: %s | obj = %p\nNo parsing\n", raw_data, obj);
 }
 
 void				parser_l(t_obj *obj, char *raw_data)
 {
+	ft_printf("NEED TO HANDLE NEGATIV ID | -1 IS THE LAST ID\n");
     ft_printf("parser_l | line: %s | obj = %p\nNo parsing\n", raw_data, obj);
 }
 
@@ -54,7 +56,20 @@ void				parser_g(t_obj *obj, char *raw_data, int entity_id,
 	obj->len_groups++;
 }
 
-void				parser_pass(t_obj *obj, char *raw_data)
+void				parser_mtl_pass(t_obj *obj, char *raw_data)
 {
-    ft_printf("Line: %s can not be parsed - obj = %p\n", raw_data, obj);
+	int				i;
+
+	if (ft_strlen(raw_data) < 7)
+	{
+		ft_printf("Line: %s can not be parsed - obj = %p\n", raw_data, obj);
+		return ;
+	}
+	i = 6;
+	while (raw_data[i] && raw_data[i] == '\t' && raw_data[i] == ' ')
+		i++;
+	if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "usemtl"))
+		obj->usemtl = ft_strdup(&raw_data[i]);
+	else if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "mtllib"))
+		obj->mtllib = ft_strdup(&raw_data[i]);
 }

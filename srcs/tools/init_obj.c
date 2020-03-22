@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/21 21:56:28 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 15:16:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_obj_ptr(t_obj *obj, t_list_parser *list)
 void    init_obj(t_obj *obj)
 {
 	obj->id = -1;
+	obj->error = 0;
 	obj->faces = NULL;
 	obj->len_faces = 0;
 	obj->groups = NULL;

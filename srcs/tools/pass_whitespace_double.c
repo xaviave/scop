@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass_whitespace_float.c                            :+:      :+:    :+:   */
+/*   pass_whitespace_double.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 16:45:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/21 20:28:18 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
+/*   Updated: 2020/03/22 13:13:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/scop.h"
 
 /*
-** pass_whitespace_float pass all whitespaces and the first float
+** pass_whitespace_double pass all whitespaces and the first double
 ** return the index of the first whitespace found after the mouvement
 */
 
-int			pass_whitespace_float(int i, char *str)
+int			pass_whitespace_double(int i, char *str)
 {
-	// while (str[i] && ft_strisdigit(&str[i]))
-	//	i++;
-	while (str[++i])
-		if (ft_strisdigit(&str[i]))
-			break ;
-	while (str[++i])
-		if (str[i] == '\t' || str[i] == ' ')
-			break ;
+	while (str[i] == '\t' || str[i] == ' ')
+		i++;
+	while (str[i] && str[i] != '\t' && str[i] != ' ')
+		i++;
 	return (i);
 }
