@@ -49,6 +49,15 @@
 
 # define PROG_NAME "Scop"
 
+# define ID_VT 0
+# define ID_VN 1
+# define ID_V 2
+# define ID_F 3
+# define ID_L 4
+# define ID_ERR 5
+# define ID_G 6
+# define ID_O 7
+
 /*
 ** Structures
 */
@@ -199,8 +208,8 @@ typedef struct      s_prog
 # define W 640
 # define H 480
 
-# define True 1
-# define False 0
+# define TRUE 1
+# define FALSE 0
 
 
 int         launch_render(t_prog *p);
@@ -236,8 +245,8 @@ void				parser_v(t_obj *obj, char *raw_data);
 void				parser_f(t_obj *obj, char *raw_data);
 void				parser_l(t_obj *obj, char *raw_data);
 void				parser_mtl_pass(t_obj *obj, char *raw_data);
-void				parser_o(t_obj *obj, char *raw_data, int id, int type, int nb_id);
-void				parser_g(t_obj *obj, char *raw_data, int id, int type, int nb_id);
+void				parser_o(t_obj *obj, char *raw_data, int nb_entity);
+void				parser_g(t_obj *obj, char *raw_data, int nb_entity);
 
 /*
 ** Tools.h
@@ -261,8 +270,7 @@ typedef struct				s_list_parser
 int							list_parser_len(t_list_parser **list);
 void						add_list_parser(t_list_parser **list, char *raw_data);
 
-int							get_lenght_entity(t_list_parser *list, int id);
-int							len_list_parser_id(t_list_parser *list, int id);
+int							len_list_parser_id(t_list_parser *list);
 
 void                		init_obj(t_obj *obj);
 void						init_obj_ptr(t_obj *obj, t_list_parser *list);

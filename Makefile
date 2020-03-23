@@ -24,7 +24,7 @@ FWGL = -framework OpenGl
 LIBSDL2 = $(addprefix $(FW), libsdl2)
 LIBGLEW = $(addprefix $(FW), libglew)
 INC = includes/
-CFLAGS = -Wall -Wextra -Werror -I $(INC) -I $(LIBFT) -O2 -g
+CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 
 #PATH
 

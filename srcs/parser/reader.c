@@ -20,7 +20,7 @@
 static void			print_obj(t_obj *obj)
 {
 	int i;
-	
+
 	ft_printf("%d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects, obj->len_textures, obj->len_vertexes);
 	i = -1;
 	ft_printf("\n--------------------------------------------------\nvertexes:\n");
@@ -73,42 +73,38 @@ static int			check_obj(t_obj *obj)
 
 static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 {
-	int				id;
+    int             len_list;
 	t_list_parser	*tmp;
 
-	id = 0;
 	tmp = list;
-	while (tmp->next)
+	while (tmp)
 	{
-		if (tmp->id == 6)
-			parser_g(obj, tmp->data, id, tmp->next->id,
-			len_list_parser_id(tmp, tmp->next->id));
-		else if (tmp->id == 7)
-			parser_o(obj, tmp->data, id, tmp->next->id,
-			len_list_parser_id(tmp, tmp->next->id));
+		if (tmp->id == ID_G || tmp->id == ID_O)
+        {
+		    len_list = len_list_parser_id(tmp);
+			tmp->id == ID_G ? \
+			parser_g(obj, tmp->data, len_list) : \
+			parser_o(obj, tmp->data, len_list);
+        }
 		tmp = tmp->next;
-		id++;
 	}
 }
 
 static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
-	short			type;
 	void			(*f[6])(t_obj *, char *);
 	t_list_parser	*tmp;
 
-	type = -1;
 	init_parser_ptr(f);
 	init_obj_ptr(obj, list);
 	define_groups_and_objects(obj, list);
 	tmp = list;
-	while (tmp->next)
+	while (tmp)
 	{
 		dprintf(1, "%d | %s\n", tmp->id, tmp->data);
-		if (tmp->id < 5 && type <= tmp->id)
-			type = tmp->id;
-		if (tmp->id < 6 && type == tmp->id)
+		if (tmp->id < 6)
 			f[tmp->id](obj, tmp->data);
+		// Check if this while is ok to you.
 		tmp = tmp->next;
 	}
 	return (check_obj(obj));
@@ -154,7 +150,7 @@ void				reader(t_parser *parser)
 {
 	int				i;
 	int				fd;
-	
+
 	i = 0;
 	while (++i < parser->nb_args + 1)
 	{

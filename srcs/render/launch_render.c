@@ -10,7 +10,7 @@ static int  init_t_prog(t_prog *p)
 
 static int  graphic_loop(t_prog *p)
 {
-    while (True)
+    while (TRUE)
     {
         SDL_WaitEvent(&p->ev);
         if (p->ev.type == SDL_QUIT ||

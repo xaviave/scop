@@ -37,7 +37,7 @@ int					*get_vertexes_id(char *str, int nb_entity)
 	int				*tab;
 
 	if (!(tab = (int *)malloc(sizeof(int) * nb_entity)))
-		return NULL;
+		return (NULL);
 	i = 0;
 	e = 0;
 	while (str[i] && e < nb_entity)
@@ -77,38 +77,26 @@ void				parser_l(t_obj *obj, char *raw_data)
 	// ft_printf("NEED TO HANDLE NEGATIV ID | -1 IS THE LAST ID\n");
 }
 
-void				parser_o(t_obj *obj, char *raw_data, int entity_id,
-	int type, int nb_entity)
+void				parser_o(t_obj *obj, char *raw_data, int nb_entity)
 {
 	int				i;
 	int				id;
 
-	i = 1;
 	id = obj->len_objects;
-	obj->objects[id].id = id;
-	obj->objects[id].type = type;
-	obj->objects[id].first_entity = entity_id;
-	obj->objects[id].nb_entity = nb_entity;
-	while (raw_data[i] && raw_data[i] == '\t' && raw_data[i] == ' ')
-		i++;
+    obj->objects[id].nb_entity = nb_entity;
+	i = pass_whitespace(1, raw_data);
 	obj->objects[id].name = ft_strdup(&raw_data[i]);
 	obj->len_objects++;
 }
 
-void				parser_g(t_obj *obj, char *raw_data, int entity_id,
-	int type, int nb_entity)
+void				parser_g(t_obj *obj, char *raw_data, int nb_entity)
 {
 	int				i;
 	int				id;
 
-	i = 1;
 	id = obj->len_groups;
-	obj->groups[id].id = id;
-	obj->groups[id].type = type;
-	obj->groups[id].first_entity = entity_id;
 	obj->groups[id].nb_entity = nb_entity;
-	while (raw_data[i] && raw_data[i] == '\t' && raw_data[i] == ' ')
-		i++;
+	i = pass_whitespace(1, raw_data);
 	obj->groups[id].name = ft_strdup(&raw_data[i]);
 	obj->len_groups++;
 }
@@ -122,9 +110,7 @@ void				parser_mtl_pass(t_obj *obj, char *raw_data)
 		ft_printf("Line: %s can not be parsed for now (or will be never - obj = %p.\n", raw_data, obj);
 		return ;
 	}
-	i = 6;
-	while (raw_data[i] && raw_data[i] == '\t' && raw_data[i] == ' ')
-		i++;
+	i = pass_whitespace(6, raw_data);
 	ft_printf("usemtl need to be a char **.");
 	if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "usemtl"))
 		obj->usemtl = ft_strdup(&raw_data[i]);
