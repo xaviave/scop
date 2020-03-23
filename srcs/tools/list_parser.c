@@ -15,25 +15,27 @@
 static int					define_id(char *raw_data)
 {
 	char					tmp[3];
+	int                     id;
 
-	ft_bzero(tmp, 3);
+	ft_bzero(&tmp, 3);
 	ft_strncpy(tmp, raw_data, 2);
 	if (ft_strstr(tmp, "vt"))
-		return (0);
+	    id = ID_VT;
 	else if (ft_strstr(tmp, "vn"))
-		return (1);
+        id = ID_VN;
 	else if (ft_strstr(tmp, "v"))
-		return (2);
+        id = ID_V;
 	else if (ft_strstr(tmp, "f"))
-		return (3);
+        id = ID_F;
 	else if (ft_strstr(tmp, "l"))
-		return (4);
+        id = ID_L;
 	else if (ft_strstr(tmp, "g"))
-		return (6);
+        id = ID_G;
 	else if (ft_strstr(tmp, "o"))
-		return (7);
+        id = ID_O;
 	else
-		return (5);	
+	    id = ID_ERR;
+	return (id);
 }
 
 static t_list_parser		*new_list_parser(char *raw_data)
@@ -70,10 +72,10 @@ int							list_parser_len(t_list_parser **list)
 
 	i = 0;
 	tmp = *list;
-	while (tmp->next)
+	while (tmp)
 	{
+        i++;
 		tmp = tmp->next;
-		i++;
 	}
 	return (i);
 }

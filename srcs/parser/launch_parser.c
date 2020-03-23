@@ -15,7 +15,7 @@
 /*
 ** check_args: check every args of the main
 ** no_args -> return usage
-** file w/o .obj extention -> return error
+** file w/o .obj extension -> return error
 */
 
 static void	check_args(int ac, char **av)

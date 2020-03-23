@@ -12,34 +12,60 @@
 
 #include "../../includes/scop.h"
 
-int							len_list_parser_id(t_list_parser *list, int id)
+static int                  calc_id_g(t_list_parser *tmp)
 {
-	int						i;
-	t_list_parser			*tmp;
+    int     i;
+    int     id;
 
-	i = 0;
-	tmp = list;
-	while (tmp->next && tmp->next->id == id)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
+    i = 0;
+    id = tmp->id;
+    while (tmp)
+    {
+        if (tmp->id == id)
+            i++;
+        else if (tmp->id != ID_ERR)
+            break ;
+        tmp = tmp->next;
+    }
+    return (i);
 }
 
-int							get_lenght_entity(t_list_parser *list, int id)
+static int                  calc_id_o(t_list_parser *tmp)
 {
-	int						i;
+    int     i;
+    int     id;
+
+    i = 0;
+    id = tmp->id;
+    if (id == ID_G)
+        return (1);
+    while (tmp)
+    {
+        if (tmp->id == ID_O)
+            break ;
+        else if (tmp->id != ID_ERR)
+        {
+            i++;
+            if (tmp->id == ID_G)
+                break ;
+        }
+        tmp = tmp->next;
+    }
+    if ((tmp == NULL && i == 0) || (tmp && tmp->id == ID_O && i == 0))
+        handle_error_parser("Syntax error.\n");
+    return (i);
+}
+
+int							len_list_parser_id(t_list_parser *list)
+{
 	t_list_parser			*tmp;
 
-	i = 0;
-	tmp = list;
-	while (tmp->next)
-	{
-		if (tmp->id == id)
-			i++;
-		tmp = tmp->next;
-	}
-	ft_printf("type = %d | len = %d\n", id, i);
-	return (i);
+	if (list->next == NULL)
+	    handle_error_parser("Syntax error line: %s\n", list->data);
+	tmp = list->next;
+	while (tmp && tmp->id == ID_ERR)
+	    tmp = tmp->next;
+	if (tmp == NULL)
+        handle_error_parser("Syntax error line: %s\n", list->data);
+    return (list->id == ID_O ? calc_id_o(tmp) : calc_id_g(tmp));
 }
