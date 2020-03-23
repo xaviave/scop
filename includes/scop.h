@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/23 22:34:01 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/23 22:37:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@
 # define ID_O 7
 
 /*
-** Structures
+** OBJECT DEFINITION
+** http://paulbourke.net/dataformats/obj/
 */
 
 /*
@@ -190,6 +191,7 @@ typedef struct		s_obj
 
 /*
 ** MATERIAL TEXTURE DEFINITION
+** http://paulbourke.net/dataformats/mtl/
 */
 
 /*
