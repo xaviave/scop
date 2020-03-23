@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 17:47:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/23 22:34:01 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,215 @@ typedef struct		s_obj
 	t_vertex		*vertexes;
 	int				len_vertexes;
 }					t_obj;
+
+/*
+** MATERIAL TEXTURE DEFINITION
+*/
+
+/*
+** Define the texture option while call the referenced file
+*/
+
+typedef struct			s_texture_option
+{
+	short				blendu; // default on
+	short				blendv; // default on
+	double				boost;
+}						t_texture_option;
+
+/*
+** Ambient color describes the ambiant refletivity of a color
+*/
+
+typedef struct			s_ambient_color
+{
+	// code: Ka | only rgb
+	int					id;
+	float				r; // between 0 and 1
+	float				g; // equal to r if not given
+	float				b; // equal to r if not given
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_ambiant_color;
+
+/*
+** Diffuse color describes the refletivity of a color
+*/
+
+typedef struct			s_diffuse_color
+{
+	// code: Kd | only rgb
+	int					id;
+	float				r; // between 0 and 1
+	float				g; // equal to r if not given
+	float				b; // equal to r if not given
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_diffuse_color;
+
+/*
+** Specular color describes the specular reflectivity of a color
+*/
+
+typedef struct			s_specular_color
+{
+	// code: Ks | only rgb
+	int					id;
+	float				r; // between 0 and 1
+	float				g; // equal to r if not given
+	float				b; // equal to r if not given
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_specular_color;
+
+/*
+** Transmission filter describes the specular reflectivity of a color
+*/
+
+typedef struct			s_transmission_filter
+{
+	// code: Tf | only rgb
+	int					id;
+	float				r; // between 0 and 1
+	float				g; // equal to r if not given
+	float				b; // equal to r if not given
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_transmission_filter;
+
+/*
+** Transparent discribes the amout this material dissolves int the background
+*/
+
+typedef struct			s_transparent
+{
+	// code: d
+	int					id;
+	short				halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
+	float				factor; // between 0 and 1 | 1 is opaque
+}						t_transparent;
+
+/*
+** Specular exponent describes the focus of the focus of the specular highlight
+*/
+
+typedef struct			s_specular_exponent
+{
+	// code: Ns
+	int					id;
+	double				value; // between 0 to 1000
+}						t_specular_exponent;
+
+/*
+** Sharpness describes the reflections from the local reflection map
+*/
+
+typedef struct			s_sharpness
+{
+	// code: sharpness
+	int					id;
+	double				value; // between 0 to 1000 | default 60
+}						t_sharpness;
+
+/*
+** Optical density describes the optical density for the surface
+*/
+
+typedef struct			s_optical_density
+{
+	// code: Ni
+	int					id;
+	double				value; // between 0.001 to 10
+}						t_optical_density;
+
+/*
+** MATERIAL TEXTURE MAP
+*/
+
+/*
+** 
+*/
+
+typedef struct			s_bump
+{
+	// code: bump
+	int					id;
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_bump;
+
+/*
+** 
+*/
+
+typedef struct			s_disp
+{
+	// code: disp
+	int					id;
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_disp;
+
+/*
+** 
+*/
+
+typedef struct			s_decal
+{
+	// code: decal | only rgb
+	int					id;
+	float				r; // between 0 and 1
+	float				g; // equal to r if not given
+	float				b; // equal to r if not given
+	char				*tga_file;
+	t_texture_option	*option;
+}						t_decal;
+
+/* 
+	algorithm:
+		0. Color on and Ambient off
+		1. Color on and Ambient on
+		2. Highlight on
+		3. Reflection on and Ray trace on
+		4. Transparency: Glass on, Reflection: Ray trace on
+		5. Reflection: Fresnel on and Ray trace on
+		6. Transparency: Refraction on, Reflection: Fresnel off and Ray trace on
+		7. Transparency: Refraction on, Reflection: Fresnel on and Ray trace on
+		8. Reflection on and Ray trace off
+		9. Transparency: Glass on, Reflection: Ray trace off
+		10. Casts shadows onto invisible surfaces
+*/
+
+/*
+** 
+*/
+
+typedef struct			s_shading
+{
+	// code: illum | only rgb
+	int					id;
+
+	float				r; // between 0 and 1
+	float				g; // equal to r if not given
+	float				b; // equal to r if not given	int					type;
+	void				(*f[12])(char *); // pointeru to the shading algorithm
+}						t_shading;
+
+typedef struct			s_material
+{
+	int					id;
+	char				*name; //no space else error
+	t_ambiant_color		*ac;
+	t_diffuse_color		*dc;
+	t_specular_color	*sc;
+	t_specular_exponent	*se;
+	t_transparent		*t;
+	t_shading			*s;
+}						t_material;
+
+/*
+** Render structure definition
+*/
 
 typedef struct      s_prog
 {
