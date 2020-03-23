@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/20 21:46:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/22 21:57:10 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 
 static int					define_id(char *raw_data)
 {
-	if (ft_strstr(raw_data, "vt"))
-		return (0);
-	else if (ft_strstr(raw_data, "vn"))
-		return (1);
-	else if (ft_strstr(raw_data, "vp"))
-		return (2);
-	else if (ft_strstr(raw_data, "v"))
-		return (3);
-	else if (ft_strstr(raw_data, "f"))
-		return (4);
-	else if (ft_strstr(raw_data, "l"))
-		return (5);
+	char					tmp[3];
+	int                     id;
+
+	ft_bzero(&tmp, 3);
+	ft_strncpy(tmp, raw_data, 2);
+	if (ft_strstr(tmp, "vt"))
+	    id = ID_VT;
+	else if (ft_strstr(tmp, "vn"))
+        id = ID_VN;
+	else if (ft_strstr(tmp, "v"))
+        id = ID_V;
+	else if (ft_strstr(tmp, "f"))
+        id = ID_F;
+	else if (ft_strstr(tmp, "l"))
+        id = ID_L;
+	else if (ft_strstr(tmp, "g"))
+        id = ID_G;
+	else if (ft_strstr(tmp, "o"))
+        id = ID_O;
 	else
-		return (6);	
+	    id = ID_ERR;
+	return (id);
 }
 
 static t_list_parser		*new_list_parser(char *raw_data)
@@ -35,12 +43,11 @@ static t_list_parser		*new_list_parser(char *raw_data)
 	t_list_parser			*new;
 
 	if (!(new = (t_list_parser *)malloc(sizeof(t_list_parser))))
-		handle_error_parser("Error during memroy allocation");
+		return (NULL); // return NULL ? handled in previous call or better call handel_error_parse ?
 	new->id = define_id(raw_data);
-	new->data = raw_data;
-	ft_printf("NEED TO CHECK IF LINE OK THANKS TO THE ID\n");
+    new->data = ft_strdup(raw_data);
 	new->next = NULL;
-	return new;
+	return (new);
 }
 
 void                        add_list_parser(t_list_parser **list, char *raw_data)
@@ -65,7 +72,10 @@ int							list_parser_len(t_list_parser **list)
 
 	i = 0;
 	tmp = *list;
-	while (tmp->next)
+	while (tmp)
+	{
+        i++;
 		tmp = tmp->next;
+	}
 	return (i);
 }

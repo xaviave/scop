@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pass_whitespace_float.c                            :+:      :+:    :+:   */
+/*   optional_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 16:45:10 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/20 21:49:03 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/20 17:00:54 by xavier_mart       #+#    #+#             */
+/*   Updated: 2020/03/22 15:05:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/scop.h"
 
-/*
-** pass_whitespace_float pass all whitespaces and the first float
-** return the index of the first whitespace found after the mouvement
-*/
-
-int			pass_whitespace_float(int i, char *str)
+double		optional_value_double(char *str, double d)
 {
-	// while (str[i] && ft_strisdigit(&str[i]))
-	//	i++;
-	while (str[++i])
-		if (ft_strisdigit(&str[i]))
-			break ;
-	while (str[++i])
-		if (str[i] == '\t' || str[i] == ' ')
-			break ;
-	return (i);
+	return (ft_strlen(str) ? ft_atof(str) : d);
 }
