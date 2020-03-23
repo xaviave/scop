@@ -6,16 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 21:45:53 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/23 23:08:16 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
-
-/*
-** check_obj simply check the lenght of every obj
-** if a len is NULL, it's due to an error during the parsing
-*/
 
 static void			print_obj(t_obj *obj)
 {
@@ -41,12 +36,12 @@ static void			print_obj(t_obj *obj)
 	ft_printf("\n--------------------------------------------------\ngroups:\n");
 	if (obj->len_groups)
 		while (++i < obj->len_groups)
-			dprintf(1, "id = %4d | name = %10s | type = %d | first_id = %3d | nb_entity = %3d\n", obj->groups[i].id, obj->groups[i].name, obj->groups[i].type, obj->groups[i].first_entity, obj->groups[i].nb_entity);
+			dprintf(1, "id = %4d | name = %10s\n", obj->groups[i].id, obj->groups[i].name);
 	i = -1;
 	ft_printf("\n--------------------------------------------------\nobjects:\n");
 	if (obj->len_objects)
 		while (++i < obj->len_objects)
-			dprintf(1, "id = %4d | name = %10s | type = %d | first_id = %3d | nb_entity = %3d\n", obj->objects[i].id, obj->objects[i].name, obj->objects[i].type, obj->objects[i].first_entity, obj->objects[i].nb_entity);
+			dprintf(1, "id = %4d | name = %10s", obj->objects[i].id, obj->objects[i].name);
 	i = -1;
 	ft_printf("\n--------------------------------------------------\nlines:\n");
 	if (obj->len_lines)
@@ -59,6 +54,11 @@ static void			print_obj(t_obj *obj)
 			dprintf(1, "id = %4d | nb_vertexes = %2d\n", obj->faces[i].id, obj->faces[i].nb_vertexes);
 
 }
+
+/*
+** check_obj simply check the lenght of every obj
+** if a len is NULL, it's due to an error during the parsing
+*/
 
 static int			check_obj(t_obj *obj)
 {
@@ -82,6 +82,7 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 		if (tmp->id == ID_G || tmp->id == ID_O)
         {
 		    len_list = len_list_parser_id(tmp);
+			// need to add a value smoothing group
 			tmp->id == ID_G ? \
 			parser_g(obj, tmp->data, len_list) : \
 			parser_o(obj, tmp->data, len_list);
@@ -101,10 +102,8 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 	tmp = list;
 	while (tmp)
 	{
-		dprintf(1, "%d | %s\n", tmp->id, tmp->data);
 		if (tmp->id < 6)
 			f[tmp->id](obj, tmp->data);
-		// Check if this while is ok to you.
 		tmp = tmp->next;
 	}
 	return (check_obj(obj));
@@ -127,10 +126,7 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
             if (check_raw_data(line))
                 add_list_parser(&list, line);
             else
-            {
-                ft_printf("%s\n", line);
                 handle_error_parser("Error in line %s.", line);
-            }
         }
         ft_strdel(&line);
     }

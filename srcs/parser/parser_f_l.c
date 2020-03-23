@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/22 21:53:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/23 23:05:18 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,9 @@ void				parser_g(t_obj *obj, char *raw_data, int nb_entity)
 
 	id = obj->len_groups;
 	obj->groups[id].nb_entity = nb_entity;
+	// if no name after g - default = default
+	// need to change to char **name | could have many names
+	// If there are multiple groups on one line, the data that follows belong to all groups
 	i = pass_whitespace(1, raw_data);
 	obj->groups[id].name = ft_strdup(&raw_data[i]);
 	obj->len_groups++;
