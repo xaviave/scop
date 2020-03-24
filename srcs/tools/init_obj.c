@@ -6,53 +6,83 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/22 15:38:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 21:45:31 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/scop.h"
 
-void	init_obj_ptr(t_obj *obj, t_list_parser *list)
+static void         reset_len(t_obj *obj)
 {
-	if (get_lenght_entity(list, 3))
-		if (!(obj->faces = (t_face *)malloc(sizeof(t_face) * get_lenght_entity(list, 4))))
-			return ;
-	if (get_lenght_entity(list, 6))
-		if (!(obj->groups = (t_group *)malloc(sizeof(t_group) * get_lenght_entity(list, 7))))
-			return ;
-	if (get_lenght_entity(list, 4))
-		if (!(obj->lines = (t_line *)malloc(sizeof(t_line) * get_lenght_entity(list, 5))))
-			return ;
-	if (get_lenght_entity(list, 1))
-		if (!(obj->normals = (t_normal *)malloc(sizeof(t_normal) * get_lenght_entity(list, 1))))
-			return ;
-	if (get_lenght_entity(list, 7))
-		if (!(obj->objects = (t_object *)malloc(sizeof(t_object) * get_lenght_entity(list, 8))))
-			return ;
-	if (get_lenght_entity(list, 0))
-		if (!(obj->textures = (t_texture *)malloc(sizeof(t_texture) * get_lenght_entity(list, 0))))
-			return ;
-	if (get_lenght_entity(list, 2))
-		if (!(obj->vertexes = (t_vertex *)malloc(sizeof(t_vertex) * get_lenght_entity(list, 3))))
-			return ;
+	obj->len_mtl = 0;
+    obj->len_faces = 0;
+    obj->len_groups = 0;
+    obj->len_lines = 0;
+    obj->len_normals = 0;
+    obj->len_objects = 0;
+    obj->len_textures = 0;
+    obj->len_vertexes = 0;
 }
 
-void    init_obj(t_obj *obj)
+static void         malloc_obj_content(t_obj *obj)
 {
-	obj->id = -1;
-	obj->error = 0;
-	obj->faces = NULL;
-	obj->len_faces = 0;
-	obj->groups = NULL;
-	obj->len_groups = 0;
-	obj->lines = NULL;
-	obj->len_lines = 0;
-	obj->normals = NULL;
-	obj->len_normals = 0;
-	obj->objects = NULL;
-	obj->len_objects = 0;
-	obj->textures = NULL;
-	obj->len_textures = 0;
-	obj->vertexes = NULL;
-	obj->len_vertexes = 0;
+	if (!(obj->mtl = (char **)ft_memalloc(
+            sizeof(char *) * obj->len_mtl + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->faces = (t_face *)ft_memalloc(
+            sizeof(t_face) * obj->len_faces + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->groups = (t_group *)ft_memalloc(
+            sizeof(t_group) * obj->len_groups + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->lines = (t_line *)ft_memalloc(
+            sizeof(t_line) * obj->len_lines + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->normals = (t_normal *)ft_memalloc(
+            sizeof(t_normal) * obj->len_normals + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->objects = (t_object *)ft_memalloc(
+            sizeof(t_object) * obj->len_objects + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->textures = (t_texture *)ft_memalloc(
+            sizeof(t_texture) * obj->len_textures + 1)))
+        handle_error_parser("Error during memory allocation.");
+    if (!(obj->vertexes = (t_vertex *)ft_memalloc(
+            sizeof(t_vertex) * obj->len_vertexes + 1)))
+        handle_error_parser("Error during memory allocation.");
+}
+
+void	            init_obj_ptr(t_obj *obj, t_list_parser *list)
+{
+    t_list_parser   *tmp;
+
+    tmp = list;
+    while (tmp)
+    {
+        if (tmp->id == ID_F)
+            obj->len_faces++;
+        else if (tmp->id == ID_G)
+            obj->len_groups++;
+        else if (tmp->id == ID_L)
+            obj->len_lines++;
+        else if (tmp->id == ID_VN)
+            obj->len_normals++;
+        else if (tmp->id == ID_O)
+            obj->len_objects++;
+        else if (tmp->id == ID_VT)
+            obj->len_textures++;
+        else if (tmp->id == ID_V)
+            obj->len_vertexes++;
+		else if (tmp->id == ID_MTL)
+			obj->len_mtl++;
+        tmp = tmp->next;
+    }
+    malloc_obj_content(obj);
+    reset_len(obj);
+}
+
+void                init_obj(t_obj *obj)
+{
+	ft_memset(obj, 0, sizeof(t_obj));
+    obj->id = -1;
 }

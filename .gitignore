@@ -4,8 +4,11 @@
 # Object files
 *.o
 *.ko
-*.obj
 *.elf
+
+# Object files
+objs/
+libft/
 
 # Linker output
 *.ilk

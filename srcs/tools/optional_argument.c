@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   optionnal_argument.c                               :+:      :+:    :+:   */
+/*   optional_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 # include "../../includes/scop.h"
 
-double		optionnal_value_double(char *str, double d)
+double		optional_value_double(char *str, double d)
 {
 	return (ft_strlen(str) ? ft_atof(str) : d);
 }
