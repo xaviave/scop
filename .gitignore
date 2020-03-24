@@ -6,6 +6,10 @@
 *.ko
 *.elf
 
+# Object files
+objs/
+libft/
+
 # Linker output
 *.ilk
 *.map
