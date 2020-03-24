@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/23 23:24:44 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 20:29:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,23 +111,21 @@ static int			list_parser_to_obj(t_obj *obj, t_list_parser *list)
 
 static void			open_file(int fd, int obj_index, t_parser *parser)
 {
-	int				i;
 	char			*line;
 	t_list_parser	*list;
 
 	init_obj(&parser->obj[obj_index]);
-	ft_printf("Opening file: %s\tobj address %p.\n", parser->args[obj_index + 1], &parser->obj[obj_index]);
-    i = 0;
+	ft_printf("Opening file: %s\n\n", parser->args[obj_index + 1]);
     list = NULL;
 	while(get_next_line(fd, &line) > 0)
 	{
-        if (line && ft_strlen(line))
+        if (line && ft_strlen(line) > 1)
         {
             if (check_raw_data(line))
                 add_list_parser(&list, line);
-            else
+			else if (line[0] != '#')
 			{
-				ft_printf("%s\n", line);
+				ft_printf("\n%s\n", line);
                 handle_error_parser("Error in line");
 			}
         }
@@ -138,7 +136,6 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
 	ft_printf("Parsing file: %s\n", parser->args[obj_index + 1]);
 	if (!list_parser_to_obj(&parser->obj[obj_index], list))
 		handle_error_parser("Error during parsing.");
-	ft_printf("NEED TO FREE T_LIST_PARSER - reader.c open_file()");
 }
 
 /*

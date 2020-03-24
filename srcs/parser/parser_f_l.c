@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/23 23:05:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 18:27:03 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void				parser_mtl_pass(t_obj *obj, char *raw_data)
 
 	if (ft_strlen(raw_data) < 7)
 	{
-		ft_printf("Line: %s can not be parsed for now (or will be never - obj = %p.\n", raw_data, obj);
+		ft_printf("Line: %s can not be parsed for now (or will be never)\n", raw_data);
 		return ;
 	}
 	i = pass_whitespace(6, raw_data);

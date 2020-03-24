@@ -6,12 +6,12 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/24 17:48:39 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/24 18:21:58 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
-.PHONY: all init clean fclean re
+.PHONY: all clean fclean re
 
 #COMPILATION
 
@@ -29,7 +29,7 @@ CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 #PATH
 
 SRCS_PATH = ./srcs/
-OBJS_PATH = ./objs/
+OBJS_PATH = ./srcs/
 
 FILES = main.c \
 		error/handle_error_parser.c \
@@ -56,19 +56,12 @@ OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
 
 #RULES
 
-init:
-	@mkdir -p objs
-	@mkdir -p objs/parser/
-	@mkdir -p objs/render/
-	@mkdir -p objs/tools/
-	@mkdir -p objs/error/
-
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(FWGL) \
-	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -l GLEW.2.1.0
+	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
 
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)
