@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 20:29:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 21:15:16 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
         {
             if (check_raw_data(line))
                 add_list_parser(&list, line);
-			else if (line[0] != '#')
+			else
 			{
 				ft_printf("\n%s\n", line);
                 handle_error_parser("Error in line");

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 21:00:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 21:22:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,19 @@ static int					dispatch_by_header(char *raw_data)
 
 	ft_bzero(tmp, 3);
 	ft_strncpy(tmp, raw_data, 2);
-	if (ft_strstr(tmp, "vt") || ft_strstr(tmp, "vn") ||
+	if (ft_strlen(raw_data) > 8 && (ft_strstr(raw_data, "usemtl") ||
+		ft_strstr(raw_data, "mtllib")))
+		return (1);
+	else if (ft_strstr(tmp, "vt") || ft_strstr(tmp, "vn") ||
 		ft_strstr(tmp, "vp"))
-		return check_line_double(tmp, 2);
+		return check_line_double(raw_data, 2);
 	else if (ft_strstr(tmp, "g") || ft_strstr(tmp, "o"))
-		return check_line_str(tmp, 1);
+		return check_line_str(raw_data, 1);
 	else if (ft_strstr(tmp, "v") || ft_strstr(tmp, "l") ||
 		ft_strstr(tmp, "f"))
 		return check_line_double(raw_data, 1);
 	else if (ft_strstr(tmp, "#") || ft_strstr(tmp, "s"))
 		return (1);
-	else if (ft_strlen(raw_data) > 7 && (ft_strstr(raw_data, "usemtl") ||
-		ft_strstr(raw_data, "mtllib")))
-		return check_line_str(raw_data, 6);
 	return (0);
 }
 
@@ -77,5 +77,5 @@ int							check_raw_data(char *raw_data)
 {
 	if (ft_strlen(raw_data) == 2 && raw_data[0] == 'g')
 		return (1);
-    return (ft_strlen(raw_data) > 3 ? dispatch_by_header(raw_data) : 0);
+    return (ft_strlen(raw_data) > 2 ? dispatch_by_header(raw_data) : 0);
 }
