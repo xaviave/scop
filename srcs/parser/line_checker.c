@@ -6,15 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 20:36:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 21:00:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
-
-/*
-** all allowed char are : "vtnpfl0123456789./-"
-*/
 
 static int					check_line_double(char *raw_data, int i)
 {
@@ -26,7 +22,7 @@ static int					check_line_double(char *raw_data, int i)
 		p = 0;
 		m = 0;
 		i = pass_whitespace(i, raw_data);
-		while (raw_data[i] == '.' || raw_data[i] == '/' ||
+		if (raw_data[i] == '.' || raw_data[i] == '/' ||
 			raw_data[i] == '-' || (raw_data[i] >= '0' && raw_data[i] <= '9'))
 		{
 			if (raw_data[i] == '.')
@@ -37,6 +33,8 @@ static int					check_line_double(char *raw_data, int i)
 				return (0);
 			i++;
 		}
+		else if (raw_data[i] != '\t' || raw_data[i] != ' ')
+			return (0);
 	}
 	return (((size_t)i == ft_strlen(raw_data)) ? 1 : 0);
 }
