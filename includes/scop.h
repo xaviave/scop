@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 18:08:31 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 22:00:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@
 # define ID_V 2
 # define ID_F 3
 # define ID_L 4
-# define ID_ERR 5
-# define ID_G 6
-# define ID_O 7
+# define ID_MTL 5
+# define ID_ERR 6
+# define ID_G 7
+# define ID_O 8
 
 /*
 ** OBJECT DEFINITION
@@ -70,7 +71,6 @@
 
 typedef struct      s_vertex
 {
-	int				id;
 	double			x;
 	double			y;
 	double			z;
@@ -84,7 +84,6 @@ typedef struct      s_vertex
 
 typedef struct		s_texture
 {
-	int				id;
 	double			u;
 	double			v; //need to be between 0 and 1 | default 0
 	double			w; //need to be between 0 and 1 | default 0
@@ -97,7 +96,6 @@ typedef struct		s_texture
 
 typedef struct		s_normal
 {
-	int				id;
 	double			x;
 	double			y;
 	double			z;
@@ -111,7 +109,6 @@ typedef struct		s_normal
 
 typedef struct		s_face
 {
-	int				id;
 	int				nb_vertexes;
 	int				*vertexes_id;
 	int				*textures_id;
@@ -125,7 +122,6 @@ typedef struct		s_face
 
 typedef struct		s_line
 {
-	int				id;
 	int				nb_vertexes;
 	int				*vertexes_id;
 }					t_line;
@@ -136,7 +132,6 @@ typedef struct		s_line
 
 typedef struct		s_group
 {
-	int				id;
 	int				type;
 	int				nb_entity;
 	int				first_entity;
@@ -149,7 +144,6 @@ typedef struct		s_group
 
 typedef struct		s_object
 {
-	int				id;
 	int				type;
 	int				nb_entity;
 	int				first_entity;
@@ -165,7 +159,9 @@ typedef struct		s_obj
 	int				id;
 	int				error;
 	char			*mtllib;
-	char			*usemtl;
+
+	char			**mtl;
+	int				len_mtl;
 
 	t_face			*faces;
 	int				len_faces;
@@ -455,7 +451,8 @@ void				parser_vn(t_obj *obj, char *raw_data);
 void				parser_v(t_obj *obj, char *raw_data);
 void				parser_f(t_obj *obj, char *raw_data);
 void				parser_l(t_obj *obj, char *raw_data);
-void				parser_mtl_pass(t_obj *obj, char *raw_data);
+void				parser_mtl(t_obj *obj, char *raw_data);
+void				parser_pass(t_obj *obj, char *raw_data);
 void				parser_o(t_obj *obj, char *raw_data, int nb_entity);
 void				parser_g(t_obj *obj, char *raw_data, int nb_entity);
 

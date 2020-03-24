@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/22 15:38:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 21:45:31 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void         reset_len(t_obj *obj)
 {
+	obj->len_mtl = 0;
     obj->len_faces = 0;
     obj->len_groups = 0;
     obj->len_lines = 0;
@@ -25,6 +26,9 @@ static void         reset_len(t_obj *obj)
 
 static void         malloc_obj_content(t_obj *obj)
 {
+	if (!(obj->mtl = (char **)ft_memalloc(
+            sizeof(char *) * obj->len_mtl + 1)))
+        handle_error_parser("Error during memory allocation.");
     if (!(obj->faces = (t_face *)ft_memalloc(
             sizeof(t_face) * obj->len_faces + 1)))
         handle_error_parser("Error during memory allocation.");
@@ -69,6 +73,8 @@ void	            init_obj_ptr(t_obj *obj, t_list_parser *list)
             obj->len_textures++;
         else if (tmp->id == ID_V)
             obj->len_vertexes++;
+		else if (tmp->id == ID_MTL)
+			obj->len_mtl++;
         tmp = tmp->next;
     }
     malloc_obj_content(obj);

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 18:27:03 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/24 22:05:44 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,11 @@ void				parser_f(t_obj *obj, char *raw_data)
 	int				id;
 
 	id = obj->len_faces;
-	obj->faces[id].id = id;
 	obj->faces[id].nb_vertexes = count_entity(&raw_data[1]);
 	obj->faces[id].normals_id = NULL;
 	obj->faces[id].textures_id = NULL;
 	obj->faces[id].vertexes_id = NULL;
 	obj->len_faces++;
-	ft_printf("parser_f | id = %d | nb_vertexes = %d\n", id, obj->faces[id].nb_vertexes);
 	// ft_printf("NEED TO HANDLE NEGATIV ID | -1 IS THE LAST ID\n");
 }
 
@@ -68,9 +66,7 @@ void				parser_l(t_obj *obj, char *raw_data)
 {
 	int				id;
 
-	ft_printf("parser_l\n");
 	id = obj->len_lines;
-	obj->lines[id].id = id;
 	obj->lines[id].nb_vertexes = count_entity(&raw_data[1]);
 	obj->lines[id].vertexes_id = get_vertexes_id(&raw_data[1], obj->lines[id].nb_vertexes);
 	obj->len_lines++;
@@ -104,19 +100,26 @@ void				parser_g(t_obj *obj, char *raw_data, int nb_entity)
 	obj->len_groups++;
 }
 
-void				parser_mtl_pass(t_obj *obj, char *raw_data)
+void				parser_mtl(t_obj *obj, char *raw_data)
 {
 	int				i;
 
+	i = pass_whitespace(6, raw_data);
+	if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "usemtl"))
+	{
+		obj->mtl[obj->len_mtl] = ft_strdup(&raw_data[i]);
+		obj->len_mtl++;
+	}
+	else if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "mtllib"))
+		obj->mtllib = ft_strdup(&raw_data[i]);
+}
+
+
+void				parser_pass(t_obj *obj, char *raw_data)
+{
 	if (ft_strlen(raw_data) < 7)
 	{
 		ft_printf("Line: %s can not be parsed for now (or will be never)\n", raw_data);
 		return ;
 	}
-	i = pass_whitespace(6, raw_data);
-	ft_printf("usemtl need to be a char **.");
-	if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "usemtl"))
-		obj->usemtl = ft_strdup(&raw_data[i]);
-	else if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "mtllib"))
-		obj->mtllib = ft_strdup(&raw_data[i]);
 }
