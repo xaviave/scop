@@ -12,24 +12,25 @@
 
 
 .PHONY: all clean fclean re
+.SECONDEXPANSION:
 
 #COMPILATION
 
 CC = gcc
 RM = rm -f
 NAME = scop
-LIBFT = libft/
 FW = Frameworks/
 FWGL = -framework OpenGl
 LIBSDL2 = $(addprefix $(FW), libsdl2)
 LIBGLEW = $(addprefix $(FW), libglew)
+LIBFT = libft/
 INC = includes/
 CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 
 #PATH
 
 SRCS_PATH = ./srcs/
-OBJS_PATH = ./srcs/
+OBJS_PATH = ./objs/
 
 FILES = main.c \
 		error/handle_error_parser.c \
@@ -39,7 +40,6 @@ FILES = main.c \
 		parser/parser_f_l.c \
 		parser/parser_v.c \
 		parser/line_checker.c \
-		render/launch_render.c \
 		tools/ft_atof.c \
 		tools/init_obj.c \
 		tools/init_ptr.c \
@@ -48,32 +48,38 @@ FILES = main.c \
 		tools/length_parser.c \
 		tools/optional_argument.c \
 		tools/pass_whitespace_number.c \
-
+		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
 
-
 #RULES
 
 all: $(NAME)
+
+define define_mkdir_target
+$(1):
+	mkdir -p $(1)
+endef
+
+$(foreach dir,$(sort $(dir $(OBJS))),$(eval $(call define_mkdir_target,$(dir))))
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(FWGL) \
 	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
 
-
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC) | $$(@D)
 	$(CC) $(CFLAGS) -o $@ -c $<
-
 
 clean:
 	@make -C $(LIBFT) clean
-	@rm -f $(OBJS)
+	@$(RM) $(OBJS)
+	@echo "\033[31mScop objects deleted.\033[0m"
 
 fclean: clean
-	@rm -f libft/libft.a
-	@rm -f $(NAME)
+	@$(RM) $(LIBFT)libft.a
+	@$(RM) $(NAME)
+	@echo "\033[31mScop binary deleted.\033[0m"
 
 re: fclean all
