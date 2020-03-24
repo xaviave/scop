@@ -6,12 +6,12 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/23 22:41:06 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/24 17:48:39 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
-.PHONY: all clean fclean re
+.PHONY: all init clean fclean re
 
 #COMPILATION
 
@@ -29,7 +29,7 @@ CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 #PATH
 
 SRCS_PATH = ./srcs/
-OBJS_PATH = ./srcs/
+OBJS_PATH = ./objs/
 
 FILES = main.c \
 		error/handle_error_parser.c \
@@ -55,6 +55,13 @@ OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
 
 
 #RULES
+
+init:
+	@mkdir -p objs
+	@mkdir -p objs/parser/
+	@mkdir -p objs/render/
+	@mkdir -p objs/tools/
+	@mkdir -p objs/error/
 
 all: $(NAME)
 
