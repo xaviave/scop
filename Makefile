@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/22 19:03:57 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/23 22:41:06 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(FWGL) \
-	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
+	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -l GLEW.2.1.0
 
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC)

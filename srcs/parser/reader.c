@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/23 23:08:16 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/23 23:24:44 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int			check_obj(t_obj *obj)
 	short			err;
 
 	err = 0;
-	print_obj(obj);
+	// print_obj(obj);
 	// need to check if there's vertexes and faces or other things
 	// need to check all the v - vn - vt ids in lines and faces
 	return (err);
@@ -126,7 +126,10 @@ static void			open_file(int fd, int obj_index, t_parser *parser)
             if (check_raw_data(line))
                 add_list_parser(&list, line);
             else
-                handle_error_parser("Error in line %s.", line);
+			{
+				ft_printf("%s\n", line);
+                handle_error_parser("Error in line");
+			}
         }
         ft_strdel(&line);
     }
