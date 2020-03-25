@@ -6,23 +6,26 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 20:23:22 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 00:21:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
 
-static int					check_line_double(char *raw_data, int i)
+static int					check_line_double(char *raw_data, int i,
+	short max_elem)
 {
 	int						p;
 	int						m;
+	int						tmp;
 
-	while (raw_data[i])
+	tmp = -1;
+	while (raw_data[i] && ++tmp < max_elem)
 	{
 		p = 0;
 		m = 0;
 		i = pass_whitespace(i, raw_data);
-		if (raw_data[i] == '.' || raw_data[i] == '/' ||
+		while (raw_data[i] == '.' || raw_data[i] == '/' ||
 			raw_data[i] == '-' || (raw_data[i] >= '0' && raw_data[i] <= '9'))
 		{
 			if (raw_data[i] == '.')
@@ -33,8 +36,6 @@ static int					check_line_double(char *raw_data, int i)
 				return (0);
 			i++;
 		}
-		else if (raw_data[i] != '\t' || raw_data[i] != ' ')
-			return (0);
 	}
 	return (((size_t)i == ft_strlen(raw_data)) ? 1 : 0);
 }
@@ -58,12 +59,12 @@ static int					dispatch_by_header(char *raw_data)
 		return (1);
 	else if (ft_strstr(tmp, "vt") || ft_strstr(tmp, "vn") ||
 		ft_strstr(tmp, "vp"))
-		return check_line_double(raw_data, 2);
+		return check_line_double(raw_data, 2, 3);
 	else if (ft_strstr(tmp, "g") || ft_strstr(tmp, "o"))
 		return check_line_str(raw_data, 1);
 	else if (ft_strstr(tmp, "v") || ft_strstr(tmp, "l") ||
 		ft_strstr(tmp, "f"))
-		return check_line_double(raw_data, 1);
+		return check_line_double(raw_data, 1, (ft_strstr(tmp, "v")) ? 3 : 4);
 	else if (ft_strstr(tmp, "#") || ft_strstr(tmp, "s"))
 		return (1);
 	return (0);
