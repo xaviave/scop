@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 20:25:31 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 23:48:40 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,29 @@ void					reader_obj(t_parser *parser)
 		ft_printf("reader_obj %p\n", &list);
 		init_obj(&parser->obj[i]);
 		if (!list_parser_to_obj(&parser->obj[i], list))
-			handle_error_parser("Error during parsing.");
+			handle_error_parser("Error during parsing obj.");
+	}
+}
+
+void					reader_mtl(t_parser *parser)
+{
+	int					i;
+	t_list_parser		*list;
+
+	i = -1;
+	// NEED TO INIT TE NUMBER OF MTL FILE
+	// MTL FILE IS OPTIONNAL
+	while (++i < parser->nb_args)
+	{
+		if (parser->obj[i].mtllib)
+		{
+			list = NULL;
+			list = reader(parser, parser->obj[i].mtllib, i, P_MTL);
+			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
+			init_mtl(&parser->mtl[i]);
+			// UPDATE THE OBJ WITH THE ID OF THE MTL
+			if (!list_parser_to_mtl(&parser->mtl[i], list))
+				handle_error_parser("Error during parsing mtl.");
+		}
 	}
 }

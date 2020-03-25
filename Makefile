@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/25 20:24:16 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/25 23:56:18 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,16 +35,22 @@ OBJS_PATH = ./objs/
 FILES = main.c \
 		error/handle_error_parser.c \
 		error/handle_error_sdl.c \
-		parser/launch_parser.c \
 		parser/reader.c \
-		parser/parser_f_l.c \
-		parser/parser_v.c \
-		parser/print_obj.c \
 		parser/line_checker.c \
-		parser/list_parser_to_obj.c \
+		parser/launch_parser.c \
+		parser/object/parser_v.c \
+		parser/object/print_obj.c \
+		parser/object/parser_f_l.c \
+		parser/object/list_parser_to_obj.c \
+		parser/material/parser_k.c \
+		parser/material/parser_tf_d_s_ni.c \
+		parser/material/parser_bump_decal_illum.c \
+		parser/material/print_mtl.c \
+		parser/material/list_parser_to_mtl.c \
 		tools/ft_atof.c \
 		tools/init_obj.c \
 		tools/init_ptr.c \
+		tools/init_mtl.c \
 		tools/init_parser.c \
 		tools/list_parser.c \
 		tools/length_parser.c \

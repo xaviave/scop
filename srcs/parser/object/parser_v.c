@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:24:18 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/24 21:50:11 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 23:51:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../../includes/scop.h"
 
 void				parser_vt(t_obj *obj, char *raw_data)
 {

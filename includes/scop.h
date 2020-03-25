@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 20:23:10 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 23:53:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,19 @@
 # define ID_ERR 6
 # define ID_G 7
 # define ID_O 8
+
+# define ID_KA 0
+# define ID_KD 1
+# define ID_KS 2
+# define ID_TF 3
+# define ID_D 4
+# define ID_NS 5
+# define ID_SHARP 6
+# define ID_NI 7
+# define ID_OD 8
+# define ID_BUMP 9
+# define ID_DECAL 10
+# define ID_ILLUM 11
 
 # define P_OBJ 0
 # define P_MTL 1
@@ -382,17 +395,44 @@ typedef struct			s_shading
 	void				(*f[12])(char *); // pointeru to the shading algorithm
 }						t_shading;
 
-typedef struct			s_material
+typedef struct				s_mtl
 {
-	int					id;
-	char				*name; //no space else error
-	t_ambiant_color		*ac;
-	t_diffuse_color		*dc;
-	t_specular_color	*sc;
-	t_specular_exponent	*se;
-	t_transparent		*t;
-	t_shading			*s;
-}						t_material;
+	int						id;
+	char					*name; //no space else error
+
+	t_ambiant_color			*ac;
+	int						len_ac;
+	
+	t_diffuse_color			*dc;
+	int						len_dc;
+	
+	t_specular_color		*sc;
+	int						len_sc;
+
+	t_transmission_filter	*tf;
+	int						len_tf;
+	
+	t_transparent			*t;
+	int						len_t;
+
+	t_specular_exponent		*se;
+	int						len_se;
+	
+	t_sharpness				*sharpness;
+	int						len_sharpness;
+
+	t_optical_density		*od;
+	int						len_od;
+
+	t_bump					*bump;
+	int						len_bump;
+
+	t_decal					*decal;
+	int						len_decal;
+	
+	t_shading				*s;
+	int						len_s;
+}							t_mtl;
 
 /*
 ** Render structure definition
@@ -452,7 +492,11 @@ int							len_list_parser_id(t_list_parser *list);
 void                		init_obj(t_obj *obj);
 void						init_obj_ptr(t_obj *obj, t_list_parser *list);
 
-void						init_parser_ptr(void (*f[7])(t_obj *, char *));
+void						init_mtl(t_mtl *mtl);
+void						init_mtl_ptr(t_mtl *mtl, t_list_parser *list);
+
+void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *));
+void						init_parser_mtl_ptr(void (*f[10])(t_mtl *, char *));
 
 int							pass_whitespace_number(int i,char *str);
 int							pass_whitespace_double(int i,char *str);
@@ -477,7 +521,7 @@ typedef struct		s_parser
 	int				nb_args;
 	char			**args;
 	t_obj			*obj;
-	t_material		*mtl;
+	t_mtl			*mtl;
 }					t_parser;
 
 /*
@@ -494,6 +538,8 @@ int					check_raw_data(char *raw_data, short parsing_type);
 
 int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
+int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
+
 void				parser_vt(t_obj *obj, char *raw_data);
 void				parser_vn(t_obj *obj, char *raw_data);
 void				parser_v(t_obj *obj, char *raw_data);
@@ -503,5 +549,16 @@ void				parser_mtl(t_obj *obj, char *raw_data);
 void				parser_pass(t_obj *obj, char *raw_data);
 void				parser_o(t_obj *obj, char *raw_data, int nb_entity);
 void				parser_g(t_obj *obj, char *raw_data, int nb_entity);
+
+void				parser_ka(t_mtl *mtl, char *raw_data);
+void				parser_kd(t_mtl *mtl, char *raw_data);
+void				parser_ks(t_mtl *mtl, char *raw_data);
+void				parser_tf(t_mtl *mtl, char *raw_data);
+void				parser_d(t_mtl *mtl, char *raw_data);
+void				parser_s(t_mtl *mtl, char *raw_data);
+void				parser_ni(t_mtl *mtl, char *raw_data);
+void				parser_bump(t_mtl *mtl, char *raw_data);
+void				parser_decal(t_mtl *mtl, char *raw_data);
+void				parser_illum(t_mtl *mtl, char *raw_data);
 
 #endif

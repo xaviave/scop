@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 20:18:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 23:51:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../../includes/scop.h"
 
 /*
 ** check_obj simply check the lenght of every obj
@@ -63,7 +63,7 @@ int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
 	ft_printf("list_parser_to_obj 2 list = %p\n", &list);
 
 	ft_printf("--------\n");
-	init_parser_ptr(f);
+	init_parser_obj_ptr(f);
 	ft_printf("--------\n");
 	init_obj_ptr(obj, list);
 	ft_printf("--------\n");

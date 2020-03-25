@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:10:38 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 20:23:59 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 23:51:47 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../../includes/scop.h"
 
 void			print_obj(t_obj *obj)
 {
