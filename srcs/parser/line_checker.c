@@ -12,7 +12,8 @@
 
 #include "../../includes/scop.h"
 
-static int					check_line_double(char *raw_data, int i)
+static int					check_line_double(char *raw_data,
+        int data_len, int i)
 {
 	int						p;
 	int						m;
@@ -25,6 +26,7 @@ static int					check_line_double(char *raw_data, int i)
 		if (raw_data[i] == '.' || raw_data[i] == '/' ||
 			raw_data[i] == '-' || (raw_data[i] >= '0' && raw_data[i] <= '9'))
 		{
+		    // Ces lignes n'ont pas de sens, il faudra en discuter.
 			if (raw_data[i] == '.')
 				p++;
 			else if (raw_data[i] == '-')
@@ -36,7 +38,7 @@ static int					check_line_double(char *raw_data, int i)
 		else if (raw_data[i] != '\t' || raw_data[i] != ' ')
 			return (0);
 	}
-	return (((size_t)i == ft_strlen(raw_data)) ? 1 : 0);
+	return ((i == data_len) ? 1 : 0);
 }
 
 static int					check_line_str(char *raw_data, int data_len, int i)
@@ -58,12 +60,12 @@ static int					dispatch_by_header(char *raw_data, int data_len)
 		return (1);
 	else if (ft_strstr(tmp, "vt") || ft_strstr(tmp, "vn") ||
 		ft_strstr(tmp, "vp"))
-		return check_line_double(raw_data, 2);
+		return check_line_double(raw_data, data_len, 2);
 	else if (ft_strstr(tmp, "g") || ft_strstr(tmp, "o"))
 		return check_line_str(raw_data, data_len, 1);
 	else if (ft_strstr(tmp, "v") || ft_strstr(tmp, "l") ||
 		ft_strstr(tmp, "f"))
-		return check_line_double(raw_data, 1);
+		return check_line_double(raw_data, data_len, 1);
 	else if (ft_strstr(tmp, "#") || ft_strstr(tmp, "s"))
 		return (1);
 	return (0);
