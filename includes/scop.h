@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 22:00:22 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 20:23:10 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@
 # define ID_ERR 6
 # define ID_G 7
 # define ID_O 8
+
+# define P_OBJ 0
+# define P_MTL 1
 
 /*
 ** OBJECT DEFINITION
@@ -421,43 +424,9 @@ typedef struct      s_prog
 
 int         launch_render(t_prog *p);
 
-/*
-** Parser.h
-*/
 
 /*
-** Structures
-*/
-
-typedef struct		s_parser
-{
-	int				nb_args;
-	char			**args;
-	t_obj			*obj;
-}					t_parser;
-
-
-/*
-** Functions
-*/
-
-int				    launch_parser(t_parser *parser,  int ac, char **av);
-void				reader(t_parser *parser);
-
-int					check_raw_data(char *raw_data);
-
-void				parser_vt(t_obj *obj, char *raw_data);
-void				parser_vn(t_obj *obj, char *raw_data);
-void				parser_v(t_obj *obj, char *raw_data);
-void				parser_f(t_obj *obj, char *raw_data);
-void				parser_l(t_obj *obj, char *raw_data);
-void				parser_mtl(t_obj *obj, char *raw_data);
-void				parser_pass(t_obj *obj, char *raw_data);
-void				parser_o(t_obj *obj, char *raw_data, int nb_entity);
-void				parser_g(t_obj *obj, char *raw_data, int nb_entity);
-
-/*
-** Tools.h
+** TOOLS.H
 */
 
 /*
@@ -485,16 +454,54 @@ void						init_obj_ptr(t_obj *obj, t_list_parser *list);
 
 void						init_parser_ptr(void (*f[7])(t_obj *, char *));
 
-void						init_parser(t_parser *parser, int ac, char **av);
-
 int							pass_whitespace_number(int i,char *str);
-
 int							pass_whitespace_double(int i,char *str);
-
 int							pass_whitespace(int i,char *str);
+
+void						print_obj(t_obj *obj);
 
 double						optional_value_double(char *str, double d);
 
 double						ft_atof(char *str);
+
+/*
+** PARSER.H
+*/
+
+/*
+** Structures
+*/
+
+typedef struct		s_parser
+{
+	int				nb_args;
+	char			**args;
+	t_obj			*obj;
+	t_material		*mtl;
+}					t_parser;
+
+/*
+** Functions
+*/
+
+void				init_parser(t_parser *parser, int ac, char **av);
+
+int				    launch_parser(t_parser *parser,  int ac, char **av);
+void				reader_obj(t_parser *parser);
+void				reader_mtl(t_parser *parser);
+
+int					check_raw_data(char *raw_data, short parsing_type);
+
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
+
+void				parser_vt(t_obj *obj, char *raw_data);
+void				parser_vn(t_obj *obj, char *raw_data);
+void				parser_v(t_obj *obj, char *raw_data);
+void				parser_f(t_obj *obj, char *raw_data);
+void				parser_l(t_obj *obj, char *raw_data);
+void				parser_mtl(t_obj *obj, char *raw_data);
+void				parser_pass(t_obj *obj, char *raw_data);
+void				parser_o(t_obj *obj, char *raw_data, int nb_entity);
+void				parser_g(t_obj *obj, char *raw_data, int nb_entity);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 21:45:40 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 20:23:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,24 @@ static int					dispatch_by_header(char *raw_data)
 ** the tinniest line is a texture define: "s 1"
 */
 
-int							check_raw_data(char *raw_data)
+static int					check_obj_raw_data(char *raw_data)
 {
 	if (ft_strlen(raw_data) == 2 && raw_data[0] == 'g')
 		return (1);
     return (ft_strlen(raw_data) > 2 ? dispatch_by_header(raw_data) : 0);
+}
+
+static int					check_mtl_raw_data(char *raw_data)
+{
+	if (ft_strlen(raw_data))
+		return (0);
+	return (1);
+}
+
+int							check_raw_data(char *raw_data, short parsing_type)
+{
+	if (ft_strlen(raw_data) < 3)
+		return (0);
+	return ((parsing_type == P_OBJ) ?
+		check_obj_raw_data(raw_data) : check_mtl_raw_data(raw_data));
 }

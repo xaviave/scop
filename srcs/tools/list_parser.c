@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/24 22:06:20 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 20:18:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int					define_id(char *raw_data)
 
 	ft_bzero(&tmp, 3);
 	ft_strncpy(tmp, raw_data, 2);
-	if (ft_strlen(raw_data) > 8 && (ft_strstr(tmp, "us")))
+	if (ft_strlen(raw_data) > 7 && (ft_strstr(tmp, "us")))
 		id = ID_MTL;
 	else if (ft_strstr(tmp, "vt"))
 	    id = ID_VT;

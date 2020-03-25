@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:23:44 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/23 22:47:29 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 20:25:06 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int 		launch_parser(t_parser *parser, int ac, char **av)
 {
 	check_args(ac, av);
 	init_parser(parser, ac, av);
-	reader(parser);
+	reader_obj(parser);
 	return (0);
 }

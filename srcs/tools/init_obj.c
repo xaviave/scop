@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/24 21:45:31 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 20:18:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void	            init_obj_ptr(t_obj *obj, t_list_parser *list)
 {
     t_list_parser   *tmp;
 
+	ft_printf("init_obj_ptr list = %p\n", &list);
     tmp = list;
     while (tmp)
     {
+		ft_printf("%s - id = %d\n", tmp->data, tmp->id);
         if (tmp->id == ID_F)
             obj->len_faces++;
         else if (tmp->id == ID_G)

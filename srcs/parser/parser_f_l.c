@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/24 22:05:44 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/25 20:18:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,21 +105,21 @@ void				parser_mtl(t_obj *obj, char *raw_data)
 	int				i;
 
 	i = pass_whitespace(6, raw_data);
-	if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "usemtl"))
-	{
-		obj->mtl[obj->len_mtl] = ft_strdup(&raw_data[i]);
-		obj->len_mtl++;
-	}
-	else if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "mtllib"))
-		obj->mtllib = ft_strdup(&raw_data[i]);
+	obj->mtl[obj->len_mtl] = ft_strdup(&raw_data[i]);
+	obj->len_mtl++;
 }
 
 
 void				parser_pass(t_obj *obj, char *raw_data)
 {
+	int				i;
+
+	i = pass_whitespace(6, raw_data);
 	if (ft_strlen(raw_data) < 7)
 	{
-		ft_printf("Line: %s can not be parsed for now (or will be never)\n", raw_data);
+		ft_printf("Line: %s can not be parsed for now (or will be never) %p\n", raw_data, &obj);
 		return ;
 	}
+	else if (ft_strlen(&raw_data[i]) && ft_strstr(raw_data, "mtllib"))
+		obj->mtllib = ft_strdup(&raw_data[i]);
 }
