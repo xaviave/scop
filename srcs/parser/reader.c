@@ -12,19 +12,20 @@
 
 #include "../../includes/scop.h"
 
-static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser
-	, short parsing_type)
+static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser,
+        short parsing_type)
 {
 	char				*line;
+	int                 line_len;
 	t_list_parser		*list;
 
     list = NULL;
 	ft_printf("Opening file: %s\n", parser->args[obj_index + 1]);
-	while(get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
-		if (line && ft_strlen(line) > 1)
+		if (line && (line_len = ft_strlen(line)) > 1)
         {
-            if (check_raw_data(line, parsing_type))
+            if (check_raw_data(line, line_len, parsing_type))
                 add_list_parser(&list, line);
 			else
 			{

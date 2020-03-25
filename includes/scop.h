@@ -490,7 +490,8 @@ int				    launch_parser(t_parser *parser,  int ac, char **av);
 void				reader_obj(t_parser *parser);
 void				reader_mtl(t_parser *parser);
 
-int					check_raw_data(char *raw_data, short parsing_type);
+int					check_raw_data(char *raw_data, int data_len,
+        short parsing_type);
 
 int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
