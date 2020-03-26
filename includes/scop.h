@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 11:07:59 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 12:58:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct      s_vertex
 	double			y;
 	double			z;
 	double			w; // optionnal | default value 1.0
+	int				group_id;
+	int				object_id;
 }					t_vertex;
 
 /*
@@ -103,6 +105,8 @@ typedef struct		s_texture
 	double			u;
 	double			v; //need to be between 0 and 1 | default 0
 	double			w; //need to be between 0 and 1 | default 0
+	int				group_id;
+	int				object_id;
 }					t_texture;
 
 /*
@@ -115,6 +119,8 @@ typedef struct		s_normal
 	double			x;
 	double			y;
 	double			z;
+	int				group_id;
+	int				object_id;
 }					t_normal;
 
 /*
@@ -125,6 +131,8 @@ typedef struct		s_normal
 
 typedef struct		s_face
 {
+	int				group_id;
+	int				object_id;
 	int				nb_vertexes;
 	int				*vertexes_id;
 	int				*textures_id;
@@ -138,6 +146,8 @@ typedef struct		s_face
 
 typedef struct		s_line
 {
+	int				group_id;
+	int				object_id;
 	int				nb_vertexes;
 	int				*vertexes_id;
 }					t_line;
@@ -148,10 +158,9 @@ typedef struct		s_line
 
 typedef struct		s_group
 {
-	int				type;
-	int				nb_entity;
-	int				first_entity;
 	char			*name;
+	short			smooth;
+	int				object_id;
 }					t_group;
 
 /*
@@ -160,9 +169,6 @@ typedef struct		s_group
 
 typedef struct		s_object
 {
-	int				type;
-	int				nb_entity;
-	int				first_entity;
 	char			*name;
 }					t_object;
 
@@ -505,7 +511,7 @@ void                		init_obj(t_obj *obj, t_parser_option *opt);
 void						init_mtl(t_mtl *mtl);
 void						init_mtl_ptr(t_mtl *mtl, t_list_parser *list);
 
-void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *));
+void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
 void						init_parser_mtl_ptr(void (*f[10])(t_mtl *, char *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
@@ -553,15 +559,15 @@ int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
 int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
-void				parser_vt(t_obj *obj, char *raw_data);
-void				parser_vn(t_obj *obj, char *raw_data);
-void				parser_v(t_obj *obj, char *raw_data);
-void				parser_f(t_obj *obj, char *raw_data);
-void				parser_l(t_obj *obj, char *raw_data);
-void				parser_mtl(t_obj *obj, char *raw_data);
-void				parser_pass(t_obj *obj, char *raw_data);
-void				parser_o(t_obj *obj, char *raw_data, int nb_entity);
-void				parser_g(t_obj *obj, char *raw_data, int nb_entity);
+void				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id);
+void				parser_g(t_obj *obj, char *raw_data, int o_id);
+void				parser_o(t_obj *obj, char *raw_data);
 
 void				parser_ka(t_mtl *mtl, char *raw_data);
 void				parser_kd(t_mtl *mtl, char *raw_data);

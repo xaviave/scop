@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 11:08:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 13:24:41 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,30 @@ static int			check_obj(t_obj *obj)
 	return (err);
 }
 
-static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
-    int             len_list;
+	int				o_id;
+	int				g_id;
 	t_list_parser	*tmp;
+	void			(*f[7])(t_obj *, char *, int, int);
 
+	init_parser_obj_ptr(f);
+	o_id = -1;
+	g_id = -1;
 	tmp = list;
 	while (tmp)
 	{
 		if (tmp->id == ID_G || tmp->id == ID_O)
         {
-		    len_list = len_list_parser_id(tmp);
-			// need to add a value smoothing group
+			if (tmp->id == ID_O)
+				o_id = obj->len_objects;
+			else
+				g_id = obj->len_groups;
 			tmp->id == ID_G ? \
-			parser_g(obj, tmp->data, len_list) : \
-			parser_o(obj, tmp->data, len_list);
+			parser_g(obj, tmp->data, o_id) : parser_o(obj, tmp->data);
         }
-		tmp = tmp->next;
-	}
-}
-
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
-{
-	t_list_parser	*tmp;
-	void			(*f[7])(t_obj *, char *);
-
-	init_parser_obj_ptr(f);
-	define_groups_and_objects(obj, list);
-	tmp = list;
-	while (tmp)
-	{
-		if (tmp->id < ID_G)
-			f[tmp->id](obj, tmp->data);
+		else if (tmp->id < ID_G)
+			f[tmp->id](obj, tmp->data, o_id, g_id);
 		tmp = tmp->next;
 	}
 	return (check_obj(obj));

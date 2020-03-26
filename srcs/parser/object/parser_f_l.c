@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:51:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 12:41:21 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ int					*get_vertexes_id(char *str, int nb_entity)
 	return (tab);
 }
 
-void				parser_f(t_obj *obj, char *raw_data)
+void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				id;
 
 	id = obj->len_faces;
+	obj->faces[id].object_id = o_id;
+	obj->faces[id].group_id = g_id;
 	obj->faces[id].nb_vertexes = count_entity(&raw_data[1]);
 	obj->faces[id].normals_id = NULL;
 	obj->faces[id].textures_id = NULL;
@@ -62,36 +64,37 @@ void				parser_f(t_obj *obj, char *raw_data)
 	// ft_printf("NEED TO HANDLE NEGATIV ID | -1 IS THE LAST ID\n");
 }
 
-void				parser_l(t_obj *obj, char *raw_data)
+void				parser_l(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				id;
 
 	id = obj->len_lines;
+	obj->lines[id].object_id = o_id;
+	obj->lines[id].group_id = g_id;
 	obj->lines[id].nb_vertexes = count_entity(&raw_data[1]);
 	obj->lines[id].vertexes_id = get_vertexes_id(&raw_data[1], obj->lines[id].nb_vertexes);
 	obj->len_lines++;
 	// ft_printf("NEED TO HANDLE NEGATIV ID | -1 IS THE LAST ID\n");
 }
 
-void				parser_o(t_obj *obj, char *raw_data, int nb_entity)
+void				parser_o(t_obj *obj, char *raw_data)
 {
 	int				i;
 	int				id;
 
 	id = obj->len_objects;
-    obj->objects[id].nb_entity = nb_entity;
 	i = pass_whitespace(1, raw_data);
 	obj->objects[id].name = ft_strdup(&raw_data[i]);
 	obj->len_objects++;
 }
 
-void				parser_g(t_obj *obj, char *raw_data, int nb_entity)
+void				parser_g(t_obj *obj, char *raw_data, int o_id)
 {
 	int				i;
 	int				id;
 
 	id = obj->len_groups;
-	obj->groups[id].nb_entity = nb_entity;
+	obj->groups[id].object_id = o_id;
 	// if no name after g - default = default
 	// need to change to char **name | could have many names
 	// If there are multiple groups on one line, the data that follows belong to all groups
@@ -100,23 +103,27 @@ void				parser_g(t_obj *obj, char *raw_data, int nb_entity)
 	obj->len_groups++;
 }
 
-void				parser_mtl(t_obj *obj, char *raw_data)
+void				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 
+	(void)o_id;
+	(void)g_id;
 	i = pass_whitespace(6, raw_data);
 	obj->mtl[obj->len_mtl] = ft_strdup(&raw_data[i]);
 	obj->len_mtl++;
 }
 
 
-void				parser_pass(t_obj *obj, char *raw_data)
+void				parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 
 	i = pass_whitespace(6, raw_data);
 	if (ft_strlen(raw_data) < 7)
 	{
+		(void)o_id;
+		(void)g_id;
 		ft_printf("Line: %s can not be parsed for now (or will be never) %p\n", raw_data, &obj);
 		return ;
 	}
