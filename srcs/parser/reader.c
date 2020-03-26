@@ -12,19 +12,20 @@
 
 #include "../../includes/scop.h"
 
-static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser
-	, short parsing_type)
+static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser,
+        short parsing_type)
 {
 	char				*line;
+	int                 line_len;
 	t_list_parser		*list;
 
     list = NULL;
 	ft_printf("Opening file: %s\n", parser->args[obj_index + 1]);
-	while(get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
-		if (line && ft_strlen(line) > 1)
+		if (line && (line_len = ft_strlen(line)) > 1)
         {
-            if (check_raw_data(line, parsing_type))
+            if (check_raw_data(line, line_len, parsing_type))
                 add_list_parser(&list, line);
 			else
 			{
@@ -34,9 +35,9 @@ static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser
         }
         ft_strdel(&line);
     }
-	if (list == NULL || !list_parser_len(&list))
+	if (list == NULL || !list_parser_len(&list)) // create a count of list len better than recalculate it.
 		handle_error_parser("File is empty.");
-	return list;
+	return (list);
 }
 
 static t_list_parser	*reader(t_parser *parser, char *file, int index,
@@ -46,7 +47,7 @@ static t_list_parser	*reader(t_parser *parser, char *file, int index,
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 		handle_error_parser("Error while opening file.");
-	return (open_file(fd, index - 1, parser, parsing_type));
+	return (open_file(fd, index, parser, parsing_type));
 }
 
 void					reader_obj(t_parser *parser)
@@ -55,15 +56,15 @@ void					reader_obj(t_parser *parser)
 	t_list_parser		*list;
 
 	i = 0;
-	while (++i < parser->nb_args + 1)
+	while (i < parser->nb_args)
 	{
-		list = NULL;
-		list = reader(parser, parser->args[i], i, P_OBJ);
-		ft_printf("Parsing file: %s\n", parser->args[i]);
+		list = reader(parser, parser->args[i + 1], i, P_OBJ);
+		ft_printf("Parsing file: %s\n", parser->args[i + 1]);
 		ft_printf("reader_obj %p\n", &list);
 		init_obj(&parser->obj[i]);
 		if (!list_parser_to_obj(&parser->obj[i], list))
 			handle_error_parser("Error during parsing obj.");
+        i++;
 	}
 }
 
