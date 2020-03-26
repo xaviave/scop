@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 10:55:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 11:08:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 	}
 }
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
-	t_parser_option *opt)
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
 {
 	t_list_parser	*tmp;
 	void			(*f[7])(t_obj *, char *);
 
 	init_parser_obj_ptr(f);
-	init_obj_ptr(obj, list, opt);
 	define_groups_and_objects(obj, list);
 	tmp = list;
 	while (tmp)
