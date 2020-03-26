@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 10:53:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 11:07:59 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -500,9 +500,7 @@ void						add_list_parser(t_list_parser **list, char *raw_data,
 
 int							len_list_parser_id(t_list_parser *list);
 
-void                		init_obj(t_obj *obj);
-void						init_obj_ptr(t_obj *obj, t_list_parser *list,
-	t_parser_option *opt);
+void                		init_obj(t_obj *obj, t_parser_option *opt);
 
 void						init_mtl(t_mtl *mtl);
 void						init_mtl_ptr(t_mtl *mtl, t_list_parser *list);
@@ -551,8 +549,7 @@ void				reader_mtl(t_parser *parser);
 
 int					check_raw_data(char *raw_data, t_parser_option *opt);
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
-	t_parser_option *opt);
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
 int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 

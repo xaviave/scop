@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 10:55:11 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 11:09:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static t_list_parser	*open_file(int fd, t_parser *parser,
 	t_parser_option *opt)
 {
 	char				*line;
-	int                 line_len;
 	t_list_parser		*list;
 
     list = NULL;
@@ -61,8 +60,8 @@ void					reader_obj(t_parser *parser)
 		init_parser_option(&opt, parser->args[i + 1], i, P_OBJ);
 		list = reader(parser, &opt);
 		ft_printf("Parsing file: %s\n", parser->args[i + 1]);
-		init_obj(&parser->obj[i]);
-		if (!list_parser_to_obj(&parser->obj[i], list, &opt))
+		init_obj(&parser->obj[i], &opt);
+		if (!list_parser_to_obj(&parser->obj[i], list))
 			handle_error_parser("Error during parsing obj.");
         i++;
 	}
