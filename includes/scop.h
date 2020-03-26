@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:53:24 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 10:53:47 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -473,6 +473,16 @@ int         launch_render(t_prog *p);
 ** Structures
 */
 
+typedef struct				s_parser_option
+{
+	int						len[10];
+	short					parsing_type;
+	int						list_parser_len;
+	int						index;
+	char					*file;
+	int						data_len;
+}							t_parser_option;
+
 typedef struct				s_list_parser
 {
     short           		id; // id define the first type of objects
@@ -485,18 +495,23 @@ typedef struct				s_list_parser
 */
 
 int							list_parser_len(t_list_parser **list);
-void						add_list_parser(t_list_parser **list, char *raw_data);
+void						add_list_parser(t_list_parser **list, char *raw_data,
+	t_parser_option *opt);
 
 int							len_list_parser_id(t_list_parser *list);
 
 void                		init_obj(t_obj *obj);
-void						init_obj_ptr(t_obj *obj, t_list_parser *list);
+void						init_obj_ptr(t_obj *obj, t_list_parser *list,
+	t_parser_option *opt);
 
 void						init_mtl(t_mtl *mtl);
 void						init_mtl_ptr(t_mtl *mtl, t_list_parser *list);
 
 void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *));
 void						init_parser_mtl_ptr(void (*f[10])(t_mtl *, char *));
+
+void						init_parser_option(t_parser_option *opt, char *file,
+	int index, short parsing_type);
 
 int							pass_whitespace_number(int i,char *str);
 int							pass_whitespace_double(int i,char *str);
@@ -534,10 +549,10 @@ int				    launch_parser(t_parser *parser,  int ac, char **av);
 void				reader_obj(t_parser *parser);
 void				reader_mtl(t_parser *parser);
 
-int					check_raw_data(char *raw_data, int data_len,
-        short parsing_type);
+int					check_raw_data(char *raw_data, t_parser_option *opt);
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
+	t_parser_option *opt);
 
 int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 

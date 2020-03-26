@@ -6,13 +6,13 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/25 20:18:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 10:27:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/scop.h"
 
-static int					define_id(char *raw_data)
+static int					define_id(char *raw_data, t_parser_option *opt)
 {
 	char					tmp[3];
 	int                     id;
@@ -37,33 +37,37 @@ static int					define_id(char *raw_data)
         id = ID_O;
 	else
 	    id = ID_ERR;
+	opt->len[id]++;
 	return (id);
 }
 
-static t_list_parser		*new_list_parser(char *raw_data)
+static t_list_parser		*new_list_parser(char *raw_data,
+	t_parser_option *opt)
 {
 	t_list_parser			*new;
 
 	if (!(new = (t_list_parser *)malloc(sizeof(t_list_parser))))
 		return (NULL); // return NULL ? handled in previous call or better call handel_error_parse ?
-	new->id = define_id(raw_data);
+	new->id = define_id(raw_data, opt);
     new->data = ft_strdup(raw_data);
 	new->next = NULL;
+	opt->list_parser_len++;
 	return (new);
 }
 
-void                        add_list_parser(t_list_parser **list, char *raw_data)
+void                        add_list_parser(t_list_parser **list, char *raw_data,
+	t_parser_option *opt)
 {
 	t_list_parser			*tmp;
 
 	if (!(*list))
-		*list = new_list_parser(raw_data);
+		*list = new_list_parser(raw_data, opt);
 	else
 	{
 		tmp = *list;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = new_list_parser(raw_data);
+		tmp->next = new_list_parser(raw_data, opt);
 	}
 }
 

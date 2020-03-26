@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/25 23:56:18 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/26 10:26:31 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ FILES = main.c \
 		tools/init_ptr.c \
 		tools/init_mtl.c \
 		tools/init_parser.c \
+		tools/init_parser_option.c \
 		tools/list_parser.c \
 		tools/length_parser.c \
 		tools/optional_argument.c \

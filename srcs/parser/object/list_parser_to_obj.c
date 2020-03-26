@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:51:24 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 10:55:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,18 @@ static void			define_groups_and_objects(t_obj *obj, t_list_parser *list)
 	}
 }
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
+	t_parser_option *opt)
 {
 	t_list_parser	*tmp;
 	void			(*f[7])(t_obj *, char *);
 
-	ft_printf("list_parser_to_obj 1 list = %p\n", &list);
-	tmp = list;
-	while (tmp)
-	{
-		ft_printf("%d %s\n", tmp->id, tmp->data);
-		tmp = tmp->next;
-	}
-	ft_printf("list_parser_to_obj 2 list = %p\n", &list);
-
-	ft_printf("--------\n");
 	init_parser_obj_ptr(f);
-	ft_printf("--------\n");
-	init_obj_ptr(obj, list);
-	ft_printf("--------\n");
+	init_obj_ptr(obj, list, opt);
 	define_groups_and_objects(obj, list);
-	ft_printf("--------\n");
 	tmp = list;
 	while (tmp)
 	{
-		ft_printf("ID = %d\n", tmp->id);
 		if (tmp->id < ID_G)
 			f[tmp->id](obj, tmp->data);
 		tmp = tmp->next;

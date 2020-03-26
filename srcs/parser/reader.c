@@ -6,27 +6,27 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:48:40 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 10:55:11 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
 
-static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser,
-        short parsing_type)
+static t_list_parser	*open_file(int fd, t_parser *parser,
+	t_parser_option *opt)
 {
 	char				*line;
 	int                 line_len;
 	t_list_parser		*list;
 
     list = NULL;
-	ft_printf("Opening file: %s\n", parser->args[obj_index + 1]);
+	ft_printf("Opening file: %s\n", parser->args[opt->index + 1]);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (line && (line_len = ft_strlen(line)) > 1)
+		if (line && (opt->data_len = ft_strlen(line)) > 1)
         {
-            if (check_raw_data(line, line_len, parsing_type))
-                add_list_parser(&list, line);
+            if (check_raw_data(line, opt))
+                add_list_parser(&list, line, opt);
 			else
 			{
 				ft_printf("\n%s\n", line);
@@ -35,34 +35,34 @@ static t_list_parser	*open_file(int fd, int obj_index, t_parser *parser,
         }
         ft_strdel(&line);
     }
-	if (list == NULL || !list_parser_len(&list)) // create a count of list len better than recalculate it.
+	if (list == NULL || !opt->list_parser_len)
 		handle_error_parser("File is empty.");
 	return (list);
 }
 
-static t_list_parser	*reader(t_parser *parser, char *file, int index,
-	short parsing_type)
+static t_list_parser	*reader(t_parser *parser, t_parser_option *opt)
 {
 	int fd;
 
-	if ((fd = open(file, O_RDONLY)) == -1)
+	if ((fd = open(opt->file, O_RDONLY)) == -1)
 		handle_error_parser("Error while opening file.");
-	return (open_file(fd, index, parser, parsing_type));
+	return (open_file(fd, parser, opt));
 }
 
 void					reader_obj(t_parser *parser)
 {
 	int					i;
+	t_parser_option		opt;
 	t_list_parser		*list;
 
 	i = 0;
 	while (i < parser->nb_args)
 	{
-		list = reader(parser, parser->args[i + 1], i, P_OBJ);
+		init_parser_option(&opt, parser->args[i + 1], i, P_OBJ);
+		list = reader(parser, &opt);
 		ft_printf("Parsing file: %s\n", parser->args[i + 1]);
-		ft_printf("reader_obj %p\n", &list);
 		init_obj(&parser->obj[i]);
-		if (!list_parser_to_obj(&parser->obj[i], list))
+		if (!list_parser_to_obj(&parser->obj[i], list, &opt))
 			handle_error_parser("Error during parsing obj.");
         i++;
 	}
@@ -81,7 +81,7 @@ void					reader_mtl(t_parser *parser)
 		if (parser->obj[i].mtllib)
 		{
 			list = NULL;
-			list = reader(parser, parser->obj[i].mtllib, i, P_MTL);
+			// list = reader(parser, parser->obj[i].mtllib, i, P_MTL);
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
 			init_mtl(&parser->mtl[i]);
 			// UPDATE THE OBJ WITH THE ID OF THE MTL
