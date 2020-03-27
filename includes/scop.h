@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 12:58:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/27 20:19:52 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,9 @@ typedef struct		s_face
 	int				object_id;
 	int				nb_vertexes;
 	int				*vertexes_id;
+	short			has_texture;
 	int				*textures_id;
+	short			has_normal;
 	int				*normals_id;
 }					t_face;
 
@@ -150,6 +152,8 @@ typedef struct		s_line
 	int				object_id;
 	int				nb_vertexes;
 	int				*vertexes_id;
+	short			has_texture;
+	int				*textures_id;
 }					t_line;
 
 /*
@@ -164,12 +168,13 @@ typedef struct		s_group
 }					t_group;
 
 /*
-** 
+**
 */
 
 typedef struct		s_object
 {
 	char			*name;
+	short			smooth;
 }					t_object;
 
 /*
@@ -180,6 +185,7 @@ typedef struct		s_obj
 {
 	int				id;
 	int				error;
+	int				nb_default;
 	char			*mtllib;
 
 	char			**mtl;
@@ -390,16 +396,16 @@ typedef struct			s_decal
 ** 
 */
 
-typedef struct			s_shading
+typedef struct				s_shading
 {
 	// code: illum | only rgb
-	int					id;
+	int						id;
 
-	float				r; // between 0 and 1
-	float				g; // equal to r if not given
-	float				b; // equal to r if not given	int					type;
-	void				(*f[12])(char *); // pointeru to the shading algorithm
-}						t_shading;
+	float					r; // between 0 and 1
+	float					g; // equal to r if not given
+	float					b; // equal to r if not given	int					type;
+	void					(*f[12])(char *); // pointeru to the shading algorithm
+}							t_shading;
 
 typedef struct				s_mtl
 {
@@ -518,7 +524,6 @@ void						init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type);
 
 int							pass_whitespace_number(int i,char *str);
-int							pass_whitespace_double(int i,char *str);
 int							pass_whitespace(int i,char *str);
 
 void						print_obj(t_obj *obj);
