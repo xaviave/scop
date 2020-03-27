@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 20:19:52 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/27 23:36:58 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ typedef struct		s_object
 typedef struct		s_obj
 {
 	int				id;
+	int				mtl_id;
 	int				error;
 	int				nb_default;
 	char			*mtllib;
@@ -514,8 +515,7 @@ int							len_list_parser_id(t_list_parser *list);
 
 void                		init_obj(t_obj *obj, t_parser_option *opt);
 
-void						init_mtl(t_mtl *mtl);
-void						init_mtl_ptr(t_mtl *mtl, t_list_parser *list);
+void						init_mtl(t_mtl *mtl, t_parser_option *opt);
 
 void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
 void						init_parser_mtl_ptr(void (*f[10])(t_mtl *, char *));

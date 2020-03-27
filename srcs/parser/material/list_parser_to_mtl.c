@@ -6,11 +6,18 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:48:53 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/27 23:41:47 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/scop.h"
+
+static int			check_mtl(t_mtl *mtl)
+{
+	ft_printf("id = %d | %s = %name\n", mtl->id, mtl->name);
+	// print_mtl(mtl);
+	return (1);
+}
 
 int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
 {
@@ -19,6 +26,12 @@ int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
 
 
 	init_parser_mtl_ptr(f);
-	init_mtl_ptr(mtl, list);
+	ft_printf("NEED TO FINISH THE MTL ARCHITECTURE AND OPTION\nNEXT START PARSING\n");
 	tmp = list;
+	while (tmp)
+	{
+		ft_printf("%s\n", tmp->data);
+		tmp = tmp->next;
+	}
+	return (check_mtl(mtl));
 }

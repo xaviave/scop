@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 11:45:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/27 23:44:01 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,10 @@ static int					check_obj_raw_data(char *raw_data, t_parser_option *opt)
 
 static int					check_mtl_raw_data(char *raw_data, t_parser_option *opt)
 {
+	ft_printf("mtl - %d | %s\n", opt->data_len, raw_data);
 	if (opt->data_len)
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int							check_raw_data(char *raw_data, t_parser_option *opt)

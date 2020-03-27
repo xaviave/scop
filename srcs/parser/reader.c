@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 11:45:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/27 23:46:09 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static t_list_parser	*reader(t_parser *parser, t_parser_option *opt)
 {
 	int fd;
 
+	ft_printf("NEED TO SEARCH THE MTL FILE IN DIRECTORY\n");
 	if ((fd = open(opt->file, O_RDONLY)) == -1)
 		handle_error_parser("Error while opening file.");
 	return (open_file(fd, parser, opt));
@@ -66,23 +67,25 @@ void					reader_obj(t_parser *parser)
 	}
 }
 
+
 void					reader_mtl(t_parser *parser)
 {
 	int					i;
+	t_parser_option		opt;
 	t_list_parser		*list;
 
 	i = -1;
-	// NEED TO INIT TE NUMBER OF MTL FILE
-	// MTL FILE IS OPTIONNAL
+	ft_printf("READER_MTL\n");
 	while (++i < parser->nb_args)
 	{
+		ft_printf("%s\n", parser->obj[i].mtllib);
 		if (parser->obj[i].mtllib)
 		{
-			list = NULL;
-			// list = reader(parser, parser->obj[i].mtllib, i, P_MTL);
+			init_parser_option(&opt, parser->obj[i].mtllib, i, P_MTL);
+			list = reader(parser, &opt);
+			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
-			init_mtl(&parser->mtl[i]);
-			// UPDATE THE OBJ WITH THE ID OF THE MTL
+			init_mtl(&parser->mtl[i], &opt);
 			if (!list_parser_to_mtl(&parser->mtl[i], list))
 				handle_error_parser("Error during parsing mtl.");
 		}
