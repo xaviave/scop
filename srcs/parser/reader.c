@@ -22,7 +22,7 @@ static t_list_parser	*open_file(int fd, t_parser *parser,
 	ft_printf("Opening file: %s\n", parser->args[opt->index + 1]);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (line && (opt->data_len = ft_strlen(line)) > 1)
+		if (line && line[0] != '#' && (opt->data_len = ft_strlen(line)) > 1)
         {
             if (check_raw_data(line, opt))
                 add_list_parser(&list, line, opt);
