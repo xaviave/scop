@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 23:36:58 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/28 11:34:54 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -543,6 +543,7 @@ double						ft_atof(char *str);
 typedef struct		s_parser
 {
 	int				nb_args;
+	char			**path;
 	char			**args;
 	t_obj			*obj;
 	t_mtl			*mtl;
