@@ -34,13 +34,14 @@ int					pass_id(int i, char *str, short delim_id)
 {
 	short			delim;
 
-	delim = 0;
-	i = pass_whitespace(i, str);
+    delim = 0;
 	while (str[i] && delim < delim_id)
-		if (str[i] == '/')
-			delim++;
-		i++;
-	return (i - 1);
+	{
+        if (str[i] == '/')
+            delim++;
+        i++;
+    }
+	return (ft_isdigit(str[i]) ? i : -1);
 }
 
 int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
@@ -52,11 +53,17 @@ int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
 	if (!(tab = (int *)malloc(sizeof(int) * nb_entity)))
 		return (NULL);
 	i = 0;
-	e = -1;
-	while (str[i] && ++e < nb_entity)
+	e = 0;
+	while (str[i] && e < nb_entity)
 	{
-		i = pass_id(i, str, pos_id);
-		tab[e] = ft_atoi(&str[i]);
+        i = pass_whitespace(i, str);
+        if ((i = pass_id(i, str, pos_id)) == -1)
+        {
+            free(tab);
+            tab = NULL;
+            break ;
+        }
+		tab[e++] = ft_atoi(&str[i]);
     	while (str[i] && str[i] != '\t' && str[i] != ' ')
         	i++;
 	}
@@ -68,10 +75,10 @@ int					nb_char(char *str, int c)
 	int				i;
 	int				nb;
 
-	i = -1;
+	i = 0;
 	nb = 0;
-	while (str[++i])
-		if (str[i] == c)
+	while (str[i])
+		if (str[i++] == c)
 			nb++;
 	return (nb);
 }
@@ -85,18 +92,18 @@ void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
 	obj->faces[id].object_id = o_id;
 	obj->faces[id].group_id = g_id;
 	obj->faces[id].nb_vertexes = count_entity(&raw_data[1]);
+    if (!(obj->faces[id].vertexes_id = get_vertexes_id(
+            &raw_data[1], obj->faces[id].nb_vertexes, 0)))
+        handle_error_parser("Syntax error.");
 	nb_delim = nb_char(&raw_data[1], '/');
-	obj->faces[id].vertexes_id = get_vertexes_id(&raw_data[1], obj->faces[id].nb_vertexes, 0);
-	if (nb_delim == 3 || nb_delim == 4)
-	{
-		obj->faces[id].has_texture++;
-		obj->faces[id].textures_id = get_vertexes_id(&raw_data[1], obj->faces[id].nb_vertexes, 1);
-	}
-	if (nb_delim > 5)
-	{
-		obj->faces[id].has_normal++;
-		obj->faces[id].normals_id = get_vertexes_id(&raw_data[1], obj->faces[id].nb_vertexes, 2);
-	}
+	if (nb_delim == obj->faces[id].nb_vertexes || nb_delim / 2 == obj->faces[id].nb_vertexes)
+		if ((obj->faces[id].textures_id = get_vertexes_id(
+		        &raw_data[1], obj->faces[id].nb_vertexes, 1)))
+            obj->faces[id].has_texture++;
+	if (nb_delim / 2 == obj->faces[id].nb_vertexes)
+		if ((obj->faces[id].normals_id = get_vertexes_id(
+		        &raw_data[1], obj->faces[id].nb_vertexes, 2)))
+            obj->faces[id].has_normal++;
 	obj->len_faces++;
 }
 
