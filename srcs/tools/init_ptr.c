@@ -6,13 +6,13 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:53:25 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/26 12:58:51 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/scop.h"
 
-void		init_parser_obj_ptr(void (*f[7])(t_obj *, char *))
+void		init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int))
 {
 	f[0] = &parser_vt;
 	f[1] = &parser_vn;

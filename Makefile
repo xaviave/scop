@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/26 10:26:31 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/27 11:10:00 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ FILES = main.c \
 		tools/list_parser.c \
 		tools/length_parser.c \
 		tools/optional_argument.c \
-		tools/pass_whitespace_number.c \
+		tools/pass_whitespace.c \
 		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
