@@ -14,7 +14,7 @@ def main():
     test_files = [f for f in sorted(listdir(TESTS_PATH)) if f != "test_log" and path.isfile(path.join(TESTS_PATH, f))]
     system(MAKER)
     for file in test_files:
-        print(f"\n\n\n_________/ File: {file}\n")
+        print(f"\n\n_________/ File: {file}\n")
         system(f"{BINARY} {path.join(TESTS_PATH, file)} > {LOG_FILE}")
         state = system(f"{DIFF_BINARY} {path.join(DIFFS_PATH, file + '.diff')} {LOG_FILE}")
         if state == 0:
