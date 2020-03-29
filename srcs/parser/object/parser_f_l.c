@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 22:56:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/29 16:14:16 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,6 @@ int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
 	return (tab);
 }
 
-int					nb_char(char *str, int c)
-{
-	int				i;
-	int				nb;
-
-	i = -1;
-	nb = 0;
-	while (str[++i])
-		if (str[i] == c)
-			nb++;
-	return (nb);
-}
-
 void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				id;
@@ -85,7 +72,7 @@ void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
 	obj->faces[id].object_id = o_id;
 	obj->faces[id].group_id = g_id;
 	obj->faces[id].nb_vertexes = count_entity(&raw_data[1]);
-	nb_delim = nb_char(&raw_data[1], '/');
+	nb_delim = count_char(&raw_data[1], '/');
 	obj->faces[id].vertexes_id = get_vertexes_id(&raw_data[1], obj->faces[id].nb_vertexes, 0);
 	if (nb_delim == 3 || nb_delim == 4)
 	{

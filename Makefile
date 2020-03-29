@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/27 11:10:00 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/03/29 16:16:18 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ FILES = main.c \
 		parser/material/parser_bump_decal_illum.c \
 		parser/material/print_mtl.c \
 		parser/material/list_parser_to_mtl.c \
+		tools/char.c \
+		tools/path.c \
 		tools/ft_atof.c \
 		tools/init_obj.c \
 		tools/init_ptr.c \

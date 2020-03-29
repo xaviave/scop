@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/28 11:34:54 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/29 16:15:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -532,6 +532,13 @@ double						optional_value_double(char *str, double d);
 
 double						ft_atof(char *str);
 
+char						*get_path(char *str);
+char						*create_path(char *directory, char *file);
+
+int							last_char(char *str, char c);
+int							count_char(char *str, int c);
+
+
 /*
 ** PARSER.H
 */
@@ -540,50 +547,50 @@ double						ft_atof(char *str);
 ** Structures
 */
 
-typedef struct		s_parser
+typedef struct				s_parser
 {
-	int				nb_args;
-	char			**path;
-	char			**args;
-	t_obj			*obj;
-	t_mtl			*mtl;
-}					t_parser;
+	int						nb_args;
+	char					**path;
+	char					**args;
+	t_obj					*obj;
+	t_mtl					*mtl;
+}							t_parser;
 
 /*
 ** Functions
 */
 
-void				init_parser(t_parser *parser, int ac, char **av);
+void						init_parser(t_parser *parser, int ac, char **av);
 
-int				    launch_parser(t_parser *parser,  int ac, char **av);
-void				reader_obj(t_parser *parser);
-void				reader_mtl(t_parser *parser);
+int				    		launch_parser(t_parser *parser,  int ac, char **av);
+void						reader_obj(t_parser *parser);
+void						reader_mtl(t_parser *parser);
 
-int					check_raw_data(char *raw_data, t_parser_option *opt);
+int							check_raw_data(char *raw_data, t_parser_option *opt);
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list);
+int							list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
-int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
+int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
-void				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id);
-void				parser_g(t_obj *obj, char *raw_data, int o_id);
-void				parser_o(t_obj *obj, char *raw_data);
+void						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_g(t_obj *obj, char *raw_data, int o_id);
+void						parser_o(t_obj *obj, char *raw_data);
 
-void				parser_ka(t_mtl *mtl, char *raw_data);
-void				parser_kd(t_mtl *mtl, char *raw_data);
-void				parser_ks(t_mtl *mtl, char *raw_data);
-void				parser_tf(t_mtl *mtl, char *raw_data);
-void				parser_d(t_mtl *mtl, char *raw_data);
-void				parser_s(t_mtl *mtl, char *raw_data);
-void				parser_ni(t_mtl *mtl, char *raw_data);
-void				parser_bump(t_mtl *mtl, char *raw_data);
-void				parser_decal(t_mtl *mtl, char *raw_data);
-void				parser_illum(t_mtl *mtl, char *raw_data);
+void						parser_ka(t_mtl *mtl, char *raw_data);
+void						parser_kd(t_mtl *mtl, char *raw_data);
+void						parser_ks(t_mtl *mtl, char *raw_data);
+void						parser_tf(t_mtl *mtl, char *raw_data);
+void						parser_d(t_mtl *mtl, char *raw_data);
+void						parser_s(t_mtl *mtl, char *raw_data);
+void						parser_ni(t_mtl *mtl, char *raw_data);
+void						parser_bump(t_mtl *mtl, char *raw_data);
+void						parser_decal(t_mtl *mtl, char *raw_data);
+void						parser_illum(t_mtl *mtl, char *raw_data);
 
 #endif

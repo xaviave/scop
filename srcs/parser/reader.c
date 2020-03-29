@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/28 11:18:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/29 19:36:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_list_parser	*open_file(int fd, t_parser *parser,
 	t_list_parser		*list;
 
     list = NULL;
-	ft_printf("Opening file: %s\n", parser->args[opt->index + 1]);
+	ft_printf("Opening file: %s\n", opt->file);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line && (opt->data_len = ft_strlen(line)) > 1)
@@ -43,7 +43,6 @@ static t_list_parser	*reader(t_parser *parser, t_parser_option *opt)
 {
 	int fd;
 
-	ft_printf("NEED TO SEARCH THE MTL FILE IN DIRECTORY\n");
 	if ((fd = open(opt->file, O_RDONLY)) == -1)
 		handle_error_parser("Error while opening file.");
 	return (open_file(fd, parser, opt));
@@ -71,16 +70,18 @@ void					reader_obj(t_parser *parser)
 void					reader_mtl(t_parser *parser)
 {
 	int					i;
+	char				*tmp;
 	t_parser_option		opt;
 	t_list_parser		*list;
 
 	i = -1;
-	ft_printf("READER_MTL\n");
 	while (++i < parser->nb_args)
 	{
-		ft_printf("%s\n", parser->obj[i].mtllib);
 		if (parser->obj[i].mtllib)
 		{
+			tmp = parser->obj[i].mtllib;
+			parser->obj[i].mtllib = create_path(parser->path[i], parser->obj[i].mtllib);
+			ft_strdel(&tmp);
 			init_parser_option(&opt, parser->obj[i].mtllib, i, P_MTL);
 			list = reader(parser, &opt);
 			parser->obj[i].mtl_id = i;
