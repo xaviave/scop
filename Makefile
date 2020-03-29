@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
 .SECONDEXPANSION:
 
 #COMPILATION
@@ -26,6 +26,8 @@ LIBGLEW = $(addprefix $(FW), libglew)
 LIBFT = libft/
 INC = includes/
 CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
+PY = python3
+TESTER = test_code.py
 
 #PATH
 
@@ -92,3 +94,6 @@ fclean: clean
 	@echo "\033[31mScop binary deleted.\033[0m"
 
 re: fclean all
+
+test:
+	@$(PY) $(TESTER)
