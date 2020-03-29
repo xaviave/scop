@@ -22,7 +22,7 @@ static int			check_obj(t_obj *obj)
 	short			err;
 
 	err = 0;
-	// print_obj(obj);
+	 print_obj(obj);
 	// need to check if there's vertexes and faces
 	// need to check all the v - vn - vt ids in lines and faces
 	// if s != 0 in groups or objects, need vn ids
