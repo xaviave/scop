@@ -51,6 +51,7 @@ static void         init_mtl_ptr(t_mtl *mtl, t_parser_option *opt)
 
 void					init_mtl(t_mtl *mtl, t_parser_option *opt)
 {
+    // pas besoin de malloc le parser->t_mtl car il n'y aura qu'un file ?
 	ft_printf("1");
 	ft_memset(mtl, 0, sizeof(t_mtl));
 	ft_printf("1");

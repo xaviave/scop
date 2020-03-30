@@ -553,7 +553,7 @@ typedef struct				s_parser
 	char					**path;
 	char					**args;
 	t_obj					*obj;
-	t_mtl					*mtl;
+	t_mtl					mtl;
 }							t_parser;
 
 /*
