@@ -14,15 +14,15 @@ def main():
     test_files = [f for f in sorted(listdir(TESTS_PATH)) if f != "test_log" and path.isfile(path.join(TESTS_PATH, f))]
     system(MAKER)
     for file in test_files:
-        print(f"\n\n_________/ File: {file}\n")
+        print(f"\n\n\033[97m_________/ File: {file}\033[00m\n")
         system(f"{BINARY} {path.join(TESTS_PATH, file)} > {LOG_FILE}")
 #        system(f"{BINARY} {path.join(TESTS_PATH, file)} > {path.join(DIFFS_PATH, file + '.diff')}")
 #        this line set ALL the diffs files content with the current SCOP output.
         state = system(f"{DIFF_BINARY} {path.join(DIFFS_PATH, file + '.diff')} {LOG_FILE}")
         if state == 0:
-            print(f"                 {file} - OK.\\_________\n",)
+            print(f"\033[97m                 {file} - OK.\\_________\033[00m\n",)
         else:
-            print(f"\n                 {file} - ERROR.\\_________\n",)
+            print(f"\n\033[91m                 {file} - ERROR.\\_________\033[00m\n",)
     system(f"{RM_BINARY} {LOG_FILE}")
 
 
