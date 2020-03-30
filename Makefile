@@ -27,7 +27,7 @@ LIBFT = libft/
 INC = includes/
 CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
 PY = python3
-TESTER = test_code.py
+TESTER = "data/tests/test_code.py"
 
 #PATH
 

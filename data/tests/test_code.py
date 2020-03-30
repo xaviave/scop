@@ -8,12 +8,13 @@ RM_BINARY = "rm -f"
 TESTS_PATH = path.join("data", "tests")
 DIFFS_PATH = path.join(TESTS_PATH, "diffs")
 LOG_FILE = path.join(TESTS_PATH, "test_log")
+EXCLUDED_FILES = ["test_log", "test_code.py"]
 
 
 def main():
     ok = 0
     error = 0
-    test_files = [f for f in sorted(listdir(TESTS_PATH)) if f != "test_log" and path.isfile(path.join(TESTS_PATH, f))]
+    test_files = [f for f in sorted(listdir(TESTS_PATH)) if f not in EXCLUDED_FILES and path.isfile(path.join(TESTS_PATH, f))]
     system(MAKER)
     for file in test_files:
         print(f"\n\n\033[01m_________/ File: {file}\033[00m\n")
