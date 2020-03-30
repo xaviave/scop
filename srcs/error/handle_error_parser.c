@@ -15,7 +15,7 @@
 void handle_error_parser(char *message, ...)
 {
 	ft_printf("%s\n", message);
-	ft_printf("must free everything lol");
+	ft_printf("must free everything lol\n");
 	// while (1)
 	// 	;
 	exit(0);

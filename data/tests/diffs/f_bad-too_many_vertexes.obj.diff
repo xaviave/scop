@@ -1,4 +1,6 @@
 NEED TO SEARCH THE MTL FILE IN DIRECTORY
 Opening file: data/tests/f_bad-too_many_vertexes.obj
-File is empty.
+
+f 1 2 3 4 5
+Error in line
 must free everything lol

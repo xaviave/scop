@@ -165,8 +165,3 @@ groups:
 objects:
 id =    0 | name =       Cube | soomth = 0
 
-READER_MTL
-42.mtl
-NEED TO SEARCH THE MTL FILE IN DIRECTORY
-Error while opening file.
-must free everything lol

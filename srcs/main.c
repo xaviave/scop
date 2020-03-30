@@ -21,6 +21,6 @@ int             main(int ac, char **av)
 //    (void)ac;
 //    (void)parser; // uncomment when need to dodge parsing.
 	launch_parser(&parser, ac, av);
-	launch_render(&p);
+//	launch_render(&p);
     return (p.exit_state);
 }

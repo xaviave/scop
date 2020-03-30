@@ -16,12 +16,14 @@ def main():
     for file in test_files:
         print(f"\n\n_________/ File: {file}\n")
         system(f"{BINARY} {path.join(TESTS_PATH, file)} > {LOG_FILE}")
+#        system(f"{BINARY} {path.join(TESTS_PATH, file)} > {path.join(DIFFS_PATH, file + '.diff')}")
+#        this line set ALL the diffs files content with the current SCOP output.
         state = system(f"{DIFF_BINARY} {path.join(DIFFS_PATH, file + '.diff')} {LOG_FILE}")
         if state == 0:
             print(f"                 {file} - OK.\\_________\n",)
         else:
             print(f"\n                 {file} - ERROR.\\_________\n",)
-        system(f"{RM_BINARY} {LOG_FILE}")
+    system(f"{RM_BINARY} {LOG_FILE}")
 
 
 if __name__ == "__main__":

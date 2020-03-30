@@ -43,6 +43,6 @@ int 		launch_parser(t_parser *parser, int ac, char **av)
 	check_args(ac, av);
 	init_parser(parser, ac, av);
 	reader_obj(parser);
-	reader_mtl(parser);
+//	reader_mtl(parser);
 	return (0);
 }
