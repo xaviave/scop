@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/29 16:15:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/30 18:47:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,9 @@
 # define ID_NS 5
 # define ID_SHARP 6
 # define ID_NI 7
-# define ID_OD 8
-# define ID_BUMP 9
-# define ID_DECAL 10
-# define ID_ILLUM 11
+# define ID_BUMP 8
+# define ID_DECAL 9
+# define ID_ILLUM 10
 
 # define P_OBJ 0
 # define P_MTL 1
