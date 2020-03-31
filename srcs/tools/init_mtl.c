@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/30 18:55:27 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/31 22:51:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,7 @@ static void         init_mtl_ptr(t_mtl *mtl, t_parser_option *opt)
 
 void					init_mtl(t_mtl *mtl, t_parser_option *opt)
 {
-    // pas besoin de malloc le parser->t_mtl car il n'y aura qu'un file ?
-	ft_printf("1");
 	ft_memset(mtl, 0, sizeof(t_mtl));
-	ft_printf("1");
 	mtl->id = -1;
-	ft_printf("1");
 	init_mtl_ptr(mtl, opt);
-	ft_printf("1");
 }

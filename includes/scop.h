@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/30 19:04:30 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/03/31 22:50:14 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -553,7 +553,7 @@ typedef struct				s_parser
 	char					**path;
 	char					**args;
 	t_obj					*obj;
-	t_mtl					mtl;
+	t_mtl					*mtl;
 }							t_parser;
 
 /*
@@ -561,6 +561,7 @@ typedef struct				s_parser
 */
 
 void						init_parser(t_parser *parser, int ac, char **av);
+void						init_parser_mtl(t_parser *parser);
 
 int				    		launch_parser(t_parser *parser,  int ac, char **av);
 void						reader_obj(t_parser *parser);
