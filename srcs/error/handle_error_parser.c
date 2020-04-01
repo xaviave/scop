@@ -12,11 +12,23 @@
 
 #include "../../includes/scop.h"
 
-void handle_error_parser(char *message, ...)
+void            handle_error_parser(char *message, t_addr **addr)
 {
+    t_addr      *tmp;
+
 	ft_printf("%s\n", message);
-	ft_printf("must free everything lol\n");
-	// while (1)
-	// 	;
-	exit(0);
+	if (*addr)
+    {
+	    tmp = *addr;
+	    while (tmp)
+        {
+            ft_printf("%s\n", tmp->content_type);
+            // envoyer le contenu a sa fonction de deletion a l'aide de tmp->content_type.
+	        tmp = tmp->next;
+        }
+    }
+//	addr = NULL;
+//	while (1)
+//	    ;
+    exit(EXIT_FAILURE);
 }

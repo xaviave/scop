@@ -213,6 +213,17 @@ typedef struct		s_obj
 	int				len_vertexes;
 }					t_obj;
 
+typedef struct      s_addr
+{
+    void            **content_addr;
+    char            *content_type;
+    struct s_addr   *next;
+}                   t_addr;
+
+void            *addr_add(void *content, char *type, t_addr **addr);
+
+void            handle_error_parser(char *message, t_addr **addr);
+
 /*
 ** MATERIAL TEXTURE DEFINITION
 ** http://paulbourke.net/dataformats/mtl/
@@ -562,10 +573,10 @@ typedef struct				s_parser
 ** Functions
 */
 
-void						init_parser(t_parser *parser, int ac, char **av);
+void						init_parser(t_parser *parser, int ac, char **av, t_addr **addr);
 void						init_parser_mtl(t_parser *parser);
 
-int				    		launch_parser(t_parser *parser,  int ac, char **av);
+int				    		launch_parser(t_parser *parser,  int ac, char **av, t_addr **addr);
 void						reader_obj(t_parser *parser);
 void						reader_mtl(t_parser *parser);
 

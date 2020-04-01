@@ -16,11 +16,13 @@ int             main(int ac, char **av)
 {
     t_parser    parser;
     t_prog      p;
+    t_addr      *addr;
 
 //    (void)av;
 //    (void)ac;
 //    (void)parser; // uncomment when need to dodge parsing.
-	launch_parser(&parser, ac, av);
+    addr = NULL;
+	launch_parser(&parser, ac, av, &addr);
 //	launch_render(&p);
     return (p.exit_state);
 }

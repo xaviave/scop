@@ -18,32 +18,33 @@
 ** file w/o .obj extension -> return error
 */
 
-static void	check_args(int ac, char **av)
+static void	check_args(int ac, char **av, t_addr **addr)
 {
 	int		i;
 	char	*tmp;
 
 	if (ac < 2)
-		handle_error_parser("No args provided, need at least one object file.");
+		handle_error_parser("No args provided, need at least one object file.", addr);
     i = 0;
 	while (++i < ac)
 	{
 	    if (ft_strlen(av[i]) < 5)
-            handle_error_parser("Invalid file name.");
-		else if (!(tmp = ft_strsub(av[i], ft_strlen(av[i]) - 4, ft_strlen(av[i]))))
-            handle_error_parser("Error during memory allocation.");
+            handle_error_parser("Invalid file name.", addr);
+		else if (!(tmp = addr_add(ft_strsub(av[i], ft_strlen(av[i]) - 4, ft_strlen(av[i])), "char*", addr)))
+            handle_error_parser("Error during memory allocation.", addr);
 		else if (ft_strcmp(".obj", tmp)) // envoyer tmp dans handle_error_parser si cmp == 0 (en tout cas ne pas oublier les leaks quand on s'occupera des erreurs)
-            handle_error_parser("Invalid file name.");
+            handle_error_parser("Invalid file name.", addr);
 		ft_strdel(&tmp);
 	}
 }
 
-int 		launch_parser(t_parser *parser, int ac, char **av)
+int 		launch_parser(t_parser *parser, int ac, char **av, t_addr **addr)
 {
-	check_args(ac, av);
-	init_parser(parser, ac, av);
-	reader_obj(parser);
-	init_parser_mtl(parser);
-	reader_mtl(parser);
+	check_args(ac, av, addr);
+	init_parser(parser, ac, av, addr);
+	handle_error_parser("ceci est un test", addr);
+//	reader_obj(parser);
+//	init_parser_mtl(parser);
+//	reader_mtl(parser);
 	return (0);
 }

@@ -12,38 +12,38 @@
 
 #include "../../includes/scop.h"
 
-void	init_parser(t_parser *parser, int ac, char **av)
+void	init_parser(t_parser *parser, int ac, char **av, t_addr **addr)
 {
 	int	i;
 
 	parser->nb_args = ac - 1;
 	parser->args = av;
-	if (!(parser->obj = (t_obj *)malloc(sizeof(t_obj) * parser->nb_args)))
-		handle_error_parser("Error during memory allocation.");
-	if (!(parser->path = (char **)malloc(sizeof(char *) * parser->nb_args)))
-		handle_error_parser("Error during memory allocation.");
-	i = -1;
-	while (++i < parser->nb_args)
-		parser->path[i] = get_path(av[i + 1]);
+	if (!(parser->obj = addr_add((t_obj *)malloc(sizeof(t_obj) * parser->nb_args), "t_obj*", addr)))
+		handle_error_parser("Error during memory allocation.", addr);
+	if (!(parser->path = addr_add((char **)malloc(sizeof(char *) * parser->nb_args), "char**", addr)))
+		handle_error_parser("Error during memory allocation.", addr);
+//	i = -1;
+//	while (++i < parser->nb_args)
+//		parser->path[i] = get_path(av[i + 1]);
 }
 
-void	init_parser_mtl(t_parser *parser)
-{
-	int	i;
-	int	len_mtl;
-
-	i = 0;
-	len_mtl = 0;
-	while (i < parser->nb_args)
-	{
-		if (parser->obj[i].mtllib)
-		{
-			parser->obj[i].mtl_id = len_mtl;
-			len_mtl++;
-		}
-		i++;
-	}
-	
-	if (!(parser->mtl = (t_mtl *)malloc(sizeof(t_mtl) * len_mtl)))
-		handle_error_parser("Error during memory allocation.");
-}
+//void	init_parser_mtl(t_parser *parser)
+//{
+//	int	i;
+//	int	len_mtl;
+//
+//	i = 0;
+//	len_mtl = 0;
+//	while (i < parser->nb_args)
+//	{
+//		if (parser->obj[i].mtllib)
+//		{
+//			parser->obj[i].mtl_id = len_mtl;
+//			len_mtl++;
+//		}
+//		i++;
+//	}
+//
+//	if (!(parser->mtl = (t_mtl *)malloc(sizeof(t_mtl) * len_mtl)))
+//		handle_error_parser("Error during memory allocation.");
+//}
