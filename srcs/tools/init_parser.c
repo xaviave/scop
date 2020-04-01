@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:44:12 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/31 22:55:55 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/01 18:27:55 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,16 @@ void	init_parser_mtl(t_parser *parser)
 	int	i;
 	int	len_mtl;
 
-	i = 0;
+	i = -1;
 	len_mtl = 0;
-	while (i < parser->nb_args)
+	while (++i < parser->nb_args)
 	{
 		if (parser->obj[i].mtllib)
 		{
 			parser->obj[i].mtl_id = len_mtl;
 			len_mtl++;
 		}
-		i++;
 	}
-	
 	if (!(parser->mtl = (t_mtl *)malloc(sizeof(t_mtl) * len_mtl)))
 		handle_error_parser("Error during memory allocation.");
 }
