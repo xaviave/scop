@@ -526,6 +526,8 @@ void						init_parser_option(t_parser_option *opt, char *file,
 int							pass_whitespace_number(int i,char *str);
 int							pass_whitespace(int i,char *str);
 
+int					        nb_char(char *str, int c);
+
 void						print_obj(t_obj *obj);
 
 double						optional_value_double(char *str, double d);

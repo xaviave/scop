@@ -1,0 +1,167 @@
+NEED TO SEARCH THE MTL FILE IN DIRECTORY
+Opening file: data/tests/42.obj
+Parsing file: data/tests/42.obj
+47 0 0 0 1 0 42
+
+--------------------------------------------------
+vertexes:
+id =    0 | x =   0.232406 | y =  -1.216630 | z =   1.133818 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    1 | x =   0.232406 | y =  -0.745504 | z =   2.843098 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    2 | x =  -0.227475 | y =  -0.745504 | z =   2.843098 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    3 | x =  -0.227475 | y =  -1.216630 | z =   1.133818 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    4 | x =   0.232407 | y =   1.119982 | z =   1.133819 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    5 | x =   0.232406 | y =   1.119982 | z =   1.602814 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    6 | x =  -0.227475 | y =   1.119982 | z =   1.602813 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    7 | x =  -0.227475 | y =   1.119982 | z =   1.133818 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    8 | x =   0.232406 | y =  -0.340316 | z =   2.843098 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =    9 | x =  -0.227475 | y =  -0.340316 | z =   2.843098 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   10 | x =   0.232407 | y =  -0.305193 | z =   1.133819 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   11 | x =   0.232407 | y =  -0.294496 | z =   2.297937 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   12 | x =  -0.227475 | y =  -0.305193 | z =   1.133818 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   13 | x =  -0.227475 | y =  -0.294496 | z =   2.297937 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   14 | x =   0.232406 | y =  -1.222569 | z =   1.497195 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   15 | x =   0.232406 | y =  -0.745504 | z =   1.477731 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   16 | x =  -0.227475 | y =  -0.745504 | z =   1.477731 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   17 | x =  -0.227475 | y =  -1.222569 | z =   1.497194 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   18 | x =  -0.227403 | y =  -0.731178 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   19 | x =  -0.227403 | y =  -0.731178 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   20 | x =   0.223704 | y =  -0.731178 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   21 | x =   0.223704 | y =  -0.731178 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   22 | x =  -0.227403 | y =   1.119377 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   23 | x =  -0.227403 | y =   1.119377 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   24 | x =   0.223704 | y =   1.119377 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   25 | x =   0.223704 | y =   1.119377 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   26 | x =  -0.227403 | y =  -0.129772 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   27 | x =  -0.227403 | y =   0.551492 | z =   0.384487 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   28 | x =  -0.227403 | y =   1.104268 | z =   0.408501 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   29 | x =  -0.227403 | y =   0.507336 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   30 | x =   0.223704 | y =   0.507336 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   31 | x =   0.223704 | y =   1.104269 | z =   0.408501 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   32 | x =   0.223704 | y =   0.551492 | z =   0.384487 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   33 | x =   0.223704 | y =  -0.129772 | z =   0.901477 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   34 | x =  -0.227403 | y =   0.634134 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   35 | x =  -0.227403 | y =  -0.066768 | z =   0.398575 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   36 | x =  -0.227403 | y =  -0.684649 | z =   0.389681 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   37 | x =  -0.227403 | y =  -0.075523 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   38 | x =   0.223704 | y =   0.634134 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   39 | x =   0.223704 | y =  -0.066768 | z =   0.398575 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   40 | x =   0.223704 | y =  -0.684649 | z =   0.389681 | w =   1.000000 | object_id = 0 | groups_id = -1
+id =   41 | x =   0.223704 | y =  -0.075523 | z =  -0.037620 | w =   1.000000 | object_id = 0 | groups_id = -1
+
+--------------------------------------------------
+textures:
+
+--------------------------------------------------
+normals:
+
+--------------------------------------------------
+lines:
+
+--------------------------------------------------
+faces 47:
+id =    0 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	16 2 3 17 
+id =    1 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	5 8 7 6 
+id =    2 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	29 30 23 
+id =    3 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	9 6 7 10 
+id =    4 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	14 13 17 
+id =    5 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	11 1 4 13 
+id =    6 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	2 9 10 3 
+id =    7 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	5 12 14 8 
+id =    8 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	12 11 13 14 
+id =    9 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	1 15 18 4 
+id =   10 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	15 16 17 18 
+id =   11 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	38 42 21 20 
+id =   12 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	33 39 25 32 
+id =   13 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	34 27 19 22 
+id =   14 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	19 20 21 22 
+id =   15 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	26 25 24 23 
+id =   16 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	26 23 30 31 
+id =   17 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	31 30 29 32 
+id =   18 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	32 29 28 33 
+id =   19 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	33 28 27 34 
+id =   20 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	24 25 39 35 
+id =   21 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	35 39 40 36 
+id =   22 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	36 40 41 37 
+id =   23 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	37 41 42 38 
+id =   24 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	26 31 32 
+id =   25 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	37 38 20 
+id =   26 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	21 42 41 
+id =   27 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	12 5 6 
+id =   28 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	25 26 32 
+id =   29 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	22 21 41 
+id =   30 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	8 14 7 
+id =   31 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	28 36 27 
+id =   32 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	10 14 17 3 
+id =   33 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	33 40 39 
+id =   34 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	40 33 34 
+id =   35 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	11 16 15 1 
+id =   36 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	14 10 7 
+id =   37 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	2 16 12 9 
+id =   38 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	11 12 16 
+id =   39 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	40 34 22 41 
+id =   40 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	12 6 9 
+id =   41 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	18 17 13 4 
+id =   42 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	36 28 35 
+id =   43 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	37 20 19 
+id =   44 | nb_vertexes =  3 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	29 23 24 
+id =   45 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	19 27 36 37 
+id =   46 | nb_vertexes =  4 | object_id = 0 | groups_id = -1 | has_texture 0 | has_normal 0
+vertexes_id:	24 35 28 29 
+
+--------------------------------------------------
+mtl:
+id =    0 | name = Material
+
+--------------------------------------------------
+groups:
+
+--------------------------------------------------
+objects:
+id =    0 | name =       Cube | soomth = 0
+
