@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/01 23:03:35 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 01:07:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 # define ID_F 3
 # define ID_L 4
 # define ID_MTL 5
-# define ID_ERR 6
+# define ID_ERR_OBJ 6
 # define ID_G 7
 # define ID_O 8
 
@@ -70,6 +70,7 @@
 # define ID_BUMP 8
 # define ID_DECAL 9
 # define ID_ILLUM 10
+# define ID_ERR_MTL 11
 
 # define P_OBJ 0
 # define P_MTL 1
@@ -457,7 +458,7 @@ typedef struct				s_shading
 	float					r; // between 0 and 1
 	float					g; // equal to r if not given
 	float					b; // equal to r if not given
-	void					(*f[11])(char *); // pointeru to the shading algorithm
+	void					(*f[12])(char *); // pointeru to the shading algorithm
 }							t_shading;
 
 typedef struct				s_mtl
@@ -570,7 +571,7 @@ void                		init_obj(t_obj *obj, t_parser_option *opt);
 void						init_mtl(t_mtl *mtl, t_parser_option *opt);
 
 void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
-void						init_parser_mtl_ptr(void (*f[11])(t_mtl *, char *));
+void						init_parser_mtl_ptr(void (*f[12])(t_mtl *, char *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type);
@@ -633,7 +634,7 @@ void						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id);
+void						parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_g(t_obj *obj, char *raw_data, int o_id);
 void						parser_o(t_obj *obj, char *raw_data);
 
@@ -648,5 +649,6 @@ void						parser_ni(t_mtl *mtl, char *raw_data);
 void						parser_bump(t_mtl *mtl, char *raw_data);
 void						parser_decal(t_mtl *mtl, char *raw_data);
 void						parser_illum(t_mtl *mtl, char *raw_data);
+void						parser_pass_mtl(t_mtl *mtl, char *raw_data);
 
 #endif

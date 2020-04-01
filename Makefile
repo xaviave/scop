@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/30 19:02:18 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/02 01:08:54 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,11 @@ FILES = main.c \
 		parser/launch_parser.c \
 		parser/object/parser_v.c \
 		parser/object/print_obj.c \
-		parser/object/parser_f_l.c \
+		parser/object/parser_f_l_o_g_pass.c \
 		parser/object/list_parser_to_obj.c \
 		parser/material/parser_k.c \
 		parser/material/parser_tf_d_s_ni.c \
-		parser/material/parser_sharp_bump_decal_illum.c \
+		parser/material/parser_sharp_bump_decal_illum_pass.c \
 		parser/material/print_mtl.c \
 		parser/material/list_parser_to_mtl.c \
 		tools/char.c \

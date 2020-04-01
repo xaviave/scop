@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_f_l.c                                       :+:      :+:    :+:   */
+/*   parser_f_l_o_g_pass.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/29 16:14:16 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 01:08:40 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id)
 ** if smooth > 0, it means on
 */
 
-void				parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id)
+void				parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	short			smooth;

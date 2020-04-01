@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/31 22:51:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 00:45:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static int			check_mtl(t_mtl *mtl)
 int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
 {
 	t_list_parser	*tmp;
-	void			(*f[11])(t_mtl *, char *);
-
+	void			(*f[12])(t_mtl *, char *);
 
 	init_parser_mtl_ptr(f);
 	ft_printf("NEED TO FINISH THE MTL ARCHITECTURE AND OPTION\nNEXT START PARSING\n");
@@ -31,6 +30,7 @@ int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
 	while (tmp)
 	{
 		ft_printf("%s\n", tmp->data);
+		f[tmp->id](mtl, tmp->data);
 		tmp = tmp->next;
 	}
 	return (check_mtl(mtl));
