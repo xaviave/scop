@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mtl.c                                         :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 19:06:39 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/02 15:04:16 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/02 17:36:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+#include "../../../includes/scop.h"
 
-void					init_mtl(t_mtl *mtl, int id)
+void						parse_file()
 {
-	ft_memset(mtl, 0, sizeof(t_mtl));
-	mtl->id = id;
+	
 }

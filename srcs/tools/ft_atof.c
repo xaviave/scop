@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:10:50 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/22 15:05:36 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 18:43:46 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ double			ft_atof(char *str)
 	if (str[i] != '.')
 		return (res);
 	res += get_decimal(&str[i]);
-	return ((res >= 0 && neg == 0) ? res : -res);
+	return ((res >= 0.0 && neg == 0) ? res : -res);
 }

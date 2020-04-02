@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/26 11:45:52 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 18:58:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static void			init_obj_ptr(t_obj *obj, t_parser_option *opt)
         handle_error_parser("Error during memory allocation.");
 }
 
-void                init_obj(t_obj *obj, t_parser_option *opt)
+void                init_obj(t_obj *obj, t_parser_option *opt, int id)
 {
 	ft_memset(obj, 0, sizeof(t_obj));
-    obj->id = -1;
+    obj->id = id;
 	init_obj_ptr(obj, opt);
 }

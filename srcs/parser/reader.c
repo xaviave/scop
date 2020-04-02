@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/31 22:40:04 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 19:07:41 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void					reader_obj(t_parser *parser)
 		init_parser_option(&opt, parser->args[i + 1], i, P_OBJ);
 		list = reader(&opt);
 		ft_printf("Parsing file: %s\n", parser->args[i + 1]);
-		init_obj(&parser->obj[i], &opt);
+		init_obj(&parser->obj[i], &opt, i);
 		if (!list_parser_to_obj(&parser->obj[i], list))
 			handle_error_parser("Error during parsing obj.");
 	}
@@ -85,7 +85,7 @@ void					reader_mtl(t_parser *parser)
 			list = reader(&opt);
 			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
-			init_mtl(&parser->mtl[i], &opt);
+			init_mtl(&parser->mtl[i], i);
 			if (!list_parser_to_mtl(&parser->mtl[i], list))
 				handle_error_parser("Error during parsing mtl.");
 		}

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 01:07:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 19:06:27 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,43 +85,43 @@
 ** parsing: v x, y, z[, w]
 */
 
-typedef struct      s_vertex
+typedef struct      		s_vertex
 {
-	double			x;
-	double			y;
-	double			z;
-	double			w; // optionnal | default value 1.0
-	int				group_id;
-	int				object_id;
-}					t_vertex;
+	double					x;
+	double					y;
+	double					z;
+	double					w; // optionnal | default value 1.0
+	int						group_id;
+	int						object_id;
+}							t_vertex;
 
 /*
 ** t_texture defines the texture's coordinate.
 ** parsing: vt u[, v, w]
 */
 
-typedef struct		s_texture
+typedef struct				s_texture
 {
-	double			u;
-	double			v; //need to be between 0 and 1 | default 0
-	double			w; //need to be between 0 and 1 | default 0
-	int				group_id;
-	int				object_id;
-}					t_texture;
+	double					u;
+	double					v; //need to be between 0 and 1 | default 0
+	double					w; //need to be between 0 and 1 | default 0
+	int						group_id;
+	int						object_id;
+}							t_texture;
 
 /*
 ** t_normal defines the vertex normals
 ** parsing: vn x y z
 */
 
-typedef struct		s_normal
+typedef struct				s_normal
 {
-	double			x;
-	double			y;
-	double			z;
-	int				group_id;
-	int				object_id;
-}					t_normal;
+	double					x;
+	double					y;
+	double					z;
+	int						group_id;
+	int						object_id;
+}							t_normal;
 
 /*
 ** t_face defines a polygonal face element.
@@ -129,90 +129,90 @@ typedef struct		s_normal
 ** parsing: f v1 v2[/vt2] v3[//vn3] v4[/vt4][/vn4] ...
 */
 
-typedef struct		s_face
+typedef struct				s_face
 {
-	int				group_id;
-	int				object_id;
-	int				nb_vertexes;
-	int				*vertexes_id;
-	short			has_texture;
-	int				*textures_id;
-	short			has_normal;
-	int				*normals_id;
-}					t_face;
+	int						group_id;
+	int						object_id;
+	int						nb_vertexes;
+	int						*vertexes_id;
+	short					has_texture;
+	int						*textures_id;
+	short					has_normal;
+	int						*normals_id;
+}							t_face;
 
 /*
 ** t_line defines a polyline element.
 ** parsing: l v1 v2 v3
 */
 
-typedef struct		s_line
+typedef struct				s_line
 {
-	int				group_id;
-	int				object_id;
-	int				nb_vertexes;
-	int				*vertexes_id;
-	short			has_texture;
-	int				*textures_id;
-}					t_line;
+	int						group_id;
+	int						object_id;
+	int						nb_vertexes;
+	int						*vertexes_id;
+	short					has_texture;
+	int						*textures_id;
+}							t_line;
 
 /*
 **
 */
 
-typedef struct		s_group
+typedef struct				s_group
 {
-	char			*name;
-	short			smooth;
-	int				object_id;
-}					t_group;
+	char					*name;
+	short					smooth;
+	int						object_id;
+}							t_group;
 
 /*
 **
 */
 
-typedef struct		s_object
+typedef struct				s_object
 {
-	char			*name;
-	short			smooth;
-}					t_object;
+	char					*name;
+	short					smooth;
+}							t_object;
 
 /*
 ** t_obj have all the components of an obj.
 */
 
-typedef struct		s_obj
+typedef struct				s_obj
 {
-	int				id;
-	int				mtl_id;
-	int				error;
-	int				nb_default;
-	char			*mtllib;
+	int						id;
+	int						mtl_id;
+	int						error;
+	int						nb_default;
+	char					*mtllib;
 
-	char			**mtl;
-	int				len_mtl;
+	char					**mtl;
+	int						len_mtl;
 
-	t_face			*faces;
-	int				len_faces;
+	t_face					*faces;
+	int						len_faces;
 
-	t_group			*groups;
-	int				len_groups;
+	t_group					*groups;
+	int						len_groups;
 
-	t_line			*lines;
-	int				len_lines;
+	t_line					*lines;
+	int						len_lines;
 
-	t_normal		*normals;
-	int				len_normals;
+	t_normal				*normals;
+	int						len_normals;
 
-	t_object		*objects;
-	int				len_objects;
+	t_object				*objects;
+	int						len_objects;
 
-	t_texture		*textures;
-	int				len_textures;
+	t_texture				*textures;
+	int						len_textures;
 	
-	t_vertex		*vertexes;
-	int				len_vertexes;
-}					t_obj;
+	t_vertex				*vertexes;
+	int						len_vertexes;
+}							t_obj;
 
 /*
 ** MATERIAL TEXTURE DEFINITION
@@ -225,19 +225,34 @@ typedef struct		s_obj
 ** All thoses values modify the texture map statements
 */
 
-typedef struct			s_texture_option
+typedef struct				s_color
 {
-	short				blendu; //  default on
+	double					r; // between 0 and 1
+	double					g; // equal to r if not given
+	double					b; // equal to r if not given
+}							t_color;
+
+typedef struct				s_file
+{
+	char					*name;
+	char					*path;
+	int						type;
+	void					*data;
+}							t_file;
+
+typedef struct				s_texture_option
+{
+	short					blendu; //  default on
 	//  blendu turns texture blending in horizontal direction
-	short				blendv; //  default on
+	short					blendv; //  default on
 	//  blendv turns texture blending in vertical direction
-	short				cc; //  default on  
+	short					cc; //  default on  
 	//  Only for Ka | Kd | Ks
 	//  turns on color correction for the texture
-	short				clamp; //  default off
+	short					clamp; //  default off
 	//  texturea are restrict to 0-1 in the uvw range | refer to the doc
-	short				imfchan; // default for bump is l and m for decal 
-	// Not for Ka | Kd | Ks
+	short					imfchan; // default for bump is l and m for decal 
+	//  Not for Ka | Kd | Ks
 	//  choose between [r | g | m | l | z] to create a scalar or bump texture
 	//  transparency - specular exponent - decal - displacement
 	//  r -> red channel.
@@ -246,137 +261,100 @@ typedef struct			s_texture_option
 	//  m -> matte channel.
 	//  l -> luminance channel.
 	//  z -> z-depth channel.
-	int					mm[2];
+	int						mm[2];
 	// modify the range over | scalar or color values may vary during rendering
 	// mm[0] is the base, it adds values to texture. default 0 | change the brigther or dimmer
 	// mm[1] is the gain, it expands the range of texture values and create contrast. default is 1
-	int					o[3];
+	int						o[3];
 	// offset the position of the texture map on the surface | shift the position of the map origin. default [0, 0, 0]
 	// o[0] is u horizontal direction
 	// o[1] is v vertical direction | optionnal
 	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
-	int					s[3];
+	int						s[3];
 	// scale the size of the texture pattern on the textured surface by expanding or shrinking the pattern. default [1, 1, 1]
 	// s[0] is u horizontal direction
 	// s[1] is v vertical direction | optionnal
 	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
-	int					t[3];
+	int						t[3];
 	// turns on turbulence for texture. Adding turbulence to a texture along a specified direction adds variance to the original image
 	// and allows a simple image to be repeated over a larger area without noticeable tiling effects. default [0, 0, 0]
 	// t[0] is u horizontal direction
 	// t[1] is v vertical direction | optionnal
 	// t[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
-	int					texters;
+	double					texres;
 	// specifie the resolution of texture created when an image is used.
 	// The default texture size is the largest power of two that does not exceed the original image size. Refere to doc
-	double				boost; // always positive
+	double					boost; // always positive
 	// increase the sharpness, or clarity, of mip-mapped texture files
-}						t_texture_option;
+}							t_texture_option;
 
 /*
-** Ambient color describes the ambiant refletivity of a color
+** Class that define 3 states of a texture color
 */
 
-typedef struct			s_ambient_color
+typedef struct				s_texture_color
 {
-	// code: Ka | only rgb
-	int					id;
-	float				r; // between 0 and 1
-	float				g; // equal to r if not given
-	float				b; // equal to r if not given
-	char				*img_file;
-	t_texture_option	*option;
-}						t_ambiant_color;
-
-/*
-** Diffuse color describes the refletivity of a color
-*/
-
-typedef struct			s_diffuse_color
-{
-	// code: Kd | only rgb
-	int					id;
-	float				r; // between 0 and 1
-	float				g; // equal to r if not given
-	float				b; // equal to r if not given
-	char				*img_file;
-	t_texture_option	*option;
-}						t_diffuse_color;
-
-/*
-** Specular color describes the specular reflectivity of a color
-*/
-
-typedef struct			s_specular_color
-{
-	// code: Ks | only rgb
-	int					id;
-	float				r; // between 0 and 1
-	float				g; // equal to r if not given
-	float				b; // equal to r if not given
-	char				*img_file;
-	t_texture_option	*option;
-}						t_specular_color;
+	t_color					color;
+	t_file					*file;
+	double					factor;
+	t_texture_option		option;
+}							t_texture_color;
 
 /*
 ** Transmission filter describes the specular reflectivity of a color
 */
 
-typedef struct			s_transmission_filter
+typedef struct				s_transmission_filter
 {
-	// code: Tf | only rgb
-	int					id;
-	float				r; // between 0 and 1
-	float				g; // equal to r if not given
-	float				b; // equal to r if not given
-	char				*img_file;
-	t_texture_option	*option;
-}						t_transmission_filter;
+	// code: Tf
+	t_color					color;
+	t_file					*file;
+	t_texture_option		option;
+}							t_transmission_filter;
 
 /*
 ** Transparent discribes the amout this material dissolves int the background
 */
 
-typedef struct			s_transparent
+typedef struct				s_transparent
 {
 	// code: d
-	int					id;
-	short				halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
-	float				factor; // between 0 and 1 | 1 is opaque
-}						t_transparent;
+	short					halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
+	float					factor; // between 0 and 1 | 1 is opaque
+}							t_transparent;
 
 /*
 ** Specular exponent describes the focus of the focus of the specular highlight
 */
 
-typedef struct			s_specular_exponent
+typedef struct				s_specular_exponent
 {
 	// code: Ns
-	int					id;
-	double				value; // between 0 to 1000
-}						t_specular_exponent;
+	double					value; // between 0 to 1000
+	t_texture_option		option;
+}							t_specular_exponent;
 
 /*
 ** Sharpness describes the reflections from the local reflection map
 */
 
-typedef struct			s_sharpness
+typedef struct				s_sharpness
 {
 	// code: sharpness
-	int					id;
-	double				value; // between 0 to 1000 | default 60
-}						t_sharpness;
+	double					value; // between 0 to 1000 | default 60
+	t_texture_option		option;
+}							t_sharpness;
 
 /*
 ** Optical density describes the optical density for the surface
 */
 
-typedef struct			s_optical_density
+typedef struct				s_optical_density
 {
 	// code: Ni
-	int					id;
-	double				value; // between 0.001 to 10
-}						t_optical_density;
+	double					value; // between 0.001 to 10
+	t_texture_option		option;
+}							t_optical_density;
 
 /*
 ** MATERIAL TEXTURE MAP
@@ -386,29 +364,27 @@ typedef struct			s_optical_density
 ** Specifies that a bump texture file or a bump procedural texture file is linked to the material.
 */
 
-typedef struct			s_bump
+typedef struct				s_bump
 {
 	// code: bump
-	int					id;
-	int					bm; // best between 0 and 1
+	int						bm; // best between 0 and 1
 	// -options but inly for bump
 	// bm defines the bump multiplier
 	// values stored with the texture or procedural texture file are multiplied by this value before they are applied to the surface.
-	char				*img_file;
-	t_texture_option	*option;
-}						t_bump;
+	t_file					*file;
+	t_texture_option		option;
+}							t_bump;
 
 /*
 ** disp specifies that a scalar texture is used to deform the surface of an object, creating surface roughness.
 */
 
-typedef struct			s_disp
+typedef struct				s_disp
 {
 	// code: disp
-	int					id;
-	char				*img_file;
-	t_texture_option	*option;
-}						t_disp;
+	t_file					*file;
+	t_texture_option		option;
+}							t_disp;
 
 /*
 ** decal replaces the material color with the texture color 
@@ -419,16 +395,13 @@ typedef struct			s_disp
 ** result_color=tex_color(tv)*decal(tv)+mtl_color*(1.0-decal(tv))
 */
 
-typedef struct			s_decal
+typedef struct				s_decal
 {
-	// code: decal | only rgb
-	int					id;
-	float				r; // between 0 and 1
-	float				g; // equal to r if not given
-	float				b; // equal to r if not given
-	char				*img_file;
-	t_texture_option	*option;
-}						t_decal;
+	// code: decal
+	t_color					color;
+	t_file					*file;
+	t_texture_option		option;
+}							t_decal;
 
 /* 
 	algorithm:
@@ -445,19 +418,11 @@ typedef struct			s_decal
 		10. Casts shadows onto invisible surfaces
 */
 
-/*
-** 
-*/
-
 typedef struct				s_shading
 {
-	// code: illum | only rgb
-	int						id;
+	// code: illum
 	int						type;
-
-	float					r; // between 0 and 1
-	float					g; // equal to r if not given
-	float					b; // equal to r if not given
+	t_color					color;
 	void					(*f[12])(char *); // pointeru to the shading algorithm
 }							t_shading;
 
@@ -466,60 +431,30 @@ typedef struct				s_mtl
 	int						id;
 	char					*name; //no space else error
 
-	t_ambiant_color			*ac;
-	int						len_ac;
-	
-	t_diffuse_color			*dc;
-	int						len_dc;
-	
-	t_specular_color		*sc;
-	int						len_sc;
-
+	//  No malloc here | using addr
+	t_texture_color			*ac;
+	//  code Ka
+	//  Ambient color describes the ambiant refletivity of a color
+	t_texture_color			*dc;
+	//  code: Kd
+	//  Diffuse color describes the refletivity of a color
+	t_texture_color			*sc;
+	//  code: Ks
+	//  Specular color describes the specular reflectivity of a color
 	t_transmission_filter	*tf;
-	int						len_tf;
-	
 	t_transparent			*t;
-	int						len_t;
-
 	t_specular_exponent		*se;
-	int						len_se;
-	
 	t_sharpness				*sharpness;
-	int						len_sharpness;
-
 	t_optical_density		*od;
-	int						len_od;
-
 	t_bump					*bump;
-	int						len_bump;
-
+	t_disp					*disp;
 	t_decal					*decal;
-	int						len_decal;
-	
-	t_shading				*s;
-	int						len_s;
+	t_shading				*shading;
 }							t_mtl;
 
 /*
-** Render structure definition
+** RENDER.H
 */
-
-typedef struct      s_prog
-{
-	int             exit_state;
-	SDL_Window      *win;
-	SDL_Event       ev;
-    SDL_GLContext   gl_context;
-}                   t_prog;
-
-/*
-** Functions
-*/
-
-/*
-** Render.h
-*/
-
 
 # define W 640
 # define H 480
@@ -527,13 +462,44 @@ typedef struct      s_prog
 # define TRUE 1
 # define FALSE 0
 
+/*
+** Render structure definition
+*/
 
-int         launch_render(t_prog *p);
+typedef struct      		s_prog
+{
+	int             		exit_state;
+	SDL_Window      		*win;
+	SDL_Event       		ev;
+    SDL_GLContext   		gl_context;
+}                   		t_prog;
+
+/*
+** Functions
+*/
+
+int         				launch_render(t_prog *p);
 
 
 /*
 ** TOOLS.H
 */
+
+// image file type
+# define F_BMP
+# define F_PNG
+# define F_JPEG
+# define F_JPG
+// compiled procedural texture files
+# define F_CXC
+# define F_CXS
+# define F_CXB
+// mip-mapped texture files
+# define F_MPC
+# define F_MPS
+# define F_MPB
+// spectral Curve File
+# define F_RFL
 
 /*
 ** Structures
@@ -566,9 +532,9 @@ void						add_list_parser(t_list_parser **list, char *raw_data,
 
 int							len_list_parser_id(t_list_parser *list);
 
-void                		init_obj(t_obj *obj, t_parser_option *opt);
+void                		init_obj(t_obj *obj, t_parser_option *opt, int id);
 
-void						init_mtl(t_mtl *mtl, t_parser_option *opt);
+void						init_mtl(t_mtl *mtl, int id);
 
 void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
 void						init_parser_mtl_ptr(void (*f[12])(t_mtl *, char *));
@@ -583,6 +549,8 @@ int					        nb_char(char *str, int c);
 
 void						print_obj(t_obj *obj);
 
+void						print_mtl(t_mtl *mtl);
+
 double						optional_value_double(char *str, double d);
 
 double						ft_atof(char *str);
@@ -592,7 +560,6 @@ char						*create_path(char *directory, char *file);
 
 int							last_char(char *str, char c);
 int							count_char(char *str, int c);
-
 
 /*
 ** PARSER.H
@@ -628,6 +595,10 @@ int							list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
 int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
+void						parse_color(t_color *color, char *raw_data, int xyz);
+
+void						parse_file();
+
 void						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
@@ -650,5 +621,6 @@ void						parser_bump(t_mtl *mtl, char *raw_data);
 void						parser_decal(t_mtl *mtl, char *raw_data);
 void						parser_illum(t_mtl *mtl, char *raw_data);
 void						parser_pass_mtl(t_mtl *mtl, char *raw_data);
+void						parsing_texture_option(t_texture_option *new, char *raw_data, short type);
 
 #endif

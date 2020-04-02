@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/02 01:08:54 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/02 17:37:42 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ FILES = main.c \
 		parser/material/parser_tf_d_s_ni.c \
 		parser/material/parser_sharp_bump_decal_illum_pass.c \
 		parser/material/print_mtl.c \
+		parser/material/parse_file.c \
+		parser/material/parse_color.c \
+		parser/material/parsing_texture_option.c \
 		parser/material/list_parser_to_mtl.c \
 		tools/char.c \
 		tools/path.c \
