@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 18:48:51 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 20:37:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ static void				init_texture_option(t_texture_option *new)
 
 void					parsing_texture_option(t_texture_option *new, char *raw_data, short type)
 {
-	init_texture_option(&new);
+	init_texture_option(new);
 }

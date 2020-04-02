@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 19:38:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 22:41:58 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@
 # define ID_NI 7
 # define ID_BUMP 8
 # define ID_DECAL 9
-# define ID_ILLUM 10
-# define ID_ERR_MTL 11
+# define ID_DISP 10
+# define ID_ILLUM 11
+# define ID_ERR_MTL 12
 
 # define P_OBJ 0
 # define P_MTL 1
@@ -286,6 +287,8 @@ typedef struct				s_texture_option
 	// The default texture size is the largest power of two that does not exceed the original image size. Refere to doc
 	double					boost; // always positive
 	// increase the sharpness, or clarity, of mip-mapped texture files
+	int						bm; // best between 0 and 1
+	// -options but inly for bump
 }							t_texture_option;
 
 /*
@@ -295,7 +298,7 @@ typedef struct				s_texture_option
 typedef struct				s_texture_color
 {
 	t_color					color;
-	t_file					*file;
+	t_file					file;
 	double					factor;
 	t_texture_option		option;
 }							t_texture_color;
@@ -308,7 +311,7 @@ typedef struct				s_transmission_filter
 {
 	// code: Tf
 	t_color					color;
-	t_file					*file;
+	t_file					file;
 	t_texture_option		option;
 }							t_transmission_filter;
 
@@ -320,7 +323,7 @@ typedef struct				s_transparent
 {
 	// code: d
 	short					halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
-	float					factor; // between 0 and 1 | 1 is opaque
+	double					factor; // between 0 and 1 | 1 is opaque
 }							t_transparent;
 
 /*
@@ -367,11 +370,9 @@ typedef struct				s_optical_density
 typedef struct				s_bump
 {
 	// code: bump
-	int						bm; // best between 0 and 1
-	// -options but inly for bump
 	// bm defines the bump multiplier
 	// values stored with the texture or procedural texture file are multiplied by this value before they are applied to the surface.
-	t_file					*file;
+	t_file					file;
 	t_texture_option		option;
 }							t_bump;
 
@@ -382,7 +383,7 @@ typedef struct				s_bump
 typedef struct				s_disp
 {
 	// code: disp
-	t_file					*file;
+	t_file					file;
 	t_texture_option		option;
 }							t_disp;
 
@@ -398,8 +399,7 @@ typedef struct				s_disp
 typedef struct				s_decal
 {
 	// code: decal
-	t_color					color;
-	t_file					*file;
+	t_file					file;
 	t_texture_option		option;
 }							t_decal;
 
@@ -422,8 +422,7 @@ typedef struct				s_shading
 {
 	// code: illum
 	int						type;
-	t_color					color;
-	void					(*f[12])(char *); // pointeru to the shading algorithm
+	void					(*f[11])(char *); // pointer to the shading algorithm
 }							t_shading;
 
 typedef struct				s_mtl
@@ -507,7 +506,7 @@ int         				launch_render(t_prog *p);
 
 typedef struct				s_parser_option
 {
-	int						len[11];
+	int						len[7];
 	short					parsing_type;
 	int						list_parser_len;
 	int						index;
@@ -537,13 +536,15 @@ void                		init_obj(t_obj *obj, t_parser_option *opt, int id);
 void						init_mtl(t_mtl *mtl, int id);
 
 void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
-void						init_parser_mtl_ptr(void (*f[12])(t_mtl *, char *));
+void						init_parser_mtl_ptr(void (*f[13])(t_mtl *, char *));
+void						init_shading_ptr(void (*f[11])(char *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type);
 
-int							pass_whitespace_number(int i,char *str);
-int							pass_whitespace(int i,char *str);
+int							pass_whitespace(int i, char *str);
+int							pass_whitespace_number(int i, char *str);
+int							pass_texture_option(char *str);
 
 int					        nb_char(char *str, int c);
 
@@ -595,6 +596,8 @@ int							list_parser_to_obj(t_obj *obj, t_list_parser *list);
 
 int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
+void						parser_color_file(t_texture_color *s, char *raw_data);
+
 void						parse_color(t_color *color, char *raw_data, int xyz);
 
 void						parse_file(t_file *file, char *raw_data);
@@ -618,6 +621,7 @@ void						parser_ns(t_mtl *mtl, char *raw_data);
 void						parser_sharp(t_mtl *mtl, char *raw_data);
 void						parser_ni(t_mtl *mtl, char *raw_data);
 void						parser_bump(t_mtl *mtl, char *raw_data);
+void						parser_disp(t_mtl *mtl, char *raw_data);
 void						parser_decal(t_mtl *mtl, char *raw_data);
 void						parser_illum(t_mtl *mtl, char *raw_data);
 void						parser_pass_mtl(t_mtl *mtl, char *raw_data);

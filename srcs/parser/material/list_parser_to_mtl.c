@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 18:58:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 20:33:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int			check_mtl(t_mtl *mtl)
 int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
 {
 	t_list_parser	*tmp;
-	void			(*f[12])(t_mtl *, char *);
+	void			(*f[13])(t_mtl *, char *);
 
 	tmp = list;
 	init_parser_mtl_ptr(f);

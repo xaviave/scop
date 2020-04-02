@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/02 00:44:35 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 20:34:54 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static int					define_id_mtl(char *raw_data, t_parser_option *opt)
 		id = ID_ILLUM;
 	else
 		id = ID_ERR_MTL;
-	opt->len[id]++;
 	return (id);
 }
 
