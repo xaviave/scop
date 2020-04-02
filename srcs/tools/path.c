@@ -20,7 +20,8 @@ char		*get_path(char *str)
 	pos_delim = ft_strlen(str) - last_char(str, '/');
 	if (!pos_delim)
 		return (ft_strdup("./"));
-	path = ft_strndup(str, pos_delim);
+	if (!(path = ft_strndup(str, pos_delim)))
+	    return (NULL);
 	path[pos_delim] = '\0';
 	return (path);
 }

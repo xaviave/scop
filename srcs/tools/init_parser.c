@@ -12,19 +12,24 @@
 
 #include "../../includes/scop.h"
 
-void	init_parser(t_parser *parser, int ac, char **av, t_addr **addr)
+void	init_parser(t_parser *parser, int ac, char **av)
 {
 	int	i;
 
 	parser->nb_args = ac - 1;
 	parser->args = av;
-	if (!(parser->obj = addr_add((t_obj *)malloc(sizeof(t_obj) * parser->nb_args), "t_obj*", addr)))
-		handle_error_parser("Error during memory allocation.", addr);
-	if (!(parser->path = addr_add((char **)malloc(sizeof(char *) * parser->nb_args), "char**", addr)))
-		handle_error_parser("Error during memory allocation.", addr);
-//	i = -1;
-//	while (++i < parser->nb_args)
-//		parser->path[i] = get_path(av[i + 1]);
+	parser->addr = NULL;
+	if (!(parser->obj = addr_add((t_obj *)malloc(sizeof(
+	        t_obj) * parser->nb_args), M_OBJ_, &parser->addr)))
+		handle_error_parser("Error during memory allocation.", &parser->addr);
+	if (!(parser->path = addr_add((char **)malloc(sizeof(
+	        char *) * parser->nb_args), M_CHAR__, &parser->addr)))
+		handle_error_parser("Error during memory allocation.", &parser->addr);
+	i = -1;
+	while (++i < parser->nb_args)
+        if (!(parser->path[i] = addr_add(get_path(av[i + 1]),
+                M_CHAR_, &parser->addr)))
+            handle_error_parser("Error during memory allocation.", &parser->addr);
 }
 
 //void	init_parser_mtl(t_parser *parser)

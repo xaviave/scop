@@ -75,6 +75,18 @@
 # define P_MTL 1
 
 /*
+** DEFINE for memory allocation and keep address.
+** Exemple: M_OBJ_   = memory_t_obj*
+**          M_CHAR_  = memory_char*
+**          M_CHAR__ = memory_char**
+**          put '_' after the define for the number of *
+*/
+
+# define M_OBJ_ 0
+# define M_CHAR_ 1
+# define M_CHAR__ 2
+
+/*
 ** OBJECT DEFINITION
 ** http://paulbourke.net/dataformats/obj/
 */
@@ -216,11 +228,11 @@ typedef struct		s_obj
 typedef struct      s_addr
 {
     void            **content_addr;
-    char            *content_type;
+    int             content_type;
     struct s_addr   *next;
 }                   t_addr;
 
-void            *addr_add(void *content, char *type, t_addr **addr);
+void            *addr_add(void *content, int type, t_addr **addr);
 
 void            handle_error_parser(char *message, t_addr **addr);
 
@@ -565,6 +577,7 @@ typedef struct				s_parser
 	int						nb_args;
 	char					**path;
 	char					**args;
+	t_addr                  *addr;
 	t_obj					*obj;
 	t_mtl					*mtl;
 }							t_parser;
@@ -573,10 +586,10 @@ typedef struct				s_parser
 ** Functions
 */
 
-void						init_parser(t_parser *parser, int ac, char **av, t_addr **addr);
+void						init_parser(t_parser *parser, int ac, char **av);
 void						init_parser_mtl(t_parser *parser);
 
-int				    		launch_parser(t_parser *parser,  int ac, char **av, t_addr **addr);
+int				    		launch_parser(t_parser *parser,  int ac, char **av);
 void						reader_obj(t_parser *parser);
 void						reader_mtl(t_parser *parser);
 

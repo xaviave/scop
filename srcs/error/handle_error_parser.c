@@ -12,22 +12,26 @@
 
 #include "../../includes/scop.h"
 
+static void     delete_addr(t_addr **addr)
+{
+    if (*addr)
+    {
+        ft_printf("%d - %p\n", (*addr)->content_type, *addr);
+        // delete addr->content* with adapted func.
+        if ((*addr)->next)
+            delete_addr(&((*addr)->next));
+        free(*addr);
+        *addr = NULL;
+    }
+}
+
 void            handle_error_parser(char *message, t_addr **addr)
 {
     t_addr      *tmp;
 
 	ft_printf("%s\n", message);
-	if (*addr)
-    {
-	    tmp = *addr;
-	    while (tmp)
-        {
-            ft_printf("%s\n", tmp->content_type);
-            // envoyer le contenu a sa fonction de deletion a l'aide de tmp->content_type.
-	        tmp = tmp->next;
-        }
-    }
-//	addr = NULL;
+	delete_addr(addr);
+    ft_printf("addr cleaned.\n");
 //	while (1)
 //	    ;
     exit(EXIT_FAILURE);
