@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 19:10:03 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 19:53:20 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	print_color(t_color *color)
 {
-	dprintf(1, "r = %f | g = %f | b = %f\n", color->r, color->g, color->b);
+	if (color)
+		dprintf(1, "r = %f | g = %f | b = %f\n", color->r, color->g, color->b);
 }
 
 void	print_file(t_file *file)
 {
-	ft_printf("name = %s | path = %s | type = %d\n");
+	if (file)
+		ft_printf("name = %s | path = %s | type = %d\n");
 }
 
 void	print_int(char *str, int *tab, int len)

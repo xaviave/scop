@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 19:06:27 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 19:38:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -597,7 +597,7 @@ int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
 void						parse_color(t_color *color, char *raw_data, int xyz);
 
-void						parse_file();
+void						parse_file(t_file *file, char *raw_data);
 
 void						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
 void						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
