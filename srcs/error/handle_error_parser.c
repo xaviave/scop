@@ -32,7 +32,11 @@ void            handle_error_parser(char *message, t_addr **addr)
 	ft_printf("%s\n", message);
 	delete_addr(addr);
     ft_printf("addr cleaned.\n");
+
+//    *addr = NULL;
+//    addr = NULL;
 //	while (1)
 //	    ;
+
     exit(EXIT_FAILURE);
 }

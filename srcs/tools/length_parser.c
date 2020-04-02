@@ -52,7 +52,7 @@ static int                  calc_id_o(t_list_parser *tmp)
         tmp = tmp->next;
     }
     if ((tmp == NULL && i == 0) || (tmp && tmp->id == ID_O && i == 0))
-        handle_error_parser("Syntax error.\n");
+        handle_error_parser("Syntax error.", NULL);
     return (i);
 }
 
@@ -61,11 +61,17 @@ int							len_list_parser_id(t_list_parser *list)
 	t_list_parser			*tmp;
 
 	if (list->next == NULL)
-	    handle_error_parser("Syntax error line: %s\n", list->data);
+	{
+	    ft_printf("%s\n", list->data);
+        handle_error_parser("Error in line", NULL);
+    }
 	tmp = list->next;
 	while (tmp && tmp->id == ID_ERR)
 	    tmp = tmp->next;
 	if (tmp == NULL)
-        handle_error_parser("Syntax error line: %s\n", list->data);
+	{
+        ft_printf("%s\n", list->data);
+        handle_error_parser("Error in line", NULL);
+    }
     return (list->id == ID_O ? calc_id_o(tmp) : calc_id_g(tmp));
 }

@@ -12,7 +12,7 @@
 
 #include "../../includes/scop.h"
 
-void		init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int))
+void		init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int))
 {
 	f[0] = &parser_vt;
 	f[1] = &parser_vn;

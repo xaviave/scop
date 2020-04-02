@@ -12,7 +12,7 @@
 
 # include "../../../includes/scop.h"
 
-void				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	int				id;
@@ -27,9 +27,10 @@ void				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
 	i = pass_whitespace_number(i, raw_data);
 	obj->textures[id].w = optional_value_double(&raw_data[i], 0.0);
 	obj->len_textures++;
+	return (1);
 }
 
-void				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	int				id;
@@ -44,9 +45,10 @@ void				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id)
 	i = pass_whitespace_number(i, raw_data);
 	obj->normals[id].z = ft_atof(&raw_data[i]);
 	obj->len_normals++;
+    return (1);
 }
 
-void				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	int				id;
@@ -63,4 +65,5 @@ void				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id)
 	i = pass_whitespace_number(i, raw_data);
 	obj->vertexes[id].w = optional_value_double(&raw_data[i], 1.0);
 	obj->len_vertexes++;
+    return (1);
 }

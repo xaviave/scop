@@ -12,7 +12,7 @@
 
 #include "../../includes/scop.h"
 
-static t_list_parser	*open_file(int fd, t_parser_option *opt)
+static t_list_parser	*open_file(int fd, t_parser_option *opt, t_addr **addr)
 {
 	char				*line;
 	t_list_parser		*list;
@@ -24,27 +24,29 @@ static t_list_parser	*open_file(int fd, t_parser_option *opt)
 		if (line && (opt->data_len = ft_strlen(line)) > 1)
         {
             if (check_raw_data(line, opt))
-                add_list_parser(&list, line, opt);
+                add_list_parser(&list, line, opt, addr);
 			else
 			{
 				ft_printf("\n%s\n", line);
-                handle_error_parser("Error in line");
+                ft_strdel(&line);
+                handle_error_parser("Error in line.", addr);
 			}
         }
         ft_strdel(&line);
     }
+	close(fd);
 	if (list == NULL || !opt->list_parser_len)
-		handle_error_parser("File is empty.");
+		handle_error_parser("File is empty.", addr);
 	return (list);
 }
 
-static t_list_parser	*reader(t_parser_option *opt)
+static t_list_parser	*reader(t_parser_option *opt, t_addr **addr)
 {
 	int fd;
 
 	if ((fd = open(opt->file, O_RDONLY)) == -1)
-		handle_error_parser("Error while opening file.");
-	return (open_file(fd, opt));
+		handle_error_parser("Error while opening file.", addr);
+	return (open_file(fd, opt, addr));
 }
 
 void					reader_obj(t_parser *parser)
@@ -57,11 +59,11 @@ void					reader_obj(t_parser *parser)
 	while (++i < parser->nb_args)
 	{
 		init_parser_option(&opt, parser->args[i + 1], i, P_OBJ);
-		list = reader(&opt);
+		list = reader(&opt, &parser->addr);
 		ft_printf("Parsing file: %s\n", parser->args[i + 1]);
-		init_obj(&parser->obj[i], &opt);
-		if (!list_parser_to_obj(&parser->obj[i], list))
-			handle_error_parser("Error during parsing obj.");
+		init_obj(&parser->obj[i], &opt, &parser->addr);
+		if (!list_parser_to_obj(&parser->obj[i], list, &parser->addr))
+			handle_error_parser("Error during parsing obj.", &parser->addr);
 	}
 }
 
@@ -82,12 +84,12 @@ void					reader_mtl(t_parser *parser)
 			parser->obj[i].mtllib = create_path(parser->path[i], parser->obj[i].mtllib);
 			ft_strdel(&tmp);
 			init_parser_option(&opt, parser->obj[i].mtllib, i, P_MTL);
-			list = reader(&opt);
+			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
 			init_mtl(&parser->mtl[i], &opt);
 			if (!list_parser_to_mtl(&parser->mtl[i], list))
-				handle_error_parser("Error during parsing mtl.");
+				handle_error_parser("Error during parsing mtl.", &parser->addr);
 		}
 	}
 }

@@ -85,6 +85,14 @@
 # define M_OBJ_ 0
 # define M_CHAR_ 1
 # define M_CHAR__ 2
+# define M_L_PAR_ 3
+# define M_O_VER_ 4
+# define M_O_TEX_ 5
+# define M_O_NOR_ 6
+# define M_O_FAC_ 7
+# define M_O_LIN_ 8
+# define M_O_GRO_ 9
+# define M_O_OBJ_ 10
 
 /*
 ** OBJECT DEFINITION
@@ -531,16 +539,17 @@ typedef struct				s_list_parser
 */
 
 int							list_parser_len(t_list_parser **list);
-void						add_list_parser(t_list_parser **list, char *raw_data,
-	t_parser_option *opt);
+void        				add_list_parser(t_list_parser **list, char *raw_data,
+	t_parser_option *opt, t_addr **addr);
 
 int							len_list_parser_id(t_list_parser *list);
 
-void                		init_obj(t_obj *obj, t_parser_option *opt);
+void                		init_obj(t_obj *obj, t_parser_option *opt,
+        t_addr **addr);
 
 void						init_mtl(t_mtl *mtl, t_parser_option *opt);
 
-void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
+void						init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int));
 void						init_parser_mtl_ptr(void (*f[11])(t_mtl *, char *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
@@ -595,19 +604,20 @@ void						reader_mtl(t_parser *parser);
 
 int							check_raw_data(char *raw_data, t_parser_option *opt);
 
-int							list_parser_to_obj(t_obj *obj, t_list_parser *list);
+int							list_parser_to_obj(t_obj *obj, t_list_parser *list,
+        t_addr **addr);
 
 int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
-void						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_g(t_obj *obj, char *raw_data, int o_id);
-void						parser_o(t_obj *obj, char *raw_data);
+int 						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_g(t_obj *obj, char *raw_data, int o_id);
+int 						parser_o(t_obj *obj, char *raw_data);
 
 void						parser_ka(t_mtl *mtl, char *raw_data);
 void						parser_kd(t_mtl *mtl, char *raw_data);
