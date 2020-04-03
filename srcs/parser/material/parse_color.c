@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:03:56 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 18:50:25 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 00:24:40 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void						parse_color(t_color *color, char *raw_data, int xyz)
 
 	i = (xyz) ? pass_header_xyz(raw_data) : 2;
 	color->r = ft_atof(&raw_data[i]);
+	ft_printf("IF MISS AN ARG THE COLOR IS EQUAL TO R\n");
 	i = pass_whitespace_number(i, raw_data);
 	color->g = ft_atof(&raw_data[i]);
 	i = pass_whitespace_number(i, raw_data);

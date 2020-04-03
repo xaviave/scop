@@ -6,23 +6,90 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 20:37:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 18:45:55 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/scop.h"
 
-static void				init_texture_option(t_texture_option *new)
+static int				get_on_off(char *option_str)
 {
-	ft_memset(new, 0, sizeof(t_texture_option));
-	new->blendu = 1;
-	new->blendv = 1;
-	new->cc = 1;
-	new->imfchan = -1; // mean no imfchan
-	new->mm[1] = 1;
+	int					i;
+
+	i = pass_whitespace(0, option_str);
+	return ((ft_strcmp(&option_str[i], "on") ? 1 : 0));
 }
 
-void					parsing_texture_option(t_texture_option *new, char *raw_data, short type)
+static int				get_value(char *option_str, int type)
 {
-	init_texture_option(new);
+	int					i;
+
+	i = pass_whitespace(0, option_str);
+	return ((type) ? ft_atof(&option_str[i]) : ft_atoi(&option_str[i]));
+}
+
+static void				get_double_tab(char *option_str, double *tab, int size)
+{
+	int					i;
+	int					nb;
+
+	nb = -1;
+	i = pass_whitespace(0, option_str);
+	while (++nb < size)
+	{
+		tab[nb] = ft_atof(&option_str[i]);
+		i = pass_whitespace_number(0, option_str);
+	}
+}
+
+/*
+** define value for option by searching speific value | shitty way to avoid the norm error
+*/
+
+static void				define_value_by_option(t_texture_option *new,
+	char *option_tab, short type)
+{
+	if (ft_strchr(option_tab, 'u'))
+		new->blendu = get_on_off(&option_tab[7]);
+	else if (ft_strchr(option_tab, 'v'))
+		new->blendv = get_on_off(&option_tab[7]);
+	else if (ft_strchr(option_tab, 'l'))
+		new->clamp = get_on_off(&option_tab[6]);
+	else if (ft_strchr(option_tab, 'c') &&
+		(type == ID_KA || type == ID_KD || type == ID_KS))
+		new->cc = get_on_off(&option_tab[3]);
+	else if (ft_strchr(option_tab, 'f') &&
+		type != ID_KA & type != ID_KD && type != ID_KS)
+		new->imfchan = get_value(&option_tab[8], 0);
+	else if (ft_strchr(option_tab, 'x'))
+		new->texres = get_on_off(&option_tab[3]);
+	else if (ft_strchr(option_tab, 'o'))
+		get_double_tab(&option_tab[2], new->o, 3);
+	else if (ft_strchr(option_tab, 's'))
+		get_double_tab(&option_tab[2], new->s, 3);
+	else if (ft_strchr(option_tab, 't'))
+		get_double_tab(&option_tab[2], new->t, 3);
+	else if (ft_strstr(option_tab, "bm") && type == ID_BUMP)
+		new->bm = get_value(&option_tab[3], 0);
+	else if (ft_strchr(option_tab, 'm'))
+		get_double_tab(&option_tab[2], new->mm, 2);
+	else if (ft_strchr(option_tab, 'b'))
+		new->boost = get_value(&option_tab[3], 1);
+}
+
+void					parsing_texture_option(t_texture_option *new,
+	char *raw_data, short type)
+{
+	int					i;
+	char				*tmp;
+	char				**option_tab;
+
+	if (raw_data[0] != '-')
+		return ;
+	tmp = ft_strsub(raw_data, 0, pass_texture_option(raw_data));
+	option_tab = ft_strsplit(tmp, '-');
+	ft_strdel(&tmp);
+	i = -1;
+	while (option_tab[++i])
+		define_value_by_option(new, option_tab[i], type);
 }

@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/02 17:37:42 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/03 17:12:59 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,8 @@ FILES = main.c \
 		tools/init_obj.c \
 		tools/init_ptr.c \
 		tools/init_mtl.c \
+		tools/init_texture_option.c \
+		tools/define_id.c \
 		tools/init_parser.c \
 		tools/init_parser_option.c \
 		tools/list_parser.c \

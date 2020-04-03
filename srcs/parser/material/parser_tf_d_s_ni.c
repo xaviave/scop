@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 00:22:05 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 16:28:18 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,61 +16,60 @@ void				parser_tf(t_mtl *mtl, char *raw_data)
 {
 	unsigned long	size;
 
-	if (mtl->tf)
-		parsing_texture_option(&mtl->tf->option, raw_data, ID_KA);
-	else
-	{
-		size = sizeof(t_transmission_filter);
-		if (!(mtl->tf = (t_transmission_filter *)ft_memalloc(size)))
-        	handle_error_parser("Error during memory allocation.");
-		parser_color_file((t_texture_color *)mtl->tf, raw_data);
-		dprintf(1, "ue pourquoi pas %f", mtl->tf->color.r);
-	}
+	size = sizeof(t_transmission_filter);
+	if (!(mtl->tf = (t_transmission_filter *)ft_memalloc(size)))
+		handle_error_parser("Error during memory allocation.");
+	parser_color_file((t_texture_color *)mtl->tf, raw_data);
+	dprintf(1, "ue pourquoi pas %f", mtl->tf->color.r);
 }
 
 void				parser_d(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 
-	if (!(mtl->t = (t_transparent *)ft_memalloc(sizeof(t_transparent))))
-        handle_error_parser("Error during memory allocation.");
-	i = 1;
-	if (ft_strchr(raw_data, 'h'))
+	if (mtl->t)
 	{
-		i = pass_whitespace_number(i, raw_data);
-		mtl->t->factor = ft_atof(&raw_data[i]);
-		mtl->t->halo = 1;
+		i = pass_whitespace(5, raw_data);
+		parsing_texture_option(&mtl->t->option, &raw_data[i], ID_D);
 	}
 	else
-		mtl->t->factor = ft_atof(&raw_data[i]);
+	{
+		if (!(mtl->t = (t_transparent *)ft_memalloc(sizeof(t_transparent))))
+			handle_error_parser("Error during memory allocation.");
+		i = 1;
+		if (ft_strchr(raw_data, 'h'))
+		{
+			i = pass_whitespace_number(i, raw_data);
+			mtl->t->factor = ft_atof(&raw_data[i]);
+			mtl->t->halo = 1;
+		}
+		else
+			mtl->t->factor = ft_atof(&raw_data[i]);
+		init_texture_option(&mtl->t->option);
+	}
 }
 
 void				parser_ns(t_mtl *mtl, char *raw_data)
 {
+	int				i;
 	unsigned long	size;
 
 	if (mtl->se)
-		parsing_texture_option(&mtl->se->option, raw_data, ID_NS);
+	{
+		i = pass_whitespace(6, raw_data);
+		parsing_texture_option(&mtl->se->option, &raw_data[i], ID_NS);
+	}
 	else
 	{
 		size = sizeof(t_specular_exponent);
 		if (!(mtl->se = (t_specular_exponent *)ft_memalloc(size)))
         	handle_error_parser("Error during memory allocation.");
 		mtl->se->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
+		init_texture_option(&mtl->se->option);
 	}
 }
 
 void				parser_ni(t_mtl *mtl, char *raw_data)
 {
-	unsigned long	size;
-
-	if (mtl->od)
-		parsing_texture_option(&mtl->od->option, raw_data, ID_NI);
-	else
-	{
-		size = sizeof(t_optical_density);
-		if (!(mtl->od = (t_optical_density *)ft_memalloc(size)))
-        	handle_error_parser("Error during memory allocation.");
-		mtl->od->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
-	}
+	mtl->od->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
 }
