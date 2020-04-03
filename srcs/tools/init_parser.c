@@ -27,8 +27,7 @@ void	init_parser(t_parser *parser, int ac, char **av)
 		handle_error_parser("Error during memory allocation.", &parser->addr);
 	i = -1;
 	while (++i < parser->nb_args)
-        if (!(parser->path[i] = addr_add(get_path(av[i + 1]),
-                M_CHAR_, &parser->addr)))
+        if (!(parser->path[i] = get_path(av[i + 1])))
             handle_error_parser("Error during memory allocation.", &parser->addr);
 }
 

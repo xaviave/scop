@@ -22,7 +22,7 @@ char		*get_path(char *str)
 		return (ft_strdup("./"));
 	if (!(path = ft_strndup(str, pos_delim)))
 	    return (NULL);
-	path[pos_delim] = '\0';
+//	path[pos_delim] = '\0';
 	return (path);
 }
 

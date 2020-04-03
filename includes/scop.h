@@ -235,7 +235,7 @@ typedef struct		s_obj
 
 typedef struct      s_addr
 {
-    void            **content_addr;
+    void            *content_addr;
     int             content_type;
     struct s_addr   *next;
 }                   t_addr;
