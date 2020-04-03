@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/03 14:55:17 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 20:54:17 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_list_parser		*new_list_parser(char *raw_data,
 		return (NULL); // return NULL ? handled in previous call or better call handel_error_parse ?
 	new->id = (opt->parsing_type == P_OBJ) ?
 		define_id_obj(raw_data, opt) : define_id_mtl(raw_data, opt);
-    new->data = ft_strdup(raw_data);
+    new->data = ft_strtrim(raw_data);
 	new->next = NULL;
 	opt->list_parser_len++;
 	return (new);

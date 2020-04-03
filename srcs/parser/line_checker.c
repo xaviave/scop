@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 14:53:29 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 20:51:28 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int							check_raw_data(char *raw_data, t_parser_option *opt)
 {
 	if (opt->data_len < 3)
 		return (0);
-	ft_printf("IF THE LINE IS OK PLEASE APPLY ON STRTRIM\n");
 	return ((opt->parsing_type == P_OBJ) ?
 		check_obj_raw_data(raw_data, opt) :
 		check_mtl_raw_data(raw_data, opt));
