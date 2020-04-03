@@ -1,0 +1,14 @@
+# Blender MTL File: '42.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 96.078431
+Ka xyz 0.000000 0.000000 0.000000
+#RGB 0 0 0
+Kd xyz 0.640000 0.640000 0.640000
+#RGB 212 207 231
+Ks xyz 0.500000 0.500000 0.500000
+#RGB 190 185 207
+Ni 1.000000
+d 1.000000
+illum 2

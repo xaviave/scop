@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:03:56 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 20:56:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 00:18:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,30 @@ static void					matrix_values(short type, double values[3])
 {
 	if (!type)
 	{
-		values[0] = 3.2404542;
-		values[1] = -1.5371385;
-		values[2] = -0.4985314;
+		values[0] = 3.2406;
+		values[1] = -1.5372;
+		values[2] = -0.4986;
 	}
 	else if (type == 1)
 	{
-		values[0] = -0.9692660;
-		values[1] = 1.8760108;
-		values[2] = 0.0415560;
+		values[0] = -0.9689;
+		values[1] = 1.8758;
+		values[2] = 0.0415;
 	}
 	else
 	{
-		values[0] = 0.0556434;
-		values[1] = -0.2040259;
-		values[2] = 1.0572252;
+		values[0] = 0.0557;
+		values[1] = -0.2040;
+		values[2] = 1.0570;
 	}
 }
 
 static double				gradient_corrector(double c)
 {
-	if (fabs(c) < 0.0031308)
+	if (fabs(c) <= 0.0031308)
 		c = 12.92 * c;
 	else
-		c = (1.055 * pow(c, 0.41666)) - 0.055;
+		c = (1.055 * pow(c, 0.416)) - 0.055;
 	return (c);
 }
 
@@ -59,10 +59,9 @@ static double				xyz_to_rgb(double x, double y, double z, short type)
 	double					matrix[3];
 
 	ft_memset(&matrix, 0, sizeof(double [3]));
-	dprintf(1, "PARSE_COLOR.C\npre matrix values | %f | %f | %f\n", matrix[0], matrix[1], matrix[2]);
 	matrix_values(type, matrix);
-	dprintf(1, "NOT TESTED\npost matrix values | %f | %f | %f\n", matrix[0], matrix[1], matrix[2]);
 	c = matrix[0] * x + matrix[1] * y + matrix[2] * z;
+	dprintf(1, "0-1 c = %f | 0-255 c = %f\n", c, c * 255);
 	return (gradient_corrector(c));
 }
 
@@ -86,12 +85,12 @@ void						parse_color(t_color *color, char *raw_data, int xyz)
 	i = (xyz) ? pass_header_xyz(raw_data) : 2;
 	color->r = ft_atof(&raw_data[i]);
 	i = pass_whitespace_number(i, raw_data);
-	if (i != ft_strlen(raw_data))
+	if ((size_t)i != ft_strlen(raw_data))
 		color->g = ft_atof(&raw_data[i]);
 	else
 		color->g = color->r;
 	i = pass_whitespace_number(i, raw_data);
-	if (i != ft_strlen(raw_data))
+	if ((size_t)i != ft_strlen(raw_data))
 		color->b = ft_atof(&raw_data[i]);
 	else
 		color->b = color->r;
