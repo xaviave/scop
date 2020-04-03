@@ -83,16 +83,8 @@
 */
 
 # define M_OBJ_ 0
-# define M_CHAR_ 1
-# define M_CHAR__ 2
-# define M_L_PAR_ 3
-# define M_O_VER_ 4
-# define M_O_TEX_ 5
-# define M_O_NOR_ 6
-# define M_O_FAC_ 7
-# define M_O_LIN_ 8
-# define M_O_GRO_ 9
-# define M_O_OBJ_ 10
+# define M_CHAR__ 1
+# define M_L_PAR_ 2
 
 /*
 ** OBJECT DEFINITION

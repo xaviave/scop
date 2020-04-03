@@ -12,20 +12,30 @@
 
 #include "../../includes/scop.h"
 
+static void     delete_list_parser(t_list_parser **list)
+{
+    if (*list)
+    {
+        ft_strdel(&(*list)->data);
+        if ((*list)->next)
+            delete_list_parser(&((*list)->next));
+        free(*list);
+        *list = NULL;
+
+    }
+}
+
+static void     delete_t_obj(t_obj obj)
+{
+    ft_strdel(&obj.mtllib);
+}
+
 static void     delete_addr(t_addr **addr)
 {
     int             i;
-    t_obj           *m_obj;
-    char            *m_char_;
     char            **m_char__;
     t_list_parser   *m_l_par_;
-    t_vertex        *m_o_ver_;
-    t_texture       *m_o_tex_;
-    t_normal        *m_o_nor_;
-    t_face          *m_o_fac_;
-    t_line          *m_o_lin_;
-    t_group         *m_o_gro_;
-    t_object        *m_o_obj_;
+    t_obj           *m_obj_;
 
     if (*addr)
     {
@@ -36,14 +46,22 @@ static void     delete_addr(t_addr **addr)
             i = 0;
             m_char__ = (*addr)->content_addr;
             while (m_char__[i])
-                ft_strdel(&(m_char__[i++]));
+                ft_strdel(&(m_char__[i++])); // ft_strdel((char **)&((*addr)->content_addr));
             ft_memdel((void **)m_char__);
         }
-        else if ((*addr)->content_type == M_CHAR_)
+        else if ((*addr)->content_type == M_L_PAR_)
         {
-            m_char_ = (*addr)->content_addr;
-            ft_strdel(&m_char_); // ft_strdel((char **)&((*addr)->content_addr));
+            m_l_par_ = (*addr)->content_addr;
+            delete_list_parser(&m_l_par_);
         }
+//        else if ((*addr)->content_type == M_OBJ_)
+//        {
+//            i = 0;
+//            m_obj_ = (*addr)->content_addr;
+//            while (m_obj_[i] != NULL)
+//                delete_t_obj(m_obj_[i++]);
+//            ft_memdel((void **)&m_obj_);
+//        }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
 //        free(*addr);
@@ -59,8 +77,8 @@ void            handle_error_parser(char *message, t_addr **addr)
 	delete_addr(addr);
     ft_printf("addr cleaned.\n");
 
-	while (1)
-	    ;
+//	while (1)
+//	    ;
 
     exit(EXIT_FAILURE);
 }

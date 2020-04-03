@@ -19,11 +19,11 @@ void	init_parser(t_parser *parser, int ac, char **av)
 	parser->nb_args = ac - 1;
 	parser->args = av;
 	parser->addr = NULL;
-	if (!(parser->obj = addr_add((t_obj *)malloc(sizeof(
-	        t_obj) * parser->nb_args), M_OBJ_, &parser->addr)))
+	if (!(parser->obj = addr_add((t_obj *)ft_memalloc(sizeof(
+	        t_obj) * parser->nb_args + 1), M_OBJ_, &parser->addr)))
 		handle_error_parser("Error during memory allocation.", &parser->addr);
-	if (!(parser->path = addr_add((char **)malloc(sizeof(
-	        char *) * parser->nb_args), M_CHAR__, &parser->addr)))
+	if (!(parser->path = addr_add((char **)ft_memalloc(sizeof(
+	        char *) * parser->nb_args + 1), M_CHAR__, &parser->addr)))
 		handle_error_parser("Error during memory allocation.", &parser->addr);
 	i = -1;
 	while (++i < parser->nb_args)
