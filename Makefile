@@ -61,6 +61,7 @@ FILES = main.c \
 		tools/length_parser.c \
 		tools/optional_argument.c \
 		tools/pass_whitespace.c \
+		tools/manage_addr.c \
 		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
