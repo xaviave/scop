@@ -46,8 +46,9 @@ static void     delete_addr(t_addr **addr)
             i = 0;
             m_char__ = (*addr)->content_addr;
             while (m_char__[i])
-                ft_strdel(&(m_char__[i++])); // ft_strdel((char **)&((*addr)->content_addr));
-            ft_memdel((void **)m_char__);
+                ft_strdel(&m_char__[i++]);
+            free(m_char__);
+            m_char__ = NULL;
         }
         else if ((*addr)->content_type == M_L_PAR_)
         {
@@ -77,8 +78,8 @@ void            handle_error_parser(char *message, t_addr **addr)
 	delete_addr(addr);
     ft_printf("addr cleaned.\n");
 
-//	while (1)
-//	    ;
+	while (1)
+	    ;
 
     exit(EXIT_FAILURE);
 }
