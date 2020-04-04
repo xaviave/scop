@@ -30,9 +30,9 @@ static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
     if (!(obj->lines = (t_line *)ft_memalloc(
             sizeof(t_line) * opt->len[ID_L] + 1)))
         handle_error_parser("Error during memory allocation.", addr);
-	if (!(obj->mtl = (char **)ft_memalloc(
-            sizeof(char *) * opt->len[ID_MTL] + 1)))
+	if (!(obj->mtl = (char **)malloc(sizeof(char *) * opt->len[ID_MTL] + 1)))
         handle_error_parser("Error during memory allocation.", addr);
+	obj->mtl[opt->len[ID_MTL]] = NULL;
     if (!(obj->groups = (t_group *)ft_memalloc(
             sizeof(t_group) * opt->len[ID_G] + 1)))
         handle_error_parser("Error during memory allocation.", addr);
@@ -41,9 +41,11 @@ static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
         handle_error_parser("Error during memory allocation.", addr);
 }
 
-void                init_obj(t_obj *obj, t_parser_option *opt, t_addr **addr)
+void                init_obj(t_obj *obj, t_parser_option *opt, int nb_args,
+        t_addr **addr)
 {
 	ft_memset(obj, 0, sizeof(t_obj));
     obj->id = -1;
+    obj->nb_args = nb_args;
 	init_obj_ptr(obj, opt, addr);
 }

@@ -198,6 +198,7 @@ typedef struct		s_obj
 	int				mtl_id;
 	int				error;
 	int				nb_default;
+	int             nb_args;
 	char			*mtllib;
 
 	char			**mtl;
@@ -537,7 +538,7 @@ void        				add_list_parser(t_list_parser **list, char *raw_data,
 int							len_list_parser_id(t_list_parser *list);
 
 void                		init_obj(t_obj *obj, t_parser_option *opt,
-        t_addr **addr);
+        int nb_args, t_addr **addr);
 
 void						init_mtl(t_mtl *mtl, t_parser_option *opt);
 
