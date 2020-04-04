@@ -60,11 +60,12 @@ static t_list_parser	*new_list_parser(char *raw_data,
 	return (new);
 }
 
-void                    add_list_parser(t_list_parser **list, t_list_parser **last,
+void                    add_list_parser(t_list_parser **list,
         char *raw_data, t_parser_option *opt, t_addr **addr)
 {
-	t_list_parser		*tmp;
-	t_list_parser       *new;
+	t_list_parser		    *tmp;
+	t_list_parser           *new;
+	static t_list_parser    *last;
 
     if (!(new = new_list_parser(raw_data, opt)))
     {
@@ -74,12 +75,12 @@ void                    add_list_parser(t_list_parser **list, t_list_parser **la
     if (!(*list))
     {
         *list = addr_add(new, M_L_PAR_, addr);
-        *last = *list;
+        last = *list;
     }
 	else
 	{
-        (*last)->next = new;
-        *last = (*last)->next;
+        last->next = new;
+        last = last->next;
 	}
 }
 
