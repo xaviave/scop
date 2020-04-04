@@ -72,10 +72,7 @@ void                    add_list_parser(t_list_parser **list, char *raw_data,
         handle_error_parser("Error during memory allocation.", addr);
     }
     if (!(*list))
-    {
-        *list = new;
-        addr_add(*list, M_L_PAR_, addr);
-    }
+        *list = addr_add(new, M_L_PAR_, addr);
 	else
 	{
 	    // think about optimizing the process to add element to the list.
