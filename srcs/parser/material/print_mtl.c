@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 18:24:34 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 18:39:25 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ void	print_mtl(t_mtl *mtl)
 	}
 	ft_printf("\n--------------------------------------------------\nsharpness: code sharpness\n\n");
 	if (mtl->sharpness)
-		dprintf(1, "value = %f\n", mtl->sharpness->value);
+		dprintf(1, "value = %f\n", mtl->sharpness);
 	if (mtl->od)
-		dprintf(1, "value = %f\n", mtl->od->value);
+		dprintf(1, "value = %f\n", mtl->od);
 	ft_printf("\n--------------------------------------------------\nbump: code bump\n\n");
 	if (mtl->bump)
 	{

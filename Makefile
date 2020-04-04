@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/03 17:12:59 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/04 20:04:49 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,37 +35,37 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 
 FILES = main.c \
-		error/handle_error_parser.c \
 		error/handle_error_sdl.c \
+		error/handle_error_parser.c \
 		parser/reader.c \
 		parser/line_checker.c \
 		parser/launch_parser.c \
-		parser/object/parser_v.c \
 		parser/object/print_obj.c \
-		parser/object/parser_f_l_o_g_pass.c \
 		parser/object/list_parser_to_obj.c \
-		parser/material/parser_k.c \
-		parser/material/parser_tf_d_s_ni.c \
-		parser/material/parser_sharp_bump_decal_illum_pass.c \
+		parser/object/definitions/parser_v.c \
+		parser/object/definitions/parser_f_l_o_g_pass.c \
 		parser/material/print_mtl.c \
-		parser/material/parse_file.c \
-		parser/material/parse_color.c \
-		parser/material/parsing_texture_option.c \
 		parser/material/list_parser_to_mtl.c \
+		parser/material/files/parse_file.c \
+		parser/material/definitions/parser_k.c \
+		parser/material/definitions/parse_color.c \
+		parser/material/definitions/parser_tf_d_s_ni.c \
+		parser/material/definitions/parsing_texture_option.c \
+		parser/material/definitions/parser_sharp_bump_decal_illum_pass.c \
 		tools/char.c \
 		tools/path.c \
 		tools/ft_atof.c \
-		tools/init_obj.c \
-		tools/init_ptr.c \
-		tools/init_mtl.c \
-		tools/init_texture_option.c \
 		tools/define_id.c \
-		tools/init_parser.c \
-		tools/init_parser_option.c \
 		tools/list_parser.c \
 		tools/length_parser.c \
-		tools/optional_argument.c \
 		tools/pass_whitespace.c \
+		tools/optional_argument.c \
+		tools/init/init_obj.c \
+		tools/init/init_ptr.c \
+		tools/init/init_mtl.c \
+		tools/init/init_texture_option.c \
+		tools/init/init_parser.c \
+		tools/init/init_parser_option.c \
 		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))

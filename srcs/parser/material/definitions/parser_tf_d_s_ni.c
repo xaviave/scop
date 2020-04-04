@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 16:28:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 21:07:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../../includes/scop.h"
 
 void				parser_tf(t_mtl *mtl, char *raw_data)
 {
@@ -30,7 +30,8 @@ void				parser_d(t_mtl *mtl, char *raw_data)
 	if (mtl->t)
 	{
 		i = pass_whitespace(5, raw_data);
-		parsing_texture_option(&mtl->t->option, &raw_data[i], ID_D);
+		parsing_texture_option(&mtl->t->option, &mtl->t->file,
+			&raw_data[i], ID_D);
 	}
 	else
 	{
@@ -57,7 +58,8 @@ void				parser_ns(t_mtl *mtl, char *raw_data)
 	if (mtl->se)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->se->option, &raw_data[i], ID_NS);
+		parsing_texture_option(&mtl->se->option, &mtl->se->file,
+			&raw_data[i], ID_NS);
 	}
 	else
 	{
@@ -71,5 +73,5 @@ void				parser_ns(t_mtl *mtl, char *raw_data)
 
 void				parser_ni(t_mtl *mtl, char *raw_data)
 {
-	mtl->od->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
+	mtl->od = ft_atof(&raw_data[pass_texture_option(raw_data)]);
 }

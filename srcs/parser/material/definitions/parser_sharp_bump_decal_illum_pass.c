@@ -6,40 +6,39 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:17:58 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 16:29:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 18:43:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../../includes/scop.h"
 
 void				parser_bump(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	
-	ft_printf("Enter parser bump\n");
 	if (!(mtl->bump = (t_bump *)ft_memalloc(sizeof(t_bump))))
         handle_error_parser("Error during memory allocation.");
 	i = pass_whitespace(4, raw_data);
 	init_texture_option(&mtl->bump->option);
-	parsing_texture_option(&mtl->bump->option, raw_data, ID_BUMP);
+	parsing_texture_option(&mtl->bump->option, &mtl->bump->file,
+		raw_data, ID_BUMP);
 	parse_file(&mtl->bump->file, &raw_data[pass_texture_option(raw_data)]);
 }
 
 void				parser_decal(t_mtl *mtl, char *raw_data)
 {
 	int				i;
-	ft_printf("Enter parser decal\n");
 	if (!(mtl->decal = (t_decal *)ft_memalloc(sizeof(t_decal))))
         handle_error_parser("Error during memory allocation.");
 	i = pass_whitespace(5, raw_data);
 	init_texture_option(&mtl->decal->option);
-	parsing_texture_option(&mtl->decal->option, &raw_data[i], ID_DECAL);
+	parsing_texture_option(&mtl->decal->option, &mtl->decal->file,
+		&raw_data[i], ID_DECAL);
 	parse_file(&mtl->decal->file, &raw_data[pass_texture_option(raw_data)]);
 }
 
 void				parser_illum(t_mtl *mtl, char *raw_data)
 {
-	ft_printf("Enter parser illum\n");
 	if (!(mtl->shading = (t_shading *)ft_memalloc(sizeof(t_shading))))
         handle_error_parser("Error during memory allocation.");
 	mtl->shading->type = ft_atoi(&raw_data[5]);
@@ -48,22 +47,19 @@ void				parser_illum(t_mtl *mtl, char *raw_data)
 
 void				parser_sharp(t_mtl *mtl, char *raw_data)
 {
-	ft_printf("Enter parser sharp\n");
-	if (!(mtl->sharpness = (t_sharpness *)ft_memalloc(sizeof(t_sharpness))))
-        handle_error_parser("Error during memory allocation.");
-	mtl->sharpness->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
+	mtl->sharpness = ft_atof(&raw_data[pass_texture_option(raw_data)]);
 }
 
 void				parser_disp(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	
-	ft_printf("Enter parser disp\n");
 	if (!(mtl->disp = (t_disp *)ft_memalloc(sizeof(t_disp))))
         handle_error_parser("Error during memory allocation.");
 	i = pass_whitespace(4, raw_data);
 	init_texture_option(&mtl->disp->option);
-	parsing_texture_option(&mtl->disp->option, &raw_data[i], ID_DISP);
+	parsing_texture_option(&mtl->disp->option, &mtl->disp->file,
+		&raw_data[i], ID_DISP);
 	parse_file(&mtl->disp->file, &raw_data[pass_texture_option(raw_data)]);
 }
 

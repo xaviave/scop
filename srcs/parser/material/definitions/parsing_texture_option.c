@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 18:45:55 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 20:05:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../../includes/scop.h"
 
 static int				get_on_off(char *option_str)
 {
@@ -78,7 +78,7 @@ static void				define_value_by_option(t_texture_option *new,
 }
 
 void					parsing_texture_option(t_texture_option *new,
-	char *raw_data, short type)
+	t_file *file, char *raw_data, short type)
 {
 	int					i;
 	char				*tmp;
@@ -92,4 +92,5 @@ void					parsing_texture_option(t_texture_option *new,
 	i = -1;
 	while (option_tab[++i])
 		define_value_by_option(new, option_tab[i], type);
+	parse_file(file, &raw_data[pass_texture_option(raw_data)]);
 }

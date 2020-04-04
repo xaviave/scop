@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 18:48:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 20:07:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,21 +262,21 @@ typedef struct				s_texture_option
 	//  m -> matte channel.
 	//  l -> luminance channel.
 	//  z -> z-depth channel.
-	double						*mm; // use to be like this [2];
+	double					*mm; // use to be like this [2];
 	// modify the range over | scalar or color values may vary during rendering
 	// mm[0] is the base, it adds values to texture. default 0 | change the brigther or dimmer
 	// mm[1] is the gain, it expands the range of texture values and create contrast. default is 1
-	double						*o; // use to be like this [3];
+	double					*o; // use to be like this [3];
 	// offset the position of the texture map on the surface | shift the position of the map origin. default [0, 0, 0]
 	// o[0] is u horizontal direction
 	// o[1] is v vertical direction | optionnal
 	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
-	double						*s; // use to be like this [3];
+	double					*s; // use to be like this [3];
 	// scale the size of the texture pattern on the textured surface by expanding or shrinking the pattern. default [1, 1, 1]
 	// s[0] is u horizontal direction
 	// s[1] is v vertical direction | optionnal
 	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
-	double						*t; // use to be like this [3];
+	double					*t; // use to be like this [3];
 	// turns on turbulence for texture. Adding turbulence to a texture along a specified direction adds variance to the original image
 	// and allows a simple image to be repeated over a larger area without noticeable tiling effects. default [0, 0, 0]
 	// t[0] is u horizontal direction
@@ -323,6 +323,7 @@ typedef struct				s_transparent
 	// code: d
 	short					halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
 	double					factor; // between 0 and 1 | 1 is opaque
+	t_file					file;
 	t_texture_option		option;
 }							t_transparent;
 
@@ -334,28 +335,9 @@ typedef struct				s_specular_exponent
 {
 	// code: Ns
 	double					value; // between 0 to 1000
+	t_file					file;
 	t_texture_option		option;
 }							t_specular_exponent;
-
-/*
-** Sharpness describes the reflections from the local reflection map
-*/
-
-typedef struct				s_sharpness
-{
-	// code: sharpness
-	double					value; // between 0 to 1000 | default 60
-}							t_sharpness;
-
-/*
-** Optical density describes the optical density for the surface
-*/
-
-typedef struct				s_optical_density
-{
-	// code: Ni
-	double					value; // between 0.001 to 10
-}							t_optical_density;
 
 /*
 ** MATERIAL TEXTURE MAP
@@ -440,10 +422,15 @@ typedef struct				s_mtl
 	//  Specular color describes the specular reflectivity of a color
 	t_transmission_filter	*tf;
 	t_transparent			*t;
-
 	t_specular_exponent		*se;
-	t_sharpness				*sharpness;
-	t_optical_density		*od;
+	double					sharpness;
+	//  code: sharpness
+	//  between 0 to 1000 | default 60
+	//  Sharpness describes the reflections from the local reflection map
+	double					od;
+	//  code: Ni
+	//  between 0.001 to 10
+	//  Optical density describes the optical density for the surface
 	t_bump					*bump;
 	t_disp					*disp;
 	t_decal					*decal;
@@ -484,20 +471,20 @@ int         				launch_render(t_prog *p);
 */
 
 // image file type
-# define F_BMP
-# define F_PNG
-# define F_JPEG
-# define F_JPG
+# define F_BMP 0
+# define F_PNG 1
+# define F_JPEG 2
+# define F_JPG 3
 // compiled procedural texture files
-# define F_CXC
-# define F_CXS
-# define F_CXB
+# define F_CXC 4
+# define F_CXS 5
+# define F_CXB 6
 // mip-mapped texture files
-# define F_MPC
-# define F_MPS
-# define F_MPB
+# define F_MPC 7
+# define F_MPS 8
+# define F_MPB 9
 // spectral Curve File | could not be parse
-# define F_RFL
+# define F_RFL 10
 
 /*
 ** Structures
@@ -505,7 +492,7 @@ int         				launch_render(t_prog *p);
 
 typedef struct				s_parser_option
 {
-	int						len[7];
+	int						len[9];
 	short					parsing_type;
 	int						list_parser_len;
 	int						index;
@@ -537,6 +524,7 @@ void						init_mtl(t_mtl *mtl, int id);
 void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
 void						init_parser_mtl_ptr(void (*f[13])(t_mtl *, char *));
 void						init_shading_ptr(void (*f[11])(char *));
+void						init_file_ptr(void (*f[10])(t_file *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type);
@@ -628,6 +616,18 @@ void						parser_disp(t_mtl *mtl, char *raw_data);
 void						parser_decal(t_mtl *mtl, char *raw_data);
 void						parser_illum(t_mtl *mtl, char *raw_data);
 void						parser_pass_mtl(t_mtl *mtl, char *raw_data);
-void						parsing_texture_option(t_texture_option *new, char *raw_data, short type);
+void						parsing_texture_option(t_texture_option *new,
+	t_file *file, char *raw_data, short type);
+
+void						parser_bmp(t_file *file);
+void						parser_png(t_file *file);
+void						parser_jpeg(t_file *file);
+void						parser_jpg(t_file *file);
+void						parser_cxc(t_file *file);
+void						parser_cxs(t_file *file);
+void						parser_cxb(t_file *file);
+void						parser_mpc(t_file *file);
+void						parser_mps(t_file *file);
+void						parser_mpb(t_file *file);
 
 #endif

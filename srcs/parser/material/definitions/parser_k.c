@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:16:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 17:28:40 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 18:43:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../../includes/scop.h"
 
 double					last_double(char *raw_data)
 {
@@ -46,7 +46,8 @@ void					parser_ka(t_mtl *mtl, char *raw_data)
 	if (mtl->ac)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->ac->option, &raw_data[i], ID_KA);
+		parsing_texture_option(&mtl->ac->option, &mtl->ac->file,
+			&raw_data[i], ID_KA);
 	}
 	else
 	{
@@ -64,7 +65,8 @@ void				parser_kd(t_mtl *mtl, char *raw_data)
 	if (mtl->dc)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->dc->option, &raw_data[i], ID_KD);
+		parsing_texture_option(&mtl->dc->option, &mtl->dc->file,
+			&raw_data[i], ID_KD);
 	}
 	else
 	{
@@ -82,7 +84,8 @@ void				parser_ks(t_mtl *mtl, char *raw_data)
 	if (mtl->sc)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->sc->option, &raw_data[i], ID_KS);
+		parsing_texture_option(&mtl->sc->option, &mtl->sc->file,
+			&raw_data[i], ID_KS);
 	}
 	else
 	{

@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/02 18:58:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 20:06:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../../includes/scop.h"
 
 static void			init_obj_ptr(t_obj *obj, t_parser_option *opt)
 {
