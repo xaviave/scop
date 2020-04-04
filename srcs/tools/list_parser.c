@@ -60,8 +60,8 @@ static t_list_parser	*new_list_parser(char *raw_data,
 	return (new);
 }
 
-void                    add_list_parser(t_list_parser **list, char *raw_data,
-	t_parser_option *opt, t_addr **addr)
+void                    add_list_parser(t_list_parser **list, t_list_parser **last,
+        char *raw_data, t_parser_option *opt, t_addr **addr)
 {
 	t_list_parser		*tmp;
 	t_list_parser       *new;
@@ -72,14 +72,14 @@ void                    add_list_parser(t_list_parser **list, char *raw_data,
         handle_error_parser("Error during memory allocation.", addr);
     }
     if (!(*list))
+    {
         *list = addr_add(new, M_L_PAR_, addr);
+        *last = *list;
+    }
 	else
 	{
-	    // think about optimizing the process to add element to the list.
-		tmp = *list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
+        (*last)->next = new;
+        *last = (*last)->next;
 	}
 }
 

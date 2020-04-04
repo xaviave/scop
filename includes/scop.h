@@ -532,8 +532,8 @@ typedef struct				s_list_parser
 */
 
 int							list_parser_len(t_list_parser **list);
-void        				add_list_parser(t_list_parser **list, char *raw_data,
-	t_parser_option *opt, t_addr **addr);
+void          				add_list_parser(t_list_parser **list, t_list_parser **last,
+        char *raw_data, t_parser_option *opt, t_addr **addr);
 
 int							len_list_parser_id(t_list_parser *list);
 
