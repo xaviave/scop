@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 17:16:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:28:47 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/error.h"
 
 void handle_error_parser(char *message, ...)
 {

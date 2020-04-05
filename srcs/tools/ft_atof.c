@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:10:50 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/02 23:34:01 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:29:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../includes/tools.h"
 
 static double	get_decimal(char *str)
 {

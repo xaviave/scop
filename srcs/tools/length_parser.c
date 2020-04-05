@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 20:27:28 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 00:44:25 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:29:42 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/tools.h"
 
 static int                  calc_id_g(t_list_parser *tmp)
 {

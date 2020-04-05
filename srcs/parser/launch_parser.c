@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:23:44 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/31 22:51:29 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:25:20 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/parser.h"
 
 /*
 ** check_args: check every args of the main

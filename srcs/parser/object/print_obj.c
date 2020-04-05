@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:10:38 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 18:56:09 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:26:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
 static void			print_int(int *nb, int nb_int, char *str)
 {

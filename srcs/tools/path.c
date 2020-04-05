@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/29 15:01:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/29 19:33:15 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:25:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/tools.h"
 
 char		*get_path(char *str)
 {

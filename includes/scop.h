@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 20:07:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:35:00 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
-
-/*
-** External Libraries
-*/
- 
 # include "../libft/header/libft.h"
-# define GLEW_STATIC // useless ?
-# include <GLEW/glew.h>
-# include <SDL2/SDL.h>
-# include <SDL2/SDL_opengl.h>
-# include <OpenGl/gl.h>
-
-/*
-** Internal Libraries
-*/
-
-# include "cleaner.h"
-# include "error.h"
-# include "tools.h"
 
 /*
 ** Defines
@@ -49,32 +31,11 @@
 
 # define PROG_NAME "Scop"
 
-# define ID_VT 0
-# define ID_VN 1
-# define ID_V 2
-# define ID_F 3
-# define ID_L 4
-# define ID_MTL 5
-# define ID_ERR_OBJ 6
-# define ID_G 7
-# define ID_O 8
+# define W 640
+# define H 480
 
-# define ID_KA 0
-# define ID_KD 1
-# define ID_KS 2
-# define ID_TF 3
-# define ID_D 4
-# define ID_NS 5
-# define ID_SHARP 6
-# define ID_NI 7
-# define ID_BUMP 8
-# define ID_DECAL 9
-# define ID_DISP 10
-# define ID_ILLUM 11
-# define ID_ERR_MTL 12
-
-# define P_OBJ 0
-# define P_MTL 1
+# define TRUE 1
+# define FALSE 0
 
 /*
 ** OBJECT DEFINITION
@@ -436,198 +397,5 @@ typedef struct				s_mtl
 	t_decal					*decal;
 	t_shading				*shading;
 }							t_mtl;
-
-/*
-** RENDER.H
-*/
-
-# define W 640
-# define H 480
-
-# define TRUE 1
-# define FALSE 0
-
-/*
-** Render structure definition
-*/
-
-typedef struct      		s_prog
-{
-	int             		exit_state;
-	SDL_Window      		*win;
-	SDL_Event       		ev;
-    SDL_GLContext   		gl_context;
-}                   		t_prog;
-
-/*
-** Functions
-*/
-
-int         				launch_render(t_prog *p);
-
-
-/*
-** TOOLS.H
-*/
-
-// image file type
-# define F_BMP 0
-# define F_PNG 1
-# define F_JPEG 2
-# define F_JPG 3
-// compiled procedural texture files
-# define F_CXC 4
-# define F_CXS 5
-# define F_CXB 6
-// mip-mapped texture files
-# define F_MPC 7
-# define F_MPS 8
-# define F_MPB 9
-// spectral Curve File | could not be parse
-# define F_RFL 10
-
-/*
-** Structures
-*/
-
-typedef struct				s_parser_option
-{
-	int						len[9];
-	short					parsing_type;
-	int						list_parser_len;
-	int						index;
-	char					*file;
-	int						data_len;
-}							t_parser_option;
-
-typedef struct				s_list_parser
-{
-    short           		id; // id define the first type of objects
-	char					*data;
-	struct s_list_parser	*next;
-}							t_list_parser;
-
-/*
-** Functions
-*/
-
-int							list_parser_len(t_list_parser **list);
-void						add_list_parser(t_list_parser **list, char *raw_data,
-	t_parser_option *opt);
-
-int							len_list_parser_id(t_list_parser *list);
-
-void                		init_obj(t_obj *obj, t_parser_option *opt, int id);
-
-void						init_mtl(t_mtl *mtl, int id);
-
-void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
-void						init_parser_mtl_ptr(void (*f[13])(t_mtl *, char *));
-void						init_shading_ptr(void (*f[11])(char *));
-void						init_file_ptr(void (*f[10])(t_file *));
-
-void						init_parser_option(t_parser_option *opt, char *file,
-	int index, short parsing_type);
-void						init_texture_option(t_texture_option *new);
-
-int							pass_whitespace(int i, char *str);
-int							pass_whitespace_number(int i, char *str);
-int							pass_texture_option(char *str);
-
-int					        nb_char(char *str, int c);
-
-void						print_obj(t_obj *obj);
-
-void						print_mtl(t_mtl *mtl);
-
-double						optional_value_double(char *str, double d);
-
-double						ft_atof(char *str);
-
-char						*get_path(char *str);
-char						*create_path(char *directory, char *file);
-
-int							last_char(char *str, char c);
-int							count_char(char *str, int c);
-
-/*
-** PARSER.H
-*/
-
-/*
-** Structures
-*/
-
-typedef struct				s_parser
-{
-	int						nb_args;
-	char					**path;
-	char					**args;
-	t_obj					*obj;
-	t_mtl					*mtl;
-}							t_parser;
-
-/*
-** Functions
-*/
-
-void						init_parser(t_parser *parser, int ac, char **av);
-void						init_parser_mtl(t_parser *parser);
-
-int				    		launch_parser(t_parser *parser,  int ac, char **av);
-void						reader_obj(t_parser *parser);
-void						reader_mtl(t_parser *parser);
-
-int							define_id_obj(char *raw_data, t_parser_option *opt);
-int							define_id_mtl(char *raw_data, t_parser_option *opt);
-
-int							check_raw_data(char *raw_data, t_parser_option *opt);
-
-int							list_parser_to_obj(t_obj *obj, t_list_parser *list);
-
-int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
-
-void						parser_color_file(t_texture_color *s, char *raw_data);
-
-void						parse_color(t_color *color, char *raw_data, int xyz);
-
-void						parse_file(t_file *file, char *raw_data);
-
-void						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_g(t_obj *obj, char *raw_data, int o_id);
-void						parser_o(t_obj *obj, char *raw_data);
-
-void						parser_ka(t_mtl *mtl, char *raw_data);
-void						parser_kd(t_mtl *mtl, char *raw_data);
-void						parser_ks(t_mtl *mtl, char *raw_data);
-void						parser_tf(t_mtl *mtl, char *raw_data);
-void						parser_d(t_mtl *mtl, char *raw_data);
-void						parser_ns(t_mtl *mtl, char *raw_data);
-void						parser_sharp(t_mtl *mtl, char *raw_data);
-void						parser_ni(t_mtl *mtl, char *raw_data);
-void						parser_bump(t_mtl *mtl, char *raw_data);
-void						parser_disp(t_mtl *mtl, char *raw_data);
-void						parser_decal(t_mtl *mtl, char *raw_data);
-void						parser_illum(t_mtl *mtl, char *raw_data);
-void						parser_pass_mtl(t_mtl *mtl, char *raw_data);
-void						parsing_texture_option(t_texture_option *new,
-	t_file *file, char *raw_data, short type);
-
-void						parser_bmp(t_file *file);
-void						parser_png(t_file *file);
-void						parser_jpeg(t_file *file);
-void						parser_jpg(t_file *file);
-void						parser_cxc(t_file *file);
-void						parser_cxs(t_file *file);
-void						parser_cxb(t_file *file);
-void						parser_mpc(t_file *file);
-void						parser_mps(t_file *file);
-void						parser_mpb(t_file *file);
 
 #endif

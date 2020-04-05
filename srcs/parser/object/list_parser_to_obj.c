@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/28 11:37:13 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:26:52 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
 /*
 ** check_obj simply check the lenght of every obj

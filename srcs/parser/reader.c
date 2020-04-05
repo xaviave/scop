@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/02 19:07:41 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:25:03 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/parser.h"
 
 static t_list_parser	*open_file(int fd, t_parser_option *opt)
 {

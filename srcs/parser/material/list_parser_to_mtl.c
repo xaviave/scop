@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 18:43:24 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:27:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
 static int			check_mtl(t_mtl *mtl)
 {

@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 21:07:56 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:28:04 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/scop.h"
+#include "../../../../includes/parser.h"
 
 void				parser_tf(t_mtl *mtl, char *raw_data)
 {

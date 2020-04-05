@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 10:25:34 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 20:05:20 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:30:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/tools.h"
 
 void					init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type)

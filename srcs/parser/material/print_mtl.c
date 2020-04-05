@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 18:39:25 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:27:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
 void	print_color(t_color *color)
 {

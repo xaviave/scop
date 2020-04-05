@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 20:05:11 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:44:06 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
 void		init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int))
 {
@@ -62,7 +62,8 @@ void		init_shading_ptr(void (*f[11])(char *))
 
 void pass_loli(t_file *file)
 {
-	ft_printf("Yo come on if you are here it s because you need img data lol -> code it");
+	if (file)
+		ft_printf("Yo come on if you are here it s because you need img data lol -> code it");
 }
 
 void		init_file_ptr(void (*f[10])(t_file *))
