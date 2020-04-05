@@ -6,56 +6,28 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/26 10:27:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 20:54:17 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../includes/scop.h"
 
-static int				define_id(char *raw_data, t_parser_option *opt)
-{
-	char				tmp[3];
-	int                 id;
-
-	ft_bzero(&tmp, 3);
-	ft_strncpy(tmp, raw_data, 2);
-	if (ft_strlen(raw_data) > 7 && (ft_strstr(tmp, "us")))
-		id = ID_MTL;
-	else if (ft_strstr(tmp, "vt"))
-	    id = ID_VT;
-	else if (ft_strstr(tmp, "vn"))
-        id = ID_VN;
-	else if (ft_strstr(tmp, "v"))
-        id = ID_V;
-	else if (ft_strstr(tmp, "f"))
-        id = ID_F;
-	else if (ft_strstr(tmp, "l"))
-        id = ID_L;
-	else if (ft_strstr(tmp, "g"))
-        id = ID_G;
-	else if (ft_strstr(tmp, "o"))
-        id = ID_O;
-	else
-	    id = ID_ERR;
-	opt->len[id]++;
-	return (id);
-}
-
-static t_list_parser	*new_list_parser(char *raw_data,
+static t_list_parser		*new_list_parser(char *raw_data,
 	t_parser_option *opt)
 {
-	t_list_parser		*new;
+	t_list_parser		    *new;
 
 	if (!(new = (t_list_parser *)malloc(sizeof(t_list_parser))))
 		return (NULL);
-	new->id = define_id(raw_data, opt);
-    if (!(new->data = ft_strdup(raw_data)))
+    if (!(new->data = ft_strtrim(raw_data)))
     {
         free(&new);
         new = NULL;
         return (NULL);
     }
-	new->next = NULL;
+    new->id = (opt->parsing_type == P_OBJ) ?
+          define_id_obj(raw_data, opt) : define_id_mtl(raw_data, opt);
+    new->next = NULL;
 	opt->list_parser_len++;
 	return (new);
 }

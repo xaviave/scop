@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_tf_d_s_ni.c                                 :+:      :+:    :+:   */
+/*   init_parser_option.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/30 18:51:58 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/26 10:25:34 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/04 20:05:20 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/scop.h"
 
-void				parser_tf(t_mtl *mtl, char *raw_data)
+void    init_parser_option(t_parser_option *opt, char *file,
+        int index, short parsing_type)
 {
-
-}
-
-void				parser_d(t_mtl *mtl, char *raw_data)
-{
-
-}
-
-void				parser_ns(t_mtl *mtl, char *raw_data)
-{
-
-}
-
-void				parser_ni(t_mtl *mtl, char *raw_data)
-{
-
+	ft_memset(opt, 0, sizeof(t_parser_option));
+	opt->parsing_type = parsing_type;
+	opt->file = file;
+	opt->index = index;
 }

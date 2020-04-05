@@ -1,0 +1,5 @@
+https://github.com/vladotrocol/Graphics/blob/master/Ray%20Tracing%20From%20The%20Ground%20Up.pdf
+http://www.pbr-book.org/3ed-2018/contents.html
+https://marmoset.co/posts/basic-theory-of-physically-based-rendering/
+https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/ray-tracing-practical-example
+https://www.realtimerendering.com/raytracing/Ray%20Tracing%20in%20a%20Weekend.pdf

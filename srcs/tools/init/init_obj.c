@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/26 11:45:52 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 20:06:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../../includes/scop.h"
 
 static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
         t_addr **addr)
@@ -41,11 +41,11 @@ static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
         handle_error_parser("Error during memory allocation.", addr);
 }
 
-void                init_obj(t_obj *obj, t_parser_option *opt, int nb_args,
-        t_addr **addr)
+void                init_obj(t_obj *obj, t_parser_option *opt, int id,
+        int nb_args, t_addr **addr)
 {
 	ft_memset(obj, 0, sizeof(t_obj));
-    obj->id = -1;
+    obj->id = id;
     obj->nb_args = nb_args;
 	init_obj_ptr(obj, opt, addr);
 }

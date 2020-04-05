@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:10:38 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 16:50:35 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/02 18:56:09 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void			print_obj(t_obj *obj)
 {
 	int i;
 
-	ft_printf("%d %d %d %d %d %d %d\n", obj->len_faces,  obj->len_groups,  obj->len_lines,  obj->len_normals,  obj->len_objects, obj->len_textures, obj->len_vertexes);
 	i = -1;
+	ft_printf("OBJECT: %d\n", obj->id);
 	ft_printf("\n--------------------------------------------------\nvertexes:\n");
 	if (obj->len_vertexes)
 		while (++i < obj->len_vertexes)

@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_parser_option.c                               :+:      :+:    :+:   */
+/*   init_mtl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/26 10:25:34 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/29 16:03:09 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/04 20:05:29 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+# include "../../../includes/scop.h"
 
-void    init_parser_option(t_parser_option *opt, char *file,
-        int index, short parsing_type)
+void					init_mtl(t_mtl *mtl, int id)
 {
-	ft_memset(opt, 0, sizeof(t_parser_option));
-	opt->parsing_type = parsing_type;
-	opt->file = file;
-	opt->index = index;
+	ft_memset(mtl, 0, sizeof(t_mtl));
+	mtl->id = id;
 }

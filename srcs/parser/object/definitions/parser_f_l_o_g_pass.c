@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_f_l.c                                       :+:      :+:    :+:   */
+/*   parser_f_l_o_g_pass.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/29 16:14:16 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/04 18:42:46 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/scop.h"
+# include "../../../../includes/scop.h"
 
 int					count_entity(char *str)
 {
@@ -135,7 +135,6 @@ int 				parser_g(t_obj *obj, char *raw_data, int o_id)
 
 	id = obj->len_groups;
 	obj->groups[id].object_id = o_id;
-	// if no name after g - default = default
 	// need to change to char **name | could have many names
 	// If there are multiple groups on one line, the data that follows belong to all groups
 	i = pass_whitespace(1, raw_data);
