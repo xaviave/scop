@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:30:27 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 16:16:33 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,15 @@ void	init_graphic_context(t_sdl *sdl)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-//        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	// ^^^^ Useless lines ?
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG); // delete then for the norm
+	// SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8); ?????
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	if (!(sdl->win = SDL_CreateWindow(PROG_NAME, SDL_WINDOWPOS_UNDEFINED,
 									SDL_WINDOWPOS_UNDEFINED, W, H,
 									SDL_WINDOW_OPENGL)))
 		handle_error_sdl("Window could not be created.");
 	if (!(sdl->gl_context = SDL_GL_CreateContext(sdl->win)))
 		handle_error_sdl("GL Context could not be created.");
-	glewExperimental = GL_TRUE; //          useless in this version ?
 	if (glewInit())
 		handle_error_sdl("Glew could not initialize.");
 }
