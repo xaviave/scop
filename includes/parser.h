@@ -18,7 +18,7 @@
 */
 
 /*
-** Internal Librariess
+** Internal Libraries
 */
 
 # include "parser_struct.h"
