@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/04 20:04:49 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/05 12:41:22 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBSDL2 = $(addprefix $(FW), libsdl2)
 LIBGLEW = $(addprefix $(FW), libglew)
 LIBFT = libft/
 INC = includes/
-CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
+CFLAGS = -Wall -Wextra -Werror -I $(INC) -I $(LIBFT) -O2 -g
 PY = python3
 TESTER = "data/tests/test_code.py"
 
@@ -64,9 +64,10 @@ FILES = main.c \
 		tools/init/init_obj.c \
 		tools/init/init_ptr.c \
 		tools/init/init_mtl.c \
-		tools/init/init_texture_option.c \
+		tools/init/init_prog.c \
 		tools/init/init_parser.c \
 		tools/init/init_parser_option.c \
+		tools/init/init_texture_option.c \
 		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))

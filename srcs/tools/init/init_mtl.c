@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 20:05:29 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:30:48 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/scop.h"
+# include "../../../includes/tools.h"
 
 void					init_mtl(t_mtl *mtl, int id)
 {

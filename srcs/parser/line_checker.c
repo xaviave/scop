@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 20:51:28 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:41:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/parser.h"
 
 static int					check_line_double(char *raw_data,
         int data_len, int i, short max_elem)
@@ -84,7 +84,7 @@ static int					check_obj_raw_data(char *raw_data, t_parser_option *opt)
 
 static int					check_mtl_raw_data(char *raw_data, t_parser_option *opt)
 {
-	if (opt->data_len)
+	if (opt->data_len && raw_data)
 		return (1);
 	return (0);
 }

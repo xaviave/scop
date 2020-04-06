@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 16:30:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 22:10:28 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:30:02 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/tools.h"
 
 void	init_texture_option(t_texture_option *new)
 {

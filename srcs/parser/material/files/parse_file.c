@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:04:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 18:43:17 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:27:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/scop.h"
+#include "../../../../includes/parser.h"
 
 static int					define_file_type(char *type)
 {

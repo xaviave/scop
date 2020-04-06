@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/29 16:13:12 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/29 16:17:04 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:29:58 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/tools.h"
 
 int		count_char(char *str, int c)
 {

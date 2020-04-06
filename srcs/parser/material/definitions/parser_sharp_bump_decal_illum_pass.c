@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:17:58 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 18:43:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:28:11 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/scop.h"
+#include "../../../../includes/parser.h"
 
 void				parser_bump(t_mtl *mtl, char *raw_data)
 {

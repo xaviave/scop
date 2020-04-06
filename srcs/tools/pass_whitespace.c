@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/03 00:21:55 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:29:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../includes/tools.h"
 
 /*
 ** pass_whitespace_double pass all whitespaces and the first double

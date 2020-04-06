@@ -6,11 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/03 20:54:17 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:43:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../includes/tools.h"
+# include "../../includes/parser.h"
 
 static t_list_parser		*new_list_parser(char *raw_data,
 	t_parser_option *opt)
@@ -26,7 +27,7 @@ static t_list_parser		*new_list_parser(char *raw_data,
         return (NULL);
     }
     new->id = (opt->parsing_type == P_OBJ) ?
-          define_id_obj(raw_data, opt) : define_id_mtl(raw_data, opt);
+          define_id_obj(raw_data, opt) : define_id_mtl(raw_data);
     new->next = NULL;
 	opt->list_parser_len++;
 	return (new);

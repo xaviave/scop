@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:16:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 18:43:36 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:28:18 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/scop.h"
+#include "../../../../includes/parser.h"
 
 double					last_double(char *raw_data)
 {

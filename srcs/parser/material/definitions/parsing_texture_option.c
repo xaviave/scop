@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/04 20:05:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:27:57 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/scop.h"
+#include "../../../../includes/parser.h"
 
 static int				get_on_off(char *option_str)
 {
