@@ -26,6 +26,32 @@ static void     delete_list_parser(t_list_parser **list)
     }
 }
 
+static void     delete_t_mtl(t_mtl mtl)
+{
+    ft_strdel(&mtl.name); // need to set this var.
+    // free t_texture_colors
+//    ft_memdel((void **)&mtl.ac.option.mm);
+//    ft_memdel((void **)&mtl.ac.option.o);
+//    ft_memdel((void **)&mtl.ac.option.s);
+//    ft_memdel((void **)&mtl.ac.option.t);
+//    ft_memdel((void **)&mtl.ac);
+//    ft_memdel((void **)&mtl.dc.option.mm);
+//    ft_memdel((void **)&mtl.dc.option.o);
+//    ft_memdel((void **)&mtl.dc.option.s);
+//    ft_memdel((void **)&mtl.dc.option.t);
+//    ft_memdel((void **)&mtl.dc);
+//    ft_memdel((void **)&mtl.sc[0].option.mm);
+//    ft_memdel((void **)&mtl.sc[0].option.o);
+//    ft_memdel((void **)&mtl.sc[0].option.s);
+//    ft_memdel((void **)&mtl.sc[0].option.t);
+//    ft_memdel((void **)&mtl.sc); // need to check these's memdel.
+    // free t_transmission_filter
+//    ft_strdel(&mtl.tf[0].file.name);
+//    ft_strdel(&mtl.tf->file.path);
+//    ft_memdel((void **)&mtl.tf->file.data);
+//    ft_memdel((void **)&mtl.tf);
+}
+
 static void     delete_t_obj(t_obj obj)
 {
     int         i;
@@ -77,6 +103,7 @@ static void     delete_addr(t_addr **addr)
     char            **m_char__;
     t_list_parser   *m_l_par_;
     t_obj           *m_obj_;
+    t_mtl           *m_mtl_;
 
     if (*addr)
     {
@@ -106,7 +133,11 @@ static void     delete_addr(t_addr **addr)
         }
         else if ((*addr)->content_type == M_MTL)
         {
-            ft_printf("%p\n", (*addr)->content_addr);
+            i = 0;
+            m_mtl_ = (*addr)->content_addr;
+            while (i < m_mtl_[0].nb_args)
+                delete_t_mtl(m_mtl_[i++]);
+            ft_memdel((void **)&m_mtl_);
         }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));

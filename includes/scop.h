@@ -375,10 +375,10 @@ typedef struct				s_mtl
 	//  No malloc here | using addr
 	t_texture_color			*ac;
 	//  code Ka
-	//  Ambient color describes the ambiant refletivity of a color
+	//  Ambient color describes the ambiance reflectivity of a color
 	t_texture_color			*dc;
 	//  code: Kd
-	//  Diffuse color describes the refletivity of a color
+	//  Diffuse color describes the reflectivity of a color
 	t_texture_color			*sc;
 	//  code: Ks
 	//  Specular color describes the specular reflectivity of a color
