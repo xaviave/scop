@@ -177,25 +177,25 @@ int 				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id)
 ** if smooth > 0, it means on
 */
 
-int 				parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
-	int				i;
-	short			smooth;
+    int				i;
+    short			smooth;
 
-	if (raw_data[0] == 's')
-	{
-		i = pass_whitespace(1, raw_data);
-		smooth = ft_atoi(&raw_data[i]);
-		obj->objects[o_id].smooth = smooth;
-		obj->groups[g_id].smooth = smooth;
-	}
-	else if (ft_strlen(raw_data) < 7)
-		return (1);
-	else if (ft_strlen(&raw_data[6]) && ft_strstr(raw_data, "mtllib"))
-	{
-		i = pass_whitespace(6, raw_data);
-		if (!(obj->mtllib = ft_strdup(&raw_data[i])))
-		    return (0);
-	}
-	return (1);
+    if (raw_data[0] == 's')
+    {
+        i = pass_whitespace(1, raw_data);
+        smooth = ft_atoi(&raw_data[i]);
+        obj->objects[o_id].smooth = smooth;
+        obj->groups[g_id].smooth = smooth;
+    }
+    else if (ft_strlen(raw_data) < 7)
+        return (1);
+    else if (ft_strlen(&raw_data[6]) && ft_strstr(raw_data, "mtllib"))
+    {
+        i = pass_whitespace(6, raw_data);
+        if (!(obj->mtllib = ft_strdup(&raw_data[i])))
+            return (0);
+    }
+    return (1);
 }

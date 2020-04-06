@@ -16,7 +16,7 @@ static int					define_file_type(char *type)
 {
 	ft_printf("type = %s\n", type);
 	if (!ft_strcmp(type, "rfl"))
-		handle_error_parser("Line error | can't parse RFL file, private WaveFront technologie lol\n");
+		handle_error_parser("Line error | can't parse RFL file, private WaveFront technologie lol\n", NULL);
 	else if (!ft_strcmp(type, "bmp"))
 		return (F_BMP);
 	else if (!ft_strcmp(type, "png"))

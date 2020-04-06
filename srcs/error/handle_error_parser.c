@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/tools.h"
 #include "../../includes/error.h"
 
 static void     delete_list_parser(t_list_parser **list)
@@ -112,8 +113,6 @@ static void     delete_addr(t_addr **addr)
 
 void            handle_error_parser(char *message, t_addr **addr)
 {
-    t_addr      *tmp;
-
 	ft_printf("%s\n", message);
 	delete_addr(addr);
     ft_printf("addr cleaned.\n");

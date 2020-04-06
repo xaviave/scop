@@ -52,7 +52,7 @@ void					parser_ka(t_mtl *mtl, char *raw_data)
 	else
 	{
 		if (!(mtl->ac = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
-        handle_error_parser("Error during memory allocation.");
+            handle_error_parser("Error during memory allocation.", NULL);
 		parser_color_file(mtl->ac, raw_data);
 		init_texture_option(&mtl->ac->option);
 	}
@@ -71,7 +71,7 @@ void				parser_kd(t_mtl *mtl, char *raw_data)
 	else
 	{
 		if (!(mtl->dc = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
-        handle_error_parser("Error during memory allocation.");
+        handle_error_parser("Error during memory allocation.", NULL);
 		parser_color_file(mtl->dc, raw_data);
 		init_texture_option(&mtl->dc->option);
 	}
@@ -90,7 +90,7 @@ void				parser_ks(t_mtl *mtl, char *raw_data)
 	else
 	{
 		if (!(mtl->sc = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
-        handle_error_parser("Error during memory allocation.");
+        handle_error_parser("Error during memory allocation.", NULL);
 		parser_color_file(mtl->sc, raw_data);
 		init_texture_option(&mtl->sc->option);
 	}

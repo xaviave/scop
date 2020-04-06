@@ -1,4 +1,5 @@
 #include "../../includes/scop.h"
+#include "../../includes/parser_struct.h"
 
 void        *addr_add(void *content, int type, t_addr **addr)
 {

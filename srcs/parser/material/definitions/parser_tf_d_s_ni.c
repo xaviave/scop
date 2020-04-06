@@ -18,7 +18,7 @@ void				parser_tf(t_mtl *mtl, char *raw_data)
 
 	size = sizeof(t_transmission_filter);
 	if (!(mtl->tf = (t_transmission_filter *)ft_memalloc(size)))
-		handle_error_parser("Error during memory allocation.");
+		handle_error_parser("Error during memory allocation.", NULL);
 	parser_color_file((t_texture_color *)mtl->tf, raw_data);
 	dprintf(1, "ue pourquoi pas %f", mtl->tf->color.r);
 }
@@ -36,7 +36,7 @@ void				parser_d(t_mtl *mtl, char *raw_data)
 	else
 	{
 		if (!(mtl->t = (t_transparent *)ft_memalloc(sizeof(t_transparent))))
-			handle_error_parser("Error during memory allocation.");
+			handle_error_parser("Error during memory allocation.", NULL);
 		i = 1;
 		if (ft_strchr(raw_data, 'h'))
 		{
@@ -65,7 +65,7 @@ void				parser_ns(t_mtl *mtl, char *raw_data)
 	{
 		size = sizeof(t_specular_exponent);
 		if (!(mtl->se = (t_specular_exponent *)ft_memalloc(size)))
-        	handle_error_parser("Error during memory allocation.");
+        	handle_error_parser("Error during memory allocation.", NULL);
 		mtl->se->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
 		init_texture_option(&mtl->se->option);
 	}

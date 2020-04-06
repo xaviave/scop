@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../../includes/tools.h"
+#include "../../../includes/cleaner.h"
 
 void	init_parser(t_parser *parser, int ac, char **av)
 {
@@ -48,5 +49,5 @@ void	init_parser_mtl(t_parser *parser)
 		}
 	}
 	if (!(parser->mtl = (t_mtl *)malloc(sizeof(t_mtl) * len_mtl)))
-		handle_error_parser("Error during memory allocation.");
+		handle_error_parser("Error during memory allocation.", NULL);
 }

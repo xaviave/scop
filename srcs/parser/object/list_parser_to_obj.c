@@ -29,7 +29,8 @@ static int			check_obj(t_obj *obj)
 	return (1);
 }
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list, t_addr **addr)
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
+        t_addr **addr)
 {
 	int				o_id;
 	int				g_id;

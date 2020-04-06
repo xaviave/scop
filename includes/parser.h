@@ -39,7 +39,8 @@ int							define_id_mtl(char *raw_data);
 
 int							check_raw_data(char *raw_data, t_parser_option *opt);
 
-int							list_parser_to_obj(t_obj *obj, t_list_parser *list);
+int							list_parser_to_obj(t_obj *obj, t_list_parser *list,
+        t_addr **addr);
 
 int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
 
@@ -49,15 +50,15 @@ void						parse_color(t_color *color, char *raw_data, int xyz);
 
 void						parse_file(t_file *file, char *raw_data);
 
-void						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id);
-void						parser_g(t_obj *obj, char *raw_data, int o_id);
-void						parser_o(t_obj *obj, char *raw_data);
+int 						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_v(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_f(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_l(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id);
+int 						parser_g(t_obj *obj, char *raw_data, int o_id);
+int 						parser_o(t_obj *obj, char *raw_data);
 
 void						parser_ka(t_mtl *mtl, char *raw_data);
 void						parser_kd(t_mtl *mtl, char *raw_data);

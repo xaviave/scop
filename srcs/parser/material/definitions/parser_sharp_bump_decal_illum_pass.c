@@ -17,7 +17,7 @@ void				parser_bump(t_mtl *mtl, char *raw_data)
 	int				i;
 	
 	if (!(mtl->bump = (t_bump *)ft_memalloc(sizeof(t_bump))))
-        handle_error_parser("Error during memory allocation.");
+        handle_error_parser("Error during memory allocation.", NULL);
 	i = pass_whitespace(4, raw_data);
 	init_texture_option(&mtl->bump->option);
 	parsing_texture_option(&mtl->bump->option, &mtl->bump->file,
@@ -29,7 +29,7 @@ void				parser_decal(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	if (!(mtl->decal = (t_decal *)ft_memalloc(sizeof(t_decal))))
-        handle_error_parser("Error during memory allocation.");
+        handle_error_parser("Error during memory allocation.", NULL);
 	i = pass_whitespace(5, raw_data);
 	init_texture_option(&mtl->decal->option);
 	parsing_texture_option(&mtl->decal->option, &mtl->decal->file,
@@ -40,7 +40,7 @@ void				parser_decal(t_mtl *mtl, char *raw_data)
 void				parser_illum(t_mtl *mtl, char *raw_data)
 {
 	if (!(mtl->shading = (t_shading *)ft_memalloc(sizeof(t_shading))))
-        handle_error_parser("Error during memory allocation.");
+        handle_error_parser("Error during memory allocation.", NULL);
 	mtl->shading->type = ft_atoi(&raw_data[5]);
 	init_shading_ptr(mtl->shading->f);
 }
@@ -55,7 +55,7 @@ void				parser_disp(t_mtl *mtl, char *raw_data)
 	int				i;
 	
 	if (!(mtl->disp = (t_disp *)ft_memalloc(sizeof(t_disp))))
-        handle_error_parser("Error during memory allocation.");
+        handle_error_parser("Error during memory allocation.", NULL);
 	i = pass_whitespace(4, raw_data);
 	init_texture_option(&mtl->disp->option);
 	parsing_texture_option(&mtl->disp->option, &mtl->disp->file,

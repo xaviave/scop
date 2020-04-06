@@ -23,5 +23,6 @@
 */
 
 void			free_str(char *str);
+void            *addr_add(void *content, int type, t_addr **addr);
 
 #endif

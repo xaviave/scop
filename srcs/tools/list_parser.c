@@ -36,7 +36,6 @@ static t_list_parser		*new_list_parser(char *raw_data,
 void                    add_list_parser(t_list_parser **list,
         char *raw_data, t_parser_option *opt, t_addr **addr)
 {
-	t_list_parser		    *tmp;
 	t_list_parser           *new;
 	static t_list_parser    *last;
 
