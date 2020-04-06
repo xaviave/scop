@@ -23,7 +23,7 @@ void		init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int))
 	f[6] = &parser_pass_obj;
 }
 
-void		init_parser_mtl_ptr(void (*f[13])(t_mtl *, char *))
+void		init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *))
 {
 	f[0] = &parser_ka;
 	f[1] = &parser_kd;

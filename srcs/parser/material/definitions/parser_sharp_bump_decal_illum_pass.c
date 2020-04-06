@@ -12,58 +12,73 @@
 
 #include "../../../../includes/parser.h"
 
-void				parser_bump(t_mtl *mtl, char *raw_data)
+int 				parser_bump(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	
 	if (!(mtl->bump = (t_bump *)ft_memalloc(sizeof(t_bump))))
-        handle_error_parser("Error during memory allocation.", NULL);
+	    return (0);
 	i = pass_whitespace(4, raw_data);
-	init_texture_option(&mtl->bump->option);
-	parsing_texture_option(&mtl->bump->option, &mtl->bump->file,
-		raw_data, ID_BUMP);
-	parse_file(&mtl->bump->file, &raw_data[pass_texture_option(raw_data)]);
+	if (!(init_texture_option(&mtl->bump->option)))
+	    return (0);
+	if (!(parsing_texture_option(&mtl->bump->option, &mtl->bump->file,
+		raw_data, ID_BUMP)))
+	    return (0);
+	if (!(parse_file(&mtl->bump->file, &raw_data[pass_texture_option(raw_data)])))
+	    return (0);
+	return (1);
 }
 
-void				parser_decal(t_mtl *mtl, char *raw_data)
+int 				parser_decal(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	if (!(mtl->decal = (t_decal *)ft_memalloc(sizeof(t_decal))))
-        handle_error_parser("Error during memory allocation.", NULL);
+	    return (0);
 	i = pass_whitespace(5, raw_data);
-	init_texture_option(&mtl->decal->option);
-	parsing_texture_option(&mtl->decal->option, &mtl->decal->file,
-		&raw_data[i], ID_DECAL);
-	parse_file(&mtl->decal->file, &raw_data[pass_texture_option(raw_data)]);
+	if (!(init_texture_option(&mtl->decal->option)))
+	    return (0);
+	if (!(parsing_texture_option(&mtl->decal->option, &mtl->decal->file,
+		&raw_data[i], ID_DECAL)))
+	    return (0);
+	if (!(parse_file(&mtl->decal->file, &raw_data[pass_texture_option(raw_data)])))
+	    return (0);
+	return (1);
 }
 
-void				parser_illum(t_mtl *mtl, char *raw_data)
+int 				parser_illum(t_mtl *mtl, char *raw_data)
 {
 	if (!(mtl->shading = (t_shading *)ft_memalloc(sizeof(t_shading))))
-        handle_error_parser("Error during memory allocation.", NULL);
+	    return (0);
 	mtl->shading->type = ft_atoi(&raw_data[5]);
 	init_shading_ptr(mtl->shading->f);
+	return (1);
 }
 
-void				parser_sharp(t_mtl *mtl, char *raw_data)
+int 				parser_sharp(t_mtl *mtl, char *raw_data)
 {
 	mtl->sharpness = ft_atof(&raw_data[pass_texture_option(raw_data)]);
+	return (1);
 }
 
-void				parser_disp(t_mtl *mtl, char *raw_data)
+int 				parser_disp(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	
 	if (!(mtl->disp = (t_disp *)ft_memalloc(sizeof(t_disp))))
-        handle_error_parser("Error during memory allocation.", NULL);
+	    return (0);
 	i = pass_whitespace(4, raw_data);
-	init_texture_option(&mtl->disp->option);
-	parsing_texture_option(&mtl->disp->option, &mtl->disp->file,
-		&raw_data[i], ID_DISP);
-	parse_file(&mtl->disp->file, &raw_data[pass_texture_option(raw_data)]);
+	if (!(init_texture_option(&mtl->disp->option)))
+	    return (0);
+	if (!(parsing_texture_option(&mtl->disp->option, &mtl->disp->file,
+		&raw_data[i], ID_DISP)))
+	    return (0);
+	if (!(parse_file(&mtl->disp->file, &raw_data[pass_texture_option(raw_data)])))
+	    return (0);
+	return (1);
 }
 
-void				parser_pass_mtl(t_mtl *mtl, char *raw_data)
+int 				parser_pass_mtl(t_mtl *mtl, char *raw_data)
 {
 	ft_printf("This line is ignored | mtl id = %d | data = %s\n", mtl->id, raw_data);
+	return (1);
 }

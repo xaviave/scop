@@ -42,13 +42,14 @@ int							check_raw_data(char *raw_data, t_parser_option *opt);
 int							list_parser_to_obj(t_obj *obj, t_list_parser *list,
         t_addr **addr);
 
-int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list);
+int							list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
+        t_addr **addr);
 
 void						parser_color_file(t_texture_color *s, char *raw_data);
 
 void						parse_color(t_color *color, char *raw_data, int xyz);
 
-void						parse_file(t_file *file, char *raw_data);
+int 						parse_file(t_file *file, char *raw_data);
 
 int 						parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id);
 int 						parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id);
@@ -60,20 +61,20 @@ int 						parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id);
 int 						parser_g(t_obj *obj, char *raw_data, int o_id);
 int 						parser_o(t_obj *obj, char *raw_data);
 
-void						parser_ka(t_mtl *mtl, char *raw_data);
-void						parser_kd(t_mtl *mtl, char *raw_data);
-void						parser_ks(t_mtl *mtl, char *raw_data);
-void						parser_tf(t_mtl *mtl, char *raw_data);
-void						parser_d(t_mtl *mtl, char *raw_data);
-void						parser_ns(t_mtl *mtl, char *raw_data);
-void						parser_sharp(t_mtl *mtl, char *raw_data);
-void						parser_ni(t_mtl *mtl, char *raw_data);
-void						parser_bump(t_mtl *mtl, char *raw_data);
-void						parser_disp(t_mtl *mtl, char *raw_data);
-void						parser_decal(t_mtl *mtl, char *raw_data);
-void						parser_illum(t_mtl *mtl, char *raw_data);
-void						parser_pass_mtl(t_mtl *mtl, char *raw_data);
-void						parsing_texture_option(t_texture_option *new,
+int 						parser_ka(t_mtl *mtl, char *raw_data);
+int 						parser_kd(t_mtl *mtl, char *raw_data);
+int 						parser_ks(t_mtl *mtl, char *raw_data);
+int 						parser_tf(t_mtl *mtl, char *raw_data);
+int 						parser_d(t_mtl *mtl, char *raw_data);
+int 						parser_ns(t_mtl *mtl, char *raw_data);
+int 						parser_sharp(t_mtl *mtl, char *raw_data);
+int 						parser_ni(t_mtl *mtl, char *raw_data);
+int 						parser_bump(t_mtl *mtl, char *raw_data);
+int 						parser_disp(t_mtl *mtl, char *raw_data);
+int 						parser_decal(t_mtl *mtl, char *raw_data);
+int 						parser_illum(t_mtl *mtl, char *raw_data);
+int 						parser_pass_mtl(t_mtl *mtl, char *raw_data);
+int 						parsing_texture_option(t_texture_option *new,
 	t_file *file, char *raw_data, short type);
 
 void						parser_bmp(t_file *file);

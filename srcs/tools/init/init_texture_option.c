@@ -12,7 +12,7 @@
 
 #include "../../../includes/tools.h"
 
-void	init_texture_option(t_texture_option *new)
+int     	init_texture_option(t_texture_option *new)
 {
 	ft_memset(new, 0, sizeof(t_texture_option));
 	new->blendu = 1;
@@ -23,12 +23,13 @@ void	init_texture_option(t_texture_option *new)
 	// it is to be a tmp[x] tab
 	// those tabs are not bzero'd
 	if (!(new->mm = (double *)malloc(sizeof(double) * 2)))
-		return ;
+		return (0);
 	if (!(new->o = (double *)malloc(sizeof(double) * 3)))
-		return ;
+		return (0);
 	if (!(new->s = (double *)malloc(sizeof(double) * 3)))
-		return ;
+		return (0);
 	if (!(new->t = (double *)malloc(sizeof(double) * 3)))
-		return ;
+		return (0);
 	new->mm[1] = 1;
+	return (1);
 }

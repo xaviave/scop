@@ -39,59 +39,68 @@ void					parser_color_file(t_texture_color *s, char *raw_data)
 	}
 }
 
-void					parser_ka(t_mtl *mtl, char *raw_data)
+int					parser_ka(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 
 	if (mtl->ac)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->ac->option, &mtl->ac->file,
-			&raw_data[i], ID_KA);
+		if (!(parsing_texture_option(&mtl->ac->option, &mtl->ac->file,
+			&raw_data[i], ID_KA)))
+		    return (0);
 	}
 	else
 	{
 		if (!(mtl->ac = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
-            handle_error_parser("Error during memory allocation.", NULL);
+		    return (0);
 		parser_color_file(mtl->ac, raw_data);
-		init_texture_option(&mtl->ac->option);
+		if (!(init_texture_option(&mtl->ac->option)))
+		    return (0);
 	}
+	return (1);
 }
 
-void				parser_kd(t_mtl *mtl, char *raw_data)
+int 				parser_kd(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 
 	if (mtl->dc)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->dc->option, &mtl->dc->file,
-			&raw_data[i], ID_KD);
+		if (!(parsing_texture_option(&mtl->dc->option, &mtl->dc->file,
+			&raw_data[i], ID_KD)))
+		    return (0);
 	}
 	else
 	{
 		if (!(mtl->dc = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
-        handle_error_parser("Error during memory allocation.", NULL);
+		    return (0);
 		parser_color_file(mtl->dc, raw_data);
-		init_texture_option(&mtl->dc->option);
+		if (!(init_texture_option(&mtl->dc->option)))
+		    return (0);
 	}
+	return (1);
 }
 
-void				parser_ks(t_mtl *mtl, char *raw_data)
+int 				parser_ks(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 
 	if (mtl->sc)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->sc->option, &mtl->sc->file,
-			&raw_data[i], ID_KS);
+		if (!(parsing_texture_option(&mtl->sc->option, &mtl->sc->file,
+			&raw_data[i], ID_KS)))
+		    return (0);
 	}
 	else
 	{
 		if (!(mtl->sc = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
-        handle_error_parser("Error during memory allocation.", NULL);
+		    return (0);
 		parser_color_file(mtl->sc, raw_data);
-		init_texture_option(&mtl->sc->option);
+		if (!(init_texture_option(&mtl->sc->option)))
+		    return (0);
 	}
+    return (1);
 }

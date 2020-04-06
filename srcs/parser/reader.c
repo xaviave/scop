@@ -87,8 +87,8 @@ void					reader_mtl(t_parser *parser)
 			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
-			init_mtl(&parser->mtl[i], i, parser->nb_args, &parser->addr);
-			if (!list_parser_to_mtl(&parser->mtl[i], list))
+			init_mtl(&parser->mtl[i], i, parser->nb_args);
+			if (!list_parser_to_mtl(&parser->mtl[i], list, &parser->addr))
 				handle_error_parser("Error during parsing mtl.", &parser->addr);
 		}
 }
