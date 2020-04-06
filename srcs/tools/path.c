@@ -33,7 +33,11 @@ char		*create_path(char *directory, char *file)
 	if (directory[ft_strlen(directory) - 1] != '/')
 	{
 		tmp = directory;
-		directory = ft_strjoin(directory, "/\0");
+		if (!(directory = ft_strjoin(directory, "/\0")))
+        {
+            ft_strdel(&tmp);
+            return (NULL);
+        }
 		ft_strdel(&tmp);
 	}
 	return (ft_strjoin(directory, file));

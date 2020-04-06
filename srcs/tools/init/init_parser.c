@@ -30,7 +30,8 @@ void	init_parser(t_parser *parser, int ac, char **av)
 	i = -1;
 	while (++i < parser->nb_args)
         if (!(parser->path[i] = get_path(av[i + 1])))
-            handle_error_parser("Error during memory allocation.", &parser->addr);
+            handle_error_parser("Error during memory allocation.",
+                    &parser->addr);
 }
 
 void	init_parser_mtl(t_parser *parser)
@@ -41,13 +42,12 @@ void	init_parser_mtl(t_parser *parser)
 	i = -1;
 	len_mtl = 0;
 	while (++i < parser->nb_args)
-	{
 		if (parser->obj[i].mtllib)
 		{
 			parser->obj[i].mtl_id = len_mtl;
 			len_mtl++;
 		}
-	}
-	if (!(parser->mtl = (t_mtl *)malloc(sizeof(t_mtl) * len_mtl)))
-		handle_error_parser("Error during memory allocation.", NULL);
+	if (!(parser->mtl = addr_add((t_mtl *)malloc(sizeof(
+	        t_mtl) * len_mtl), M_MTL, &parser->addr)))
+		handle_error_parser("Error during memory allocation.", &parser->addr);
 }

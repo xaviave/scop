@@ -369,6 +369,7 @@ typedef struct				s_shading
 typedef struct				s_mtl
 {
 	int						id;
+	int                     nb_args;
 	char					*name; //no space else error
 
 	//  No malloc here | using addr

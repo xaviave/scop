@@ -104,6 +104,10 @@ static void     delete_addr(t_addr **addr)
                 delete_t_obj(m_obj_[i++]);
             ft_memdel((void **)&m_obj_);
         }
+        else if ((*addr)->content_type == M_MTL)
+        {
+            ft_printf("%p\n", (*addr)->content_addr);
+        }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
         free(*addr);
