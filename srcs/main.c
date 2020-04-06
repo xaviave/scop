@@ -18,9 +18,6 @@ int             main(int ac, char **av)
     t_parser    parser;
     t_prog      p;
 
-//    (void)av;
-//    (void)ac;
-//    (void)parser; // uncomment when need to dodge parsing.
 	launch_parser(&parser, ac, av);
 	launch_render(&p, &parser);
     return (1);

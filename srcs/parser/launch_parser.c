@@ -48,6 +48,5 @@ int 		launch_parser(t_parser *parser, int ac, char **av)
 	reader_obj(parser);
 	init_parser_mtl(parser);
 	reader_mtl(parser);
-    handle_error_parser("ceci est un test", &parser->addr);
 	return (0);
 }

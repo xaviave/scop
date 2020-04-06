@@ -30,26 +30,95 @@ static void     delete_t_mtl(t_mtl mtl)
 {
     ft_strdel(&mtl.name); // need to set this var.
     // free t_texture_colors
-//    ft_memdel((void **)&mtl.ac.option.mm);
-//    ft_memdel((void **)&mtl.ac.option.o);
-//    ft_memdel((void **)&mtl.ac.option.s);
-//    ft_memdel((void **)&mtl.ac.option.t);
-//    ft_memdel((void **)&mtl.ac);
-//    ft_memdel((void **)&mtl.dc.option.mm);
-//    ft_memdel((void **)&mtl.dc.option.o);
-//    ft_memdel((void **)&mtl.dc.option.s);
-//    ft_memdel((void **)&mtl.dc.option.t);
-//    ft_memdel((void **)&mtl.dc);
-//    ft_memdel((void **)&mtl.sc[0].option.mm);
-//    ft_memdel((void **)&mtl.sc[0].option.o);
-//    ft_memdel((void **)&mtl.sc[0].option.s);
-//    ft_memdel((void **)&mtl.sc[0].option.t);
-//    ft_memdel((void **)&mtl.sc); // need to check these's memdel.
+    if (mtl.ac)
+    {
+        ft_memdel((void **)&mtl.ac->option.mm);
+        ft_memdel((void **)&mtl.ac->option.o);
+        ft_memdel((void **)&mtl.ac->option.s);
+        ft_memdel((void **)&mtl.ac->option.t);
+    }
+    ft_memdel((void **)&mtl.ac);
+    if (mtl.dc)
+    {
+        ft_memdel((void **)&mtl.dc->option.mm);
+        ft_memdel((void **)&mtl.dc->option.o);
+        ft_memdel((void **)&mtl.dc->option.s);
+        ft_memdel((void **)&mtl.dc->option.t);
+    }
+    ft_memdel((void **)&mtl.dc);
+    if (mtl.sc)
+    {
+        ft_memdel((void **)&mtl.sc->option.mm);
+        ft_memdel((void **)&mtl.sc->option.o);
+        ft_memdel((void **)&mtl.sc->option.s);
+        ft_memdel((void **)&mtl.sc->option.t);
+    }
+    ft_memdel((void **)&mtl.sc);
     // free t_transmission_filter
-//    ft_strdel(&mtl.tf[0].file.name);
-//    ft_strdel(&mtl.tf->file.path);
-//    ft_memdel((void **)&mtl.tf->file.data);
-//    ft_memdel((void **)&mtl.tf);
+    if (mtl.tf)
+    {
+        ft_strdel(&mtl.tf->file.name);
+        ft_strdel(&mtl.tf->file.path);
+        ft_memdel((void **)&mtl.tf->file.data);
+    }
+    ft_memdel((void **)&mtl.tf);
+    // free t_transparent
+    if (mtl.t)
+    {
+        ft_strdel(&mtl.t->file.name);
+        ft_strdel(&mtl.t->file.path);
+        ft_memdel((void **)&mtl.t->option.mm);
+        ft_memdel((void **)&mtl.t->option.o);
+        ft_memdel((void **)&mtl.t->option.s);
+        ft_memdel((void **)&mtl.t->option.t);
+    }
+    ft_memdel((void **)&mtl.t);
+    // free t_specular_exponent
+    if (mtl.se)
+    {
+        ft_strdel(&mtl.se->file.name);
+        ft_strdel(&mtl.se->file.path);
+        ft_memdel((void **)&mtl.se->option.mm);
+        ft_memdel((void **)&mtl.se->option.o);
+        ft_memdel((void **)&mtl.se->option.s);
+        ft_memdel((void **)&mtl.se->option.t);
+    }
+    ft_memdel((void **)&mtl.se);
+    // free t_bump
+    if (mtl.bump)
+    {
+        ft_strdel(&mtl.bump->file.name);
+        ft_strdel(&mtl.bump->file.path);
+        ft_memdel((void **)&mtl.bump->option.mm);
+        ft_memdel((void **)&mtl.bump->option.o);
+        ft_memdel((void **)&mtl.bump->option.s);
+        ft_memdel((void **)&mtl.bump->option.t);
+    }
+    ft_memdel((void **)&mtl.bump);
+    // free t_disp
+    if (mtl.disp)
+    {
+        ft_strdel(&mtl.disp->file.name);
+        ft_strdel(&mtl.disp->file.path);
+        ft_memdel((void **)&mtl.disp->option.mm);
+        ft_memdel((void **)&mtl.disp->option.o);
+        ft_memdel((void **)&mtl.disp->option.s);
+        ft_memdel((void **)&mtl.disp->option.t);
+    }
+    ft_memdel((void **)&mtl.disp);
+    // free t_decal
+    if (mtl.decal)
+    {
+        ft_strdel(&mtl.decal->file.name);
+        ft_strdel(&mtl.decal->file.path);
+        ft_memdel((void **)&mtl.decal->option.mm);
+        ft_memdel((void **)&mtl.decal->option.o);
+        ft_memdel((void **)&mtl.decal->option.s);
+        ft_memdel((void **)&mtl.decal->option.t);
+    }
+    ft_memdel((void **)&mtl.decal);
+    // free t_shading
+    ft_memdel((void **)&mtl.shading);
 }
 
 static void     delete_t_obj(t_obj obj)
