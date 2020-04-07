@@ -42,11 +42,7 @@ static void     delete_t_obj(t_obj obj)
     int         i;
 
     ft_strdel(&obj.mtllib);
-    i = 0;
-    while (obj.mtl[i])
-        ft_strdel(&(obj.mtl[i++]));
-    free(obj.mtl);
-    obj.mtl = NULL;
+    delete_str_tab(obj.mtl);
     // free t_face;
     i = -1;
     while (++i < obj.len_faces)
@@ -82,35 +78,21 @@ static void     delete_t_obj(t_obj obj)
     ft_memdel((void **)&obj.vertexes);
 }
 
-static void     delete_addr(t_addr **addr)
+void                delete_addr(t_addr **addr)
 {
     int             i;
-    char            **m_char__;
-    t_list_parser   *m_l_par_;
     t_obj           *m_obj_;
     t_mtl           *m_mtl_;
 
     if (*addr)
     {
-        ft_printf("%d -> %p\n", (*addr)->content_type, (*addr)->content_addr);
-        // delete addr->content* with adapted func.
+        i = 0;
         if ((*addr)->content_type == M_CHAR__)
-        {
-            i = 0;
-            m_char__ = (*addr)->content_addr;
-            while (m_char__[i])
-                ft_strdel(&m_char__[i++]);
-            free(m_char__);
-            m_char__ = NULL;
-        }
+            delete_str_tab((char **)(*addr)->content_addr);
         else if ((*addr)->content_type == M_L_PAR_)
-        {
-            m_l_par_ = (*addr)->content_addr;
-            delete_list_parser(&m_l_par_);
-        }
+            delete_list_parser((t_list_parser **)&(*addr)->content_addr);
         else if ((*addr)->content_type == M_OBJ_)
         {
-            i = 0;
             m_obj_ = (*addr)->content_addr;
             while (i < m_obj_[0].nb_args)
                 delete_t_obj(m_obj_[i++]);
@@ -118,7 +100,6 @@ static void     delete_addr(t_addr **addr)
         }
         else if ((*addr)->content_type == M_MTL)
         {
-            i = 0;
             m_mtl_ = (*addr)->content_addr;
             while (i < m_mtl_[0].nb_args)
                 delete_t_mtl(m_mtl_[i++]);
@@ -126,8 +107,7 @@ static void     delete_addr(t_addr **addr)
         }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
-        free(*addr);
-        *addr = NULL;
+        ft_memdel((void **)addr);
     }
 }
 

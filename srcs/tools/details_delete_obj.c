@@ -1,6 +1,17 @@
 #include "../../includes/tools.h"
 #include "../../includes/cleaner.h"
 
+void            delete_str_tab(char **tab)
+{
+    int         i;
+
+    i = 0;
+    while (tab[i])
+        ft_strdel(&tab[i++]);
+    free(tab);
+    tab = NULL;
+}
+
 void            delete_list_parser(t_list_parser **list)
 {
     if (*list)
@@ -8,9 +19,7 @@ void            delete_list_parser(t_list_parser **list)
         ft_strdel(&(*list)->data);
         if ((*list)->next)
             delete_list_parser(&((*list)->next));
-        free(*list);
-        *list = NULL;
-
+        ft_memdel((void **)list);
     }
 }
 
