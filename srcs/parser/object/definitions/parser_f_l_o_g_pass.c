@@ -34,13 +34,14 @@ int					pass_id(int i, char *str, short delim_id)
 {
 	short			delim;
 
-	delim = 0;
-	i = pass_whitespace(i, str);
+    delim = 0;
 	while (str[i] && delim < delim_id)
-		if (str[i] == '/')
-			delim++;
-		i++;
-	return (i - 1);
+	{
+        if (str[i] == '/')
+            delim++;
+        i++;
+    }
+	return (ft_isdigit(str[i]) ? i : -1);
 }
 
 int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
@@ -52,11 +53,17 @@ int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
 	if (!(tab = (int *)malloc(sizeof(int) * nb_entity)))
 		return (0);
 	i = 0;
-	e = -1;
-	while (str[i] && ++e < nb_entity)
+	e = 0;
+	while (str[i] && e < nb_entity)
 	{
-		i = pass_id(i, str, pos_id);
-		tab[e] = ft_atoi(&str[i]);
+        i = pass_whitespace(i, str);
+        if ((i = pass_id(i, str, pos_id)) == -1)
+        {
+            free(tab);
+            tab = NULL;
+            break ;
+        }
+		tab[e++] = ft_atoi(&str[i]);
     	while (str[i] && str[i] != '\t' && str[i] != ' ')
         	i++;
 	}
