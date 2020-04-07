@@ -110,7 +110,7 @@ void            handle_error_parser(char *message, t_addr **addr)
 {
 	ft_printf("%s\n", message);
 	delete_addr(addr);
-	while (1)
-	    ;
+//	while (1)
+//	    ;
     exit(EXIT_FAILURE);
 }
