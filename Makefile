@@ -6,12 +6,12 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/03/27 11:10:00 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/05 12:41:22 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
 .SECONDEXPANSION:
 
 #COMPILATION
@@ -25,7 +25,9 @@ LIBSDL2 = $(addprefix $(FW), libsdl2)
 LIBGLEW = $(addprefix $(FW), libglew)
 LIBFT = libft/
 INC = includes/
-CFLAGS = -Wall -Wextra -I $(INC) -I $(LIBFT) -O2 -g
+CFLAGS = -Wall -Wextra -Werror -I $(INC) -I $(LIBFT) -O2 -g
+PY = python3
+TESTER = "data/tests/test_code.py"
 
 #PATH
 
@@ -33,30 +35,41 @@ SRCS_PATH = ./srcs/
 OBJS_PATH = ./objs/
 
 FILES = main.c \
-		error/handle_error_parser.c \
 		error/handle_error_sdl.c \
+		error/handle_error_parser.c \
 		parser/reader.c \
 		parser/line_checker.c \
 		parser/launch_parser.c \
-		parser/object/parser_v.c \
 		parser/object/print_obj.c \
-		parser/object/parser_f_l.c \
 		parser/object/list_parser_to_obj.c \
-		parser/material/parser_k.c \
-		parser/material/parser_tf_d_s_ni.c \
-		parser/material/parser_bump_decal_illum.c \
+		parser/object/definitions/parser_v.c \
+		parser/object/definitions/parser_f_l_o_g_pass.c \
 		parser/material/print_mtl.c \
 		parser/material/list_parser_to_mtl.c \
+		parser/material/files/parse_file.c \
+		parser/material/definitions/parser_k.c \
+		parser/material/definitions/parse_color.c \
+		parser/material/definitions/parser_tf_d_s_ni.c \
+		parser/material/definitions/parsing_texture_option.c \
+		parser/material/definitions/parser_sharp_bump_decal_illum_pass.c \
+		tools/char.c \
+		tools/path.c \
 		tools/ft_atof.c \
-		tools/init_obj.c \
-		tools/init_ptr.c \
-		tools/init_mtl.c \
-		tools/init_parser.c \
-		tools/init_parser_option.c \
+		tools/define_id.c \
 		tools/list_parser.c \
 		tools/length_parser.c \
-		tools/optional_argument.c \
 		tools/pass_whitespace.c \
+		tools/manage_addr.c \
+		tools/spec_delete_obj.c \
+		tools/details_delete_obj.c \
+		tools/optional_argument.c \
+		tools/init/init_obj.c \
+		tools/init/init_ptr.c \
+		tools/init/init_mtl.c \
+		tools/init/init_prog.c \
+		tools/init/init_parser.c \
+		tools/init/init_parser_option.c \
+		tools/init/init_texture_option.c \
 		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))
@@ -92,3 +105,6 @@ fclean: clean
 	@echo "\033[31mScop binary deleted.\033[0m"
 
 re: fclean all
+
+test:
+	@$(PY) $(TESTER)

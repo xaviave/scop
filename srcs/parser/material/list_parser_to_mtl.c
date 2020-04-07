@@ -6,19 +6,33 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/25 23:48:53 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:27:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
-int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
+static int			check_mtl(t_mtl *mtl)
+{
+	ft_printf("id = %d | %s = %name\n", mtl->id, mtl->name);
+	print_mtl(mtl);
+	return (1);
+}
+
+int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
+        t_addr **addr)
 {
 	t_list_parser	*tmp;
-	void			(*f[10])(t_mtl *, char *);
+    int 			(*f[13])(t_mtl *, char *);
 
-
-	init_parser_mtl_ptr(f);
-	init_mtl_ptr(mtl, list);
 	tmp = list;
+	init_parser_mtl_ptr(f);
+	while (tmp)
+	{
+		ft_printf("id = %d | %s\n", tmp->id, tmp->data);
+		if (!(f[tmp->id](mtl, tmp->data)))
+		    handle_error_parser("Error during memory allocation.", addr);
+		tmp = tmp->next;
+	}
+	return (check_mtl(mtl));
 }

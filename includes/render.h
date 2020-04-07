@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:40 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/20 20:28:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:38:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,23 @@
 # define RENDER_H
 
 /*
-** Global Libraries
+** RENDER.H
 */
-
-# include "scop.h"
 
 /*
-** Defines
+** Internal Libraries
 */
 
-# define W 640
-# define H 480
-
-/*
-** Structures
-*/
-
+# include "parser_struct.h"
+# include "render_struct.h"
+# include "tools.h"
+# include "cleaner.h"
+# include "error.h"
 
 /*
 ** Functions
 */
 
-// int         manage_sdl(t_prog *p);
+int         				launch_render(t_prog *p, t_parser *parser);
 
 #endif

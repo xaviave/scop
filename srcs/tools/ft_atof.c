@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 17:10:50 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/03/22 15:05:36 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:29:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../includes/tools.h"
 
 static double	get_decimal(char *str)
 {
@@ -49,5 +49,5 @@ double			ft_atof(char *str)
 	if (str[i] != '.')
 		return (res);
 	res += get_decimal(&str[i]);
-	return ((res >= 0 && neg == 0) ? res : -res);
+	return ((res >= 0.0 && neg == 0) ? res : -res);
 }

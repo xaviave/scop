@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 19:52:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:26:52 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/scop.h"
+#include "../../../includes/parser.h"
 
 /*
 ** check_obj simply check the lenght of every obj
@@ -22,19 +22,20 @@ static int			check_obj(t_obj *obj)
 	short			err;
 
 	err = 0;
-	print_obj(obj);
+	print_obj(obj); // i dont check the free if program crash on print_obj.
 	// need to check if there's vertexes and faces
 	// need to check all the v - vn - vt ids in lines and faces
 	// if s != 0 in groups or objects, need vn ids
-	return (err);
+	return (1);
 }
 
-int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
+int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
+        t_addr **addr)
 {
 	int				o_id;
 	int				g_id;
 	t_list_parser	*tmp;
-	void			(*f[7])(t_obj *, char *, int, int);
+    int 			(*f[7])(t_obj *, char *, int, int);
 
 	init_parser_obj_ptr(f);
 	o_id = -1;
@@ -48,11 +49,13 @@ int					list_parser_to_obj(t_obj *obj, t_list_parser *list)
 				o_id = obj->len_objects;
 			else
 				g_id = obj->len_groups;
-			tmp->id == ID_G ? \
-			parser_g(obj, tmp->data, o_id) : parser_o(obj, tmp->data);
+			if (!(tmp->id == ID_G ?
+			parser_g(obj, tmp->data, o_id) : parser_o(obj, tmp->data)))
+			    handle_error_parser("Error during memory allocation.", addr);
         }
 		else if (tmp->id < ID_G)
-			f[tmp->id](obj, tmp->data, o_id, g_id);
+			if (!(f[tmp->id](obj, tmp->data, o_id, g_id)))
+			    handle_error_parser("Error during memory allocation.", addr);
 		tmp = tmp->next;
 	}
 	return (check_obj(obj));

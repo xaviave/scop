@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_f_l.c                                       :+:      :+:    :+:   */
+/*   parser_f_l_o_g_pass.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:41:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 22:56:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:27:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/scop.h"
+# include "../../../../includes/parser.h"
 
 int					count_entity(char *str)
 {
@@ -51,7 +51,7 @@ int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
 	int				*tab;
 
 	if (!(tab = (int *)malloc(sizeof(int) * nb_entity)))
-		return (NULL);
+		return (0);
 	i = 0;
 	e = 0;
 	while (str[i] && e < nb_entity)
@@ -70,20 +70,7 @@ int					*get_vertexes_id(char *str, int nb_entity, short pos_id)
 	return (tab);
 }
 
-int					nb_char(char *str, int c)
-{
-	int				i;
-	int				nb;
-
-	i = 0;
-	nb = 0;
-	while (str[i])
-		if (str[i++] == c)
-			nb++;
-	return (nb);
-}
-
-void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				id;
 	int				nb_delim;
@@ -92,22 +79,27 @@ void				parser_f(t_obj *obj, char *raw_data, int o_id, int g_id)
 	obj->faces[id].object_id = o_id;
 	obj->faces[id].group_id = g_id;
 	obj->faces[id].nb_vertexes = count_entity(&raw_data[1]);
-    if (!(obj->faces[id].vertexes_id = get_vertexes_id(
-            &raw_data[1], obj->faces[id].nb_vertexes, 0)))
-        handle_error_parser("Syntax error.");
-	nb_delim = nb_char(&raw_data[1], '/');
-	if (nb_delim == obj->faces[id].nb_vertexes || nb_delim / 2 == obj->faces[id].nb_vertexes)
-		if ((obj->faces[id].textures_id = get_vertexes_id(
-		        &raw_data[1], obj->faces[id].nb_vertexes, 1)))
-            obj->faces[id].has_texture++;
-	if (nb_delim / 2 == obj->faces[id].nb_vertexes)
-		if ((obj->faces[id].normals_id = get_vertexes_id(
-		        &raw_data[1], obj->faces[id].nb_vertexes, 2)))
-            obj->faces[id].has_normal++;
+	nb_delim = count_char(&raw_data[1], '/');
+	if (!(obj->faces[id].vertexes_id = get_vertexes_id(&raw_data[1],
+	        obj->faces[id].nb_vertexes, 0)))
+	    return (0);
+	if ((nb_delim == 3 || nb_delim == 4) && obj->faces[id].has_texture++)
+	{
+		if (!(obj->faces[id].textures_id = get_vertexes_id(&raw_data[1],
+		        obj->faces[id].nb_vertexes, 1)))
+		    return (0);
+	}
+	if (nb_delim > 5 && (obj->faces[id].has_normal++))
+	{
+		if (!(obj->faces[id].normals_id = get_vertexes_id(&raw_data[1],
+		        obj->faces[id].nb_vertexes, 2)))
+		    return (0);
+	}
 	obj->len_faces++;
+	return (1);
 }
 
-void				parser_l(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_l(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				id;
 
@@ -115,82 +107,102 @@ void				parser_l(t_obj *obj, char *raw_data, int o_id, int g_id)
 	obj->lines[id].object_id = o_id;
 	obj->lines[id].group_id = g_id;
 	obj->lines[id].nb_vertexes = count_entity(&raw_data[1]);
-	obj->lines[id].vertexes_id = get_vertexes_id(&raw_data[1], obj->lines[id].nb_vertexes, 0);
+	if (!(obj->lines[id].vertexes_id = get_vertexes_id(&raw_data[1],
+	        obj->lines[id].nb_vertexes, 0)))
+	    return (0);
 	if (ft_strchr(raw_data, '/'))
 	{
 		obj->faces[id].has_texture++;
-		obj->lines[id].textures_id = get_vertexes_id(&raw_data[1], obj->lines[id].nb_vertexes, 1);
+		if (!(obj->lines[id].textures_id = get_vertexes_id(&raw_data[1],
+		        obj->lines[id].nb_vertexes, 1)))
+		    return (0);
 	}
 	obj->len_lines++;
+    return (1);
 }
 
-void				parser_o(t_obj *obj, char *raw_data)
+int 				parser_o(t_obj *obj, char *raw_data)
 {
 	int				i;
 	int				id;
 
 	id = obj->len_objects;
 	i = pass_whitespace(1, raw_data);
-	obj->objects[id].name = ft_strdup(&raw_data[i]);
+	if (!(obj->objects[id].name = ft_strdup(&raw_data[i])))
+	    return (0);
 	obj->len_objects++;
+    return (1);
 }
 
-void				parser_g(t_obj *obj, char *raw_data, int o_id)
+int 				parser_g(t_obj *obj, char *raw_data, int o_id)
 {
 	int				i;
 	int				id;
+	char            *tmp;
 
 	id = obj->len_groups;
 	obj->groups[id].object_id = o_id;
-	// if no name after g - default = default
 	// need to change to char **name | could have many names
 	// If there are multiple groups on one line, the data that follows belong to all groups
 	i = pass_whitespace(1, raw_data);
 	if (i > 1)
-		obj->groups[id].name = ft_strdup(&raw_data[i]);
+	{
+        if (!(obj->groups[id].name = ft_strdup(&raw_data[i])))
+            return (0);
+    }
 	else
 	{
-		obj->groups[id].name = (obj->nb_default > 0) ?
-			ft_strjoin("default_", ft_itoa(obj->nb_default)) : ft_strdup("default") ;
+	    if (!(tmp = ft_itoa(obj->nb_default)))
+	        return (0);
+		if (!(obj->groups[id].name = (obj->nb_default > 0) ? ft_strjoin("default_", tmp) : ft_strdup("default")))
+        {
+		    ft_strdel(&tmp);
+		    return (0);
+        }
+        ft_strdel(&tmp);
 		obj->nb_default++;
 	}
-	
 	obj->len_groups++;
+	return (1);
 }
 
-void				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 
 	(void)o_id;
 	(void)g_id;
 	i = pass_whitespace(6, raw_data);
-	obj->mtl[obj->len_mtl] = ft_strdup(&raw_data[i]);
+	if (!(obj->mtl[obj->len_mtl] = ft_strdup(&raw_data[i])))
+	    return (0);
 	obj->len_mtl++;
+	return (1);
 }
 
 /*
-** "s off" mean no smoothing, ft_atoi return 0 as adefault value else the smoothing value
+** "s off" mean no smoothing, ft_atoi return 0 as default value else the smoothing value
 ** if smooth > 0, it means on
 */
 
-void				parser_pass(t_obj *obj, char *raw_data, int o_id, int g_id)
+int 				parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
-	int				i;
-	short			smooth;
+    int				i;
+    short			smooth;
 
-	if (raw_data[0] == 's')
-	{
-		i = pass_whitespace(1, raw_data);
-		smooth = ft_atoi(&raw_data[i]);
-		obj->objects[o_id].smooth = smooth;
-		obj->groups[g_id].smooth = smooth;
-	}
-	else if (ft_strlen(raw_data) < 7)
-		return ;
-	else if (ft_strlen(&raw_data[6]) && ft_strstr(raw_data, "mtllib"))
-	{
-		i = pass_whitespace(6, raw_data);
-		obj->mtllib = ft_strdup(&raw_data[i]);
-	}
+    if (raw_data[0] == 's')
+    {
+        i = pass_whitespace(1, raw_data);
+        smooth = ft_atoi(&raw_data[i]);
+        obj->objects[o_id].smooth = smooth;
+        obj->groups[g_id].smooth = smooth;
+    }
+    else if (ft_strlen(raw_data) < 7)
+        return (1);
+    else if (ft_strlen(&raw_data[6]) && ft_strstr(raw_data, "mtllib"))
+    {
+        i = pass_whitespace(6, raw_data);
+        if (!(obj->mtllib = ft_strdup(&raw_data[i])))
+            return (0);
+    }
+    return (1);
 }

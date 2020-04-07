@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_parser_option.c                               :+:      :+:    :+:   */
+/*   init_mtl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/26 10:25:34 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 10:39:22 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/05 12:30:48 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+# include "../../../includes/tools.h"
 
-void					init_parser_option(t_parser_option *opt, char *file,
-	int index, short parsing_type)
+void					init_mtl(t_mtl *mtl, int id, int nb_args)
 {
-	ft_memset(opt, 0, sizeof(t_parser_option));
-	opt->parsing_type = parsing_type;
-	opt->file = file;
-	opt->index = index;
+	ft_memset(mtl, 0, sizeof(t_mtl));
+	mtl->id = id;
+    mtl->nb_args = nb_args;
+    mtl->name = NULL;
+    // don't forget to set mtl->name with good value.
 }

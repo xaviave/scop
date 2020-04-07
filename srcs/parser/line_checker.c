@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:03:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/26 11:45:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:41:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
+#include "../../includes/parser.h"
 
 static int					check_line_double(char *raw_data,
         int data_len, int i, short max_elem)
@@ -28,7 +28,6 @@ static int					check_line_double(char *raw_data,
 		while (raw_data[i] == '.' || raw_data[i] == '/' ||
 			raw_data[i] == '-' || (raw_data[i] >= '0' && raw_data[i] <= '9'))
 		{
-		    // Ces lignes n'ont pas de sens, il faudra en discuter.
 			if (raw_data[i] == '.')
 				p++;
 			else if (raw_data[i] == '-')
@@ -38,7 +37,7 @@ static int					check_line_double(char *raw_data,
 			i++;
 		}
 	}
-	return ((i == data_len) ? 1 : 0);
+	return (i == data_len);
 }
 
 static int					check_line_str(char *raw_data, int data_len, int i)
@@ -85,9 +84,9 @@ static int					check_obj_raw_data(char *raw_data, t_parser_option *opt)
 
 static int					check_mtl_raw_data(char *raw_data, t_parser_option *opt)
 {
-	if (opt->data_len)
-		return (0);
-	return (1);
+	if (opt->data_len && raw_data)
+		return (1);
+	return (0);
 }
 
 int							check_raw_data(char *raw_data, t_parser_option *opt)

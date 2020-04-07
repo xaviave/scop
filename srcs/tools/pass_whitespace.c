@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
-/*   Updated: 2020/03/27 11:10:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/05 12:29:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/scop.h"
+# include "../../includes/tools.h"
 
 /*
 ** pass_whitespace_double pass all whitespaces and the first double
@@ -30,4 +30,14 @@ int         pass_whitespace(int i, char *str)
     while (str[i] && (str[i] == '\t' || str[i] == ' '))
         i++;
     return (i);
+}
+
+int			pass_texture_option(char *str)
+{
+	int		i;
+
+	i = ft_strlen(str) - 1;
+	while (i && str[i] != ' ' && str[i] != '\t')
+		i--;
+	return (i);
 }
