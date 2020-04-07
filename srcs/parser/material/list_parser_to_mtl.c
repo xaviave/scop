@@ -19,17 +19,19 @@ static int			check_mtl(t_mtl *mtl)
 	return (1);
 }
 
-int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list)
+int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
+        t_addr **addr)
 {
 	t_list_parser	*tmp;
-	void			(*f[13])(t_mtl *, char *);
+    int 			(*f[13])(t_mtl *, char *);
 
 	tmp = list;
 	init_parser_mtl_ptr(f);
 	while (tmp)
 	{
 		ft_printf("id = %d | %s\n", tmp->id, tmp->data);
-		f[tmp->id](mtl, tmp->data);
+		if (!(f[tmp->id](mtl, tmp->data)))
+		    handle_error_parser("Error during memory allocation.", addr);
 		tmp = tmp->next;
 	}
 	return (check_mtl(mtl));

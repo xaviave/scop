@@ -24,16 +24,19 @@ static void	check_args(int ac, char **av)
 	char	*tmp;
 
 	if (ac < 2)
-		handle_error_parser("No args provided, need at least one object file.");
+		handle_error_parser("No args provided, need at least one object file.", NULL);
     i = 0;
 	while (++i < ac)
 	{
 	    if (ft_strlen(av[i]) < 5)
-            handle_error_parser("Invalid file name.");
+            handle_error_parser("Invalid file name.", NULL);
 		else if (!(tmp = ft_strsub(av[i], ft_strlen(av[i]) - 4, ft_strlen(av[i]))))
-            handle_error_parser("Error during memory allocation.");
-		else if (ft_strcmp(".obj", tmp)) // envoyer tmp dans handle_error_parser si cmp == 0 (en tout cas ne pas oublier les leaks quand on s'occupera des erreurs)
-            handle_error_parser("Invalid file name.");
+            handle_error_parser("Error during memory allocation.", NULL);
+		else if (ft_strcmp(".obj", tmp))
+		{
+		    ft_strdel(&tmp);
+            handle_error_parser("Invalid file name.", NULL);
+        }
 		ft_strdel(&tmp);
 	}
 }

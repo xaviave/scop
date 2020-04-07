@@ -59,6 +59,9 @@ FILES = main.c \
 		tools/list_parser.c \
 		tools/length_parser.c \
 		tools/pass_whitespace.c \
+		tools/manage_addr.c \
+		tools/spec_delete_obj.c \
+		tools/details_delete_obj.c \
 		tools/optional_argument.c \
 		tools/init/init_obj.c \
 		tools/init/init_ptr.c \

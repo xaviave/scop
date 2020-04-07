@@ -12,31 +12,33 @@
 
 #include "../../../../includes/parser.h"
 
-void				parser_tf(t_mtl *mtl, char *raw_data)
+int 				parser_tf(t_mtl *mtl, char *raw_data)
 {
 	unsigned long	size;
 
 	size = sizeof(t_transmission_filter);
 	if (!(mtl->tf = (t_transmission_filter *)ft_memalloc(size)))
-		handle_error_parser("Error during memory allocation.");
+	    return (0);
 	parser_color_file((t_texture_color *)mtl->tf, raw_data);
 	dprintf(1, "ue pourquoi pas %f", mtl->tf->color.r);
+	return (1);
 }
 
-void				parser_d(t_mtl *mtl, char *raw_data)
+int 				parser_d(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 
 	if (mtl->t)
 	{
 		i = pass_whitespace(5, raw_data);
-		parsing_texture_option(&mtl->t->option, &mtl->t->file,
-			&raw_data[i], ID_D);
+		if (!(parsing_texture_option(&mtl->t->option, &mtl->t->file,
+			&raw_data[i], ID_D)))
+		    return (0);
 	}
 	else
 	{
 		if (!(mtl->t = (t_transparent *)ft_memalloc(sizeof(t_transparent))))
-			handle_error_parser("Error during memory allocation.");
+		    return (0);
 		i = 1;
 		if (ft_strchr(raw_data, 'h'))
 		{
@@ -46,11 +48,13 @@ void				parser_d(t_mtl *mtl, char *raw_data)
 		}
 		else
 			mtl->t->factor = ft_atof(&raw_data[i]);
-		init_texture_option(&mtl->t->option);
+		if (!(init_texture_option(&mtl->t->option)))
+		    return (0);
 	}
+	return (1);
 }
 
-void				parser_ns(t_mtl *mtl, char *raw_data)
+int 				parser_ns(t_mtl *mtl, char *raw_data)
 {
 	int				i;
 	unsigned long	size;
@@ -58,20 +62,24 @@ void				parser_ns(t_mtl *mtl, char *raw_data)
 	if (mtl->se)
 	{
 		i = pass_whitespace(6, raw_data);
-		parsing_texture_option(&mtl->se->option, &mtl->se->file,
-			&raw_data[i], ID_NS);
+		if (!(parsing_texture_option(&mtl->se->option, &mtl->se->file,
+			&raw_data[i], ID_NS)))
+		    return (0);
 	}
 	else
 	{
 		size = sizeof(t_specular_exponent);
 		if (!(mtl->se = (t_specular_exponent *)ft_memalloc(size)))
-        	handle_error_parser("Error during memory allocation.");
+		    return (0);
 		mtl->se->value = ft_atof(&raw_data[pass_texture_option(raw_data)]);
-		init_texture_option(&mtl->se->option);
+		if (!(init_texture_option(&mtl->se->option)))
+		    return (0);
 	}
+    return (1);
 }
 
-void				parser_ni(t_mtl *mtl, char *raw_data)
+int 				parser_ni(t_mtl *mtl, char *raw_data)
 {
 	mtl->od = ft_atof(&raw_data[pass_texture_option(raw_data)]);
+	return (1);
 }

@@ -12,7 +12,7 @@
 
 #include "../../../includes/tools.h"
 
-void	init_texture_option(t_texture_option *new)
+int     	init_texture_option(t_texture_option *new)
 {
 	ft_memset(new, 0, sizeof(t_texture_option));
 	new->blendu = 1;
@@ -22,13 +22,14 @@ void	init_texture_option(t_texture_option *new)
 	// louis go to scop.h:265 if you want explanation of malloc 
 	// it is to be a tmp[x] tab
 	// those tabs are not bzero'd
-	if (!(new->mm = (double *)malloc(sizeof(double) * 2)))
-		return ;
-	if (!(new->o = (double *)malloc(sizeof(double) * 3)))
-		return ;
-	if (!(new->s = (double *)malloc(sizeof(double) * 3)))
-		return ;
-	if (!(new->t = (double *)malloc(sizeof(double) * 3)))
-		return ;
+	if (!(new->mm = (double *)ft_memalloc(sizeof(double) * 2)))
+		return (0);
+	if (!(new->o = (double *)ft_memalloc(sizeof(double) * 3)))
+		return (0);
+	if (!(new->s = (double *)ft_memalloc(sizeof(double) * 3)))
+		return (0);
+	if (!(new->t = (double *)ft_memalloc(sizeof(double) * 3)))
+		return (0);
 	new->mm[1] = 1;
+	return (1);
 }

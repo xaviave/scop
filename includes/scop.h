@@ -19,7 +19,6 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <stdarg.h>
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
@@ -52,7 +51,7 @@ typedef struct      		s_vertex
 	double					x;
 	double					y;
 	double					z;
-	double					w; // optionnal | default value 1.0
+	double					w; // optional | default value 1.0
 	int						group_id;
 	int						object_id;
 }							t_vertex;
@@ -149,6 +148,7 @@ typedef struct				s_obj
 	int						mtl_id;
 	int						error;
 	int						nb_default;
+    int                     nb_args;
 	char					*mtllib;
 
 	char					**mtl;
@@ -230,19 +230,19 @@ typedef struct				s_texture_option
 	double					*o; // use to be like this [3];
 	// offset the position of the texture map on the surface | shift the position of the map origin. default [0, 0, 0]
 	// o[0] is u horizontal direction
-	// o[1] is v vertical direction | optionnal
-	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
+	// o[1] is v vertical direction | optional
+	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
 	double					*s; // use to be like this [3];
 	// scale the size of the texture pattern on the textured surface by expanding or shrinking the pattern. default [1, 1, 1]
 	// s[0] is u horizontal direction
-	// s[1] is v vertical direction | optionnal
-	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
+	// s[1] is v vertical direction | optional
+	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
 	double					*t; // use to be like this [3];
 	// turns on turbulence for texture. Adding turbulence to a texture along a specified direction adds variance to the original image
 	// and allows a simple image to be repeated over a larger area without noticeable tiling effects. default [0, 0, 0]
 	// t[0] is u horizontal direction
-	// t[1] is v vertical direction | optionnal
-	// t[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optionnal
+	// t[1] is v vertical direction | optional
+	// t[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
 	double					texres;
 	// specifie the resolution of texture created when an image is used.
 	// The default texture size is the largest power of two that does not exceed the original image size. Refere to doc
@@ -369,15 +369,16 @@ typedef struct				s_shading
 typedef struct				s_mtl
 {
 	int						id;
+	int                     nb_args;
 	char					*name; //no space else error
 
 	//  No malloc here | using addr
 	t_texture_color			*ac;
 	//  code Ka
-	//  Ambient color describes the ambiant refletivity of a color
+	//  Ambient color describes the ambiance reflectivity of a color
 	t_texture_color			*dc;
 	//  code: Kd
-	//  Diffuse color describes the refletivity of a color
+	//  Diffuse color describes the reflectivity of a color
 	t_texture_color			*sc;
 	//  code: Ks
 	//  Specular color describes the specular reflectivity of a color

@@ -14,12 +14,13 @@
 # define ERROR_H
 
 # include "../libft/header/libft.h"
+# include "../includes/parser_struct.h"
 
 /*
 ** Functions
 */
 
-void		handle_error_parser(char *message, ...);
+void        handle_error_parser(char *message, t_addr **addr);
 void		handle_error_sdl(char *message, ...);
 
 #endif

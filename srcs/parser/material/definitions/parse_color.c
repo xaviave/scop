@@ -58,7 +58,7 @@ static double				xyz_to_rgb(double x, double y, double z, short type)
 	double					c;
 	double					matrix[3];
 
-	ft_memset(&matrix, 0, sizeof(double [3]));
+	ft_memset(&matrix, 0, sizeof(matrix));
 	matrix_values(type, matrix);
 	c = matrix[0] * x + matrix[1] * y + matrix[2] * z;
 	dprintf(1, "0-1 c = %f | 0-255 c = %f\n", c, c * 255);
@@ -71,26 +71,26 @@ static int					pass_header_xyz(char *raw_data)
 
 	i = -1;
 	while (raw_data[++i])
-	{
 		if (raw_data[i] == 'z')
 			return (i + 1);
-	}
 	return (i);
 }
 
 void						parse_color(t_color *color, char *raw_data, int xyz)
 {
 	int						i;
+	size_t                  data_len;
 
+	data_len = ft_strlen(raw_data);
 	i = (xyz) ? pass_header_xyz(raw_data) : 2;
 	color->r = ft_atof(&raw_data[i]);
 	i = pass_whitespace_number(i, raw_data);
-	if ((size_t)i != ft_strlen(raw_data))
+	if ((size_t)i != data_len)
 		color->g = ft_atof(&raw_data[i]);
 	else
 		color->g = color->r;
 	i = pass_whitespace_number(i, raw_data);
-	if ((size_t)i != ft_strlen(raw_data))
+	if ((size_t)i != data_len)
 		color->b = ft_atof(&raw_data[i]);
 	else
 		color->b = color->r;

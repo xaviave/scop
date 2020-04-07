@@ -16,7 +16,7 @@ static int					define_file_type(char *type)
 {
 	ft_printf("type = %s\n", type);
 	if (!ft_strcmp(type, "rfl"))
-		handle_error_parser("Line error | can't parse RFL file, private WaveFront technologie lol\n");
+	    return (-1);
 	else if (!ft_strcmp(type, "bmp"))
 		return (F_BMP);
 	else if (!ft_strcmp(type, "png"))
@@ -37,16 +37,21 @@ static int					define_file_type(char *type)
 		return (F_MPB);
 	else if (!ft_strcmp(type, "mpc"))
 		return (F_MPC);
-	ft_printf("IF HERE NEED TO MAKE A FUCKIN PARSER_FILE_ERROR\n");
 	return (10);
 }
 
-void						parse_file(t_file *file, char *raw_data)
+int 						parse_file(t_file *file, char *raw_data)
 {
 	void					(*f[10])(t_file *);
 
-	file->name = ft_strtrim(raw_data);
-	file->type = define_file_type(&file->name[ft_strlen(file->name) - 3]);
+	if (!(file->name = ft_strtrim(raw_data)))
+	    return (0);
+	if ((file->type = define_file_type(&file->name[ft_strlen(file->name) - 3])) == -1)
+    {
+        ft_printf("Line error | can't parse RFL file, private WaveFront technology lol\n");
+        return (0);
+    }
 	init_file_ptr(f);
 	f[file->type](file);
+	return (1);
 }

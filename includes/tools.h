@@ -48,18 +48,19 @@ typedef struct				s_list_parser
 
 int							len_list_parser_id(t_list_parser *list);
 
-void                		init_obj(t_obj *obj, t_parser_option *opt, int id);
+void                		init_obj(t_obj *obj, t_parser_option *opt,
+                                     int id, int nb_args, t_addr **addr);
 
-void						init_mtl(t_mtl *mtl, int id);
+void						init_mtl(t_mtl *mtl, int id, int nb_args);
 
-void						init_parser_obj_ptr(void (*f[7])(t_obj *, char *, int, int));
-void						init_parser_mtl_ptr(void (*f[13])(t_mtl *, char *));
+void						init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int));
+void						init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *));
 void						init_shading_ptr(void (*f[11])(char *));
 void						init_file_ptr(void (*f[10])(t_file *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type);
-void						init_texture_option(t_texture_option *new);
+int 						init_texture_option(t_texture_option *new);
 
 void						init_parser(t_parser *parser, int ac, char **av);
 void						init_parser_mtl(t_parser *parser);
@@ -73,7 +74,7 @@ int							pass_texture_option(char *str);
 
 int							list_parser_len(t_list_parser **list);
 void						add_list_parser(t_list_parser **list, char *raw_data,
-	t_parser_option *opt);
+	t_parser_option *opt, t_addr **addr);
 
 int							last_char(char *str, char c);
 int							count_char(char *str, int c);

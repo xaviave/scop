@@ -12,8 +12,11 @@
 
 # include "../../../includes/tools.h"
 
-void					init_mtl(t_mtl *mtl, int id)
+void					init_mtl(t_mtl *mtl, int id, int nb_args)
 {
 	ft_memset(mtl, 0, sizeof(t_mtl));
 	mtl->id = id;
+    mtl->nb_args = nb_args;
+    mtl->name = NULL;
+    // don't forget to set mtl->name with good value.
 }

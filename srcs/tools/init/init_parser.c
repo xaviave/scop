@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../../includes/tools.h"
+#include "../../../includes/cleaner.h"
 
 void	init_parser(t_parser *parser, int ac, char **av)
 {
@@ -18,13 +19,19 @@ void	init_parser(t_parser *parser, int ac, char **av)
 
 	parser->nb_args = ac - 1;
 	parser->args = av;
-	if (!(parser->obj = (t_obj *)malloc(sizeof(t_obj) * parser->nb_args)))
-		handle_error_parser("Error during memory allocation.");
-	if (!(parser->path = (char **)malloc(sizeof(char *) * parser->nb_args)))
-		handle_error_parser("Error during memory allocation.");
+	parser->addr = NULL;
+	if (!(parser->obj = addr_add((t_obj *)ft_memalloc(sizeof(
+	        t_obj) * parser->nb_args), M_OBJ_, &parser->addr)))
+		handle_error_parser("Error during memory allocation.", &parser->addr);
+	if (!(parser->path = addr_add((char **)malloc(sizeof(
+	        char *) * ac), M_CHAR__, &parser->addr)))
+		handle_error_parser("Error during memory allocation.", &parser->addr);
+	parser->path[ac - 1] = NULL;
 	i = -1;
 	while (++i < parser->nb_args)
-		parser->path[i] = get_path(av[i + 1]);
+        if (!(parser->path[i] = get_path(av[i + 1])))
+            handle_error_parser("Error during memory allocation.",
+                    &parser->addr);
 }
 
 void	init_parser_mtl(t_parser *parser)
@@ -35,13 +42,12 @@ void	init_parser_mtl(t_parser *parser)
 	i = -1;
 	len_mtl = 0;
 	while (++i < parser->nb_args)
-	{
 		if (parser->obj[i].mtllib)
 		{
 			parser->obj[i].mtl_id = len_mtl;
 			len_mtl++;
 		}
-	}
-	if (!(parser->mtl = (t_mtl *)malloc(sizeof(t_mtl) * len_mtl)))
-		handle_error_parser("Error during memory allocation.");
+	if (!(parser->mtl = addr_add((t_mtl *)ft_memalloc(sizeof(
+	        t_mtl) * len_mtl), M_MTL, &parser->addr)))
+		handle_error_parser("Error during memory allocation.", &parser->addr);
 }

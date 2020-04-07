@@ -28,12 +28,14 @@ int		count_char(char *str, int c)
 int		last_char(char *str, char c)
 {
 	int	i;
+	int len;
 
-	i = ft_strlen(str) - 1;
-	if (!count_char(str, c))
-		return (0);
+    if (!count_char(str, c))
+        return (0);
+	len = ft_strlen(str);
+	i = len;
 	while (--i)
 		if (str[i] == c)
-			return (ft_strlen(str) - i - 1);
+			return (len - i - 1);
 	return (i);
 }
