@@ -37,13 +37,24 @@ static void     delete_t_mtl(t_mtl mtl)
     ft_memdel((void **)&mtl.shading);
 }
 
+static void     delete_obj_memory(t_obj obj)
+{
+
+    ft_memdel((void **)&obj.faces);
+    ft_memdel((void **)&obj.groups);
+    ft_memdel((void **)&obj.lines);
+    ft_memdel((void **)&obj.normals);
+    ft_memdel((void **)&obj.objects);
+    ft_memdel((void **)&obj.textures);
+    ft_memdel((void **)&obj.vertexes);
+}
+
 static void     delete_t_obj(t_obj obj)
 {
     int         i;
 
     ft_strdel(&obj.mtllib);
     delete_str_tab(obj.mtl);
-    // free t_face;
     i = -1;
     while (++i < obj.len_faces)
     {
@@ -51,38 +62,24 @@ static void     delete_t_obj(t_obj obj)
         ft_memdel((void **)&obj.faces[i].textures_id);
         ft_memdel((void **)&obj.faces[i].normals_id);
     }
-    ft_memdel((void **)&obj.faces);
-    // free t_groups;
     i = -1;
     while (++i < obj.len_groups)
         ft_strdel(&obj.groups[i].name);
-    ft_memdel((void **)&obj.groups);
-    // free t_lines;
     i = -1;
     while (++i < obj.len_lines)
     {
         ft_memdel((void **)&obj.lines[i].vertexes_id);
         ft_memdel((void **)&obj.lines[i].textures_id);
     }
-    ft_memdel((void **)&obj.lines);
-    // free t_normals;
-    ft_memdel((void **)&obj.normals);
-    // free t_objects;
     i = -1;
     while (++i < obj.len_objects)
         ft_strdel(&obj.objects[i].name);
-    ft_memdel((void **)&obj.objects);
-    // free t_textures;
-    ft_memdel((void **)&obj.textures);
-    // free t_vertexes;
-    ft_memdel((void **)&obj.vertexes);
+    delete_obj_memory(obj);
 }
 
 void                delete_addr(t_addr **addr)
 {
     int             i;
-    t_obj           *m_obj_;
-    t_mtl           *m_mtl_;
 
     if (*addr)
     {
@@ -93,17 +90,15 @@ void                delete_addr(t_addr **addr)
             delete_list_parser((t_list_parser **)&(*addr)->content_addr);
         else if ((*addr)->content_type == M_OBJ_)
         {
-            m_obj_ = (*addr)->content_addr;
-            while (i < m_obj_[0].nb_args)
-                delete_t_obj(m_obj_[i++]);
-            ft_memdel((void **)&m_obj_);
+            while (i < ((t_obj *)(*addr)->content_addr)->nb_args)
+                delete_t_obj(((t_obj *)(*addr)->content_addr)[i++]);
+            ft_memdel((void **)&(*addr)->content_addr);
         }
         else if ((*addr)->content_type == M_MTL)
         {
-            m_mtl_ = (*addr)->content_addr;
-            while (i < m_mtl_[0].nb_args)
-                delete_t_mtl(m_mtl_[i++]);
-            ft_memdel((void **)&m_mtl_);
+            while (i < ((t_mtl *)(*addr)->content_addr)->nb_args)
+                delete_t_mtl(((t_mtl *)(*addr)->content_addr)[i++]);
+            ft_memdel((void **)&(*addr)->content_addr);
         }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
