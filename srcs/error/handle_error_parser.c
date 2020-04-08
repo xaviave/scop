@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:28:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 00:22:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 static void     delete_t_mtl(t_mtl mtl)
 {
-    ft_strdel(&mtl.name); // need to set this var.
     if (mtl.ac)
         delete_texture_option(&mtl.ac->option);
     ft_memdel((void **)&mtl.ac);

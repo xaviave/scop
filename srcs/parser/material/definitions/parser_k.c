@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:16:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:28:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 00:34:39 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void					parser_color_file(t_texture_color *s, char *raw_data)
 	}
 }
 
-int					parser_ka(t_mtl *mtl, char *raw_data)
+int					parser_ka(t_mtl *mtl, char *raw_data, int group_id)
 {
 	int				i;
 
@@ -54,6 +54,7 @@ int					parser_ka(t_mtl *mtl, char *raw_data)
 	{
 		if (!(mtl->ac = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
 		    return (0);
+		mtl->ac->group_id = group_id;
 		parser_color_file(mtl->ac, raw_data);
 		if (!(init_texture_option(&mtl->ac->option)))
 		    return (0);
@@ -61,7 +62,7 @@ int					parser_ka(t_mtl *mtl, char *raw_data)
 	return (1);
 }
 
-int 				parser_kd(t_mtl *mtl, char *raw_data)
+int 				parser_kd(t_mtl *mtl, char *raw_data, int group_id)
 {
 	int				i;
 
@@ -76,6 +77,7 @@ int 				parser_kd(t_mtl *mtl, char *raw_data)
 	{
 		if (!(mtl->dc = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
 		    return (0);
+		mtl->dc->group_id = group_id;
 		parser_color_file(mtl->dc, raw_data);
 		if (!(init_texture_option(&mtl->dc->option)))
 		    return (0);
@@ -83,7 +85,7 @@ int 				parser_kd(t_mtl *mtl, char *raw_data)
 	return (1);
 }
 
-int 				parser_ks(t_mtl *mtl, char *raw_data)
+int 				parser_ks(t_mtl *mtl, char *raw_data, int group_id)
 {
 	int				i;
 
@@ -98,6 +100,7 @@ int 				parser_ks(t_mtl *mtl, char *raw_data)
 	{
 		if (!(mtl->sc = (t_texture_color *)ft_memalloc(sizeof(t_texture_color))))
 		    return (0);
+		mtl->sc->group_id = group_id;
 		parser_color_file(mtl->sc, raw_data);
 		if (!(init_texture_option(&mtl->sc->option)))
 		    return (0);
