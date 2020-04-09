@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:26:52 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 11:48:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
 			parser_g(obj, tmp->data, o_id) : parser_o(obj, tmp->data)))
 			    handle_error_parser("Error during memory allocation.", addr);
         }
-		else if (tmp->id < ID_G)
-			if (!(f[tmp->id](obj, tmp->data, o_id, g_id)))
+		else if (tmp->id < ID_G && !(f[tmp->id](obj, tmp->data, o_id, g_id)))
 			    handle_error_parser("Error during memory allocation.", addr);
 		tmp = tmp->next;
 	}

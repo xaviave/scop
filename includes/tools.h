@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:38:28 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 11:59:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,11 @@ double						ft_atof(char *str);
 
 char						*get_path(char *str);
 char						*create_path(char *directory, char *file);
+
+t_vertex					get_vertex(t_obj *obj, int id);
+t_texture					get_texture(t_obj *obj, int id);
+t_normal					get_normal(t_obj *obj, int id);
+t_face						get_face(t_obj *obj, int id);
+t_line						get_line(t_obj *obj, int id);
 
 #endif
