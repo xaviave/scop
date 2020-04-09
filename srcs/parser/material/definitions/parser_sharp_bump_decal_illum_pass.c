@@ -87,7 +87,10 @@ int 				parser_disp(t_mtl *mtl, char *raw_data, int group_id)
 int 				parser_pass_mtl(t_mtl *mtl, char *raw_data, int group_id)
 {
 	if (raw_data[0] != '#' && ft_strstr(raw_data, "newmtl"))
-		mtl->groups[group_id] = ft_strtrim(&raw_data[6]);
+    {
+        if (!(mtl->groups[group_id] = ft_strtrim(&raw_data[6])))
+            return (0);
+    }
 	else
 		ft_printf("This line is ignored | mtl id = %d | data = %s\n", mtl->id, raw_data);
 	return (1);

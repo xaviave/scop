@@ -90,7 +90,8 @@ void					reader_mtl(t_parser *parser)
 			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
-			init_mtl(&parser->mtl[i], i, parser->nb_args, count_group_mtl(list));
+			if (!(init_mtl(&parser->mtl[i], i, parser->nb_args, count_group_mtl(list))))
+                handle_error_parser("Error during memory allocation.", &parser->addr);
 			if (!list_parser_to_mtl(&parser->mtl[i], list, &parser->addr))
 				handle_error_parser("Error during parsing mtl.", &parser->addr);
 		}

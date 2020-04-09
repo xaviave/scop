@@ -12,7 +12,7 @@
 
 # include "../../../includes/tools.h"
 
-void					init_mtl(t_mtl *mtl, int id, int nb_args, int nb_group)
+int 					init_mtl(t_mtl *mtl, int id, int nb_args, int nb_group)
 {
 	ft_memset(mtl, 0, sizeof(t_mtl));
 	mtl->id = id;
@@ -20,6 +20,7 @@ void					init_mtl(t_mtl *mtl, int id, int nb_args, int nb_group)
 	mtl->nb_groups = nb_group;
     // don't forget to set mtl->name with good value.
 	ft_printf("nb_groups not set need to count newmtl in file | %d\n", nb_group);
-	if (!(mtl->groups = (char **)malloc(sizeof(char *) * nb_group)))
-		return ;
+	if (!(mtl->groups = (char **)ft_memalloc(sizeof(char *) * nb_group + 1)))
+	    return (0);
+	return (1);
 }

@@ -16,6 +16,7 @@
 
 static void     delete_t_mtl(t_mtl mtl)
 {
+    delete_str_tab(mtl.groups);
     if (mtl.ac)
         delete_texture_option(&mtl.ac->option);
     ft_memdel((void **)&mtl.ac);
@@ -33,6 +34,8 @@ static void     delete_t_mtl(t_mtl mtl)
     delete_t_bump(mtl.bump);
     delete_t_disp(mtl.disp);
     delete_t_decal(mtl.decal);
+    ft_memdel((void **)&mtl.od);
+    ft_memdel((void **)&mtl.sharpness);
     ft_memdel((void **)&mtl.shading);
 }
 

@@ -87,7 +87,8 @@ int 				parser_ni(t_mtl *mtl, char *raw_data, int group_id)
 	size = sizeof(t_optical_density);
 	if (!(mtl->od = (t_optical_density *)ft_memalloc(size)))
 	    return (0);
-	mtl->disp->group_id = group_id;
+	if (mtl->disp)
+	    mtl->disp->group_id = group_id;
 	mtl->od->value = ft_atof(&raw_data[2]);
 	return (1);
 }
