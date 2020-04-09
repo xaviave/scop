@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:17:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 22:07:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 22:19:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int					check_vertexes(char *raw_data)
 			i = pass_whitespace(i, raw_data);
 		}
 		if (!ft_isdigit(raw_data[i]) &&
-			(raw_data[i] == '.' && ++p > 1 ) && (raw_data[i] == '-' && ++l > 1))
+			(raw_data[i] == '.' && ++p > 1 ) &&
+			(raw_data[i] == '-' && ++l > 1))
 			return (0);
 	}
 	return ((i != (int)ft_strlen(raw_data) || nb_vertexes < 3) ? 0 : 1);
@@ -56,34 +57,34 @@ static int					check_ids_group(char *raw_data, int nb_delim)
 	return (delim == nb_delim);
 }
 
-static int					check_lines_faces(char *raw_data)
+static int					check_lines_faces(char *raw_data,
+	int *nb_args, int len)
 {
 	int						i;
-	int						len;
 	int						nb_id;
 	int						nb_delim;
 
-	// ft_printf("add a param to differenciate lines and faces\n");
 	i = 0;
 	len = ft_strlen(raw_data);
 	nb_delim = count_char(&raw_data[i], '/');
-	if (nb_delim == 3 || nb_delim == 4)
+	if (nb_delim == nb_args[0] || nb_delim == nb_args[1])
 		nb_delim = 1;
-	else if (nb_delim == 6 || nb_delim == 8)
+	else if (nb_delim == (nb_args[0] * 2) || nb_delim == (nb_args[1] * 2))
 		nb_delim = 2;
 	else if (nb_delim)
 		return (0);
 	nb_id = 0;
-	while (i != len && ++nb_id < 5)
+	while (i != len && ++nb_id < nb_args[1])
 	{
 		if (!check_ids_group(&raw_data[i], nb_delim))
 			return (0);
 		i = pass_whitespace_str(i, raw_data);
 	}
-	return ((nb_id < 3 || i != len) ? 0 : 1);
+	return ((nb_id < nb_args[0] || i != len) ? 0 : 1);
 }
 
-static int					dispatch_by_header(char *raw_data, t_parser_option *opt)
+static int					dispatch_by_header(char *raw_data,
+	t_parser_option *opt)
 {
 	int						i;
 	int						nb_args[2];
@@ -102,16 +103,18 @@ static int					dispatch_by_header(char *raw_data, t_parser_option *opt)
 		(tmp[1] == ' ' || tmp[1] == '\t')))
 	{
 		nb_args[1] = 3;
-		return (check_line(&raw_data[i], nb_args, 1) && check_vertexes(&raw_data[i]));
+		return (check_line(&raw_data[i], nb_args, 1) &&
+			check_vertexes(&raw_data[i]));
 	}
-	else if (ft_strstr(tmp, "g") || ft_strstr(tmp, "o"))
-		return check_line_str(raw_data, opt->data_len, 1); // not done yet
-	else if (ft_strstr(tmp, "l") || ft_strstr(tmp, "f"))
+	else if ((tmp[0] == 'g' || tmp[0] == 'o') &&
+		(tmp[1] == ' ' || tmp[1] == '\t'))
+		return check_line_str(raw_data, opt->data_len, 1);
+	else if ((tmp[0] == 'f' || tmp[0] == 'l') &&
+		(tmp[1] == ' ' || tmp[1] == '\t'))
 	{
-		nb_args[0] = 3;
-		nb_args[1] = 4;
-		// put str option if '/' in raw_data
-		return (check_line(&raw_data[i], nb_args, 2) && check_lines_faces(&raw_data[i]));
+		nb_args[0] = (tmp[0] == 'f') ? 3 : 2;
+		nb_args[1] = (tmp[0] == 'f') ? 4 : 3;
+		return (check_lines_faces(&raw_data[i], nb_args, opt->data_len));
 	}
 	return (0);
 }
