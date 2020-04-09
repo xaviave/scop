@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 11:59:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 18:46:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void						init_t_prog(t_prog *p, t_parser *parser);
 void						init_graphic_context(t_sdl *sdl);
 
 int							pass_whitespace(int i, char *str);
-int							pass_whitespace_number(int i, char *str);
+int							pass_whitespace_str(int i, char *str);
 int							pass_texture_option(char *str);
 
 int							list_parser_len(t_list_parser **list);

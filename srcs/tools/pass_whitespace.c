@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:29:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 18:45:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** return the index of the first whitespace found after the movement
 */
 
-int			pass_whitespace_number(int i, char *str)
+int			pass_whitespace_str(int i, char *str)
 {
     i = pass_whitespace(i, str);
 	while (str[i] && str[i] != '\t' && str[i] != ' ')
