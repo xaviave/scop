@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:38:57 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 22:24:10 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int							check_line_str(char *raw_data, int data_len, int i);
 int							check_line_double(char *raw_data,
         int data_len, int i, short max_elem);
 		
+int							check_lines_faces(char *raw_data,
+	int *nb_args, int len);
+int							check_vertexes(char *raw_data);
+
 int							check_obj_raw_data(char *raw_data, t_parser_option *opt);
 int							check_mtl_raw_data(char *raw_data, t_parser_option *opt);
 

@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/09 20:34:08 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/09 22:23:35 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ FILES = main.c \
 		parser/line_checker/check_mtl.c \
 		parser/line_checker/line_checker.c \
 		parser/line_checker/basic_line_checker.c \
+		parser/line_checker/advanced_obj_checker.c \
 		parser/object/print_obj.c \
 		parser/object/list_parser_to_obj.c \
 		parser/object/definitions/parser_v.c \

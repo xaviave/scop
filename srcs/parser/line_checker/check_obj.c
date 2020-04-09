@@ -6,81 +6,26 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:17:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 22:19:56 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 22:26:54 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
 
-static int					check_vertexes(char *raw_data)
+static int					dispatch_f_l_g_o(char *raw_data, int i,
+	t_parser_option *opt, char tmp[3], int nb_args[2])
 {
-	int						i;
-	int						p;
-	int						l;
-	int						nb_vertexes;
-
-	i = -1;
-	p = 0;
-	l = 0;
-	nb_vertexes = 0;
-	while (raw_data[++i])
+	if ((tmp[0] == 'g' || tmp[0] == 'o') &&
+		(tmp[1] == ' ' || tmp[1] == '\t'))
+		return check_line_str(raw_data, opt->data_len, 1);
+	else if ((tmp[0] == 'f' || tmp[0] == 'l') &&
+		(tmp[1] == ' ' || tmp[1] == '\t'))
 	{
-		if (raw_data[i] == ' ' || raw_data[i] == '\t')
-		{
-			p = 0;
-			l = 0;
-			nb_vertexes++;
-			i = pass_whitespace(i, raw_data);
-		}
-		if (!ft_isdigit(raw_data[i]) &&
-			(raw_data[i] == '.' && ++p > 1 ) &&
-			(raw_data[i] == '-' && ++l > 1))
-			return (0);
+		nb_args[0] = (tmp[0] == 'f') ? 3 : 2;
+		nb_args[1] = (tmp[0] == 'f') ? 4 : 3;
+		return (check_lines_faces(&raw_data[i], nb_args, opt->data_len));
 	}
-	return ((i != (int)ft_strlen(raw_data) || nb_vertexes < 3) ? 0 : 1);
-}
-
-static int					check_ids_group(char *raw_data, int nb_delim)
-{
-	int						i;
-	int						delim;
-
-	i = -1;
-	delim = 0;
-	while (raw_data[++i] && raw_data[i] != ' ' && raw_data[i] != '\t')
-	{
-		if (raw_data[i] == '/')
-			delim++;
-		else if (!ft_isdigit(raw_data[i]))
-			return (0);
-	}
-	return (delim == nb_delim);
-}
-
-static int					check_lines_faces(char *raw_data,
-	int *nb_args, int len)
-{
-	int						i;
-	int						nb_id;
-	int						nb_delim;
-
-	i = 0;
-	len = ft_strlen(raw_data);
-	nb_delim = count_char(&raw_data[i], '/');
-	if (nb_delim == nb_args[0] || nb_delim == nb_args[1])
-		nb_delim = 1;
-	else if (nb_delim == (nb_args[0] * 2) || nb_delim == (nb_args[1] * 2))
-		nb_delim = 2;
-	else if (nb_delim)
-		return (0);
-	nb_id = 0;
-	while (i != len && ++nb_id < nb_args[1])
-	{
-		if (!check_ids_group(&raw_data[i], nb_delim))
-			return (0);
-		i = pass_whitespace_str(i, raw_data);
-	}
-	return ((nb_id < nb_args[0] || i != len) ? 0 : 1);
+	return (0);
 }
 
 static int					dispatch_by_header(char *raw_data,
@@ -106,17 +51,7 @@ static int					dispatch_by_header(char *raw_data,
 		return (check_line(&raw_data[i], nb_args, 1) &&
 			check_vertexes(&raw_data[i]));
 	}
-	else if ((tmp[0] == 'g' || tmp[0] == 'o') &&
-		(tmp[1] == ' ' || tmp[1] == '\t'))
-		return check_line_str(raw_data, opt->data_len, 1);
-	else if ((tmp[0] == 'f' || tmp[0] == 'l') &&
-		(tmp[1] == ' ' || tmp[1] == '\t'))
-	{
-		nb_args[0] = (tmp[0] == 'f') ? 3 : 2;
-		nb_args[1] = (tmp[0] == 'f') ? 4 : 3;
-		return (check_lines_faces(&raw_data[i], nb_args, opt->data_len));
-	}
-	return (0);
+	return (dispatch_f_l_g_o(raw_data, i, opt, tmp, nb_args));	 
 }
 
 /*
