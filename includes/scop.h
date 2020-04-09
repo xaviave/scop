@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:35:00 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 11:58:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ typedef struct				s_texture_option
 
 typedef struct				s_texture_color
 {
+	int						group_id;
 	t_color					color;
 	t_file					file;
 	double					factor;
@@ -271,6 +272,7 @@ typedef struct				s_texture_color
 typedef struct				s_transmission_filter
 {
 	// code: Tf
+	int						group_id;
 	t_color					color;
 	t_file					file;
 }							t_transmission_filter;
@@ -282,6 +284,7 @@ typedef struct				s_transmission_filter
 typedef struct				s_transparent
 {
 	// code: d
+	int						group_id;
 	short					halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
 	double					factor; // between 0 and 1 | 1 is opaque
 	t_file					file;
@@ -295,6 +298,7 @@ typedef struct				s_transparent
 typedef struct				s_specular_exponent
 {
 	// code: Ns
+	int						group_id;
 	double					value; // between 0 to 1000
 	t_file					file;
 	t_texture_option		option;
@@ -305,6 +309,28 @@ typedef struct				s_specular_exponent
 */
 
 /*
+** Sharpness describes the reflections from the local reflection map
+*/
+
+typedef struct				s_sharpness
+{
+	//  code: sharpness
+	int						group_id;
+	double					value; // between 0 to 1000 | default 60
+}							t_sharpness;
+
+/*
+** Optical density describes the optical density for the surface
+*/
+
+typedef struct				s_optical_density
+{
+	//  code: Ni
+	int						group_id;
+	double					value; //  between 0.001 to 10
+}							t_optical_density;
+
+/*
 ** Specifies that a bump texture file or a bump procedural texture file is linked to the material.
 */
 
@@ -313,6 +339,7 @@ typedef struct				s_bump
 	// code: bump
 	// bm defines the bump multiplier
 	// values stored with the texture or procedural texture file are multiplied by this value before they are applied to the surface.
+	int						group_id;
 	t_file					file;
 	t_texture_option		option;
 }							t_bump;
@@ -324,6 +351,7 @@ typedef struct				s_bump
 typedef struct				s_disp
 {
 	// code: disp
+	int						group_id;
 	t_file					file;
 	t_texture_option		option;
 }							t_disp;
@@ -340,6 +368,7 @@ typedef struct				s_disp
 typedef struct				s_decal
 {
 	// code: decal
+	int						group_id;
 	t_file					file;
 	t_texture_option		option;
 }							t_decal;
@@ -362,6 +391,7 @@ typedef struct				s_decal
 typedef struct				s_shading
 {
 	// code: illum
+	int						group_id;
 	int						type;
 	void					(*f[11])(char *); // pointer to the shading algorithm
 }							t_shading;
@@ -370,7 +400,9 @@ typedef struct				s_mtl
 {
 	int						id;
 	int                     nb_args;
-	char					*name; //no space else error
+	//no space else error
+	int						nb_groups;
+	char					**groups; // the id define the group | (char *) is the name
 
 	//  No malloc here | using addr
 	t_texture_color			*ac;
@@ -385,14 +417,8 @@ typedef struct				s_mtl
 	t_transmission_filter	*tf;
 	t_transparent			*t;
 	t_specular_exponent		*se;
-	double					sharpness;
-	//  code: sharpness
-	//  between 0 to 1000 | default 60
-	//  Sharpness describes the reflections from the local reflection map
-	double					od;
-	//  code: Ni
-	//  between 0.001 to 10
-	//  Optical density describes the optical density for the surface
+	t_optical_density		*od;
+	t_sharpness				*sharpness;
 	t_bump					*bump;
 	t_disp					*disp;
 	t_decal					*decal;

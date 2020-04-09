@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:14:29 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:49:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/07 20:25:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@
 ** Structures
 */
 
-typedef struct      s_addr
+typedef struct      		s_addr
 {
-    void            *content_addr;
-    int             content_type;
-    struct s_addr   *next;
-}                   t_addr;
+    void            		*content_addr;
+    int             		content_type;
+    struct s_addr   		*next;
+}                   		t_addr;
 
 typedef struct				s_parser
 {

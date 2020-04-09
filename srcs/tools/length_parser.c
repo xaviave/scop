@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 20:27:28 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:29:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 00:13:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,20 @@ int							len_list_parser_id(t_list_parser *list)
         handle_error_parser("Error in line", NULL);
     }
     return (list->id == ID_O ? calc_id_o(tmp) : calc_id_g(tmp));
+}
+
+int							count_group_mtl(t_list_parser *list)
+{
+	int						i;
+	t_list_parser			*tmp;
+
+	i = 0;
+	tmp = list;
+	while (tmp)
+	{
+		if (tmp->id == ID_ERR_MTL && ft_strchr(tmp->data, 'n'))
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }

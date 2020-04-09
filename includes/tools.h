@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:43:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 11:59:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int							len_list_parser_id(t_list_parser *list);
 void                		init_obj(t_obj *obj, t_parser_option *opt,
                                      int id, int nb_args, t_addr **addr);
 
-void						init_mtl(t_mtl *mtl, int id, int nb_args);
+void						init_mtl(t_mtl *mtl, int id, int nb_args, int nb_groups);
 
 void						init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int));
-void						init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *));
+void						init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *, int));
 void						init_shading_ptr(void (*f[11])(char *));
 void						init_file_ptr(void (*f[10])(t_file *));
 
@@ -84,11 +84,19 @@ void						print_obj(t_obj *obj);
 
 void						print_mtl(t_mtl *mtl);
 
+int							count_group_mtl(t_list_parser *list);
+
 double						optional_value_double(char *str, double d);
 
 double						ft_atof(char *str);
 
 char						*get_path(char *str);
 char						*create_path(char *directory, char *file);
+
+t_vertex					get_vertex(t_obj *obj, int id);
+t_texture					get_texture(t_obj *obj, int id);
+t_normal					get_normal(t_obj *obj, int id);
+t_face						get_face(t_obj *obj, int id);
+t_line						get_line(t_obj *obj, int id);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:04:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:27:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 11:44:59 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ static int					define_file_type(char *type)
 
 int 						parse_file(t_file *file, char *raw_data)
 {
+	int						i;
 	void					(*f[10])(t_file *);
 
 	if (!(file->name = ft_strtrim(raw_data)))
 	    return (0);
-	if ((file->type = define_file_type(&file->name[ft_strlen(file->name) - 3])) == -1)
+	i = ft_strlen(file->name) - 3;
+	if ((file->type = define_file_type(&file->name[i])) == -1)
     {
-        ft_printf("Line error | can't parse RFL file, private WaveFront technology lol\n");
+        ft_printf("Line error | can't parse RFL file, private WaveFront technology\n");
         return (0);
     }
 	init_file_ptr(f);

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:49:14 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 00:14:00 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int))
 	f[6] = &parser_pass_obj;
 }
 
-void		init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *))
+void		init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *, int))
 {
 	f[0] = &parser_ka;
 	f[1] = &parser_kd;
@@ -63,7 +63,7 @@ void		init_shading_ptr(void (*f[11])(char *))
 void pass_loli(t_file *file)
 {
 	if (file)
-		ft_printf("Yo come on if you are here it s because you need img data lol -> code it");
+		ft_printf("Yo come on if you are here it s because you need img data lol -> code it\n");
 }
 
 void		init_file_ptr(void (*f[10])(t_file *))
