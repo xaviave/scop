@@ -53,7 +53,7 @@ static int					check_ids_group(char *raw_data, int nb_delim)
 		else if (!ft_isdigit(raw_data[i]))
 			return (0);
 	}
-	return ((delim == nb_delim) ? 1 : 0);
+	return (delim == nb_delim);
 }
 
 static int					check_lines_faces(char *raw_data)
