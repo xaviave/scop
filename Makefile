@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/05 12:41:22 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/09 20:34:08 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,11 @@ FILES = main.c \
 		error/handle_error_sdl.c \
 		error/handle_error_parser.c \
 		parser/reader.c \
-		parser/line_checker.c \
 		parser/launch_parser.c \
+		parser/line_checker/check_obj.c \
+		parser/line_checker/check_mtl.c \
+		parser/line_checker/line_checker.c \
+		parser/line_checker/basic_line_checker.c \
 		parser/object/print_obj.c \
 		parser/object/list_parser_to_obj.c \
 		parser/object/definitions/parser_v.c \

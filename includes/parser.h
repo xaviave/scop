@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 18:22:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 20:38:57 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ int							define_id_obj(char *raw_data, t_parser_option *opt);
 int							define_id_mtl(char *raw_data);
 
 int							check_raw_data(char *raw_data, t_parser_option *opt);
+
+int							check_line(char *raw_data, int nb_args[2], int type);
+
 int							check_line_str(char *raw_data, int data_len, int i);
 int							check_line_double(char *raw_data,
         int data_len, int i, short max_elem);

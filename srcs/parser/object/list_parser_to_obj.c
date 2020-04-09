@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 11:48:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 20:31:57 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int			check_obj(t_obj *obj)
 	short			err;
 
 	err = 0;
-	print_obj(obj); // i dont check the free if program crash on print_obj.
+	if (obj)
+		return (1);
+	//print_obj(obj);
 	// need to check if there's vertexes and faces
 	// need to check all the v - vn - vt ids in lines and faces
 	// if s != 0 in groups or objects, need vn ids
