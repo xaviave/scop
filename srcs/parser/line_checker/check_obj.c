@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:17:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:06:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 20:24:11 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static int					check_lines_faces(char *raw_data)
 {
 	int						i;
 	int						len;
+	int						nb_id;
 	int						nb_delim;
 
 	len = ft_strlen(raw_data);
@@ -70,18 +71,15 @@ static int					check_lines_faces(char *raw_data)
 		nb_delim = 2;
 	else if (nb_delim)
 		return (0);
-	if (!check_ids_group(&raw_data[0], nb_delim))
-		return (0);
-	i = pass_whitespace_number(0, raw_data);
-	if (i != len && !check_ids_group(&raw_data[i], nb_delim))
-		return (0);
-	i = pass_whitespace_number(i, raw_data);
-	if (i != len && !check_ids_group(&raw_data[i], nb_delim))
-		return (0);
-	i = pass_whitespace_number(i, raw_data);
-	if (i != len && !check_ids_group(&raw_data[i], nb_delim))
-		return (0);
-	return (1);
+	i = 0;
+	nb_id = -1;
+	while (i != len && ++nb_id < 4)
+	{
+		if (!check_ids_group(&raw_data[i], nb_delim))
+			return (0);
+		i = pass_whitespace_number(i, raw_data);
+	}
+	return ((nb_id < 3 || i != len) ? 0 : 1);
 }
 
 static int					dispatch_by_header(char *raw_data, t_parser_option *opt)
@@ -96,8 +94,8 @@ static int					dispatch_by_header(char *raw_data, t_parser_option *opt)
 	ft_bzero(tmp, 3);
 	ft_strncpy(tmp, &raw_data[pass_whitespace_str(0, raw_data)], 2);
 	ft_printf("tmp = %s | str = %s\n", tmp, raw_data);
-	if (opt->data_len > 8 && (!ft_strcmp(tmp, "us") ||
-		!ft_strcmp(tmp, "mt")))
+	if ((opt->data_len > 8 && (!ft_strcmp(tmp, "us") ||
+		!ft_strcmp(tmp, "mt"))) || tmp[0] == '#' || tmp[0] == 's')
 		return (1);
 	else if (!ft_strcmp(tmp, "vt") || !ft_strcmp(tmp, "vn") ||
 		!ft_strcmp(tmp, "vp") || (tmp[0] == 'v' &&
@@ -114,9 +112,6 @@ static int					dispatch_by_header(char *raw_data, t_parser_option *opt)
 		nb_args[1] = 4;
 		// put str option if '/' in raw_data
 		return (check_line(&raw_data[i], nb_args, 2) && check_lines_faces(&raw_data[i]));
-	}
-	else if (ft_strstr(tmp, "#") || ft_strstr(tmp, "s"))
-		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:27:57 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 20:26:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void				get_double_tab(char *option_str, double *tab, int size)
 	while (++nb < size)
 	{
 		tab[nb] = ft_atof(&option_str[i]);
-		i = pass_whitespace_number(0, option_str);
+		i = pass_whitespace_str(0, option_str);
 	}
 }
 

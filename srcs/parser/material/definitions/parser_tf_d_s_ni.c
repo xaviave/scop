@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:34:00 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/09 20:25:52 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int 				parser_d(t_mtl *mtl, char *raw_data, int group_id)
 		mtl->t->group_id = group_id;
 		if (ft_strchr(raw_data, 'h'))
 		{
-			i = pass_whitespace_number(1, raw_data);
+			i = pass_whitespace_str(1, raw_data);
 			mtl->t->factor = ft_atof(&raw_data[i]);
 			mtl->t->halo = 1;
 		}
