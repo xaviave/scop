@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 22:22:39 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 22:24:17 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 14:41:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int							check_lines_faces(char *raw_data,
 	else if (nb_delim)
 		return (0);
 	nb_id = 0;
-	while (i != len && ++nb_id < nb_args[1])
+	while (i != len && ++nb_id <= nb_args[1])
 	{
 		if (!check_ids_group(&raw_data[i], nb_delim))
 			return (0);
