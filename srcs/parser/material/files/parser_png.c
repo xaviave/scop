@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 11:33:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 12:38:17 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 22:45:48 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int						parser_image_header(t_file *file, char *magic)
 
 int						parser_png(t_file *file)
 {
-	if (parser_image_header(file, ""))
+	// magic in hexa = "89 50 4E 47 0D 0A 1A 0A" need to change it
+	if (!parser_image_header(file, ""))
 		return (0);
 	return (1);
 }

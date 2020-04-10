@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 11:56:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 22:46:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,8 @@ typedef struct				s_file
 	char					*name;
 	char					*path;
 	int						type;
-	void					*data;
+	int						nb_octet;
+	char					*data;
 }							t_file;
 
 /*
