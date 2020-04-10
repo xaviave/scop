@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 12:11:36 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 15:01:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int 				parser_ni(t_mtl *mtl, char *raw_data, int group_id)
 	size = sizeof(t_optical_density);
 	if (!(mtl->od = (t_optical_density *)ft_memalloc(size)))
 	    return (0);
-	mtl->disp->group_id = group_id;
+	mtl->od->group_id = group_id;
 	mtl->od->value = ft_atof(&raw_data[2]);
 	return (1);
 }

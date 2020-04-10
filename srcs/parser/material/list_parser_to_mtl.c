@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 22:27:30 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 14:44:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int			check_mtl(t_mtl *mtl)
 {
+	if (mtl)
+		return (1);
 	print_mtl(mtl);
 	return (1);
 }

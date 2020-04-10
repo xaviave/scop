@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 11:56:25 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 14:45:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void					init_mtl(t_mtl *mtl, int id,
 	mtl->path = parser->path[id];
 	mtl->nb_groups = nb_group;
     // don't forget to set mtl->name with good value.
-	ft_printf("nb_groups not set need to count newmtl in file | %d\n", nb_group);
 	if (!(mtl->groups = (char **)malloc(sizeof(char *) * nb_group)))
 		return ;
 }

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:04:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 14:35:10 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 14:46:14 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static int					define_file_type(char *type)
 
 static int					reader_file(t_file *file)
 {
+	ft_printf("%s\n", file->name);
 	ft_printf("need a char * with the image data, dont use gnl\n");
 	if (file)
 		return (1);
@@ -56,6 +57,7 @@ int 						parse_file(t_file *file, char *raw_data, char *path)
 
 	if (!(tmp = ft_strtrim(raw_data)))
 	    return (0);
+	ft_printf("-----------\n");
 	if (!(file->name = create_path(path, tmp)))
 	{
 		ft_strdel(&tmp);
