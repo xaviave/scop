@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/09 22:23:35 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/10 12:39:10 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,11 @@ FILES = main.c \
 		parser/material/print_mtl.c \
 		parser/material/list_parser_to_mtl.c \
 		parser/material/files/parse_file.c \
+		parser/material/files/parser_png.c \
+		parser/material/files/parser_jpg.c \
+		parser/material/files/parser_jpeg.c \
+		parser/material/files/parser_mipmap_texture.c \
+		parser/material/files/parser_compiled_procedural_texture.c \
 		parser/material/definitions/parser_k.c \
 		parser/material/definitions/parse_color.c \
 		parser/material/definitions/parser_tf_d_s_ni.c \

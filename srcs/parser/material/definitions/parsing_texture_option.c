@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:26:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 12:02:28 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void				define_value_by_option(t_texture_option *new,
 }
 
 int 					parsing_texture_option(t_texture_option *new,
-	t_file *file, char *raw_data, short type)
+	t_file *file, char *raw_data, short type, char *path)
 {
 	int					i;
 	char				*tmp;
@@ -102,7 +102,7 @@ int 					parsing_texture_option(t_texture_option *new,
 	    ft_strdel(&option_tab[i]);
 	free(option_tab);
 	option_tab = NULL;
-	if (!(parse_file(file, &raw_data[pass_texture_option(raw_data)])))
+	if (!(parse_file(file, &raw_data[pass_texture_option(raw_data)], path)))
 	    return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 18:46:21 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 11:56:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -400,6 +400,7 @@ typedef struct				s_mtl
 {
 	int						id;
 	int                     nb_args;
+	char					*path; // copy of parser->path | be careful with free
 	//no space else error
 	int						nb_groups;
 	char					**groups; // the id define the group | (char *) is the name

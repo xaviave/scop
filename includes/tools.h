@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 18:46:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 11:50:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ int							len_list_parser_id(t_list_parser *list);
 void                		init_obj(t_obj *obj, t_parser_option *opt,
                                      int id, int nb_args, t_addr **addr);
 
-void						init_mtl(t_mtl *mtl, int id, int nb_args, int nb_groups);
+void						init_mtl(t_mtl *mtl, int id,
+	t_parser *parser, int nb_groups);
 
 void						init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int));
 void						init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *, int));
 void						init_shading_ptr(void (*f[11])(char *));
-void						init_file_ptr(void (*f[10])(t_file *));
+void						init_file_ptr(int (*f[10])(t_file *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
 	int index, short parsing_type);

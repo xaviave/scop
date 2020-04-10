@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:04:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 11:44:59 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 12:32:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,39 @@ static int					define_file_type(char *type)
 		return (F_MPB);
 	else if (!ft_strcmp(type, "mpc"))
 		return (F_MPC);
-	return (10);
+	return (-1);
 }
 
-int 						parse_file(t_file *file, char *raw_data)
+static int					reader_file(t_file *file)
+{
+	ft_printf("need a char * with the image data, dont use gnl\n");
+	if (file)
+		return (1);
+	return (1);
+}
+
+int 						parse_file(t_file *file, char *raw_data, char *path)
 {
 	int						i;
-	void					(*f[10])(t_file *);
+	char					*tmp;
+	int						(*f[10])(t_file *);
 
-	if (!(file->name = ft_strtrim(raw_data)))
+	if (!(tmp = ft_strtrim(raw_data)))
 	    return (0);
+	if (!(file->name = create_path(path, tmp)))
+	{
+		ft_strdel(&tmp);
+		return (0);
+	}
+	ft_strdel(&tmp);
 	i = ft_strlen(file->name) - 3;
 	if ((file->type = define_file_type(&file->name[i])) == -1)
     {
-        ft_printf("Line error | can't parse RFL file, private WaveFront technology\n");
+        ft_printf("Can't parse RFL file or this file extention: %s\n", &raw_data[i]);
         return (0);
     }
+	if (!(reader_file(file)))
+		return (0);
 	init_file_ptr(f);
-	f[file->type](file);
-	return (1);
+	return (f[file->type](file));
 }

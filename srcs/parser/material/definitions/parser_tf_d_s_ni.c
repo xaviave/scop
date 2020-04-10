@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:25:52 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/10 12:11:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int 				parser_d(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(5, raw_data);
 		if (!(parsing_texture_option(&mtl->t->option, &mtl->t->file,
-			&raw_data[i], ID_D)))
+			&raw_data[i], ID_D, mtl->path)))
 		    return (0);
 	}
 	else
@@ -64,7 +64,7 @@ int 				parser_ns(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->se->option, &mtl->se->file,
-			&raw_data[i], ID_NS)))
+			&raw_data[i], ID_NS, mtl->path)))
 		    return (0);
 	}
 	else
