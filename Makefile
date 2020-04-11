@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/10 12:39:10 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/11 18:59:04 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ FILES = main.c \
 		parser/object/definitions/parser_f_l_o_g_pass.c \
 		parser/material/print_mtl.c \
 		parser/material/list_parser_to_mtl.c \
+		parser/material/files/print_hexa.c \
 		parser/material/files/parse_file.c \
 		parser/material/files/parser_png.c \
 		parser/material/files/parser_jpg.c \
@@ -114,6 +115,12 @@ fclean: clean
 	@echo "\033[31mScop binary deleted.\033[0m"
 
 re: fclean all
+
+delete:
+	@$(RM) $(OBJS)
+	@$(RM) $(NAME)
+
+no: delete all
 
 test:
 	@$(PY) $(TESTER)
