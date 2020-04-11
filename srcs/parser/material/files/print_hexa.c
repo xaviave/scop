@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_bmp.c                                       :+:      :+:    :+:   */
+/*   print_hexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/10 12:17:21 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/11 18:44:22 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/11 15:00:51 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/11 15:46:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../../includes/parser.h"
 
-int						parser_bmp(t_file *file)
+void				print_hexa(unsigned char *data, unsigned int len)
 {
-	unsigned char		magic[1];
-	
-	magic[0] = 0x89;
-	// not really beautiful, could be better
-	print_hexa(file->img.data, 100);
-	if (!check_image_magic(file->img.data, magic, 1) ||
-		!parser_image_header(&file->img, 8))
-		return (0);
-	return (1);
+	unsigned int	width;
+	unsigned int	i;
+	unsigned int	j;
+
+	i = -1;
+	width = 16;
+ 	ft_printf("\n---------------------------------\nSize: %d\n\n", len);
+	while (++i < len)
+	{
+		j = -1;
+		while (++j < width)
+		{
+			if (i + j < len)
+				ft_printf("%02x ", data[j]);
+		}
+		data += width;
+		i += j;
+		ft_printf("\n");
+	}
 }

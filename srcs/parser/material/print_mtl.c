@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:22:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/11 19:11:55 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,19 @@ void	print_color(t_color *color)
 		dprintf(1, "color: r = %f | g = %f | b = %f\n", color->r, color->g, color->b);
 }
 
+void	print_img(t_img *img)
+{
+	if (img)
+		ft_printf("width = %.4u | length = %.4u | bit depth = %u | color type = %u | compression = %u | filter = %u | interlace = %u\n", img->width, img->heigth, img->bit_depth, img->color_type, img->compression, img->filter, img->interlace);
+}
+
 void	print_file(t_file *file)
 {
 	if (file)
-		ft_printf("file: name = %s | path = %s | type = %d\n", file->name, file->path, file->type);
+	{
+		ft_printf("file: name = %s | path = %s | type = %d | nb bytes\n", file->name, file->path, file->type, file->nb_bytes);
+		print_img(&file->img);
+	}
 }
 
 void	print_double(char *str, double *tab, int len)

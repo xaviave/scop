@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 15:49:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/11 18:45:55 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ int							parser_mpc(t_file *file);
 int							parser_mps(t_file *file);
 int							parser_mpb(t_file *file);
 
-int							parser_image_header(t_file *file, char *magic);
+int							check_image_magic(unsigned char *data, unsigned char *magic, int len);
+int							parser_image_header(t_img *img, int pass);
+
+void						print_hexa(unsigned char *data, unsigned int len);
+
 
 #endif

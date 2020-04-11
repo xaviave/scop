@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:04:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 22:48:36 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/11 19:12:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,25 @@ static int					define_file_type(char *type)
 
 static int					reader_file(t_file *file, int *file_size)
 {
-	int		fd;
-	char	line[50];
-	int		ret;
-	char	*tmp;
+	int						fd;
+	unsigned char			line[IMG_BUFFER];
+	int						ret;
+	unsigned char			*tmp;
 
 	fd = open(file->path, O_RDONLY);
 	*file_size = 0;
-	file->data = NULL;
-	while ((ret = read(fd, &line, 50)) > 0)
+	while ((ret = read(fd, &line, IMG_BUFFER)) > 0)
 	{
-		tmp = file->data;
-		file->data = ft_memalloc((*file_size) + ret);
+		tmp = file->img.data;
+		file->img.data = ft_memalloc((*file_size) + ret);
 		if (tmp)
-			ft_memcpy(file->data, tmp, (*file_size));
-		ft_memcpy(file->data + (*file_size), line, ret);
+			ft_memcpy(file->img.data, tmp, (*file_size));
+		ft_memcpy(file->img.data + (*file_size), line, ret);
 		(*file_size) += ret;
 		if (tmp)
 			free(tmp);
 	}
-	if (file->data)
-		return (1);
-	return (0);
+	return (file->img.data ? 1 : 0);
 }
 
 int 						parse_file(t_file *file, char *raw_data, char *path)
@@ -82,11 +79,10 @@ int 						parse_file(t_file *file, char *raw_data, char *path)
         ft_printf("Can't parse RFL file or this file extention: %s\n", &raw_data[i]);
         return (0);
     }
-	ft_printf("really long to read a png (8s) so need parallization with thread or something\n");
-	file->data = NULL;
+	ft_memset(&file->img, 0, sizeof(t_img));
 	if (!(reader_file(file, &file_size)))
 		return (0);
-	file->nb_octet = file_size;
+	file->nb_bytes = file_size;
 	init_file_ptr(f);
 	return (f[file->type](file));
 }

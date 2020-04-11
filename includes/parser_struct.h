@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:14:29 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 22:46:46 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/11 10:19:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** Defines
 */
 
-# define IMG_BUFFER 750000
+# define IMG_BUFFER 500000
 
 # define ID_VT 0
 # define ID_VN 1

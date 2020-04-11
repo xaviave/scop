@@ -31,9 +31,14 @@ void            delete_texture_option(t_texture_option *to)
     ft_memdel((void **)&to->t);
 }
 
+void			delete_img(t_img img)
+{
+	ft_memdel((void **)&img.data);
+}
+
 void            delete_t_file(t_file *file)
 {
     ft_strdel(&file->name);
     ft_strdel(&file->path);
-    ft_memdel((void **)&file->data);
+	delete_img(file->img);
 }
