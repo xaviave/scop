@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:18:48 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:51:48 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:35:01 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 // static int					check_color(char *raw_data)
 // {

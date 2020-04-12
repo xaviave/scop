@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:36:20 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:31:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ERROR_H
 
 # include "../libft/header/libft.h"
-# include "../includes/parser_struct.h"
+# include "parser_struct.h"
 
 /*
 ** Functions

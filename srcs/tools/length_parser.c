@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 20:27:28 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:13:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:36:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tools.h"
+#include "tools.h"
 
 static int                  calc_id_g(t_list_parser *tmp)
 {

@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 14:24:18 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/09 20:24:53 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:33:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../../includes/parser.h"
+# include "parser.h"
 
 int 				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
 {

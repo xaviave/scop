@@ -6,12 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 22:22:39 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 14:41:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:35:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 int							check_vertexes(char *raw_data)
 {

@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 19:00:06 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 22:01:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:35:05 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 /*
 ** if neg normal behavior else error if the nmuber is negativ and stop if a '.' is found 

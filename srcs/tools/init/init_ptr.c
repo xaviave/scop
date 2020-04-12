@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 12:17:09 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:37:41 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 void		init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int))
 {

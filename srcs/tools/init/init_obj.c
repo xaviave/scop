@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 15:37:51 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/05 12:30:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:38:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/tools.h"
+# include "tools.h"
 
 static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
         t_addr **addr)

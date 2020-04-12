@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:10:38 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:26:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:33:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 static void			print_int(int *nb, int nb_int, char *str)
 {

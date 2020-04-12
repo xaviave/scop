@@ -6,12 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:19:28 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:29:15 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:36:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
-#include "../includes/render.h"
+#include "parser.h"
+#include "render.h"
 
 int             main(int ac, char **av)
 {

@@ -6,13 +6,13 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:11:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:22:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:35:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tools.h"
-#include "../../includes/error.h"
-#include "../../includes/cleaner.h"
+#include "tools.h"
+#include "error.h"
+#include "cleaner.h"
 
 static void     delete_t_mtl(t_mtl mtl)
 {

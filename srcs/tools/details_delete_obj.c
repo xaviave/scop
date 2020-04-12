@@ -1,5 +1,17 @@
-#include "../../includes/tools.h"
-#include "../../includes/cleaner.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   details_delete_obj.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/12 18:37:15 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/12 18:37:19 by xamartin         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tools.h"
+#include "cleaner.h"
 
 void            delete_str_tab(char **tab)
 {

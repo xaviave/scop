@@ -6,12 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 20:39:32 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/05 12:43:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:37:01 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/tools.h"
-# include "../../includes/parser.h"
+# include "tools.h"
+# include "parser.h"
 
 static t_list_parser		*new_list_parser(char *raw_data,
 	t_parser_option *opt)

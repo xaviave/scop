@@ -6,12 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 21:29:14 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/08 21:34:27 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:36:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/scop.h"
-#include "../../includes/parser_struct.h"
+#include "scop.h"
+#include "parser_struct.h"
 
 void        *addr_add(void *content, int type, t_addr **addr)
 {

@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 14:45:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:38:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../includes/tools.h"
+# include "tools.h"
 
 void					init_mtl(t_mtl *mtl, int id,
 	t_parser *parser, int nb_group)

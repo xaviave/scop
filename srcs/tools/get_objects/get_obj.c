@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/tools.h"
+#include "tools.h"
 
 t_vertex		get_vertex(t_obj *obj, int id)
 {

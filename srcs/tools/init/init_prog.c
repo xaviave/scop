@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 16:16:33 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:37:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/tools.h"
+#include "tools.h"
 
 
 void	init_t_prog(t_prog *p, t_parser *parser)

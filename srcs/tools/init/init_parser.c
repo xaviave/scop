@@ -6,12 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:44:12 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:30:33 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:37:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/tools.h"
-#include "../../../includes/cleaner.h"
+#include "tools.h"
+#include "cleaner.h"
 
 void	init_parser(t_parser *parser, int ac, char **av)
 {

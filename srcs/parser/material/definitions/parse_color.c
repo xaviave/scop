@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:03:56 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 20:25:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:34:48 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/parser.h"
+#include "parser.h"
 
 /*
 ** Transform xyz color type to rgb using a matrix

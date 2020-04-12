@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 18:45:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:36:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/tools.h"
+# include "tools.h"
 
 /*
 ** pass_whitespace_double pass all whitespaces and the first double

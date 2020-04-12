@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 16:30:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:30:02 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:37:34 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/tools.h"
+#include "tools.h"
 
 int     	init_texture_option(t_texture_option *new)
 {

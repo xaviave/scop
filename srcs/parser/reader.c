@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 11:50:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:33:21 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "parser.h"
 
 static t_list_parser	*open_file(int fd, t_parser_option *opt, t_addr **addr)
 {

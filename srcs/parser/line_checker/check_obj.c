@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:17:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 22:26:54 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:34:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 static int					dispatch_f_l_g_o(char *raw_data, int i,
 	t_parser_option *opt, char tmp[3], int nb_args[2])

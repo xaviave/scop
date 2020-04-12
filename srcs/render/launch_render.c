@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:36:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/07 20:26:46 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:33:16 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/render.h"
+#include "render.h"
 
 /*
 Need function to use:	- new window -> OK 
