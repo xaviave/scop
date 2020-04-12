@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/11 19:11:55 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/11 20:32:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_file(t_file *file)
 {
 	if (file)
 	{
-		ft_printf("file: name = %s | path = %s | type = %d | nb bytes\n", file->name, file->path, file->type, file->nb_bytes);
+		ft_printf("file: name = %s | path = %s | type = %d | nb bytes = %d\n", file->name, file->path, file->type, file->nb_bytes);
 		print_img(&file->img);
 	}
 }
@@ -92,12 +92,14 @@ void	print_mtl(t_mtl *mtl)
 	if (mtl->t)
 	{
 		dprintf(1, "halo = %d | factor = %f | group_id %d\n", mtl->t->halo, mtl->t->factor, mtl->t->group_id);
-		print_texture_option(&mtl->t->option);		
+		print_file(&mtl->t->file);
+		print_texture_option(&mtl->t->option);	
 	}
 	ft_printf("\n--------------------------------------------------\nspecular exponent: code Ns\n\n");
 	if (mtl->se)
 	{
 		dprintf(1, "value = %f | group_id %d\n", mtl->se->value, mtl->se->group_id);
+		print_file(&mtl->se->file);
 		print_texture_option(&mtl->se->option);
 	}
 	ft_printf("\n--------------------------------------------------\nsharpness: code sharpness\n\n");

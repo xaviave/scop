@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/10 11:50:38 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:21:51 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,10 @@ t_texture					get_texture(t_obj *obj, int id);
 t_normal					get_normal(t_obj *obj, int id);
 t_face						get_face(t_obj *obj, int id);
 t_line						get_line(t_obj *obj, int id);
+
+unsigned int				get_4_bytes(unsigned char *data);
+unsigned int				get_4_bytes_pass(unsigned char *data,
+	unsigned int *pass);
+
 
 #endif

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_compiled_procedural_texture.c               :+:      :+:    :+:   */
+/*   get_bytes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/10 12:18:12 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:29:12 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/12 18:20:01 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/12 18:21:53 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "tools.h"
 
-int						parser_cxc(t_file *file)
+unsigned int			get_4_bytes(unsigned char *data)
 {
-	if (file)
-		return (0);
-	return (0);
+	unsigned char		o[4];
+
+	ft_memcpy(o, data, 4);
+	return ((unsigned int)(o[0] << 24) + (o[1] << 16) + (o[2] << 8) + o[3]);
 }
 
-int						parser_cxs(t_file *file)
+unsigned int			get_4_bytes_pass(unsigned char *data,
+	unsigned int *pass)
 {
-	if (file)
-		return (0);
-	return (0);
-}
+	unsigned int		bytes;
 
-int						parser_cxb(t_file *file)
-{
-	if (file)
-		return (0);
-	return (0);
+	bytes = get_4_bytes(&data[*pass]);
+	*pass += 4;
+	return (bytes);
 }

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/11 19:09:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:15:55 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ typedef struct				s_img
 	unsigned int			heigth;
 	unsigned int			bit_depth;
 	unsigned int			color_type;
+	unsigned int			palette;
 	unsigned int			compression;
 	// see http://www.libpng.org/pub/png/spec/1.2/PNG-Compression.html
 	unsigned int			filter;
@@ -210,7 +211,7 @@ typedef struct				s_file
 	char					*name;
 	char					*path;
 	int						type;
-	int						nb_bytes;
+	unsigned int			nb_bytes;
 	t_img					img;
 }							t_file;
 

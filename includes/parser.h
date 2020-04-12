@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/11 18:45:55 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:12:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,51 @@ int							parser_mpc(t_file *file);
 int							parser_mps(t_file *file);
 int							parser_mpb(t_file *file);
 
-int							check_image_magic(unsigned char *data, unsigned char *magic, int len);
-int							parser_image_header(t_img *img, int pass);
+int							check_image_magic(unsigned char *data, unsigned char *magic, unsigned int len);
+int							parser_image_header(t_img *img, unsigned int *pass);
 
 void						print_hexa(unsigned char *data, unsigned int len);
 
+/*
+** PNG parser
+** path: srcs/parser/material/files/png/
+*/
+
+int							get_gama(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_chrm(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_srgb(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_iccp(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_trns(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_ihdr(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_idat(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_iend(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_bkgd(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_phys(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_sbit(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_time(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_plte(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_splt(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_hist(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_text(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_ztxt(t_img *img, unsigned int *pass,
+	unsigned int len);
+int							get_itxt(t_img *img, unsigned int *pass,
+	unsigned int len);
 
 #endif
