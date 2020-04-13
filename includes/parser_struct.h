@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:14:29 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/11 10:19:56 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/13 13:25:58 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,6 @@
 
 # define P_OBJ 0
 # define P_MTL 1
-
-// image file type
-# define F_BMP 0
-# define F_PNG 1
-# define F_JPEG 2
-# define F_JPG 3
-// compiled procedural texture files
-# define F_CXC 4
-# define F_CXS 5
-# define F_CXB 6
-// mip-mapped texture files
-# define F_MPC 7
-# define F_MPS 8
-# define F_MPB 9
-// spectral Curve File | could not be parse
-# define F_RFL 10
 
 /*
 ** DEFINE for memory allocation and keep address.

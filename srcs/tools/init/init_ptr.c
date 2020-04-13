@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:37:41 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/13 13:26:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,4 @@ void		init_shading_ptr(void (*f[11])(char *))
 	f[8] = &pass_lol;
 	f[9] = &pass_lol;
 	f[10] = &pass_lol;
-}
-
-int pass_loli(t_file *file)
-{
-	if (file)
-		ft_printf("Yo come on if you are here it s because you need img data lol -> code it\n");
-	return (1);
-}
-
-void		init_file_ptr(int (*f[10])(t_file *))
-{
-	f[0] = &pass_loli;
-	f[1] = &parser_png;
-	f[2] = &pass_loli;
-	f[3] = &pass_loli;
-	f[4] = &pass_loli;
-	f[5] = &pass_loli;
-	f[6] = &pass_loli;
-	f[7] = &pass_loli;
-	f[8] = &pass_loli;
-	f[9] = &pass_loli;
-// 	f[0] = &parser_bmp;
-// 	f[2] = &parser_jpeg;
-// 	f[3] = &parser_jpg;
-// 	f[4] = &parser_cxc;
-// 	f[5] = &parser_cxs;
-// 	f[6] = &parser_cxb;
-// 	f[7] = &parser_mpc;
-// 	f[8] = &parser_mps;
-// 	f[9] = &parser_mpb;
 }

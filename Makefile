@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/12 18:26:29 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/13 13:55:59 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,19 +50,7 @@ FILES = main.c \
 		parser/object/definitions/parser_f_l_o_g_pass.c \
 		parser/material/print_mtl.c \
 		parser/material/list_parser_to_mtl.c \
-		parser/material/files/print_hexa.c \
-		parser/material/files/parse_file.c \
-		parser/material/files/parser_png.c \
-		parser/material/files/parser_jpg.c \
-		parser/material/files/parser_jpeg.c \
-		parser/material/files/parser_mipmap_texture.c \
-		parser/material/files/parser_compiled_procedural_texture.c \
-		parser/material/files/png/parser_chunk_color.c \
-		parser/material/files/png/parser_chunk_header.c \
-		parser/material/files/png/parser_chunk_other_infos.c \
-		parser/material/files/png/parser_chunk_palette.c \
-		parser/material/files/png/parser_chunk_textual.c \
-		parser/material/files/png/parser_chunk_idat_iend.c \
+		parser/material/definitions/parse_file.c \
 		parser/material/definitions/parser_k.c \
 		parser/material/definitions/parse_color.c \
 		parser/material/definitions/parser_tf_d_s_ni.c \
@@ -86,7 +74,6 @@ FILES = main.c \
 		tools/init/init_parser.c \
 		tools/init/init_parser_option.c \
 		tools/init/init_texture_option.c \
-		tools/bitwise/get_bytes.c \
 		render/launch_render.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(FILES))

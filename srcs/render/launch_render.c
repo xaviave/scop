@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:36:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:33:16 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/13 13:00:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Need function to use:	- new window -> OK
 						- get data addr
 						- put image to window
 						- get color value
-						- loop / loop_hook / expose_hook / key_hook / mous_hook
+						- loop / loop_hook / expose_hook / key_hook / mouse_hook
 						- auto replay for hook
 						- put string
 						- xpm to image
