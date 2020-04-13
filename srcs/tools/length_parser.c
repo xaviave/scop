@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 20:27:28 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:36:56 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/13 14:10:10 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int							count_group_mtl(t_list_parser *list)
 	tmp = list;
 	while (tmp)
 	{
-		if (tmp->id == ID_ERR_MTL && ft_strchr(tmp->data, 'n'))
+		if (tmp->id == ID_ERR_MTL && ft_strlen(tmp->data) > 1 &&
+			tmp->data[0] == 'n')
 			i++;
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/13 13:52:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/13 14:04:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,12 @@ void	print_mtl(t_mtl *mtl)
 	ft_printf("\n--------------------------------------------------\nshading: code illum\n\n");
 	if (mtl->shading)
 		ft_printf("type = %d | group_id %d\t", mtl->shading->type, mtl->shading->group_id);
+	ft_printf("\n--------------------------------------------------\ngroup: code newmtl\n\n");
 	if (mtl->nb_groups)
 	{
 		int i = -1;
+
+		ft_printf("nb_groups = %d\n", mtl->nb_groups);
 		while (++i < mtl->nb_groups)
 			ft_printf("%s\t", mtl->groups[i]);
 		ft_printf("\n");
