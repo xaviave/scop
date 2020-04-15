@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:21:51 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/15 18:58:42 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ int 						init_texture_option(t_texture_option *new);
 void						init_parser(t_parser *parser, int ac, char **av);
 void						init_parser_mtl(t_parser *parser);
 
-void						init_t_prog(t_prog *p, t_parser *parser);
-void						init_graphic_context(t_sdl *sdl);
+int							init_gdata(t_gdata *gdata, t_parser *parser);
 
 int							pass_whitespace(int i, char *str);
 int							pass_whitespace_str(int i, char *str);
@@ -99,10 +98,5 @@ t_texture					get_texture(t_obj *obj, int id);
 t_normal					get_normal(t_obj *obj, int id);
 t_face						get_face(t_obj *obj, int id);
 t_line						get_line(t_obj *obj, int id);
-
-unsigned int				get_4_bytes(unsigned char *data);
-unsigned int				get_4_bytes_pass(unsigned char *data,
-	unsigned int *pass);
-
 
 #endif

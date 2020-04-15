@@ -5,153 +5,130 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/04 22:36:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/13 16:01:04 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/15 17:32:30 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/15 19:02:09 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
 /*
-Need function to use:	- new window -> OK 
+Need function to use:	- new gdata->win -> OK 
+						- clear gdata->win -> glClear
 						- put pixel -> glDrawPixel but not optim maybe create a texture see link 1
-						- new image -> texture glTexImage2D
+						- new image
 						- get data addr
-						- put image to window
+						- put image to gdata->win
 						- get color value
-						- loop / loop_hook / expose_hook / key_hook / mouse_hook
+						- loop / loop_hook / expose_hook / key_hook / mous_hook
 						- auto replay for hook
 						- put string
 						- xpm to image
 						- destroy image
 						- swap buffer -> flushGLContext
 						- change context ->  selectGLContext
-
 						
 1 - http://www.multigesture.net/articles/how-to-draw-pixels-to-a-texture-opengl/
-
-
 TO DO:
 		- put pixel (char-RGB) in a texture of the size of a screen
 		- draw lines
 		- load img (xpm free to use else code it or change imaeg type to xpm)
 		- create image (load image and put it in a texture)
-		- multi screen in windows
+		- multi screen in gdata->wins
 		- change screen (context)
-
 		MATRIX:
 		- create a lib to computate matrix
 		- mutliply
 		- add
 		- pow
-
 		MENU: 
 		- create rect | circle | fonts -> for menus
 		- create hit box for button and other things
-
 add things when we things about it
-
-function TO DO:
-	- poll event
-	- block fps to 30
-	- normalizer for every coordonate (min -1.0f max 1.0)
-
 */
 
-void		clear_buffer()
+void		key_callback(GLFWwindow *win, int key, int scancode, int action, int mods)
 {
-	// put the coor white in GL_COLOR_BUFFER_BIT
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	// apply the GL_COLOR_BUFFER_BIT n the buffer
-	glClear(GL_COLOR_BUFFER_BIT);
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(win, GLFW_TRUE);
 }
 
-void		setup_texture(unsigned int screen_data[H][W][3])
+void		terminate_reader(t_gdata *gdata)
 {
-	// https://open.gl/textures
-
-	ft_bzero(screen_data, sizeof(&screen_data));
-	// https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, W, H, 0, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*)screen_data);
-	// https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexParameter.xhtml
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    // https://www.flipcode.com/archives/Advanced_OpenGL_Texture_Mapping.shtml
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); 
-    // Enable textures
-    glEnable(GL_TEXTURE_2D);
+	glfwDestroyWindow(gdata->win);
+	// need to free gdata->obj | gdata->mtl
+	glfwTerminate();
 }
 
-void		update_texture(unsigned int screen_data[H][W][3], double color)
+void		render(t_gdata *gdata)
 {
-	int				x;
-	int				y;
-	unsigned int	display_width;
-	unsigned int	display_height;
+	float	ratio;
+	mat4x4	m, p, mvp;
+    int 	width, height;
+	GLuint	vertex_buffer, vertex_shader, fragment_shader, program;
+    GLint	mvp_location, vpos_location, vcol_location;
 
-	display_width = 64;
-	display_height = 32;
-	
-	y = -1;
-    while (++y < 32)
-	{
-		x = -1;
-        while (++x < 64)
-		{
-            if(color > 0.5)
-            {
-				screen_data[y][x][0] = 0;
-				screen_data[y][x][1] = 0;
-				screen_data[y][x][2] = 0;
-			}
-            else
-			{
-                screen_data[y][x][0] = 255;
-				screen_data[y][x][1] = 255;
-				screen_data[y][x][2] = 255;
-			}
-		}
-	}
-
-    glTexSubImage2D(GL_TEXTURE_2D, 0 ,0, 0, W, H, GL_RGB, GL_UNSIGNED_BYTE, (GLvoid*)screen_data);
+    glGenBuffers(1, &vertex_buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
  
-    glBegin( GL_QUADS );
-        glTexCoord2d(0.0, 0.0);		glVertex2d(0.0,			  0.0);
-        glTexCoord2d(1.0, 0.0); 	glVertex2d(display_width, 0.0);
-        glTexCoord2d(1.0, 1.0); 	glVertex2d(display_width, display_height);
-        glTexCoord2d(0.0, 1.0); 	glVertex2d(0.0,			  display_height);
-    glEnd();
+    vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
+    glCompileShader(vertex_shader);
+ 
+    fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
+    glCompileShader(fragment_shader);
+ 
+    program = glCreateProgram();
+    glAttachShader(program, vertex_shader);
+    glAttachShader(program, fragment_shader);
+    glLinkProgram(program);
+ 
+    mvp_location = glGetUniformLocation(program, "MVP");
+    vpos_location = glGetAttribLocation(program, "vPos");
+    vcol_location = glGetAttribLocation(program, "vCol");
+ 
+    glEnableVertexAttribArray(vpos_location);
+    glVertexAttribPointer(vpos_location, 2, GL_FLOAT, GL_FALSE,
+                          sizeof(vertices[0]), (void*) 0);
+    glEnableVertexAttribArray(vcol_location);
+    glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
+                          sizeof(vertices[0]), (void*) (sizeof(float) * 2));
+	while (!glfwWindowShouldClose(gdata->win))
+	{
+
+        glfwGetFramebufferSize(gdata->win, &width, &height);
+        ratio = width / (float) height;
+ 
+        glViewport(0, 0, width, height);
+        glClear(GL_COLOR_BUFFER_BIT);
+ 
+        mat4x4_identity(m);
+        mat4x4_rotate_Z(m, m, (float) glfwGetTime());
+        mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
+        mat4x4_mul(mvp, p, m);
+ 
+        glUseProgram(program);
+        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+ 
+        glfwSwapBuffers(gdata->win);
+		glfwWaitEvents();
+		ft_printf("ue");
+	}
+	terminate_reader(gdata);
 }
 
-static void	graphic_loop(t_prog *p)
+void		error_callback(int error, const char* description)
 {
-	unsigned int	screen_data[H][W][3];
-	int				color;
-	double 			tmp;
-
-	color = 0;
-	setup_texture(screen_data);
-    while (p->err)
-    {
-        SDL_WaitEvent(&p->sdl.ev);
-        if (p->sdl.ev.type == SDL_QUIT ||
-            (p->sdl.ev.type == SDL_KEYDOWN &&
-			p->sdl.ev.key.keysym.sym == SDLK_ESCAPE))
-            break;
-		tmp = (++color % 255) / 255.0;
-		update_texture(screen_data, tmp);
-		SDL_GL_SwapWindow(p->sdl.win); // need to find the glutswapbuffers equivalent
-    }
-    SDL_DestroyWindow(p->sdl.win);
-    SDL_GL_DeleteContext(p->sdl.gl_context);
-    SDL_Quit();
+    fprintf(stderr, "Error: %s\n", description);
 }
 
-int         launch_render(t_prog *p, t_parser *parser)
+int         launch_render(t_gdata *gdata, t_parser *parser)
 {
-    init_t_prog(p, parser);
-	init_graphic_context(&p->sdl);
-        graphic_loop(p);
+    if (!init_gdata(gdata, parser))
+		return (0);
+	render(gdata);
 	return (1);
 }

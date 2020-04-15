@@ -6,14 +6,14 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:31:07 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/15 18:59:11 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# include "../libft/header/libft.h"
+# include "../lib/libft/header/libft.h"
 # include "parser_struct.h"
 
 /*
