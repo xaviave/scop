@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   vertex4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/16 15:57:02 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/17 22:43:57 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/17 22:47:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "tools.h"
 
-# include "../external_lib/libft/header/libft.h"
-# include "parser_struct.h"
+float			vertex4_mul_inner(float a[4], float b[4])
+{
+	float		p;
+	int			i;
 
-/*
-** Functions
-*/
+	p = 0.0f;
+	i = -1;
+	while (++i < 4)
+		p += b[i] * a[i];
+	return p;
+}
 
-void        handle_error_parser(char *message, t_addr **addr);
-void		handle_error_sdl(char *message, ...);
+void			vertex4_row_matrix4x4(float r[4], t_matrix *m, int i)
+{
+	int			k;
 
-#endif
+	k = -1;
+	while (k < 4)
+		r[k] = m->values[k][i];
+}

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/15 18:58:42 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/17 23:03:09 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # include "parser_struct.h"
 # include "render_struct.h"
-# include "error.h"
+# include "./error.h"
 
 /*
 ** Structures
@@ -98,5 +98,67 @@ t_texture					get_texture(t_obj *obj, int id);
 t_normal					get_normal(t_obj *obj, int id);
 t_face						get_face(t_obj *obj, int id);
 t_line						get_line(t_obj *obj, int id);
+
+/*
+** MATRIX
+*/
+
+/*
+** srcs/tools/matrixes/basic_matrix4x4.c
+*/
+
+void						multiply_matrix4x4(t_matrix *result,
+	t_matrix *m, t_matrix *multiply);
+void						clear_matrix4x4(t_matrix *m);
+void						translate_matrix4x4(t_matrix *m,
+	float x, float y, float z);
+void						ortho_matrix4x4(t_matrix *m, float tab[6]);
+
+/*
+** srcs/tools/matrixes/rotate_matrix4x4.c
+*/
+
+void						rotate_matrix4x4_x(t_matrix *rotate,
+	t_matrix *m, float angle);
+void						rotate_matrix4x4_y(t_matrix *rotate,
+	t_matrix *m, float angle);
+void						rotate_matrix4x4_z(t_matrix *rotate,
+	t_matrix *m, float angle);
+
+/*
+** srcs/tools/matrixes/advanced_matrix4x4.c
+*/
+
+void						perspective_matrix4x4(t_matrix *m, float y_fov,
+	float aspect, float n, float f);
+void						translate_in_place_matrix4x4(t_matrix *m,
+	float x, float y, float z);
+void						look_at_matrix4x4(t_matrix *m,
+	float camera_pos[3], float up_data);
+
+/*
+** srcs/tools/matrixes/tools_matrix4x4.c
+*/
+
+float						degree_to_radians(float angle);
+float						*transform_matrix4x4_to_float(t_matrix *m);
+
+/*
+** srcs/tools/matrixes/print_matrix.c
+*/
+
+void						print_matrix(t_matrix *m, char *str);
+void						print_mat4x4(mat4x4 m, char *str);
+
+/*
+** srcs/tools/matrixes/init_delete_matrix.c
+*/
+
+t_matrix					*new_matrix(int rows, int columns);
+void						identity_matrix4x4(t_matrix *m);
+t_matrix					*init_identity_matrix4x4();
+void						*free_matrix(t_matrix *m);
+
+// http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-17-quaternions/
 
 #endif

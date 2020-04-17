@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/16 15:57:02 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/15 23:25:13 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/15 23:54:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "render.h"
 
-# include "../external_lib/libft/header/libft.h"
-# include "parser_struct.h"
-
-/*
-** Functions
-*/
-
-void        handle_error_parser(char *message, t_addr **addr);
-void		handle_error_sdl(char *message, ...);
-
-#endif
+void		key_callback(GLFWwindow *win, int key, int scancode, int action, int mods)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(win, GLFW_TRUE);
+}

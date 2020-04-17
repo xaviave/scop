@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/15 18:59:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/16 15:56:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
-# include "../lib/libft/header/libft.h"
+# include "../external_lib/libft/header/libft.h"
 
 /*
 ** Defines

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   tools_matrix4x.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/16 15:57:02 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/04/17 22:51:01 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/17 22:55:18 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "tools.h"
 
-# include "../external_lib/libft/header/libft.h"
-# include "parser_struct.h"
+float			degree_to_radians(float angle)
+{
+	return (angle * (180 / M_PI));
+}
 
-/*
-** Functions
-*/
-
-void        handle_error_parser(char *message, t_addr **addr);
-void		handle_error_sdl(char *message, ...);
-
-#endif
+float			*transform_matrix4x4_to_float(t_matrix *m)
+{
+	int			i;
+	float		*flat_data;
+	
+	i = -1;
+	if (!(flat_data = (float *)malloc(sizeof(float) * 16)))
+		return (NULL);
+	while  (++i < 16)
+		flat_data[i] = m->values[i / 4][i % 4];
+	return (flat_data);
+}

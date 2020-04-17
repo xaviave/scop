@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 17:32:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/15 19:02:09 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/17 23:06:53 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,84 @@ TO DO:
 add things when we things about it
 */
 
+
+// refaire la fonction d en dessous avec que des vertexes et des shaders customs
+/*
+void render()
+{
+	GLFWwindow *window;
+    
+    // Initialize the library
+    if ( !glfwInit( ) )
+        return ;
+    
+    // Create a windowed mode window and its OpenGL context
+    window = glfwCreateWindow( W, H, "Hello World", NULL, NULL );
+    
+    if ( !window )
+    {
+        glfwTerminate( );
+        return ;
+    }
+    
+    // Make the window's context current
+    glfwMakeContextCurrent( window );
+    
+    glViewport( 0.0f, 0.0f, W, H ); // specifies the part of the window to which OpenGL will draw (in pixels), convert from normalised to pixels
+    glMatrixMode( GL_PROJECTION ); // projection matrix defines the properties of the camera that views the objects in the world coordinate frame. Here you typically set the zoom factor, aspect ratio and the near and far clipping planes
+    glLoadIdentity( ); // replace the current matrix with the identity matrix and starts us a fresh because matrix transforms such as glOrpho and glRotate cumulate, basically puts us at (0, 0, 0)
+    glOrtho( 0, W, 0, H, 0, 1 ); // essentially set coordinate system
+    glMatrixMode( GL_MODELVIEW ); // (default matrix mode) modelview matrix defines how your objects are transformed (meaning translation, rotation and scaling) in your world
+    glLoadIdentity( ); // same as above comment
+    
+    GLfloat lineVertices[] =
+    {
+        200, 100, 0,
+        100, 300, 0,
+        500, 50, 0,
+        320, 100, 0,
+        10, 10, 0
+    };
+
+    // Loop until the user closes the window
+    while ( !glfwWindowShouldClose( window ) )
+    {
+        glClear( GL_COLOR_BUFFER_BIT );
+
+        glEnableClientState( GL_VERTEX_ARRAY );
+        glVertexPointer( 3, GL_FLOAT, 0, lineVertices );
+        glDrawArrays( GL_LINE_LOOP, 0, 5 );
+        glDisableClientState( GL_VERTEX_ARRAY );
+        
+        // Swap front and back buffers
+        glfwSwapBuffers( window );
+        
+        // Poll for and process events
+        glfwPollEvents( );
+    }
+    
+    glfwTerminate( );
+    
+    glfwTerminate( );
+}
+*/
+
+
+void		error_callback(int error, const char* description)
+{
+    fprintf(stderr, "Error: %s\n", description);
+}
+
 void		key_callback(GLFWwindow *win, int key, int scancode, int action, int mods)
 {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(win, GLFW_TRUE);
 }
 
+// pas de librarie de:	- matrixes
+// 						- 3d
+//						- load shader
+// ok vertex
 void		terminate_reader(t_gdata *gdata)
 {
 	glfwDestroyWindow(gdata->win);
@@ -60,75 +132,65 @@ void		terminate_reader(t_gdata *gdata)
 	glfwTerminate();
 }
 
-void		render(t_gdata *gdata)
+void			render(t_gdata *gdata)
 {
-	float	ratio;
-	mat4x4	m, p, mvp;
-    int 	width, height;
-	GLuint	vertex_buffer, vertex_shader, fragment_shader, program;
-    GLint	mvp_location, vpos_location, vcol_location;
+	float		tab[6];
+	float		*tmp_data;
+	t_matrix	*m;
+	t_matrix	*p;
+	t_matrix	*mvp;
+	t_matrix	*tmp;
+	t_matrix	*rotate;
 
-    glGenBuffers(1, &vertex_buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
- 
-    vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
-    glCompileShader(vertex_shader);
- 
-    fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
-    glCompileShader(fragment_shader);
- 
-    program = glCreateProgram();
-    glAttachShader(program, vertex_shader);
-    glAttachShader(program, fragment_shader);
-    glLinkProgram(program);
- 
-    mvp_location = glGetUniformLocation(program, "MVP");
-    vpos_location = glGetAttribLocation(program, "vPos");
-    vcol_location = glGetAttribLocation(program, "vCol");
- 
-    glEnableVertexAttribArray(vpos_location);
-    glVertexAttribPointer(vpos_location, 2, GL_FLOAT, GL_FALSE,
-                          sizeof(vertices[0]), (void*) 0);
-    glEnableVertexAttribArray(vcol_location);
-    glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
-                          sizeof(vertices[0]), (void*) (sizeof(float) * 2));
+	m = init_identity_matrix4x4();
+	p = new_matrix(4, 4);
+	mvp = new_matrix(4, 4);
+	tmp = new_matrix(4, 4);
+	rotate = new_matrix(4, 4);
+	gdata->engine->view = new_matrix(4, 4);
+	gdata->engine->projection = new_matrix(4, 4);
+	tab[0] = -(float)W / (float)H;
+	tab[1] = (float)W / (float)H;
+	tab[2] = -1.0f;  // coord
+	tab[3] = 1.0f;  // coord 
+	tab[4] = 1.0f;  // coord
+	tab[5] = -1.0f;  // coord
 	while (!glfwWindowShouldClose(gdata->win))
 	{
-
-        glfwGetFramebufferSize(gdata->win, &width, &height);
-        ratio = width / (float) height;
- 
-        glViewport(0, 0, width, height);
+		gdata->time = tan(glfwGetTime());
         glClear(GL_COLOR_BUFFER_BIT);
- 
-        mat4x4_identity(m);
-        mat4x4_rotate_Z(m, m, (float) glfwGetTime());
-        mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-        mat4x4_mul(mvp, p, m);
- 
-        glUseProgram(program);
-        glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
+        identity_matrix4x4(m);
+		rotate_matrix4x4_y(rotate, m, gdata->time);
+		ortho_matrix4x4(p, tab);
+		multiply_matrix4x4(mvp, p, rotate);
+
+		// look_at_matrix4x4(gdata->engine->view, gdata->engine->camera, 1);
+		// perspective_matrix4x4(gdata->engine->projection, degree_to_radians(45.0f),
+		// 	(float)W / (float)H, 0.1f, 100.0f);
+
+		// multiply_matrix4x4(tmp, gdata->engine->projection, gdata->engine->view);
+		
+		multiply_matrix4x4(mvp, p, rotate);
+
+		tmp_data = transform_matrix4x4_to_float(mvp);
+        glUseProgram(gdata->engine->program);
+		// put matrix in program | not calculus or transformation
+		
+        glUniformMatrix4fv(gdata->engine->mvp_location, 1, GL_FALSE, (GLfloat*)tmp_data);
         glDrawArrays(GL_TRIANGLES, 0, 3);
- 
+		if (tmp_data)
+			free(tmp_data);
         glfwSwapBuffers(gdata->win);
-		glfwWaitEvents();
-		ft_printf("ue");
+		glfwPollEvents();
 	}
 	terminate_reader(gdata);
-}
-
-void		error_callback(int error, const char* description)
-{
-    fprintf(stderr, "Error: %s\n", description);
 }
 
 int         launch_render(t_gdata *gdata, t_parser *parser)
 {
     if (!init_gdata(gdata, parser))
 		return (0);
+	init_shader(gdata->engine);
 	render(gdata);
 	return (1);
 }
