@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/20 21:06:08 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/23 17:38:07 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRC_NAME =	main.c \
 			tools/matrixes/init_delete_matrix.c \
 			render/launch_render.c \
 			render/shader/shader.c \
+			render/event.c \
 			render/render_utils/textures.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

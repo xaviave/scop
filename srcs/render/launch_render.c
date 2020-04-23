@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   launch_render.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/15 17:32:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 13:07:18 by xamartin         ###   ########lyon.fr   */
-/*                                                                            */
+/*																			*/
+/*														:::	 :::::::: */
+/* launch_render.c									:+:	 :+:	:+: */
+/*													+:+ +:+		 +:+	 */
+/* By: xamartin <xamartin@student.le-101.fr>	 +#+ +:+	 +#+		*/
+/*												+#+#+#+#+#+ +#+		 */
+/* Created: 2020/04/15 17:32:30 by xamartin		 #+#	#+#			 */
+/* Updated: 2020/04/23 15:01:36 by xamartin		 ### ########lyon.fr */
+/*																			*/
 /* ************************************************************************** */
 
 #include "render.h"
@@ -26,7 +26,7 @@ Need function to use:	- new gdata->win -> OK
 						- xpm to image
 						- destroy image
 						- swap buffer -> flushGLContext
-						- change context ->  selectGLContext
+						- change context -> selectGLContext
 						
 1 - http://www.multigesture.net/articles/how-to-draw-pixels-to-a-texture-opengl/
 TO DO:
@@ -49,13 +49,7 @@ add things when we things about it
 
 void		error_callback(int error, const char* description)
 {
-    fprintf(stderr, "Error: %s\n", description);
-}
-
-void		key_callback(GLFWwindow *win, int key, int scancode, int action, int mods)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(win, GLFW_TRUE);
+	fprintf(stderr, "Error: %s\n", description);
 }
 
 // pas de librarie de:	- matrixes
@@ -70,107 +64,68 @@ void		terminate_reader(t_gdata *gdata)
 }
 
 static const float vertices[] = {
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+		 0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+		 0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+		 0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+		 0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+		-0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+		-0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+		-0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+		 0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+		 0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+		 0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+		 0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+		 0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+		 0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+		-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-    };
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+		 0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+		 0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+		 0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+		-0.5f, 0.5f, -0.5f, 0.0f, 1.0f
+	};
 
-void processInput(t_gdata *gdata)
-{
-	float deltaTime = 0.0f; // Time between current frame and last frame
-	float lastFrame = 0.0f; // Time of last frame
-	float currentFrame = glfwGetTime();
-	deltaTime = currentFrame - lastFrame;
-	lastFrame = currentFrame;
-	float	tmp[3];
-	ft_bzero(tmp, sizeof(float[3]));
-    float cameraSpeed = 0.01f * deltaTime; // adjust accordingly
-    if (glfwGetKey(gdata->win, GLFW_KEY_W) == GLFW_PRESS)
-	{
-		vertex3_mul_float(tmp, gdata->engine->camera_front, cameraSpeed);
-		vertex3_add(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
-        // cameraPos += cameraSpeed * cameraFront;
-	}
-    if (glfwGetKey(gdata->win, GLFW_KEY_S) == GLFW_PRESS)
-	{
-		vertex3_mul_float(tmp, gdata->engine->camera_front, cameraSpeed);
-		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
-        // cameraPos -= cameraSpeed * cameraFront;
-	}
-    if (glfwGetKey(gdata->win, GLFW_KEY_A) == GLFW_PRESS)
-	{
-	    // cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-		vertex3_mul_cross(tmp, gdata->engine->camera_front, gdata->engine->camera_up);
-		vertex3_norm(tmp, tmp);
-		vertex3_mul_float(tmp, tmp, cameraSpeed);
-		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
-	}
-    if (glfwGetKey(gdata->win, GLFW_KEY_D) == GLFW_PRESS)
-	{
-        // cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-		vertex3_mul_cross(tmp, gdata->engine->camera_front, gdata->engine->camera_up);
-		vertex3_norm(tmp, tmp);
-		vertex3_mul_float(tmp, tmp, cameraSpeed);
-		vertex3_add(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
-	}
-}
 
 int render1(t_gdata *gdata)
 {	
 	init_shader(gdata->engine);
 
-    unsigned int VBO, VAO;
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
+	unsigned int VBO, VAO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
 
 	glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  	// position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    // texture coord attribute
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
+ 	// position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	// texture coord attribute
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
  	create_texture(gdata, "data/ressources/bomm.jpg", 0);
  	create_texture(gdata, "data/ressources/mouth.jpg", 1);
@@ -181,38 +136,27 @@ int render1(t_gdata *gdata)
 	float		*tmp_data;
 	t_matrix	*tmp;
 
-	ft_bzero(gdata->engine->camera_up, sizeof(float[3]));
-	ft_bzero(gdata->engine->camera_pos, sizeof(float[3]));
-	ft_bzero(gdata->engine->camera_tmp, sizeof(float[3]));
-	ft_bzero(gdata->engine->camera_front, sizeof(float[3]));
-	gdata->engine->camera_up[1] = 1.0f;
-	gdata->engine->camera_pos[2] = 3.0f;
-	gdata->engine->camera_front[2] = -1.0f;
-
-	gdata->engine->projection = init_identity_matrix4x4();
-	perspective_matrix4x4(gdata->engine->projection, degree_to_radians(45.0f), (W / (float)H), 0.1f, 100.0f);
-	unsigned int projectionLoc = glGetUniformLocation(gdata->engine->program, "projection");
-	tmp_data = transform_matrix4x4_to_float(gdata->engine->projection);
-	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, (GLfloat*)tmp_data);
-	free(tmp_data);
-
-    while (!glfwWindowShouldClose(gdata->win))
-    {
-		ft_printf(".");
+	while (!glfwWindowShouldClose(gdata->win))
+	{
 		// glClearColor(0.25f, 0.0f, 0.5f, 0.5f);
 		glEnable(GL_DEPTH_TEST);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		ft_printf(".");
-		processInput(gdata);
-		ft_printf(".");
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[0]);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[1]);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[0]);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[1]);
 		ft_printf(".");
 
 		glUseProgram(gdata->engine->program);
+
+		ft_printf(".");
+		gdata->engine->projection = init_identity_matrix4x4();
+		perspective_matrix4x4(gdata->engine->projection, degree_to_radians(gdata->engine->fov), (W / (float)H), 0.1f, 100.0f);
+		unsigned int projectionLoc = glGetUniformLocation(gdata->engine->program, "projection");
+		tmp_data = transform_matrix4x4_to_float(gdata->engine->projection);
+		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, (GLfloat*)tmp_data);
+		free(tmp_data);
 
 		ft_printf(".");
 		gdata->engine->camera_tmp[0] = gdata->engine->camera_pos[0] - gdata->engine->camera_front[0];
@@ -223,11 +167,9 @@ int render1(t_gdata *gdata)
 		look_at_matrix4x4(gdata->engine->view, gdata->engine->camera_pos,
 		gdata->engine->camera_tmp, gdata->engine->camera_up);
 
-		// gdata->engine->view = init_identity_matrix4x4();
-		// translate_matrix4x4(gdata->engine->view, 0.0f, 0.0f, -3.0f);
 		unsigned int viewLoc = glGetUniformLocation(gdata->engine->program, "view");
 		tmp_data = transform_matrix4x4_to_float(gdata->engine->view);
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, (GLfloat*)tmp_data);
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, (GLfloat*)tmp_data);
 		ft_printf(".");
 		free(tmp_data);
 		
@@ -246,21 +188,20 @@ int render1(t_gdata *gdata)
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		ft_printf(".");
 
-        glfwSwapBuffers(gdata->win);
-		ft_printf(".");
-        glfwPollEvents();
-		dprintf(1, "\n%u\n", glGetError());
-    }
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    glfwTerminate();
-    return 0;
+		glfwSwapBuffers(gdata->win);
+		handle_event(gdata);
+	}
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glfwTerminate();
+	return 0;
 }
 
-int         launch_render(t_gdata *gdata, t_parser *parser)
+int		 launch_render(t_gdata *gdata, t_parser *parser)
 {
 	if (!init_gdata(gdata, parser))
 		return (0);
+	glfwSetInputMode(gdata->win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	render1(gdata);
 	return (1);
 }

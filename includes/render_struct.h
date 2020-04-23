@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 11:33:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 17:50:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct				s_engine
 	// one matrix per object to move them individually ?
 	// center of each object
 	// apply on every point with move_matrix()
-	// 
 	t_matrix				*model;
 	// env move everything
 	t_matrix				*env;
@@ -52,6 +51,13 @@ typedef struct				s_engine
 	float					camera_front[3];
 	
 	unsigned int			texture_id[32];
+	float					fov;
+	float					yaw;
+	float					pitch;
+	float					last_x;
+	float					last_y;
+	float					sensitivity;
+	float					last_frame;
 	GLuint					program;
 	GLuint					mvp_location;
 }							t_engine;
