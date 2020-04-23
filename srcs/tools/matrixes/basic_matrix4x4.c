@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 22:49:03 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 22:50:41 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/22 19:03:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void			clear_matrix4x4(t_matrix *m)
 void			translate_matrix4x4(t_matrix *m, float x, float y, float z)
 {
 	identity_matrix4x4(m);
-	m->values[3][0] = x;
-	m->values[3][1] = y;
-	m->values[3][2] = z;
+	m->values[0][3] = x;
+	m->values[1][3] = y;
+	m->values[2][3] = z;
 }
 
 void			ortho_matrix4x4(t_matrix *m, float tab[6])

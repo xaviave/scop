@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 14:06:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 18:00:57 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/18 15:54:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			*free_matrix(t_matrix *m)
 		if (m->values[i])
 			free(m->values[i]);
 	}
-	if (m->values);
+	if (m->values)
 		free(m->values);
 	if (m)
 		free(m);

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/16 15:56:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/19 19:48:51 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define PROG_NAME "Scop"
 
 # define W 640
-# define H 480
+# define H 640
 
 # define TRUE 1
 # define FALSE 0

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_matrix4x.c                                   :+:      :+:    :+:   */
+/*   tools_matrix4x4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 22:51:01 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 22:55:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/20 21:40:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 float			degree_to_radians(float angle)
 {
-	return (angle * (180 / M_PI));
+	return (angle * (M_PI / 180));
 }
 
 float			*transform_matrix4x4_to_float(t_matrix *m)

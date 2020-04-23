@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 22:43:57 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 22:47:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/21 23:16:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void			vertex4_row_matrix4x4(float r[4], t_matrix *m, int i)
 	int			k;
 
 	k = -1;
-	while (k < 4)
+	while (++k < 4)
 		r[k] = m->values[k][i];
 }

@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/17 23:05:05 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/20 21:06:08 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,8 @@ SRC_NAME =	main.c \
 			tools/matrixes/advanced_matrix4x4.c \
 			tools/matrixes/init_delete_matrix.c \
 			render/launch_render.c \
+			render/shader/shader.c \
+			render/render_utils/textures.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft glfw/src
@@ -97,20 +99,20 @@ LIB = $(addprefix -L$(LIB_PATH),$(LIB_NAME))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C $(LIB_PATH)libft -j
-	$(CC) $(GCC_FLGS) $(LIB) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
+	@make -C $(LIB_PATH)libft -j
+	@$(CC) $(GCC_FLGS) $(LIB) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	mkdir -p $(OBJ_PATH)
-	$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
+	@$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
 
 clean:
-	rm -fv $(OBJ)
-	rm -rf $(OBJ_PATH)
+	@rm -fv $(OBJ)
+	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	make -C $(LIB_PATH)libft fclean
-	rm -fv $(NAME)
+	@make -C $(LIB_PATH)libft fclean
+	@rm -fv $(NAME)
+	@sh objs_mkdir
 
 re: fclean all
 

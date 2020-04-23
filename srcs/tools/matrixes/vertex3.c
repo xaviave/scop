@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 22:44:26 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 22:44:58 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 11:42:58 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ void			vertex3_sub(float r[3], float const a[3], float const b[3])
 	i = -1;
 	while (++i < 3)
 		r[i] = a[i] - b[i];
+}
+
+void			vertex3_add(float r[3], float const a[3], float const b[3])
+{
+	int			i;
+
+	i = -1;
+	while (++i < 3)
+		r[i] = a[i] + b[i];
+}
+
+void			vertex3_mul_float(float r[3], float const a[3], float const b)
+{
+	int			i;
+
+	i = -1;
+	while (++i < 3)
+		r[i] = a[i] * b;
 }
 
 float			vertex3_mul_inner(float const a[3], float const b[3])
@@ -50,7 +68,7 @@ void			vertex3_scale(float r[3], float const v[3], float const s)
 		r[i] = v[i] * s;
 }
 
-void vertex3_norm(float r[3], float const v[3])
+void			vertex3_norm(float r[3], float const v[3])
 {
 	float		k;
 	

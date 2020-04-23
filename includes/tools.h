@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:30 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 23:03:09 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 11:57:10 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,8 @@ void						perspective_matrix4x4(t_matrix *m, float y_fov,
 	float aspect, float n, float f);
 void						translate_in_place_matrix4x4(t_matrix *m,
 	float x, float y, float z);
-void						look_at_matrix4x4(t_matrix *m,
-	float camera_pos[3], float up_data);
+void						look_at_matrix4x4(t_matrix *m, float eye[3],
+float center[3], float up[3]);
 
 /*
 ** srcs/tools/matrixes/tools_matrix4x4.c
@@ -149,6 +149,26 @@ float						*transform_matrix4x4_to_float(t_matrix *m);
 
 void						print_matrix(t_matrix *m, char *str);
 void						print_mat4x4(mat4x4 m, char *str);
+
+/*
+** srcs/tools/matrixes/vertex3.c
+*/
+
+void						vertex3_scale(float r[3], float const v[3], float const s);
+float						vertex3_mul_inner(float const a[3], float const b[3]);
+void						vertex3_mul_float(float r[3], float const a[3], float const b);
+void						vertex3_sub(float r[3], float const a[3], float const b[3]);
+void						vertex3_add(float r[3], float const a[3], float const b[3]);
+void						vertex3_mul_cross(float r[3],
+	float const a[3], float const b[3]);
+void						vertex3_norm(float r[3], float const v[3]);
+
+/*
+** srcs/tools/matrixes/vertex3.c
+*/
+
+float						vertex4_mul_inner(float a[4], float b[4]);
+void						vertex4_row_matrix4x4(float r[4], t_matrix *m, int i);
 
 /*
 ** srcs/tools/matrixes/init_delete_matrix.c

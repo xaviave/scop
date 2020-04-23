@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 14:06:50 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/17 22:56:18 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/21 23:18:50 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void			perspective_matrix4x4(t_matrix *m, float y_fov,
 	m->values[3][3] = 0.f;
 }
 
-void			translate_in_place_matrix4x4(t_matrix *m,
-	float x, float y, float z)
+void			translate_in_place_matrix4x4(t_matrix *m, float x,
+	float y, float z)
 {
 	float		t[4];
 	float		r[4];
@@ -56,20 +56,15 @@ void			translate_in_place_matrix4x4(t_matrix *m,
 	}
 }
 
-void		look_at_matrix4x4(t_matrix *m, float camera_pos[3], float up_data)
+void			look_at_matrix4x4(t_matrix *m, float eye[3],
+	float center[3], float up[3])
 {
-	float	up[3];
-	float	tmp_f[3];
-	float	tmp_s[3];
-	float	tmp_t[3];
-	float	center[3];
-
-	ft_bzero(up, sizeof(float[3]));
-	up[1] = up_data;
-	ft_bzero(center, sizeof(float[3]));
+	float		tmp_f[3];
+	float		tmp_s[3];
+	float		tmp_t[3];
 
 	ft_bzero(tmp_f, sizeof(float[3]));
-	vertex3_sub(tmp_f, center, camera_pos);	
+	vertex3_sub(tmp_f, center, eye);	
 	vertex3_norm(tmp_f, tmp_f);	
 	
 	ft_bzero(tmp_s, sizeof(float[3]));
@@ -95,6 +90,5 @@ void		look_at_matrix4x4(t_matrix *m, float camera_pos[3], float up_data)
 	m->values[3][1] =  0.0f;
 	m->values[3][2] =  0.0f;
 	m->values[3][3] =  1.0f;
-	mat4x4_translate_in_place(m, -camera_pos[0],
-		-camera_pos[1], -camera_pos[2]);
+	translate_in_place_matrix4x4(m, -eye[0], -eye[1], -eye[2]);
 }
