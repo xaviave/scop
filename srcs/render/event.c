@@ -6,23 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 23:25:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 18:05:09 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 19:23:35 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
-
-void		key_callback(GLFWwindow *win, int key, int scancode, int action, int mods)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(win, GLFW_TRUE);
-}
-
-void mouse_callback(GLFWwindow* window, double xpos, double ypos)
-{
-	if (window || xpos || ypos)
-		return ;
-}
 
 void process_mouse(t_gdata *gdata)
 {

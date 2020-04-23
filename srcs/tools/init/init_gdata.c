@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 17:51:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 19:25:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	init_graphic_context(t_gdata *gdata)
 
 int			init_gdata(t_gdata *gdata, t_parser *parser)
 {
-    // gdata->obj = parser->obj;
-    // gdata->mtl = parser->mtl;
+    gdata->obj = parser->obj;
+    gdata->mtl = parser->mtl;
 	if (!(gdata->engine = (t_engine *)malloc(sizeof(t_engine))))
 		return (0);
 	gdata->engine->last_x = 0.0f;

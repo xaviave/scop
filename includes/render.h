@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:40 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 17:36:33 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 19:12:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	init_shader(t_engine *e);
 
 void	load_texture(t_gdata *gdata, char *name, unsigned int t);
 void	create_texture(t_gdata *gdata, char *name, unsigned int t);
+
+void	update_matrix(t_gdata *gdata);
 
 void	handle_event(t_gdata *gdata);
 

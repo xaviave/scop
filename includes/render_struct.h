@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 17:50:56 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 19:26:46 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "../lib/glfw/deps/linmath.h"
 # include <GLFW/glfw3.h>
 # endif
+
+# define GL_GLEXT_PROTOTYPES
 
 typedef struct				s_matrix
 {

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 23:07:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/21 21:31:20 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 19:54:49 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void				create_texture(t_gdata *gdata, char *name, unsigned int t)
 
 	stbi_set_flip_vertically_on_load(1);
 
-	// change the image loaders
 	data = stbi_load(name, &width, &height, &nrChannels, STBI_rgb_alpha);
 	glGenTextures(1, &(gdata->engine->texture_id[t]));
 	glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[t]);
