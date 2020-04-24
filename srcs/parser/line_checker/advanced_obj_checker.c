@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 22:22:39 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:35:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 16:18:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int							check_vertexes(char *raw_data)
 			(raw_data[i] == '-' && ++l > 1))
 			return (0);
 	}
-	return ((i != (int)ft_strlen(raw_data) || nb_vertexes < 3) ? 0 : 1);
+	return ((i != (int)ft_strlen(raw_data) || nb_vertexes < 2) ? 0 : 1);
 }
 
 static int					check_ids_group(char *raw_data, int nb_delim)
@@ -46,7 +46,7 @@ static int					check_ids_group(char *raw_data, int nb_delim)
 	int						i;
 	int						delim;
 
-	i = -1;
+	i = pass_whitespace(0, raw_data);
 	delim = 0;
 	while (raw_data[++i] && raw_data[i] != ' ' && raw_data[i] != '\t')
 	{
@@ -65,7 +65,7 @@ int							check_lines_faces(char *raw_data,
 	int						nb_id;
 	int						nb_delim;
 
-	i = 0;
+	i = 1;
 	len = ft_strlen(raw_data);
 	nb_delim = count_char(&raw_data[i], '/');
 	if (nb_delim == nb_args[0] || nb_delim == nb_args[1])
