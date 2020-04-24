@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 17:20:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 17:47:00 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void		create_vertices(t_obj *obj)
 		obj->vertices[++v_id] = obj->vertexes[i].x;
 		obj->vertices[++v_id] = obj->vertexes[i].y;
 		obj->vertices[++v_id] = obj->vertexes[i].z;
-		obj->vertices[++v_id] = obj->vertexes[i].x;
-		obj->vertices[++v_id] = obj->vertexes[i].y;
-		obj->vertices[++v_id] = obj->vertexes[i].z;
+		obj->vertices[++v_id] = (float)rand()/(float)(RAND_MAX);
+		obj->vertices[++v_id] = (float)rand()/(float)(RAND_MAX);
+		obj->vertices[++v_id] = (float)rand()/(float)(RAND_MAX);
 	}
 }
 
@@ -99,7 +99,7 @@ int			init_gdata(t_gdata *gdata, t_parser *parser)
 		return (0);
 	gdata->engine->last_x = 0.0f;
 	gdata->engine->last_y = 0.0f;
-	gdata->engine->fov = 85.0f;
+	gdata->engine->fov = 45.0f;
 	gdata->engine->yaw = 0.0f;
 	gdata->engine->pitch = 0.0f;
 	gdata->engine->sensitivity = 0.05f;
@@ -108,7 +108,9 @@ int			init_gdata(t_gdata *gdata, t_parser *parser)
 	ft_bzero(gdata->engine->camera_tmp, sizeof(float[3]));
 	ft_bzero(gdata->engine->camera_front, sizeof(float[3]));
 	gdata->engine->camera_up[1] = 1.0f;
-	gdata->engine->camera_pos[2] = 3.0f;
+	gdata->engine->camera_pos[2] = 13.0f;
+	gdata->engine->camera_pos[2] = 23.0f;
+	gdata->engine->camera_pos[2] = 13.0f;
 	gdata->engine->camera_front[2] = -1.0f;
 	gdata->engine->last_frame = glfwGetTime();
 	return (init_graphic_context(gdata));

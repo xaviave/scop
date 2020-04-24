@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 19:06:19 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 15:33:28 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 17:38:00 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void				update_matrix(t_gdata *gdata)
 	gdata->engine->model = init_identity_matrix4x4();
 	tmp = init_identity_matrix4x4();
 	translate_matrix4x4(tmp, 0.0f, 0.0f, 0.0f);
-	rotate_matrix4x4_y(gdata->engine->model, tmp, sin(glfwGetTime()));
+	rotate_matrix4x4_y(gdata->engine->model, tmp, glfwGetTime());
 	create_texture_data(gdata, gdata->engine->model, "model");
 	free_matrix(tmp);
 }

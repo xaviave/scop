@@ -17,5 +17,5 @@ void main()
 	float rand_x = random(Color.xy);
 	float rand_y = random(Color.yz);
 	float rand_z = random(Color.xz);
-	FragColor = vec4(Color.y, Color.x, rand_z, 1.0f);
+	FragColor = vec4(Color, 1.0f);
 }
