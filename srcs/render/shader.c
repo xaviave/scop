@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 18:10:47 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 21:28:40 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 19:29:05 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 static char			*get_shader(char *name)
 {
 	int				fd;
-	char			line[500];	
 	int				ret;	
 	char			*tmp;
 	char			*file;
+	char			line[SHADER_READ];	
 
 	fd = open(name, O_RDONLY);
-	ft_printf("%s %d\n", name, fd);
-	file = ft_strnew(500);
-	while ((ret = read(fd, &line, 500)) > 0)
+	if (fd < 0)
+		return (NULL);
+	file = ft_strnew(SHADER_READ);
+	while ((ret = read(fd, &line, SHADER_READ)) > 0)
 	{
 		line[ret] = '\0';
 		tmp = file;
@@ -34,7 +35,7 @@ static char			*get_shader(char *name)
 	return (file);
 }
 
-static void	init_program(t_engine *e, GLuint vs, GLuint fs)
+static void			init_program(t_engine *e, GLuint vs, GLuint fs)
 {
     e->program = glCreateProgram();
     glAttachShader(e->program, vs);
@@ -42,17 +43,17 @@ static void	init_program(t_engine *e, GLuint vs, GLuint fs)
     glLinkProgram(e->program);
  }
 
-void		init_shader(t_engine *e)
+int					init_shader(t_engine *e)
 {
-	GLuint	vs;
-	GLuint	fs;
-	const GLchar *s;
-	const GLchar *f;
+	GLuint			vs;
+	GLuint			fs;
+	const GLchar	*s;
+	const GLchar	*f;
 
 	s = get_shader("shaders/vertex_custom_shader");
 	f = get_shader("shaders/fragment_custom_shader");
-	// s = get_shader("shaders/basic_ok_vertex");
-	// f = get_shader("shaders/basic_ok_fragment");
+	if (!s || !f)
+		return (0);
     vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &s, NULL);
     glCompileShader(vs);
@@ -62,4 +63,5 @@ void		init_shader(t_engine *e)
 	init_program(e, vs, fs);
     glDeleteShader(vs);
     glDeleteShader(fs);
+	return (1);
 }

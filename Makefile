@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/23 19:24:41 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/24 18:34:02 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRC_NAME =	main.c \
 			tools/spec_delete_obj.c \
 			tools/details_delete_obj.c \
 			tools/optional_argument.c \
+			tools/data_to_float.c \
 			tools/init/init_obj.c \
 			tools/init/init_ptr.c \
 			tools/init/init_mtl.c \
@@ -83,11 +84,12 @@ SRC_NAME =	main.c \
 			tools/matrixes/advanced_matrix4x4.c \
 			tools/matrixes/init_delete_matrix.c \
 			render/launch_render.c \
-			render/shader/shader.c \
 			render/event.c \
+			render/buffer.c \
 			render/camera.c \
+			render/shader.c \
 			render/callback.c \
-			render/render_utils/textures.c \
+			render/textures.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft glfw/src

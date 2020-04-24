@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 20:19:26 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 19:16:08 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include <GLFW/glfw3.h>
 # else
 # include "../lib/glfw/deps/linmath.h"
+# include "../external_lib/glfw/deps/glad/gl.h"
 # include <GLFW/glfw3.h>
 # endif
 
-# define GL_GLEXT_PROTOTYPES
+# define SHADER_READ 1000
 
 typedef struct				s_matrix
 {
@@ -44,8 +45,6 @@ typedef struct				s_engine
 	// center of each object
 	// apply on every point with move_matrix()
 	t_matrix				*model;
-	// env move everything
-	t_matrix				*env;
 	
 	float					camera_up[3];
 	float					camera_pos[3];
@@ -64,11 +63,21 @@ typedef struct				s_engine
 	GLuint					mvp_location;
 }							t_engine;
 
+typedef struct				s_buffer
+{
+	unsigned int			vao;
+	unsigned int			vbo_vertices;
+	unsigned int			vbo_indices;
+
+}							t_buffer;
+
 typedef struct      		s_gdata
 {
+	int						nb_objs;
 	t_obj					*obj;
 	t_mtl					*mtl;
 	GLFWwindow				*win;
+	t_buffer				*buffer;
 	t_engine				*engine;
 	double					time;
 	float					*vertices;

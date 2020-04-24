@@ -6,20 +6,19 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 17:47:00 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 19:30:08 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
 #include "render.h"
 
 static int	init_graphic_context(t_gdata *gdata)
 {
-	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
 		return (0);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwSetErrorCallback(error_callback);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL);
@@ -27,6 +26,7 @@ static int	init_graphic_context(t_gdata *gdata)
 		return (0);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_REFRESH_RATE, 60);
+	glfwSetInputMode(gdata->win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetKeyCallback(gdata->win, key_callback);
 	glfwSetCursorPosCallback(gdata->win, mouse_callback);
 	glfwMakeContextCurrent(gdata->win);
@@ -34,69 +34,22 @@ static int	init_graphic_context(t_gdata *gdata)
 	return (1);
 }
 
-void		create_indices(t_obj *obj)
+static int	init_all_obj(t_gdata *gdata)
 {
 	int		i;
-	int		j;
-	int		nu;
-	int		v_id;
 
-	v_id = -1;
 	i = -1;
-	nu = 0;
-	while (++i < obj->len_faces)
+	while (++i < gdata->nb_objs)
 	{
-		nu += 3;
-		if (obj->faces[i].nb_vertexes == 4)
-			nu += 3;
+		create_vertices(&(gdata->obj[i]));
+		create_indices(&(gdata->obj[i]));
 	}
-	obj->size_indices = nu;
-	obj->indices = malloc(sizeof(float) * nu);
-	i = -1;
-	while (++i < obj->len_faces)
-	{
-		j = -1;
-		obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
-		obj->indices[++v_id] = obj->faces[i].vertexes_id[1] - 1;
-		obj->indices[++v_id] = obj->faces[i].vertexes_id[2] - 1;
-		if (obj->faces[i].nb_vertexes == 4)
-		{
-			obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
-			obj->indices[++v_id] = obj->faces[i].vertexes_id[2] - 1;
-			obj->indices[++v_id] = obj->faces[i].vertexes_id[3] - 1;
-		}
-	}
+	// need to catch the error from the 2 create
+	return (1);
 }
 
-void		create_vertices(t_obj *obj)
+static int	init_engine(t_gdata *gdata)
 {
-	int		i;
-	int		v_id;
-	
-	i = -1;
-	v_id = -1;
-	obj->size_vertices = obj->len_vertexes * 6;
-	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
-		return ;
-	while (++i < obj->len_vertexes)
-	{
-		obj->vertices[++v_id] = obj->vertexes[i].x;
-		obj->vertices[++v_id] = obj->vertexes[i].y;
-		obj->vertices[++v_id] = obj->vertexes[i].z;
-		obj->vertices[++v_id] = (float)rand()/(float)(RAND_MAX);
-		obj->vertices[++v_id] = (float)rand()/(float)(RAND_MAX);
-		obj->vertices[++v_id] = (float)rand()/(float)(RAND_MAX);
-	}
-}
-
-int			init_gdata(t_gdata *gdata, t_parser *parser)
-{
-    gdata->obj = parser->obj;
-    gdata->mtl = parser->mtl;
-	create_vertices(&gdata->obj[0]);
-	create_indices(&gdata->obj[0]);
-	if (!(gdata->engine = (t_engine *)malloc(sizeof(t_engine))))
-		return (0);
 	gdata->engine->last_x = 0.0f;
 	gdata->engine->last_y = 0.0f;
 	gdata->engine->fov = 45.0f;
@@ -113,5 +66,23 @@ int			init_gdata(t_gdata *gdata, t_parser *parser)
 	gdata->engine->camera_pos[2] = 13.0f;
 	gdata->engine->camera_front[2] = -1.0f;
 	gdata->engine->last_frame = glfwGetTime();
-	return (init_graphic_context(gdata));
+	return (1);
+}
+
+int			init_gdata(t_gdata *gdata, t_parser *parser)
+{
+	if (!init_graphic_context(gdata))
+		return (0);
+    gdata->nb_objs = parser->nb_args;
+    gdata->obj = parser->obj;
+    gdata->mtl = parser->mtl;
+	if (!(gdata->engine = (t_engine *)malloc(sizeof(t_engine))))
+		return (0);
+	if (!(gdata->buffer = (t_buffer *)malloc(sizeof(t_buffer))))
+		return (0);
+	if (!init_engine(gdata) || !init_all_obj(gdata) ||
+		!init_shader(gdata->engine) || !init_buffer(gdata))
+		return (0);
+	glEnable(GL_DEPTH_TEST);
+	return (1);
 }
