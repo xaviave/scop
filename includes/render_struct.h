@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:26:46 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 20:19:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ typedef struct				s_engine
 	GLuint					mvp_location;
 }							t_engine;
 
-typedef struct      		s_gdatas
+typedef struct      		s_gdata
 {
 	t_obj					*obj;
 	t_mtl					*mtl;
 	GLFWwindow				*win;
 	t_engine				*engine;
 	double					time;
+	float					*vertices;
 }                   		t_gdata;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 23:25:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 19:23:35 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 14:37:08 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	input_ws(t_gdata *gdata, float camera_speed)
 	float	tmp[3];
 
 	ft_bzero(tmp, sizeof(float[3]));
-	if (glfwGetKey(gdata->win, GLFW_KEY_W) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_S) == GLFW_PRESS)
 	{
 		vertex3_mul_float(tmp, gdata->engine->camera_front, camera_speed);
 		vertex3_add(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
-	if (glfwGetKey(gdata->win, GLFW_KEY_S) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_W) == GLFW_PRESS)
 	{
 		vertex3_mul_float(tmp, gdata->engine->camera_front, camera_speed);
 		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
@@ -86,7 +86,7 @@ void		handle_event(t_gdata *gdata)
 	
 	glfwPollEvents();
 	current_frame = glfwGetTime();
-	camera_speed = 1.0f * (current_frame - gdata->engine->last_frame);
+	camera_speed = 2.5f * (current_frame - gdata->engine->last_frame);
 	gdata->engine->last_frame = current_frame;
 	input_ws(gdata, camera_speed);
 	input_ad(gdata, camera_speed);

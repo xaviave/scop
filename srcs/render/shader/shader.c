@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 18:10:47 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/20 18:42:15 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/23 21:28:40 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void		init_shader(t_engine *e)
 	const GLchar *s;
 	const GLchar *f;
 
-	s = get_shader("shaders/vertex_shader");
-	f = get_shader("shaders/fragment_shader");
+	s = get_shader("shaders/vertex_custom_shader");
+	f = get_shader("shaders/fragment_custom_shader");
 	// s = get_shader("shaders/basic_ok_vertex");
 	// f = get_shader("shaders/basic_ok_fragment");
     vs = glCreateShader(GL_VERTEX_SHADER);
