@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 22:22:39 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 16:18:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 20:39:37 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int					check_ids_group(char *raw_data, int nb_delim)
 		else if (!ft_isdigit(raw_data[i]))
 			return (0);
 	}
+	return (1);
 	return (delim == nb_delim);
 }
 
