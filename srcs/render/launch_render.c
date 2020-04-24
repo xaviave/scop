@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	 :::::::: */
-/* launch_render.c									:+:	 :+:	:+: */
-/*													+:+ +:+		 +:+	 */
-/* By: xamartin <xamartin@student.le-101.fr>	 +#+ +:+	 +#+		*/
-/*												+#+#+#+#+#+ +#+		 */
-/* Created: 2020/04/15 17:32:30 by xamartin		 #+#	#+#			 */
-/* Updated: 2020/04/23 15:01:36 by xamartin		 ### ########lyon.fr */
-/*																			*/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   launch_render.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/24 17:20:06 by xamartin         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
@@ -23,52 +23,30 @@ int render1(t_gdata *gdata)
 {	
 	init_shader(gdata->engine);
 
-	int i = -1;
-	int nu = 0;
-	while (++i < gdata->obj[0].len_faces)
-		nu += gdata->obj[0].faces[0].nb_vertexes;
-
-	
 	unsigned int VBO, VAO, EBO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, gdata->obj[0].len_vertexes
-		* sizeof(float) * 3, gdata->obj[0].vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * gdata->obj[0].size_vertices,
+		gdata->obj[0].vertices, GL_STATIC_DRAW);
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * nu,
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * gdata->obj[0].size_indices,
 		gdata->obj[0].indices, GL_DYNAMIC_DRAW);
 	
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+		(void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	i = -1;
-	while (++i < gdata->obj[0].len_vertexes * 3)
-	{
-		dprintf(1, "%f, ", gdata->obj[0].vertices[i]);
-		if (i % 3 == 0)
-			dprintf(1, "\n");
-	}
-	dprintf(1, "\n----------------------------------------------------\n");
-
-	i = -1;
-	while (++i < nu)
-	{
-		dprintf(1, "%d, ", gdata->obj[0].indices[i]);
-		if (i&& i % 3 == 0)
-			dprintf(1, "\n");
-	}
-	
- 	create_texture(gdata, "data/ressources/bomm.jpg", 0);
- 	create_texture(gdata, "data/ressources/mouth.jpg", 1);
-	glUseProgram(gdata->engine->program);
-	load_texture(gdata, "texture1", 0);
-	load_texture(gdata, "texture2", 1);
+ 	// create_texture(gdata, "data/ressources/bomm.jpg", 0);
+ 	// create_texture(gdata, "data/ressources/mouth.jpg", 1);
+	// glUseProgram(gdata->engine->program);
+	// load_texture(gdata, "texture1", 0);
+	// load_texture(gdata, "texture2", 1);
 
 	glEnable(GL_DEPTH_TEST);		// https://www.khronos.org/opengl/wiki/Depth_Test
 	while (!glfwWindowShouldClose(gdata->win))
@@ -85,7 +63,7 @@ int render1(t_gdata *gdata)
 		glBindVertexArray(VAO);
 		update_matrix(gdata);
 
-		glDrawElements(GL_TRIANGLES, nu, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, gdata->obj[0].size_indices, GL_UNSIGNED_INT, 0);
 
 		// glDrawArrays(GL_TRIANGLES, 0, gdata->obj[0].len_vertexes);
 		glBindVertexArray(0);

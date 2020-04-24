@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 15:48:24 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 17:20:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,61 +34,6 @@ static int	init_graphic_context(t_gdata *gdata)
 	return (1);
 }
 
-void		add_vertices(t_obj *obj, t_face face, int *v_id, int f_id)
-{
-	int		id;
-
-	id = face.vertexes_id[f_id];
-	obj->vertices[*v_id] = obj->vertexes[id].x;
-	obj->vertices[*v_id + 1] = obj->vertexes[id].y;
-	obj->vertices[*v_id + 2] = obj->vertexes[id].z;
-	*v_id += 3;
-	if (face.has_texture)
-	{
-		id = face.textures_id[f_id];
-		obj->vertices[*v_id] = obj->textures[id].u;
-		obj->vertices[*v_id + 1] = obj->textures[id].v;
-		obj->vertices[*v_id + 2] = obj->textures[id].w;
-		*v_id += 3;
-	}
-	if (face.has_normal)
-	{
-		id = face.normals_id[f_id];
-		obj->vertices[*v_id] = obj->vertexes[id].x;
-		obj->vertices[*v_id + 1] = obj->vertexes[id].y;
-		obj->vertices[*v_id + 3] = obj->vertexes[id].z;
-		*v_id += 3;
-	}
-}
-
-void		create_face(t_obj *obj, t_face face, int *v_id, int option)
-{
-	int		id;
-
-	id = (!option) ? 0 : 2; 
-	add_vertices(obj, face, v_id, id);
-	id = (!option) ? 1 : 3; 
-	add_vertices(obj, face, v_id, id);
-	id = (!option) ? 2 : 0; 
-	add_vertices(obj, face, v_id, id);
-}
-
-// void		create_vertices(t_obj *obj)
-// {
-// 	int		i;
-// 	int		v_id;
-
-// 	v_id = 0;
-// 	i = -1;
-// 	obj->vertices = malloc(sizeof(float[1024]));
-// 	while (++i < obj->len_faces)
-// 	{
-// 		create_face(obj, obj->faces[i], &v_id, 0);
-// 		if (obj->faces->nb_vertexes == 4)
-// 			create_face(obj, obj->faces[i], &v_id, 1);
-// 	}
-// }
-
 void		create_indices(t_obj *obj)
 {
 	int		i;
@@ -100,14 +45,26 @@ void		create_indices(t_obj *obj)
 	i = -1;
 	nu = 0;
 	while (++i < obj->len_faces)
-		nu += obj->faces[0].nb_vertexes;
+	{
+		nu += 3;
+		if (obj->faces[i].nb_vertexes == 4)
+			nu += 3;
+	}
+	obj->size_indices = nu;
 	obj->indices = malloc(sizeof(float) * nu);
 	i = -1;
 	while (++i < obj->len_faces)
 	{
 		j = -1;
-		while (++j < obj->faces[i].nb_vertexes)
-			obj->indices[++v_id] = obj->faces[i].vertexes_id[j];
+		obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
+		obj->indices[++v_id] = obj->faces[i].vertexes_id[1] - 1;
+		obj->indices[++v_id] = obj->faces[i].vertexes_id[2] - 1;
+		if (obj->faces[i].nb_vertexes == 4)
+		{
+			obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
+			obj->indices[++v_id] = obj->faces[i].vertexes_id[2] - 1;
+			obj->indices[++v_id] = obj->faces[i].vertexes_id[3] - 1;
+		}
 	}
 }
 
@@ -118,9 +75,14 @@ void		create_vertices(t_obj *obj)
 	
 	i = -1;
 	v_id = -1;
-	obj->vertices = malloc(sizeof(float) * obj->len_vertexes * 3);
+	obj->size_vertices = obj->len_vertexes * 6;
+	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
+		return ;
 	while (++i < obj->len_vertexes)
 	{
+		obj->vertices[++v_id] = obj->vertexes[i].x;
+		obj->vertices[++v_id] = obj->vertexes[i].y;
+		obj->vertices[++v_id] = obj->vertexes[i].z;
 		obj->vertices[++v_id] = obj->vertexes[i].x;
 		obj->vertices[++v_id] = obj->vertexes[i].y;
 		obj->vertices[++v_id] = obj->vertexes[i].z;

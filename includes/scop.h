@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 14:59:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 17:21:28 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 # define PROG_NAME "Scop"
 
-# define W 640
-# define H 640
+# define W 1080
+# define H 720
 
 # define TRUE 1
 # define FALSE 0
@@ -175,7 +175,9 @@ typedef struct				s_obj
 	t_vertex				*vertexes;
 	int						len_vertexes;
 
+	int						size_vertices;
 	float					*vertices;
+	int						size_indices;
 	int						*indices;
 }							t_obj;
 
