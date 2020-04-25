@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 21:12:07 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/24 23:20:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct				s_buffer
 	unsigned int			vao;
 	unsigned int			vbo_vertices;
 	unsigned int			vbo_indices;
-
+	unsigned int			vbo_uv;
 }							t_buffer;
 
 typedef struct      		s_gdata

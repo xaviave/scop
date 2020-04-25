@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:58:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 21:02:12 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 11:14:52 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,21 @@ void		create_vertices(t_obj *obj)
 {
 	int		i;
 	int		v_id;
+	int		uv_id;
 	
 	i = -1;
 	v_id = -1;
-	obj->size_vertices = obj->len_vertexes * 6;
+	uv_id = -1;
+	obj->size_vertices = obj->len_vertexes * 3;
+	obj->size_uv = obj->len_vertexes * 2;
 	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
+		return ;
+	if (!(obj->uv = malloc(sizeof(float) * obj->size_uv)))
 		return ;
 	while (++i < obj->len_vertexes)
 	{
 		obj->vertices[++v_id] = obj->vertexes[i].x;
 		obj->vertices[++v_id] = obj->vertexes[i].y;
 		obj->vertices[++v_id] = obj->vertexes[i].z;
-		obj->vertices[++v_id] = (obj->len_textures ?
-			obj->vertexes[i].x : obj->textures[i].u);
-		obj->vertices[++v_id] = (obj->len_textures ?
-			obj->vertexes[i].y : obj->textures[i].v);
-		obj->vertices[++v_id] = (obj->len_textures ?
-			obj->vertexes[i].z : obj->textures[i].w);
 	}
 }
