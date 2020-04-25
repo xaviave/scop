@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 23:07:23 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 23:16:03 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 22:00:41 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,19 @@
 ** then it will be display a once in glTexImage2D
 */
 
-void				create_texture(t_gdata *gdata, char *name, unsigned int t)
+void				create_texture(t_gdata *gdata, unsigned int t)
 {
-	int				width;
-	int				height;
-	int				nrChannels;
-	unsigned char	*data;
-
-	data = stbi_load(name, &width, &height, &nrChannels, STBI_rgb_alpha);
 	glGenTextures(1, &(gdata->engine->texture_id[t]));
 	glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[t]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+		gdata->mtl[gdata->actual_obj].ac->file.img.width,
+		gdata->mtl[gdata->actual_obj].ac->file.img.heigth, 0, GL_RGB,
+		GL_UNSIGNED_BYTE, gdata->mtl[gdata->actual_obj].ac->file.img.data);
 	glGenerateMipmap(GL_TEXTURE_2D);
-	if (data)
-		stbi_image_free(data);
 }
 
 void				load_texture(t_gdata *gdata, char *name, unsigned int t)

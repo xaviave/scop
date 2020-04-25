@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:58:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 17:25:28 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 21:21:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ static void	create_vertices(t_obj *obj)
 	}
 }
 
-
-static void	get_center(t_gdata *gdata, t_obj *obj)
+static void	get_center(t_obj *obj)
 {
 	int		i;
 
@@ -107,7 +106,7 @@ int			init_all_obj(t_gdata *gdata)
 	i = -1;
 	while (++i < gdata->nb_objs)
 	{
-		get_center(gdata, &(gdata->obj[i]));
+		get_center(&(gdata->obj[i]));
 		create_vertices(&(gdata->obj[i]));
 		create_indices(&(gdata->obj[i]));
 	}
