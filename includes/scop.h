@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 23:23:34 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 17:10:18 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,9 @@ typedef struct				s_obj
 	int						*indices;
 	int						size_uv;
 	float					*uv;
+	float					min[3];
+	float					max[3];
+	float					axis[3];
 }							t_obj;
 
 /*

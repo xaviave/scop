@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 16:49:06 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 17:24:36 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	render(t_gdata *gdata)
 		glUniform1i(gdata->buffer->texture_loc, gdata->engine->texture);
 		glUniform1i(gdata->buffer->random_loc, gdata->engine->random);
 		glBindVertexArray(gdata->buffer->vao);
-		glDrawElements(GL_TRIANGLES, gdata->obj[0].size_indices, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES,
+			gdata->obj[gdata->actual_obj].size_indices, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 		glfwSwapBuffers(gdata->win);
 		handle_event(gdata);

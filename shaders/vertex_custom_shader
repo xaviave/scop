@@ -30,7 +30,7 @@ void main()
 	if (grey == 1)
 	{
 		if (random == 1)
-			Color = vec3(rand_x, rand_y, rand_z);
+			Color = vec3(rand_x, rand_x, rand_x);
 		else
 			Color = vec3(aColor.z / 2, aColor.z / 2, aColor.z / 2);
 	}

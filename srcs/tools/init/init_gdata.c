@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 16:52:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 17:24:05 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ void		reset(t_gdata *gdata)
 	gdata->engine->rotate = 0;
 	gdata->engine->angle = degree_to_radians(90);
 	gdata->engine->fov = 45.0f;
-	gdata->engine->camera_pos[0] = gdata->engine->max[0];
-	gdata->engine->camera_pos[2] = gdata->engine->max[1];
+	gdata->engine->camera_pos[0] = gdata->obj[gdata->actual_obj].max[0] * 2;
+	gdata->engine->camera_pos[2] = gdata->obj[gdata->actual_obj].max[2] * 2;
 }
 
 static int	init_engine(t_gdata *gdata)
 {
+	gdata->actual_obj = 0;
 	gdata->engine->fix = 1;
 	gdata->engine->last_x = 0.0f;
 	gdata->engine->last_y = 0.0f;
