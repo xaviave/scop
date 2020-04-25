@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:40 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 19:15:58 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 15:59:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		init_buffer(t_gdata *gdata);
 
 int		init_shader(t_engine *e);
 
+void	reset(t_gdata *gdata);
+
 int		launch_render(t_gdata *gdata, t_parser *parser);
 
 void	key_callback(GLFWwindow* window, int key,
@@ -50,7 +52,6 @@ void	update_matrix(t_gdata *gdata);
 
 void	handle_event(t_gdata *gdata);
 
-void	create_vertices(t_obj *obj);
-void	create_indices(t_obj *obj);
+int		init_all_obj(t_gdata *gdata);
 
 #endif

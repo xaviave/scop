@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 18:15:33 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 11:12:33 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 16:48:09 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,20 @@ int	init_buffer(t_gdata *gdata)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * gdata->obj[0].size_vertices,
 		gdata->obj[0].vertices, GL_DYNAMIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gdata->buffer->vbo_indices);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * gdata->obj[0].size_indices,
-		gdata->obj[0].indices, GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+		sizeof(int) * gdata->obj[0].size_indices,
+			gdata->obj[0].indices, GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
+		3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
 		(void*)0);
 	glEnableVertexAttribArray(1);
+	gdata->buffer->grey_loc =
+		glGetUniformLocation(gdata->engine->program, "grey");
+	gdata->buffer->texture_loc =
+		glGetUniformLocation(gdata->engine->program, "texture");
+	gdata->buffer->random_loc =
+		glGetUniformLocation(gdata->engine->program, "random");
 	return (1);
 }

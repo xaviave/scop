@@ -6,13 +6,13 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 23:25:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 21:33:10 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 16:51:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 
-void process_mouse(t_gdata *gdata)
+static void process_mouse(t_gdata *gdata)
 {
 	double	xpos;
 	double	ypos;
@@ -41,46 +41,86 @@ void process_mouse(t_gdata *gdata)
 	vertex3_norm(gdata->engine->camera_front, tmp_front);
 }
 
-void	input_ws_shift_ctrl(t_gdata *gdata, float camera_speed)
+static void	input_w_s_rotate(t_gdata *gdata, float camera_speed)
 {
 	float	tmp[3];
 
 	ft_bzero(tmp, sizeof(float[3]));
-	if (glfwGetKey(gdata->win, GLFW_KEY_S) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_S) == GLFW_PRESS &&
+		!gdata->engine->fix)
 	{
 		vertex3_mul_float(tmp, gdata->engine->camera_front, camera_speed);
 		vertex3_add(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
-	if (glfwGetKey(gdata->win, GLFW_KEY_W) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_W) == GLFW_PRESS &&
+		!gdata->engine->fix)
 	{
 		vertex3_mul_float(tmp, gdata->engine->camera_front, camera_speed);
 		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
-	if (glfwGetKey(gdata->win, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-		gdata->engine->camera_pos[1] += 1;
-	if (glfwGetKey(gdata->win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-		gdata->engine->camera_pos[1] -= 1;
+	if (glfwGetKey(gdata->win, GLFW_KEY_KP_0) == GLFW_PRESS)
+		gdata->engine->rotate = 0;
+	if (glfwGetKey(gdata->win, GLFW_KEY_KP_1) == GLFW_PRESS)
+		gdata->engine->rotate = 1;
+	if (glfwGetKey(gdata->win, GLFW_KEY_KP_2) == GLFW_PRESS)
+		gdata->engine->rotate = 2;
+	if (glfwGetKey(gdata->win, GLFW_KEY_KP_3) == GLFW_PRESS)
+		gdata->engine->rotate = 3;
 }
 
-void	input_ad(t_gdata *gdata, float camera_speed)
+static void	input_a_d_grey(t_gdata *gdata, float camera_speed)
 {
 	float	tmp[3];
 
 	ft_bzero(tmp, sizeof(float[3]));
-	if (glfwGetKey(gdata->win, GLFW_KEY_A) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_A) == GLFW_PRESS &&
+		!gdata->engine->fix)
 	{
 		vertex3_mul_cross(tmp, gdata->engine->camera_front, gdata->engine->camera_up);
 		vertex3_norm(tmp, tmp);
 		vertex3_mul_float(tmp, tmp, camera_speed);
 		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
-	if (glfwGetKey(gdata->win, GLFW_KEY_D) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_D) == GLFW_PRESS &&
+		!gdata->engine->fix)
 	{
 		vertex3_mul_cross(tmp, gdata->engine->camera_front, gdata->engine->camera_up);
 		vertex3_norm(tmp, tmp);
 		vertex3_mul_float(tmp, tmp, camera_speed);
 		vertex3_add(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
+	if (glfwGetKey(gdata->win, GLFW_KEY_G) == GLFW_PRESS)
+		gdata->engine->grey = (!gdata->engine->grey ? 1 : 0);
+	if (glfwGetKey(gdata->win, GLFW_KEY_T) == GLFW_PRESS)
+		gdata->engine->texture = (!gdata->engine->texture ? 1 : 0);
+	if (glfwGetKey(gdata->win, GLFW_KEY_E) == GLFW_PRESS)
+		gdata->engine->random = (!gdata->engine->random ? 1 : 0);
+}
+
+static void	input_move_shift_ctrl(t_gdata *gdata)
+{
+	if (glfwGetKey(gdata->win, GLFW_KEY_F) == GLFW_PRESS)
+		gdata->engine->fix = (!gdata->engine->fix ? 1 : 0);
+	if (glfwGetKey(gdata->win, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+		gdata->engine->camera_pos[1] += 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+		gdata->engine->camera_pos[1] -= 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_LEFT) == GLFW_PRESS)
+		gdata->engine->camera_pos[0] += 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		gdata->engine->camera_pos[0] -= 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_UP) == GLFW_PRESS)
+		gdata->engine->camera_pos[2] += 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_DOWN) == GLFW_PRESS)
+		gdata->engine->camera_pos[2] -= 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_R) == GLFW_PRESS)
+		reset(gdata);
+	if (glfwGetKey(gdata->win, GLFW_KEY_UP) == GLFW_PRESS &&
+		gdata->engine->fov < 90)
+		gdata->engine->fov += 0.25;
+	if (glfwGetKey(gdata->win, GLFW_KEY_DOWN) == GLFW_PRESS &&
+		gdata->engine->fov > 0)
+		gdata->engine->fov -= 0.25;
 }
 
 void		handle_event(t_gdata *gdata)
@@ -92,7 +132,8 @@ void		handle_event(t_gdata *gdata)
 	current_frame = glfwGetTime();
 	camera_speed = 2.5f * (current_frame - gdata->engine->last_frame);
 	gdata->engine->last_frame = current_frame;
-	input_ws_shift_ctrl(gdata, camera_speed);
-	input_ad(gdata, camera_speed);
+	input_w_s_rotate(gdata, camera_speed);
+	input_a_d_grey(gdata, camera_speed);
+	input_move_shift_ctrl(gdata);
 	process_mouse(gdata);
 }

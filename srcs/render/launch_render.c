@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 11:11:39 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 16:49:06 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ static void	render(t_gdata *gdata)
 		// glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[1]);
 
 		update_matrix(gdata);
+		glUniform1i(gdata->buffer->grey_loc, gdata->engine->grey);
+		glUniform1i(gdata->buffer->texture_loc, gdata->engine->texture);
+		glUniform1i(gdata->buffer->random_loc, gdata->engine->random);
 		glBindVertexArray(gdata->buffer->vao);
 		glDrawElements(GL_TRIANGLES, gdata->obj[0].size_indices, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);

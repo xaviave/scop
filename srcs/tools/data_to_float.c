@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:58:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 11:14:52 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 15:59:25 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	get_len_indices(t_obj *obj)
 	}
 }
 
-void		create_indices(t_obj *obj)
+static void	create_indices(t_obj *obj)
 {
 	int		i;
 	int		j;
@@ -52,7 +52,7 @@ void		create_indices(t_obj *obj)
 	}
 }
 
-void		create_vertices(t_obj *obj)
+static void	create_vertices(t_obj *obj)
 {
 	int		i;
 	int		v_id;
@@ -73,4 +73,36 @@ void		create_vertices(t_obj *obj)
 		obj->vertices[++v_id] = obj->vertexes[i].y;
 		obj->vertices[++v_id] = obj->vertexes[i].z;
 	}
+}
+
+
+static void	get_center(t_gdata *gdata, t_obj *obj)
+{
+	int		i;
+
+	i = -1;
+	while (++i < obj->len_vertexes)
+	{
+		if (!i || (gdata->engine->max[0] < obj->vertexes[i].x))
+			gdata->engine->max[0] = obj->vertexes[i].x;
+		if (!i || (gdata->engine->max[1] < obj->vertexes[i].z))
+			gdata->engine->max[1] = obj->vertexes[i].z;
+	}
+	gdata->engine->max[0] *= 2;
+	gdata->engine->max[1] *= 2;
+}
+
+int			init_all_obj(t_gdata *gdata)
+{
+	int		i;
+
+	i = -1;
+	while (++i < gdata->nb_objs)
+	{
+		create_vertices(&(gdata->obj[i]));
+		create_indices(&(gdata->obj[i]));
+		get_center(gdata, &(gdata->obj[i]));
+	}
+	// need to catch the error from the 2 create
+	return (1);
 }

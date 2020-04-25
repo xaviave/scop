@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 23:20:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 16:48:21 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,15 @@ typedef struct				s_engine
 	float					pitch;
 	float					last_x;
 	float					last_y;
+	int						fix;
 	float					sensitivity;
 	float					last_frame;
+	float					max[2];
+	float					angle;
+	int						rotate;
+	int						grey;
+	int						texture;
+	int						random;
 	GLuint					program;
 	GLuint					mvp_location;
 }							t_engine;
@@ -69,6 +76,9 @@ typedef struct				s_buffer
 	unsigned int			vbo_vertices;
 	unsigned int			vbo_indices;
 	unsigned int			vbo_uv;
+	unsigned int			grey_loc;
+	unsigned int			random_loc;
+	unsigned int			texture_loc;
 }							t_buffer;
 
 typedef struct      		s_gdata

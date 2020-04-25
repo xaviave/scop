@@ -3,19 +3,7 @@ in vec3 Color;
 
 out vec4 FragColor;
 
-precision mediump float;
-
-float random (vec2 _st)
-{
-    return fract(sin(dot(_st.xy,
-                         vec2(12.9898,78.233)))*
-        43758.5453123);
-}
-
 void main()
 {
-	float rand_x = random(Color.xy);
-	float rand_y = random(Color.yz);
-	float rand_z = random(Color.xz);
 	FragColor = vec4(Color, 1.0f);
 }
