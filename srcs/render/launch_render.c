@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 22:01:47 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 22:38:19 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,14 @@ void		terminate_reader(t_gdata *gdata)
 
 static void	render(t_gdata *gdata)
 {
-	if (gdata->obj[gdata->actual_obj].mtllib)
-	{
- 		create_texture(gdata, 0);
-		glUseProgram(gdata->engine->program);
-		load_texture(gdata, "my", 0);
-	}
+	create_texture(gdata, "data/ressources/yellow.bmp", 0);
+	glUseProgram(gdata->engine->program);
+	load_texture(gdata, "my", 0);
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		if (gdata->obj[gdata->actual_obj].mtllib)
-		{
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[0]);
-		}
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[0]);
 		update_matrix(gdata);
 		glUniform1i(gdata->buffer->grey_loc, gdata->engine->grey);
 		glUniform1i(gdata->buffer->texture_loc, gdata->engine->texture);
