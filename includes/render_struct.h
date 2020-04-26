@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 17:18:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 16:02:44 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct				s_engine
 	float					camera_tmp[3];
 	float					camera_front[3];
 	
-	unsigned int			texture_id[32];
+	GLuint			texture_id;
 	float					fov;
 	float					yaw;
 	float					pitch;
@@ -64,6 +64,7 @@ typedef struct				s_engine
 	float					angle;
 	int						rotate;
 	int						grey;
+	int						sample;
 	int						texture;
 	int						random;
 	GLuint					program;
@@ -77,6 +78,7 @@ typedef struct				s_buffer
 	unsigned int			vbo_indices;
 	unsigned int			vbo_uv;
 	unsigned int			grey_loc;
+	unsigned int			sample_loc;
 	unsigned int			random_loc;
 	unsigned int			texture_loc;
 }							t_buffer;

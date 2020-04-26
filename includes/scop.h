@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 21:49:02 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 15:59:22 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,8 @@ typedef struct				s_color
 
 typedef struct				s_img
 {
-	unsigned int			width;
-	unsigned int			heigth;
+	int						width;
+	int						heigth;
 	unsigned char			*data;
 }							t_img;
 

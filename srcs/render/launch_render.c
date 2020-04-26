@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 22:38:19 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 16:19:11 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ void		terminate_reader(t_gdata *gdata)
 
 static void	render(t_gdata *gdata)
 {
-	create_texture(gdata, "data/ressources/yellow.bmp", 0);
+	create_texture(gdata, "data/ressources/raw_gold.bmp");
 	glUseProgram(gdata->engine->program);
-	load_texture(gdata, "my", 0);
+	glGetUniformLocation(gdata->engine->program, "texture2d");
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id[0]);
+		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id);
 		update_matrix(gdata);
 		glUniform1i(gdata->buffer->grey_loc, gdata->engine->grey);
+		glUniform1i(gdata->buffer->sample_loc, gdata->engine->texture);
 		glUniform1i(gdata->buffer->texture_loc, gdata->engine->texture);
 		glUniform1i(gdata->buffer->random_loc, gdata->engine->random);
 		glBindVertexArray(gdata->buffer->vao);

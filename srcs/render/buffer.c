@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 18:15:33 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 17:21:32 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 16:04:33 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	init_buffer(t_gdata *gdata)
 	glEnableVertexAttribArray(1);
 	gdata->buffer->grey_loc =
 		glGetUniformLocation(gdata->engine->program, "grey");
+	gdata->buffer->sample_loc =
+		glGetUniformLocation(gdata->engine->program, "sample_text");
 	gdata->buffer->texture_loc =
 		glGetUniformLocation(gdata->engine->program, "texture");
 	gdata->buffer->random_loc =

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 22:22:39 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 20:39:37 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 19:33:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int					check_ids_group(char *raw_data, int nb_delim)
 			return (0);
 	}
 	return (1);
-	return (delim == nb_delim);
 }
 
 int							check_lines_faces(char *raw_data,
@@ -82,5 +81,6 @@ int							check_lines_faces(char *raw_data,
 			return (0);
 		i = pass_whitespace_str(i, raw_data);
 	}
+	i = pass_whitespace(i, raw_data);
 	return ((nb_id < nb_args[0] || i != len) ? 0 : 1);
 }

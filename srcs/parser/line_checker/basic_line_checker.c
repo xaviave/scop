@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 19:00:06 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 16:04:25 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 17:34:21 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ int							check_line(char *raw_data, int nb_args[2], int type)
 
 	i = 0;
 	tmp = 0;
-	while (raw_data[i] && ++tmp < nb_args[1])
+	while (raw_data[i] && ++tmp <= nb_args[1])
 	{
 		if ((!type && !check_int(raw_data, &i, 1)) ||
 			(type == 1 && !check_double(raw_data, &i)))
 			return (0);
-		i = pass_whitespace_str(i, raw_data);
-		if (i + 1 && raw_data[i] != ' ' && raw_data[i] != '\t') // next char after an entity must be a whitespace
+		i--;
+		if (i + 1 && raw_data[i] != ' ' && raw_data[i] != '\t')
 			break ;
 	}
 	return (tmp >= nb_args[0] || tmp < nb_args[1]);

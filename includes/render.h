@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:40 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 22:45:17 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 15:54:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void	mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 void	error_callback(int error, const char* description);
 
-void	load_texture(t_gdata *gdata, char *name, unsigned int t);
-void	create_texture(t_gdata *gdata, char *name, unsigned int t);
+void	create_texture(t_gdata *gdata, char *name);
 
 void	update_matrix(t_gdata *gdata);
 

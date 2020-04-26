@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:36:38 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/26 18:13:46 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			pass_whitespace_str(int i, char *str)
 
 int         pass_whitespace(int i, char *str)
 {
-    while (str[i] && (str[i] == '\t' || str[i] == ' '))
+    while (str[i] && (str[i] == '\t' || str[i] == ' ' || str[i] == 13))
         i++;
     return (i);
 }
