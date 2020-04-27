@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 12:43:27 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/08 21:35:14 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 21:50:39 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "parser.h"
 
 static t_list_parser	*open_file(int fd, t_parser_option *opt, t_addr **addr)
 {
@@ -60,7 +60,6 @@ void					reader_obj(t_parser *parser)
 	{
 		init_parser_option(&opt, parser->args[i + 1], i, P_OBJ);
 		list = reader(&opt, &parser->addr);
-		ft_printf("Parsing file: %s\n", parser->args[i + 1]);
 		init_obj(&parser->obj[i], &opt, i, parser->nb_args, &parser->addr);
 		if (!list_parser_to_obj(&parser->obj[i], list, &parser->addr))
 			handle_error_parser("Error during parsing obj.", &parser->addr);
@@ -90,7 +89,7 @@ void					reader_mtl(t_parser *parser)
 			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
-			init_mtl(&parser->mtl[i], i, parser->nb_args, count_group_mtl(list));
+			init_mtl(&parser->mtl[i], i, parser, count_group_mtl(list));
 			if (!list_parser_to_mtl(&parser->mtl[i], list, &parser->addr))
 				handle_error_parser("Error during parsing mtl.", &parser->addr);
 		}

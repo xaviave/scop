@@ -1,0 +1,43 @@
+#version 400 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aColor;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+uniform int grey;
+uniform int texture;
+uniform int random;
+
+out vec3 Color;
+
+precision mediump float;
+
+float rand(vec2 _st)
+{
+    return fract(sin(dot(_st.xy,
+                         vec2(12.9898,78.233)))*
+        43758.5453123);
+}
+
+void main()
+{
+	gl_Position = projection * view * model * vec4(aPos, 1.0f);
+
+	float rand_x = rand(aColor.xy);
+	float rand_y = rand(aColor.yz);
+	float rand_z = rand(aColor.zx);	
+	if (grey == 1)
+	{
+		if (random == 1)
+			Color = vec3(rand_x, rand_x, rand_x);
+		else
+			Color = vec3(aColor.z / 2, aColor.z / 2, aColor.z / 2);
+	}
+	else if (random == 1)
+		Color = vec3(rand_x * gl_Position.x, rand_y * gl_Position.y, rand_z * gl_Position.z);
+	else if (texture == 1)
+		Color = vec3(gl_Position.x, gl_Position.y, 1.0f);
+	else
+		Color = vec3(0.2 * aPos.x, 0.5f + (aPos.z / 7), 0.66f * gl_Position.z);
+}

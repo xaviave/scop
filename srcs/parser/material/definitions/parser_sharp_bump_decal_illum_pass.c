@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:17:58 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:18:44 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:34:35 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/parser.h"
+#include "parser.h"
 
 int 				parser_bump(t_mtl *mtl, char *raw_data, int group_id)
 {
@@ -23,9 +23,7 @@ int 				parser_bump(t_mtl *mtl, char *raw_data, int group_id)
 	if (!(init_texture_option(&mtl->bump->option)))
 	    return (0);
 	if (!(parsing_texture_option(&mtl->bump->option, &mtl->bump->file,
-		raw_data, ID_BUMP)))
-	    return (0);
-	if (!(parse_file(&mtl->bump->file, &raw_data[pass_texture_option(raw_data)])))
+		&raw_data[i], ID_BUMP, mtl->path)))
 	    return (0);
 	return (1);
 }
@@ -40,9 +38,7 @@ int 				parser_decal(t_mtl *mtl, char *raw_data, int group_id)
 	if (!(init_texture_option(&mtl->decal->option)))
 	    return (0);
 	if (!(parsing_texture_option(&mtl->decal->option, &mtl->decal->file,
-		&raw_data[i], ID_DECAL)))
-	    return (0);
-	if (!(parse_file(&mtl->decal->file, &raw_data[pass_texture_option(raw_data)])))
+		&raw_data[i], ID_DECAL, mtl->path)))
 	    return (0);
 	return (1);
 }
@@ -77,9 +73,7 @@ int 				parser_disp(t_mtl *mtl, char *raw_data, int group_id)
 	if (!(init_texture_option(&mtl->disp->option)))
 	    return (0);
 	if (!(parsing_texture_option(&mtl->disp->option, &mtl->disp->file,
-		&raw_data[i], ID_DISP)))
-	    return (0);
-	if (!(parse_file(&mtl->disp->file, &raw_data[pass_texture_option(raw_data)])))
+		&raw_data[i], ID_DISP, mtl->path)))
 	    return (0);
 	return (1);
 }

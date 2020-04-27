@@ -6,15 +6,17 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:11:35 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:21:50 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/17 11:17:56 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 static int			check_mtl(t_mtl *mtl)
 {
-	print_mtl(mtl);
+	if (mtl)
+		return (1);
+	// print_mtl(mtl);
 	return (1);
 }
 
@@ -30,7 +32,6 @@ int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
 	init_parser_mtl_ptr(f);
 	while (tmp)
 	{
-		ft_printf("id = %d | %s\n", tmp->id, tmp->data);
 		// trim applied before so first char is either 'n' either '#'
 		if (tmp->id == ID_ERR_MTL && tmp->data[0] == 'n')
 			group_id++;

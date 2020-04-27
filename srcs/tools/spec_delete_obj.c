@@ -6,12 +6,12 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 21:29:20 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/08 21:29:20 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:36:30 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tools.h"
-#include "../../includes/cleaner.h"
+#include "tools.h"
+#include "cleaner.h"
 
 void            delete_t_transparent(t_transparent *obj)
 {

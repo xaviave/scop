@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:14:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:22:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/25 21:51:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/parser.h"
+#include "parser.h"
 
 void	print_color(t_color *color)
 {
@@ -18,10 +18,19 @@ void	print_color(t_color *color)
 		dprintf(1, "color: r = %f | g = %f | b = %f\n", color->r, color->g, color->b);
 }
 
+void	print_img(t_img *img)
+{
+	if (img)
+		ft_printf("width = %.4u | length = %.4u \n", img->width, img->heigth);
+}
+
 void	print_file(t_file *file)
 {
 	if (file)
-		ft_printf("file: name = %s | path = %s | type = %d\n", file->name, file->path, file->type);
+	{
+		ft_printf("file: name = %s | path = %s\n", file->name, file->path);
+		print_img(&file->img);
+	}
 }
 
 void	print_double(char *str, double *tab, int len)
@@ -83,12 +92,14 @@ void	print_mtl(t_mtl *mtl)
 	if (mtl->t)
 	{
 		dprintf(1, "halo = %d | factor = %f | group_id %d\n", mtl->t->halo, mtl->t->factor, mtl->t->group_id);
-		print_texture_option(&mtl->t->option);		
+		print_file(&mtl->t->file);
+		print_texture_option(&mtl->t->option);	
 	}
 	ft_printf("\n--------------------------------------------------\nspecular exponent: code Ns\n\n");
 	if (mtl->se)
 	{
 		dprintf(1, "value = %f | group_id %d\n", mtl->se->value, mtl->se->group_id);
+		print_file(&mtl->se->file);
 		print_texture_option(&mtl->se->option);
 	}
 	ft_printf("\n--------------------------------------------------\nsharpness: code sharpness\n\n");
@@ -120,9 +131,12 @@ void	print_mtl(t_mtl *mtl)
 	ft_printf("\n--------------------------------------------------\nshading: code illum\n\n");
 	if (mtl->shading)
 		ft_printf("type = %d | group_id %d\t", mtl->shading->type, mtl->shading->group_id);
+	ft_printf("\n--------------------------------------------------\ngroup: code newmtl\n\n");
 	if (mtl->nb_groups)
 	{
 		int i = -1;
+
+		ft_printf("nb_groups = %d\n", mtl->nb_groups);
 		while (++i < mtl->nb_groups)
 			ft_printf("%s\t", mtl->groups[i]);
 		ft_printf("\n");

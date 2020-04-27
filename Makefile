@@ -6,105 +6,126 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/05 12:41:22 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/04/27 13:40:52 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test no
 .SECONDEXPANSION:
 
-#COMPILATION
-
+# VAR
+NAME = scop
 CC = gcc
 RM = rm -f
-NAME = scop
-FW = Frameworks/
-FWGL = -framework OpenGl
-LIBSDL2 = $(addprefix $(FW), libsdl2)
-LIBGLEW = $(addprefix $(FW), libglew)
-LIBFT = libft/
-INC = includes/
-CFLAGS = -Wall -Wextra -Werror -I $(INC) -I $(LIBFT) -O2 -g
+
+# PATH
+SRC_PATH = ./srcs/
+OBJ_PATH = ./objs/
+LIB_PATH = ./external_lib/
+INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/
+
+# FLAGS
+GCC_FLGS = -Wall -Wextra -g3
+GCC_LIBS = -lglfw -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
+
+# TESTS
 PY = python3
 TESTER = "data/tests/test_code.py"
 
-#PATH
+# FILES
+SRC_NAME =	main.c \
+			error/handle_error_sdl.c \
+			error/handle_error_parser.c \
+			parser/reader.c \
+			parser/launch_parser.c \
+			parser/line_checker/check_obj.c \
+			parser/line_checker/check_mtl.c \
+			parser/line_checker/line_checker.c \
+			parser/line_checker/basic_line_checker.c \
+			parser/line_checker/advanced_obj_checker.c \
+			parser/object/print_obj.c \
+			parser/object/list_parser_to_obj.c \
+			parser/object/definitions/parser_v.c \
+			parser/object/definitions/parser_f_l_o_g_pass.c \
+			parser/material/print_mtl.c \
+			parser/material/list_parser_to_mtl.c \
+			parser/material/definitions/parse_file.c \
+			parser/material/definitions/parser_k.c \
+			parser/material/definitions/parse_color.c \
+			parser/material/definitions/parser_tf_d_s_ni.c \
+			parser/material/definitions/parsing_texture_option.c \
+			parser/material/definitions/parser_sharp_bump_decal_illum_pass.c \
+			tools/char.c \
+			tools/path.c \
+			tools/ft_atof.c \
+			tools/define_id.c \
+			tools/list_parser.c \
+			tools/length_parser.c \
+			tools/pass_whitespace.c \
+			tools/manage_addr.c \
+			tools/spec_delete_obj.c \
+			tools/details_delete_obj.c \
+			tools/optional_argument.c \
+			tools/data_to_float.c \
+			tools/init/init_obj.c \
+			tools/init/init_ptr.c \
+			tools/init/init_mtl.c \
+			tools/init/init_gdata.c \
+			tools/init/init_parser.c \
+			tools/init/init_parser_option.c \
+			tools/init/init_texture_option.c \
+			tools/matrixes/vertex3.c \
+			tools/matrixes/vertex4.c \
+			tools/matrixes/print_matrix.c \
+			tools/matrixes/tools_matrix4x4.c \
+			tools/matrixes/basic_matrix4x4.c \
+			tools/matrixes/rotate_matrix4x4.c \
+			tools/matrixes/advanced_matrix4x4.c \
+			tools/matrixes/init_delete_matrix.c \
+			render/launch_render.c \
+			render/event.c \
+			render/buffer.c \
+			render/camera.c \
+			render/shader.c \
+			render/callback.c \
+			render/textures.c \
 
-SRCS_PATH = ./srcs/
-OBJS_PATH = ./objs/
+OBJ_NAME = $(SRC_NAME:.c=.o)
+LIB_NAME = libft glfw/src
 
-FILES = main.c \
-		error/handle_error_sdl.c \
-		error/handle_error_parser.c \
-		parser/reader.c \
-		parser/line_checker.c \
-		parser/launch_parser.c \
-		parser/object/print_obj.c \
-		parser/object/list_parser_to_obj.c \
-		parser/object/definitions/parser_v.c \
-		parser/object/definitions/parser_f_l_o_g_pass.c \
-		parser/material/print_mtl.c \
-		parser/material/list_parser_to_mtl.c \
-		parser/material/files/parse_file.c \
-		parser/material/definitions/parser_k.c \
-		parser/material/definitions/parse_color.c \
-		parser/material/definitions/parser_tf_d_s_ni.c \
-		parser/material/definitions/parsing_texture_option.c \
-		parser/material/definitions/parser_sharp_bump_decal_illum_pass.c \
-		tools/char.c \
-		tools/path.c \
-		tools/ft_atof.c \
-		tools/define_id.c \
-		tools/list_parser.c \
-		tools/length_parser.c \
-		tools/pass_whitespace.c \
-		tools/manage_addr.c \
-		tools/spec_delete_obj.c \
-		tools/details_delete_obj.c \
-		tools/optional_argument.c \
-		tools/init/init_obj.c \
-		tools/init/init_ptr.c \
-		tools/init/init_mtl.c \
-		tools/init/init_prog.c \
-		tools/init/init_parser.c \
-		tools/init/init_parser_option.c \
-		tools/init/init_texture_option.c \
-		render/launch_render.c \
-
-SRCS = $(addprefix $(SRCS_PATH), $(FILES))
-OBJS = $(addprefix $(OBJS_PATH), $(FILES:.c=.o))
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC = $(addprefix -I,$(INC_PATH))
+LIB = $(addprefix -L$(LIB_PATH),$(LIB_NAME))
 
 #RULES
 
 all: $(NAME)
 
-define define_mkdir_target
-$(1):
-	mkdir -p $(1)
-endef
+$(NAME): $(OBJ)
+	@make -C $(LIB_PATH)libft -j
+	@$(CC) $(GCC_FLGS) $(LIB) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
-$(foreach dir,$(sort $(dir $(OBJS))),$(eval $(call define_mkdir_target,$(dir))))
-
-$(NAME): $(OBJS)
-	make -C $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(FWGL) \
-	-L $(LIBFT) -lft -L $(LIBSDL2) -lSDL2-2.0.0 -L $(LIBGLEW) -lGLEW.2.1.0
-
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INC) | $$(@D)
-	$(CC) $(CFLAGS) -o $@ -c $<
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
 
 clean:
-	@make -C $(LIBFT) clean
-	@$(RM) $(OBJS)
-	@echo "\033[31mScop objects deleted.\033[0m"
+	@rm -fv $(OBJ)
+	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@$(RM) $(LIBFT)libft.a
-	@$(RM) $(NAME)
-	@echo "\033[31mScop binary deleted.\033[0m"
+	@make -C $(LIB_PATH)libft fclean
+	@rm -fv $(NAME)
+	@sh objs_mkdir
 
 re: fclean all
+
+delete:
+	@$(RM) $(OBJ)
+	@$(RM) $(NAME)
+
+no: delete all
 
 test:
 	@$(PY) $(TESTER)

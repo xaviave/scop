@@ -1,0 +1,3 @@
+mkdir objs
+cd objs
+mkdir tools tools/get_objects tools/init tools/matrixes parser parser/line_checker parser/material parser/material/definitions parser/object parser/object/definitions error render render/render_utils render/shader

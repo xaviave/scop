@@ -1,5 +1,17 @@
-#include "../../includes/tools.h"
-#include "../../includes/cleaner.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   details_delete_obj.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/12 18:37:15 by xamartin          #+#    #+#             */
+/*   Updated: 2020/04/25 21:59:07 by xamartin         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tools.h"
+#include "cleaner.h"
 
 void            delete_str_tab(char **tab)
 {
@@ -31,9 +43,14 @@ void            delete_texture_option(t_texture_option *to)
     ft_memdel((void **)&to->t);
 }
 
+void			delete_img(t_img img)
+{
+	ft_memdel((void **)&img.data);
+}
+
 void            delete_t_file(t_file *file)
 {
     ft_strdel(&file->name);
     ft_strdel(&file->path);
-    ft_memdel((void **)&file->data);
+	delete_img(file->img);
 }

@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:16:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:34:39 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:34:40 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/parser.h"
+#include "parser.h"
 
 double					last_double(char *raw_data)
 {
@@ -47,7 +47,7 @@ int					parser_ka(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->ac->option, &mtl->ac->file,
-			&raw_data[i], ID_KA)))
+			&raw_data[i], ID_KA, mtl->path)))
 		    return (0);
 	}
 	else
@@ -70,7 +70,7 @@ int 				parser_kd(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->dc->option, &mtl->dc->file,
-			&raw_data[i], ID_KD)))
+			&raw_data[i], ID_KD, mtl->path)))
 		    return (0);
 	}
 	else
@@ -93,7 +93,7 @@ int 				parser_ks(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->sc->option, &mtl->sc->file,
-			&raw_data[i], ID_KS)))
+			&raw_data[i], ID_KS, mtl->path)))
 		    return (0);
 	}
 	else

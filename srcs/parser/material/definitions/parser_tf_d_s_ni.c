@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 23:15:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 00:34:00 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:34:29 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/parser.h"
+#include "parser.h"
 
 int 				parser_tf(t_mtl *mtl, char *raw_data, int group_id)
 {
@@ -33,7 +33,7 @@ int 				parser_d(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(5, raw_data);
 		if (!(parsing_texture_option(&mtl->t->option, &mtl->t->file,
-			&raw_data[i], ID_D)))
+			&raw_data[i], ID_D, mtl->path)))
 		    return (0);
 	}
 	else
@@ -43,7 +43,7 @@ int 				parser_d(t_mtl *mtl, char *raw_data, int group_id)
 		mtl->t->group_id = group_id;
 		if (ft_strchr(raw_data, 'h'))
 		{
-			i = pass_whitespace_number(1, raw_data);
+			i = pass_whitespace_str(1, raw_data);
 			mtl->t->factor = ft_atof(&raw_data[i]);
 			mtl->t->halo = 1;
 		}
@@ -64,7 +64,7 @@ int 				parser_ns(t_mtl *mtl, char *raw_data, int group_id)
 	{
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->se->option, &mtl->se->file,
-			&raw_data[i], ID_NS)))
+			&raw_data[i], ID_NS, mtl->path)))
 		    return (0);
 	}
 	else
@@ -87,7 +87,7 @@ int 				parser_ni(t_mtl *mtl, char *raw_data, int group_id)
 	size = sizeof(t_optical_density);
 	if (!(mtl->od = (t_optical_density *)ft_memalloc(size)))
 	    return (0);
-	mtl->disp->group_id = group_id;
+	mtl->od->group_id = group_id;
 	mtl->od->value = ft_atof(&raw_data[2]);
 	return (1);
 }

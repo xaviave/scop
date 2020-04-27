@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:27:57 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:34:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/parser.h"
+#include "parser.h"
 
 static int				get_on_off(char *option_str)
 {
@@ -38,7 +38,7 @@ static void				get_double_tab(char *option_str, double *tab, int size)
 	while (++nb < size)
 	{
 		tab[nb] = ft_atof(&option_str[i]);
-		i = pass_whitespace_number(0, option_str);
+		i = pass_whitespace_str(0, option_str);
 	}
 }
 
@@ -78,7 +78,7 @@ static void				define_value_by_option(t_texture_option *new,
 }
 
 int 					parsing_texture_option(t_texture_option *new,
-	t_file *file, char *raw_data, short type)
+	t_file *file, char *raw_data, short type, char *path)
 {
 	int					i;
 	char				*tmp;
@@ -102,7 +102,7 @@ int 					parsing_texture_option(t_texture_option *new,
 	    ft_strdel(&option_tab[i]);
 	free(option_tab);
 	option_tab = NULL;
-	if (!(parse_file(file, &raw_data[pass_texture_option(raw_data)])))
+	if (!(parse_file(file, &raw_data[pass_texture_option(raw_data)], path)))
 	    return (0);
 	return (1);
 }

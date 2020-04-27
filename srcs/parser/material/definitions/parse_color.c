@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 15:03:56 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:28:23 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/13 12:56:05 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../includes/parser.h"
+#include "parser.h"
 
 /*
 ** Transform xyz color type to rgb using a matrix
@@ -84,12 +84,12 @@ void						parse_color(t_color *color, char *raw_data, int xyz)
 	data_len = ft_strlen(raw_data);
 	i = (xyz) ? pass_header_xyz(raw_data) : 2;
 	color->r = ft_atof(&raw_data[i]);
-	i = pass_whitespace_number(i, raw_data);
+	i = pass_whitespace_str(i, raw_data);
 	if ((size_t)i != data_len)
 		color->g = ft_atof(&raw_data[i]);
 	else
 		color->g = color->r;
-	i = pass_whitespace_number(i, raw_data);
+	i = pass_whitespace_str(i, raw_data);
 	if ((size_t)i != data_len)
 		color->b = ft_atof(&raw_data[i]);
 	else

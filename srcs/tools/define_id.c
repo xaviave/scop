@@ -6,11 +6,11 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 14:54:07 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/05 12:42:13 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/12 18:37:24 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/tools.h"
+#include "tools.h"
 
 static int			get_mtl_id(char tmp[3])
 {

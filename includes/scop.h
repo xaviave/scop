@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/09 11:58:43 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/27 17:16:20 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
-# include "../libft/header/libft.h"
+# include "../external_lib/libft/header/libft.h"
 
 /*
 ** Defines
@@ -30,8 +30,8 @@
 
 # define PROG_NAME "Scop"
 
-# define W 640
-# define H 480
+# define W 1080
+# define H 720
 
 # define TRUE 1
 # define FALSE 0
@@ -174,6 +174,16 @@ typedef struct				s_obj
 	
 	t_vertex				*vertexes;
 	int						len_vertexes;
+
+	int						size_vertices;
+	float					*vertices;
+	int						size_indices;
+	int						*indices;
+	int						size_uv;
+	float					*uv;
+	float					min[3];
+	float					max[3];
+	float					axis[3];
 }							t_obj;
 
 /*
@@ -188,12 +198,18 @@ typedef struct				s_color
 	double					b; // equal to r if not given
 }							t_color;
 
+typedef struct				s_img
+{
+	int						width;
+	int						heigth;
+	unsigned char			*data;
+}							t_img;
+
 typedef struct				s_file
 {
 	char					*name;
 	char					*path;
-	int						type;
-	void					*data;
+	t_img					img;
 }							t_file;
 
 /*
@@ -400,6 +416,7 @@ typedef struct				s_mtl
 {
 	int						id;
 	int                     nb_args;
+	char					*path; // copy of parser->path | be careful with free
 	//no space else error
 	int						nb_groups;
 	char					**groups; // the id define the group | (char *) is the name
