@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/26 16:19:11 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/27 19:58:20 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void		terminate_reader(t_gdata *gdata)
 
 static void	render(t_gdata *gdata)
 {
-	create_texture(gdata, "data/ressources/raw_gold.bmp");
-	glUseProgram(gdata->engine->program);
-	glGetUniformLocation(gdata->engine->program, "texture2d");
+	create_texture(gdata, "data/ressources/image.bmp");
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

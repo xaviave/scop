@@ -22,9 +22,9 @@ float rand(vec2 _st)
 
 void main()
 {
-	float rand_x = rand(Color.xy);
-	float rand_y = rand(Color.yz);
-	float rand_z = rand(Color.xz);
+	float rand_x = rand(aColor.xy);
+	float rand_y = rand(aColor.yz);
+	float rand_z = rand(aColor.xz);
 	
 	gl_Position = projection * view * model * vec4(aPos, 1.0f);
 	if (grey == 1)
@@ -35,9 +35,9 @@ void main()
 			Color = vec3(aColor.z / 2, aColor.z / 2, aColor.z / 2);
 	}
 	else if (random == 1)
-		Color = vec3(rand_x, rand_y, rand_z);
+		Color = vec3(rand_x * gl_Position.x, rand_y * gl_Position.y, rand_z * gl_Position.z);
 	else if (texture == 1)
-		Color = vec3(gl_Position.x * 10, gl_Position.y * 10, 1.0f);
+		Color = vec3(gl_Position.x, gl_Position.y, 1.0f);
 	else
-		Color = aColor;
+		Color = vec3(0.2 * aPos.x, 0.5f + (aPos.z / 7), 0.66f * gl_Position.z);
 }

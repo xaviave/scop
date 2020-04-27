@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:03:40 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/26 15:54:30 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/27 17:20:04 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ void	update_matrix(t_gdata *gdata);
 void	handle_event(t_gdata *gdata);
 
 int		init_all_obj(t_gdata *gdata);
+
+int		parse_bmp(t_img *img, char *name);
 
 #endif

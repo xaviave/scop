@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/26 16:02:44 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/04/27 17:20:32 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ typedef struct				s_engine
 	float					camera_pos[3];
 	float					camera_tmp[3];
 	float					camera_front[3];
-	
-	GLuint			texture_id;
+	GLuint					texture_id;
 	float					fov;
 	float					yaw;
 	float					pitch;
