@@ -19,7 +19,6 @@ static int	init_graphic_context(t_gdata *gdata)
 	glfwSetErrorCallback(error_callback);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL);
 	if (!gdata->win)
