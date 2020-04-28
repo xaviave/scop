@@ -20,7 +20,6 @@ void					init_mtl(t_mtl *mtl, int id,
     mtl->nb_args = parser->nb_args;
 	mtl->path = parser->path[id];
 	mtl->nb_groups = nb_group;
-    // don't forget to set mtl->name with good value.
 	if (!(mtl->groups = (char **)malloc(sizeof(char *) * nb_group)))
 		return ;
 }
