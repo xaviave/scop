@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 11:23:44 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 21:49:03 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/03 12:33:53 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,16 @@ static void	check_args(int ac, char **av)
 
 int 		launch_parser(t_parser *parser, int ac, char **av)
 {
+	ft_printf("9\n");
 	check_args(ac, av);
+	ft_printf("9\n");
 	init_parser(parser, ac, av);
+	ft_printf("9\n");
 	reader_obj(parser);
+	ft_printf("9\n");
 	init_parser_mtl(parser);
+	ft_printf("9\n");
 	reader_mtl(parser);
+	ft_printf("9\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 17:24:05 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/03 13:30:14 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	init_graphic_context(t_gdata *gdata)
 	glfwSetErrorCallback(error_callback);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL);
 	if (!gdata->win)
@@ -29,6 +30,8 @@ static int	init_graphic_context(t_gdata *gdata)
 	glfwSetKeyCallback(gdata->win, key_callback);
 	glfwSetCursorPosCallback(gdata->win, mouse_callback);
 	glfwMakeContextCurrent(gdata->win);
+	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+		return (0);
     glfwSwapInterval(1);
 	return (1);
 }

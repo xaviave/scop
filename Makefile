@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/04/27 13:40:52 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/05/03 13:26:41 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,13 +93,13 @@ SRC_NAME =	main.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft glfw/src
-LIB_SRC_NAME = glad/src/glad.c
+GLAD = glad/src/glad.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(addprefix -L$(LIB_PATH),$(LIB_NAME))
-LIB_SRC = $(addprefix $(LIB_PATH),$(LIB_SRC_NAME))
+LIB_GLAD = $(addprefix $(LIB_PATH),$(GLAD))
 
 #RULES
 
@@ -107,7 +107,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIB_PATH)libft -j
-	$(CC) $(CC_FLGS) $(LIB) $(LIB_SRC) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
+	@$(CC) $(CC_FLGS) $(LIB) $(LIB_GLAD) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
