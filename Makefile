@@ -23,7 +23,7 @@ RM = rm -f
 SRC_PATH = ./srcs/
 OBJ_PATH = ./objs/
 LIB_PATH = ./external_lib/
-INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/
+INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glad/include
 
 # FLAGS
 GCC_FLGS = -Wall -Wextra -g3
@@ -93,11 +93,13 @@ SRC_NAME =	main.c \
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 LIB_NAME = libft glfw/src
+LIB_SRC_NAME = glad/src/glad.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
 LIB = $(addprefix -L$(LIB_PATH),$(LIB_NAME))
+LIB_SRC = $(addprefix $(LIB_PATH),$(LIB_SRC_NAME))
 
 #RULES
 
@@ -105,7 +107,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIB_PATH)libft -j
-	@$(CC) $(GCC_FLGS) $(LIB) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
+	$(CC) $(CC_FLGS) $(LIB) $(LIB_SRC) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<

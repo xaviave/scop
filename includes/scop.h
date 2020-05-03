@@ -22,6 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
+# include <glad/glad.h>
 # include "../external_lib/libft/header/libft.h"
 
 /*
