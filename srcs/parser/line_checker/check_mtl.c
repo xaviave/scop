@@ -46,6 +46,7 @@ static int          dispatch_by_header(char **content, t_parser_option *opt,
                 return (0);
         current->mtl_name[current->len_mtl] = ft_strdup(content[1]);
         current->len_mtl++;
+        return (1);
     }
     else if (!ft_strcmp(content[0], "Ka") || !ft_strcmp(content[0], "Kd") || !ft_strcmp(content[0], "Ks"))
     {
@@ -62,6 +63,7 @@ static int          dispatch_by_header(char **content, t_parser_option *opt,
         while (++i < 4)
             if (!is_num_or_float(content[i]))
                 return (0);
+        return (1);
     }
     else if (!ft_strcmp(content[0], "d") || !ft_strcmp(content[0], "Tr") || !ft_strcmp(content[0], "Ns"))
     {
@@ -77,6 +79,7 @@ static int          dispatch_by_header(char **content, t_parser_option *opt,
             return (0);
         if (!is_num_or_float(content[1]))
             return (0);
+        return (1);
     }
     else if (!ft_strcmp(content[0], "illum"))
     {
@@ -89,8 +92,10 @@ static int          dispatch_by_header(char **content, t_parser_option *opt,
             return (0);
         if (!ft_strcmp(content[1], "2") && current->ks != TRUE)
             return (0);
+        return (1);
     }
-    return (1);
+    printf("\nNeed to check the rest of the token trouvable in mtl file.\n");
+    return (0);
 }
 
 int					check_mtl_raw_data(char *raw_data, t_parser_option *opt)
