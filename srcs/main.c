@@ -19,6 +19,7 @@ int             main(int ac, char **av)
     t_gdata      g;
 
 	launch_parser(&parser, ac, av);
+	return (0);
 	launch_render(&g, &parser);
     return (1);
 }

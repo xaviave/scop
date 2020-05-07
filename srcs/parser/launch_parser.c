@@ -43,16 +43,10 @@ static void	check_args(int ac, char **av)
 
 int 		launch_parser(t_parser *parser, int ac, char **av)
 {
-	ft_printf("9\n");
 	check_args(ac, av);
-	ft_printf("9\n");
 	init_parser(parser, ac, av);
-	ft_printf("9\n");
 	reader_obj(parser);
-	ft_printf("9\n");
 	init_parser_mtl(parser);
-	ft_printf("9\n");
 	reader_mtl(parser);
-	ft_printf("9\n");
 	return (0);
 }

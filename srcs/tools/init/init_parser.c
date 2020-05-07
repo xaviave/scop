@@ -48,6 +48,6 @@ void	init_parser_mtl(t_parser *parser)
 			len_mtl++;
 		}
 	if (!(parser->mtl = addr_add((t_mtl *)ft_memalloc(sizeof(
-	        t_mtl) * len_mtl), M_MTL, &parser->addr)))
+	        t_mtl) * len_mtl), M_MTL, &parser->addr))) // check the M_MTL type.
 		handle_error_parser("Error during memory allocation.", &parser->addr);
 }
