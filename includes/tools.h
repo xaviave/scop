@@ -45,9 +45,11 @@ typedef struct              s_status
     int                     ks;
     int                     d;
     int                     tr;
+    int                     tf;
     int                     ns;
+    int                     ni;
     int                     illum;
-    int                     map;
+    int                     map_[8];
 }                           t_status;
 
 typedef struct				s_list_parser

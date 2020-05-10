@@ -37,6 +37,13 @@ void						reader_mtl(t_parser *parser);
 int							define_id_obj(char *raw_data, t_parser_option *opt);
 int							define_id_mtl(char *raw_data);
 
+
+int                         check_header_newmtl(char **content, t_status *current);
+int                         check_header_k_tf(char **content, t_status *current);
+int                         check_header_n_d_tr(char **content, t_status *current);
+int                         check_header_illum(char **content, t_status *current);
+int                         check_header_map_(char **content, t_status *current);
+
 int							check_raw_data(char *raw_data, t_parser_option *opt);
 
 int							check_line(char *raw_data, int nb_args[2], int type);

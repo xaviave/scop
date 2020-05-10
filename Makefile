@@ -44,6 +44,7 @@ SRC_NAME =	main.c \
 			parser/line_checker/line_checker.c \
 			parser/line_checker/basic_line_checker.c \
 			parser/line_checker/advanced_obj_checker.c \
+			parser/line_checker/mtl_header_checker.c \
 			parser/object/print_obj.c \
 			parser/object/list_parser_to_obj.c \
 			parser/object/definitions/parser_v.c \
