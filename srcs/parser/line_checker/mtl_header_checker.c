@@ -2,9 +2,6 @@
 
 int         check_header_newmtl(char **content, t_status *current)
 {
-    int     i;
-
-    i = 0;
     if (current->tab_len != 2)
         return (0);
     current->ka = FALSE;
@@ -17,11 +14,9 @@ int         check_header_newmtl(char **content, t_status *current)
     current->ni = FALSE;
     current->illum = FALSE;
     ft_bzero(current->map_, sizeof(current->map_));
-    while (i < current->len_mtl)
-        if (!ft_strcmp(current->mtl_name[i++], content[1]))
+    if (!(check_duplicate_newmtl(content[1],
+            current->len_mtl, &current->mtl_name)))
             return (0);
-    if (!(current->mtl_name[current->len_mtl] = ft_strdup(content[1])))
-        return (0);
     current->len_mtl++;
     return (1);
 }
@@ -31,7 +26,7 @@ int         check_header_k_tf(char **content, t_status *current)
     int     i;
 
     i = 0;
-    if (current->tab_len != 4)
+    if (current->tab_len != 4 || !current->len_mtl)
         return (0);
     if (content[0][1] == 'a')
         current->ka = current->ka == TRUE ? -1 : TRUE;
@@ -55,7 +50,7 @@ int         check_header_n_d_tr(char **content, t_status *current)
     int     i;
 
     i = 0;
-    if (current->tab_len != 2)
+    if (current->tab_len != 2 || !current->len_mtl)
         return (0);
     if (content[0][0] == 'd')
         current->d = current->d == TRUE ? -1 : TRUE;
@@ -78,7 +73,7 @@ int         check_header_illum(char **content, t_status *current)
     int     i;
 
     i = 0;
-    if (current->tab_len != 2)
+    if (current->tab_len != 2 || !current->len_mtl)
         return (0);
     current->illum = current->illum == TRUE ? -1 : TRUE;
     if (current->illum == -1)
@@ -95,7 +90,7 @@ int         check_header_map_(char **content, t_status *current)
     int     i;
 
     i = 0;
-    if (current->tab_len < 2)
+    if (current->tab_len < 2 || !current->len_mtl)
         return (0);
     if (!ft_strcmp(content[0], "map_Ka"))
         current->map_[0] = current->map_[0] == TRUE ? -1 : TRUE;

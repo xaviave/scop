@@ -102,6 +102,11 @@ void                delete_addr(t_addr **addr)
                 delete_t_mtl(((t_mtl *)(*addr)->content_addr)[i++]);
             ft_memdel((void **)&(*addr)->content_addr);
         }
+//        else if ((*addr)->content_type == M_LIST_)
+//        {
+//
+//            ft_memdel((void **)&(*addr)->content_addr);
+//        }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
         ft_memdel((void **)addr);

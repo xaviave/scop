@@ -39,7 +39,7 @@ typedef struct              s_status
 {
     int                     len_mtl;
     int                     tab_len;
-    char                    *mtl_name[256];
+    t_list                  *mtl_name;
     int                     ka;
     int                     kd;
     int                     ks;

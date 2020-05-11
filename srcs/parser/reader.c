@@ -23,7 +23,7 @@ static t_list_parser	*open_file(int fd, t_parser_option *opt, t_addr **addr)
 	{
 		if (line && (opt->data_len = ft_strlen(line)) > 1)
         {
-            if (check_raw_data(line, opt))
+            if (check_raw_data(line, opt, addr))
                 add_list_parser(&list, line, opt, addr);
 			else
 			{
