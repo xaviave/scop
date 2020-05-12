@@ -57,7 +57,7 @@ int							check_line_double(char *raw_data,
 		
 int							check_lines_faces(char *raw_data,
 	int *nb_args, int len);
-int							check_vertexes(char *raw_data);
+int							check_vertexes(char *raw_data, char tmp[3]);
 
 int							check_obj_raw_data(char *raw_data, t_parser_option *opt);
 int							check_mtl_raw_data(char *raw_data,

@@ -52,6 +52,11 @@ typedef struct              s_status
     int                     map_[8];
 }                           t_status;
 
+typedef struct              s_status_obj
+{
+    int                     len_ver;
+}                           t_status_obj;
+
 typedef struct				s_list_parser
 {
     short           		id; // id define the first type of objects

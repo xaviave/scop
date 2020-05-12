@@ -116,6 +116,7 @@ void                delete_addr(t_addr **addr)
 void            handle_error_parser(char *message, t_addr **addr)
 {
 	ft_printf("%s\n", message);
+	exit(EXIT_FAILURE); // need to re-code this.
 	delete_addr(addr);
 //	while (1)
 //	    ;

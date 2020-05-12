@@ -29,7 +29,7 @@ static int					dispatch_f_l_g_o(char *raw_data, int i,
 }
 
 static int					dispatch_by_header(char *raw_data,
-	t_parser_option *opt)
+	t_parser_option *opt, t_status_obj *current)
 {
 	int						i;
 	int						nb_args[2];
@@ -48,10 +48,14 @@ static int					dispatch_by_header(char *raw_data,
 		(tmp[1] == ' ' || tmp[1] == '\t')))
 	{
 		nb_args[1] = 3;
+		current->len_ver++;
 		return (check_line(&raw_data[i], nb_args, 1) &&
-			check_vertexes(&raw_data[i]));
+			check_vertexes(&raw_data[i], tmp));
 	}
-	return (dispatch_f_l_g_o(raw_data, i, opt, tmp, nb_args));	 
+    if ((tmp[0] == 'f' || tmp[0] == 'l') &&
+         (tmp[1] == ' ' || tmp[1] == '\t') && current->len_ver == 0)
+        return (0);
+	return (dispatch_f_l_g_o(raw_data, i, opt, tmp, nb_args));
 }
 
 /*
@@ -60,8 +64,9 @@ static int					dispatch_by_header(char *raw_data,
 
 int						check_obj_raw_data(char *raw_data, t_parser_option *opt)
 {
+    static t_status_obj current;
 
 	if (opt->data_len == 2 && raw_data[0] == 'g')
 		return (1);
-    return (opt->data_len > 2 ? dispatch_by_header(raw_data, opt) : 0);
+    return (opt->data_len > 2 ? dispatch_by_header(raw_data, opt, &current) : 0);
 }
