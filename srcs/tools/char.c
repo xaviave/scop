@@ -17,9 +17,9 @@ int     is_num_or_float(char *str)
     int i;
     int point;
 
-    if (!ft_isdigit(str[0]) || str[ft_strlen(str) - 1] == '.')
+    i = str[0] == '-' ? 1 : 0;
+    if (!ft_isdigit(str[i]) || str[ft_strlen(str) - 1] == '.')
         return (0);
-    i = 0;
     point = 0;
     while (str[i])
     {

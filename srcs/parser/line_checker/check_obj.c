@@ -60,6 +60,7 @@ static int					dispatch_by_header(char *raw_data,
 
 int						check_obj_raw_data(char *raw_data, t_parser_option *opt)
 {
+
 	if (opt->data_len == 2 && raw_data[0] == 'g')
 		return (1);
     return (opt->data_len > 2 ? dispatch_by_header(raw_data, opt) : 0);
