@@ -12,6 +12,47 @@
 
 #include "tools.h"
 
+int     is_num_or_float(char *str)
+{
+    int i;
+    int point;
+
+    i = str[0] == '-' ? 1 : 0;
+    if (!ft_isdigit(str[i]) || str[ft_strlen(str) - 1] == '.')
+        return (0);
+    point = 0;
+    while (str[i])
+    {
+        if (str[i] == '.')
+            point++;
+        else if (!ft_isdigit(str[i]))
+            return (0);
+        i++;
+    }
+    return (point > 1 ? FALSE : TRUE);
+}
+
+char    *change_chr(char *str, char c, char new_c)
+{
+    int i;
+
+    i = -1;
+    while (str[++i])
+        if (str[i] == c)
+            str[i] = new_c;
+    return (str);
+}
+
+int     len_tab(char **tab)
+{
+    int i;
+
+    i = 0;
+    while (tab[i])
+        i++;
+    return (i);
+}
+
 int		count_char(char *str, int c)
 {
 	int	i;

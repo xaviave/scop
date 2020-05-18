@@ -10,10 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "parser.h"
 
-int							check_vertexes(char *raw_data)
+static int                  return_vertexes(char tmp[3], int i, int nb_v,
+        char *raw_data)
+{
+    int                     check_nb_v;
+
+    check_nb_v = 2;
+    return (i < (int)ft_strlen(tmp) ||
+        nb_v < check_nb_v || nb_v > 4 ? 0 : 1); // ...
+}
+
+int							check_vertexes(char *raw_data, char tmp[3])
 {
 	int						i;
 	int						p;
@@ -33,12 +42,12 @@ int							check_vertexes(char *raw_data)
 			nb_vertexes++;
 			i = pass_whitespace(i, raw_data);
 		}
-		if (!ft_isdigit(raw_data[i]) &&
-			(raw_data[i] == '.' && ++p > 1 ) &&
-			(raw_data[i] == '-' && ++l > 1))
+		if ((!ft_isdigit(raw_data[i]) &&
+		    raw_data[i] != '.' && raw_data[i] != '-' && raw_data[i] != '\0') ||
+		    (raw_data[i] == '.' && ++p > 1 ) || (raw_data[i] == '-' && ++l > 1))
 			return (0);
 	}
-	return ((i != (int)ft_strlen(raw_data) || nb_vertexes < 2) ? 0 : 1);
+	return (return_vertexes(tmp, i, nb_vertexes, raw_data));
 }
 
 static int					check_ids_group(char *raw_data, int nb_delim)
@@ -72,7 +81,7 @@ int							check_lines_faces(char *raw_data,
 		nb_delim = 1;
 	else if (nb_delim == (nb_args[0] * 2) || nb_delim == (nb_args[1] * 2))
 		nb_delim = 2;
-	else if (nb_delim)
+	else if (nb_delim) // sound strange. not !nb_delim ?
 		return (0);
 	nb_id = 0;
 	while (i != len && ++nb_id <= nb_args[1])

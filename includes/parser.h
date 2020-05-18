@@ -37,7 +37,17 @@ void						reader_mtl(t_parser *parser);
 int							define_id_obj(char *raw_data, t_parser_option *opt);
 int							define_id_mtl(char *raw_data);
 
-int							check_raw_data(char *raw_data, t_parser_option *opt);
+
+int                         check_header_newmtl(char **content, t_status *current);
+int                         check_header_k_tf(char **content, t_status *current);
+int                         check_header_n_d_tr(char **content, t_status *current);
+int                         check_header_illum(char **content, t_status *current);
+int                         check_header_map_(char **content, t_status *current);
+int                         check_duplicate_newmtl(char *new_mtl, int len_mtl,
+        t_list **alst);
+
+int							check_raw_data(char *raw_data,
+        t_parser_option *opt, t_addr **addr);
 
 int							check_line(char *raw_data, int nb_args[2], int type);
 
@@ -47,10 +57,11 @@ int							check_line_double(char *raw_data,
 		
 int							check_lines_faces(char *raw_data,
 	int *nb_args, int len);
-int							check_vertexes(char *raw_data);
+int							check_vertexes(char *raw_data, char tmp[3]);
 
 int							check_obj_raw_data(char *raw_data, t_parser_option *opt);
-int							check_mtl_raw_data(char *raw_data, t_parser_option *opt);
+int							check_mtl_raw_data(char *raw_data,
+        t_parser_option *opt, t_addr **addr);
 
 int							list_parser_to_obj(t_obj *obj, t_list_parser *list,
         t_addr **addr);

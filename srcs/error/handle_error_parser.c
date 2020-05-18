@@ -102,6 +102,11 @@ void                delete_addr(t_addr **addr)
                 delete_t_mtl(((t_mtl *)(*addr)->content_addr)[i++]);
             ft_memdel((void **)&(*addr)->content_addr);
         }
+//        else if ((*addr)->content_type == M_LIST_)
+//        {
+//
+//            ft_memdel((void **)&(*addr)->content_addr);
+//        }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
         ft_memdel((void **)addr);
@@ -111,6 +116,7 @@ void                delete_addr(t_addr **addr)
 void            handle_error_parser(char *message, t_addr **addr)
 {
 	ft_printf("%s\n", message);
+	exit(EXIT_FAILURE); // need to re-code this.
 	delete_addr(addr);
 //	while (1)
 //	    ;

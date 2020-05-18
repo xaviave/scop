@@ -35,6 +35,28 @@ typedef struct				s_parser_option
 	int						data_len;
 }							t_parser_option;
 
+typedef struct              s_status
+{
+    int                     len_mtl;
+    int                     tab_len;
+    t_list                  *mtl_name;
+    int                     ka;
+    int                     kd;
+    int                     ks;
+    int                     d;
+    int                     tr;
+    int                     tf;
+    int                     ns;
+    int                     ni;
+    int                     illum;
+    int                     map_[8];
+}                           t_status;
+
+typedef struct              s_status_obj
+{
+    int                     len_ver;
+}                           t_status_obj;
+
 typedef struct				s_list_parser
 {
     short           		id; // id define the first type of objects
@@ -46,6 +68,11 @@ typedef struct				s_list_parser
 ** Functions
 */
 
+int                         is_num_or_float(char *str);
+
+char                        *change_chr(char *str, char c, char new_c);
+
+int                         len_tab(char **tab);
 int							len_list_parser_id(t_list_parser *list);
 
 void                		init_obj(t_obj *obj, t_parser_option *opt,
