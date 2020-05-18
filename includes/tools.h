@@ -37,9 +37,9 @@ typedef struct				s_parser_option
 
 typedef struct              s_status
 {
+    int                     index;
     int                     len_mtl;
     int                     tab_len;
-    t_list                  *mtl_name;
     int                     ka;
     int                     kd;
     int                     ks;
@@ -50,6 +50,7 @@ typedef struct              s_status
     int                     ni;
     int                     illum;
     int                     map_[8];
+    t_list                  *mtl_name;
 }                           t_status;
 
 typedef struct              s_status_obj

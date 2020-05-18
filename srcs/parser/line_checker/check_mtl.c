@@ -59,6 +59,28 @@ static int          dispatch_by_header(char **content, t_status *current)
    return (check_pass_line(content));
 }
 
+static void         init_current(t_status *current, t_parser_option *opt)
+{
+    if (opt->index == 0)
+        current->index = 0;
+    if (opt->index != current->index)
+    {
+        current->mtl_name = NULL;
+        current->len_mtl = FALSE;
+        current->ka = FALSE;
+        current->kd = FALSE;
+        current->ks = FALSE;
+        current->d = FALSE;
+        current->tr = FALSE;
+        current->tf = FALSE;
+        current->ns = FALSE;
+        current->ni = FALSE;
+        current->illum = FALSE;
+        ft_bzero(current->map_, sizeof(current->map_));
+        current->index = opt->index;
+    }
+}
+
 int					check_mtl_raw_data(char *raw_data,
         t_parser_option *opt, t_addr **addr)
 {
@@ -67,6 +89,7 @@ int					check_mtl_raw_data(char *raw_data,
     static t_status current;
 
     (void)opt;
+    init_current(&current, opt);
     if (!(content = ft_strsplit(change_chr(raw_data, '\t', ' '), ' ')))
         return (0);
     current.tab_len = len_tab(content);
