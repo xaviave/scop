@@ -66,7 +66,6 @@ void					reader_obj(t_parser *parser)
 	}
 }
 
-
 void					reader_mtl(t_parser *parser)
 {
 	int					i;

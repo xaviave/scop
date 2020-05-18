@@ -17,7 +17,6 @@ void					init_mtl(t_mtl *mtl, int id,
 {
 	ft_memset(mtl, 0, sizeof(t_mtl));
 	mtl->id = id;
-    mtl->nb_args = parser->nb_args;
 	mtl->path = parser->path[id];
 	mtl->nb_groups = nb_group;
 	if (!(mtl->groups = (char **)malloc(sizeof(char *) * nb_group)))
