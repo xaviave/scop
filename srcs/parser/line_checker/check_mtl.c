@@ -95,7 +95,7 @@ int					check_mtl_raw_data(char *raw_data,
     current.tab_len = len_tab(content);
     ret = dispatch_by_header(content, &current);
     delete_str_tab(content);
-    if (current.len_mtl == 1)
+    if (current.len_mtl == 1 && ft_strstr(raw_data, "newmtl"))
         if (!(addr_add(current.mtl_name, M_LIST_, addr)))
         {
             ft_strdel((char **)&current.mtl_name->content);
