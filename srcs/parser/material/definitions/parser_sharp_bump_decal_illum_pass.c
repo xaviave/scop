@@ -45,6 +45,8 @@ int 				parser_decal(t_mtl *mtl, char *raw_data, int group_id)
 
 int 				parser_illum(t_mtl *mtl, char *raw_data, int group_id)
 {
+    if (mtl->shading)
+        return (1);
 	if (!(mtl->shading = (t_shading *)ft_memalloc(sizeof(t_shading))))
 	    return (0);
 	mtl->shading->group_id = group_id;

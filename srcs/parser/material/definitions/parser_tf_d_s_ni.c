@@ -83,7 +83,9 @@ int 				parser_ns(t_mtl *mtl, char *raw_data, int group_id)
 int 				parser_ni(t_mtl *mtl, char *raw_data, int group_id)
 {
 	unsigned long	size;
-	
+
+	if (mtl->od)
+	    return (1);
 	size = sizeof(t_optical_density);
 	if (!(mtl->od = (t_optical_density *)ft_memalloc(size)))
 	    return (0);

@@ -48,7 +48,7 @@ int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
 	init_parser_mtl_ptr(f);
 	while (tmp)
 	{
-		// trim applied before so first char is either 'n' either '#'
+//		 trim applied before so first char is either 'n' either '#'
 		if (tmp->id == ID_ERR_MTL && tmp->data[0] == 'n')
 			group_id++;
 		if (!(f[tmp->id](mtl, tmp->data, group_id)))
