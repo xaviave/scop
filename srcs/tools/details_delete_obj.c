@@ -13,6 +13,19 @@
 #include "tools.h"
 #include "cleaner.h"
 
+void            delete_tab_len(char **tab, int len)
+{
+    int         i;
+
+    i = 0;
+    if (!tab)
+        return ;
+    while (i < len)
+        ft_strdel(&tab[i++]);
+    free(tab);
+    tab = NULL;
+}
+
 void            delete_str_tab(char **tab)
 {
     int         i;
@@ -45,14 +58,12 @@ void            delete_texture_option(t_texture_option *to)
     ft_memdel((void **)&to->t);
 }
 
-void			delete_img(t_img img)
-{
-	ft_memdel((void **)&img.data);
-}
-
 void            delete_t_file(t_file *file)
 {
+    t_img       img;
+
     ft_strdel(&file->name);
     ft_strdel(&file->path);
-	delete_img(file->img);
+    img = file->img;
+    ft_memdel((void **)&img.data);
 }

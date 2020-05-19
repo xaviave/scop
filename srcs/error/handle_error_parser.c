@@ -16,9 +16,7 @@
 
 static void     delete_t_mtl(t_mtl mtl)
 {
-    while (--mtl.nb_groups >= 0)
-        ft_strdel(&mtl.groups[mtl.nb_groups]);
-    ft_memdel((void **)&mtl.groups);
+    delete_tab_len(mtl.groups, mtl.nb_groups);
     if (mtl.ac)
         delete_texture_option(&mtl.ac->option);
     ft_memdel((void **)&mtl.ac);
@@ -58,7 +56,7 @@ static void     delete_t_obj(t_obj obj)
     int         i;
 
     ft_strdel(&obj.mtllib);
-    delete_str_tab(obj.mtl);
+    delete_tab_len(obj.mtl, obj.len_mtl);
     i = -1;
     while (++i < obj.len_faces)
     {

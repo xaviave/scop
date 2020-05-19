@@ -193,8 +193,10 @@ int 				parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id)
     {
         i = pass_whitespace(1, raw_data);
         smooth = ft_atoi(&raw_data[i]);
-        obj->objects[o_id].smooth = smooth;
-        obj->groups[g_id].smooth = smooth;
+        if (o_id >= 0)
+            obj->objects[o_id].smooth = smooth;
+        if (g_id >= 0)
+            obj->groups[g_id].smooth = smooth;
     }
     else if (ft_strlen(raw_data) < 7)
         return (1);

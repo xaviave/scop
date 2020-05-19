@@ -34,5 +34,6 @@ void            delete_list_parser(t_list_parser **list);
 void            delete_texture_option(t_texture_option *to);
 void            delete_t_file(t_file *file);
 void            delete_str_tab(char **tab);
+void            delete_tab_len(char **tab, int len);
 
 #endif

@@ -25,7 +25,8 @@ LIB_PATH = ./external_lib/
 INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glad/include
 
 # FLAGS
-GCC_FLGS = -Wall -Wextra -g3
+GCC_FLGS = -Wall -Wextra -g3 # comment this line and uncomment next line for memory tools and make re. leaks don't work with the tool but information is print on output of the program if there is problem.
+#GCC_FLGS = -Wall -Wextra -g3 -ggdb -fsanitize=address -fno-omit-frame-pointer
 GCC_LIBS = -lglfw -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
 # TESTS

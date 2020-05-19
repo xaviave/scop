@@ -69,11 +69,13 @@ void					reader_obj(t_parser *parser)
 void					reader_mtl(t_parser *parser)
 {
 	int					i;
+	int                 index;
 	char				*tmp;
 	t_parser_option		opt;
 	t_list_parser		*list;
 
 	i = -1;
+	index = 0;
 	while (++i < parser->nb_args)
 		if (parser->obj[i].mtllib)
 		{
@@ -88,8 +90,9 @@ void					reader_mtl(t_parser *parser)
 			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
 			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
-			init_mtl(&parser->mtl[i], i, parser, count_group_mtl(list));
-			if (!list_parser_to_mtl(&parser->mtl[i], list, &parser->addr))
+			init_mtl(&parser->mtl[index], i, parser, count_group_mtl(list));
+			if (!list_parser_to_mtl(&parser->mtl[index], list, &parser->addr))
 				handle_error_parser("Error during parsing mtl.", &parser->addr);
+			index++;
 		}
 }
