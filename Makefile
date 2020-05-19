@@ -107,7 +107,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIB_PATH)libft -j
-	@$(CC) $(CC_FLGS) $(LIB) $(LIB_GLAD) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
+	@$(CC) $(GCC_FLGS) $(LIB) $(LIB_GLAD) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
