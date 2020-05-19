@@ -12,7 +12,6 @@
 
 
 .PHONY: all clean fclean re test no
-.SECONDEXPANSION:
 
 # VAR
 NAME = scop
@@ -111,7 +110,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(CC_FLGS) $(LIB) $(LIB_GLAD) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
+	$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
 
 clean:
 	@rm -fv $(OBJ)
@@ -120,15 +119,15 @@ clean:
 fclean: clean
 	@make -C $(LIB_PATH)libft fclean
 	@rm -fv $(NAME)
-	@sh objs_mkdir
+	sh objs_mkdir
 
 re: fclean all
 
 delete:
-	@$(RM) $(OBJ)
-	@$(RM) $(NAME)
+	$(RM) $(OBJ)
+	$(RM) $(NAME)
 
 no: delete all
 
 test:
-	@$(PY) $(TESTER)
+	$(PY) $(TESTER)

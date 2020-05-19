@@ -50,7 +50,6 @@ typedef struct              s_status
     int                     ni;
     int                     illum;
     int                     map_[8];
-    t_list                  *mtl_name;
 }                           t_status;
 
 typedef struct              s_status_obj

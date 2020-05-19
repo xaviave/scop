@@ -20,7 +20,6 @@ int             main(int ac, char **av)
 
 	launch_parser(&parser, ac, av);
 	handle_error_parser("test.", &parser.addr);
-	return (0);
 	launch_render(&g, &parser);
-    return (1);
+    return (0);
 }

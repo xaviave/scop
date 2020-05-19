@@ -18,7 +18,7 @@
 ** file w/o .obj extension -> return error
 */
 
-static void	check_args(int ac, char **av)
+static int	check_args(int ac, char **av)
 {
 	int		i;
 	char	*tmp;
@@ -39,11 +39,12 @@ static void	check_args(int ac, char **av)
         }
 		ft_strdel(&tmp);
 	}
+	return (ac > 3 ? 3 : ac);
 }
 
 int 		launch_parser(t_parser *parser, int ac, char **av)
 {
-	check_args(ac, av);
+	ac = check_args(ac, av);
 	init_parser(parser, ac, av);
 	reader_obj(parser);
 	init_parser_mtl(parser);
