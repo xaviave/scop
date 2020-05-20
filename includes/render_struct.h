@@ -20,7 +20,7 @@
 # include "../external_lib/glfw/deps/linmath.h"
 # include <GLFW/glfw3.h>
 # else
-# include "../lib/glfw/deps/linmath.h"
+# include "../external_lib/glfw/deps/linmath.h"
 # include "../external_lib/glfw/deps/glad/gl.h"
 # include <GLFW/glfw3.h>
 # endif

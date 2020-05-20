@@ -14,8 +14,24 @@
 
 static int			check_mtl(t_mtl *mtl)
 {
+    int             i;
+    int             j;
+
+    i = -1;
 	if (mtl)
-		return (1);
+    {
+	    while (++i < mtl->nb_groups)
+        {
+	        j = i;
+	        while (++j < mtl->nb_groups)
+	            if (!ft_strcmp(mtl->groups[i], mtl->groups[j]))
+                {
+	                ft_printf("Duplicate newmtl: %s\n", mtl->groups[j]);
+                    return (0);
+                }
+        }
+        return (1);
+    }
 	// print_mtl(mtl);
 	return (1);
 }
@@ -32,7 +48,7 @@ int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
 	init_parser_mtl_ptr(f);
 	while (tmp)
 	{
-		// trim applied before so first char is either 'n' either '#'
+//		 trim applied before so first char is either 'n' either '#'
 		if (tmp->id == ID_ERR_MTL && tmp->data[0] == 'n')
 			group_id++;
 		if (!(f[tmp->id](mtl, tmp->data, group_id)))

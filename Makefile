@@ -12,7 +12,6 @@
 
 
 .PHONY: all clean fclean re test no
-.SECONDEXPANSION:
 
 # VAR
 NAME = scop
@@ -26,7 +25,8 @@ LIB_PATH = ./external_lib/
 INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glad/include
 
 # FLAGS
-GCC_FLGS = -Wall -Wextra -g3
+GCC_FLGS = -Wall -Wextra -g3 # comment this line and uncomment next line for memory tools and make re. leaks don't work with the tool but information is print on output of the program if there is problem.
+#GCC_FLGS = -Wall -Wextra -g3 -ggdb -fsanitize=address -fno-omit-frame-pointer
 GCC_LIBS = -lglfw -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
 # TESTS
@@ -108,10 +108,10 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIB_PATH)libft -j
-	@$(CC) $(CC_FLGS) $(LIB) $(LIB_GLAD) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
+	@$(CC) $(GCC_FLGS) $(LIB) $(LIB_GLAD) -lft $(INC) $(OBJ) $(GCC_LIBS) -o $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
+	$(CC) $(GCC_FLGS) $(INC) -o $@ -c $<
 
 clean:
 	@rm -fv $(OBJ)
@@ -120,15 +120,15 @@ clean:
 fclean: clean
 	@make -C $(LIB_PATH)libft fclean
 	@rm -fv $(NAME)
-	@sh objs_mkdir
+	sh objs_mkdir
 
 re: fclean all
 
 delete:
-	@$(RM) $(OBJ)
-	@$(RM) $(NAME)
+	$(RM) $(OBJ)
+	$(RM) $(NAME)
 
 no: delete all
 
 test:
-	@$(PY) $(TESTER)
+	$(PY) $(TESTER)

@@ -16,7 +16,7 @@
 
 static void     delete_t_mtl(t_mtl mtl)
 {
-    delete_str_tab(mtl.groups);
+    delete_tab_len(mtl.groups, mtl.nb_groups);
     if (mtl.ac)
         delete_texture_option(&mtl.ac->option);
     ft_memdel((void **)&mtl.ac);
@@ -56,7 +56,7 @@ static void     delete_t_obj(t_obj obj)
     int         i;
 
     ft_strdel(&obj.mtllib);
-    delete_str_tab(obj.mtl);
+    delete_tab_len(obj.mtl, obj.len_mtl);
     i = -1;
     while (++i < obj.len_faces)
     {
@@ -86,6 +86,7 @@ void                delete_addr(t_addr **addr)
     if (*addr)
     {
         i = 0;
+        printf("addr_content_type -> %d\n", (*addr)->content_type);
         if ((*addr)->content_type == M_CHAR__)
             delete_str_tab((char **)(*addr)->content_addr);
         else if ((*addr)->content_type == M_L_PAR_)
@@ -96,17 +97,12 @@ void                delete_addr(t_addr **addr)
                 delete_t_obj(((t_obj *)(*addr)->content_addr)[i++]);
             ft_memdel((void **)&(*addr)->content_addr);
         }
-        else if ((*addr)->content_type == M_MTL)
+        else if ((*addr)->content_type == M_MTL_)
         {
             while (i < ((t_mtl *)(*addr)->content_addr)->nb_args)
                 delete_t_mtl(((t_mtl *)(*addr)->content_addr)[i++]);
             ft_memdel((void **)&(*addr)->content_addr);
         }
-//        else if ((*addr)->content_type == M_LIST_)
-//        {
-//
-//            ft_memdel((void **)&(*addr)->content_addr);
-//        }
         if ((*addr)->next)
             delete_addr(&((*addr)->next));
         ft_memdel((void **)addr);
@@ -116,8 +112,8 @@ void                delete_addr(t_addr **addr)
 void            handle_error_parser(char *message, t_addr **addr)
 {
 	ft_printf("%s\n", message);
-	exit(EXIT_FAILURE); // need to re-code this.
-	delete_addr(addr);
+    if (addr)
+	    delete_addr(addr);
 //	while (1)
 //	    ;
     exit(EXIT_FAILURE);

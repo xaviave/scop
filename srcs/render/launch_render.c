@@ -24,7 +24,7 @@ void		terminate_reader(t_gdata *gdata)
 
 static void	render(t_gdata *gdata)
 {
-	create_texture(gdata, "data/ressources/image.bmp");
+	//create_texture(gdata, "data/ressources/image.bmp"); // Need to check.
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

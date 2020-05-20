@@ -2,6 +2,7 @@
 
 int         check_header_newmtl(char **content, t_status *current)
 {
+    (void)content;
     if (current->tab_len != 2)
         return (0);
     current->ka = FALSE;
@@ -14,9 +15,6 @@ int         check_header_newmtl(char **content, t_status *current)
     current->ni = FALSE;
     current->illum = FALSE;
     ft_bzero(current->map_, sizeof(current->map_));
-    if (!(check_duplicate_newmtl(content[1],
-            current->len_mtl, &current->mtl_name)))
-            return (0);
     current->len_mtl++;
     return (1);
 }
