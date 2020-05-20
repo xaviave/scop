@@ -86,7 +86,7 @@ void                delete_addr(t_addr **addr)
     if (*addr)
     {
         i = 0;
-        printf("-> %d\n", (*addr)->content_type);
+        printf("addr_content_type -> %d\n", (*addr)->content_type);
         if ((*addr)->content_type == M_CHAR__)
             delete_str_tab((char **)(*addr)->content_addr);
         else if ((*addr)->content_type == M_L_PAR_)
@@ -114,7 +114,7 @@ void            handle_error_parser(char *message, t_addr **addr)
 	ft_printf("%s\n", message);
     if (addr)
 	    delete_addr(addr);
-	while (1)
-	    ;
+//	while (1)
+//	    ;
     exit(EXIT_FAILURE);
 }
