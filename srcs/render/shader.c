@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 18:10:47 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/24 19:29:05 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/20 20:06:45 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,28 @@ static char			*get_shader(char *name)
 	return (file);
 }
 
+static void			print_shader_error(GLint addr, int opt)
+{
+    char			info_log[1024];
+
+	if (opt)
+		glGetShaderInfoLog(addr, 1024, NULL, info_log);
+	else
+		glGetProgramInfoLog(addr, 1024, NULL, info_log);
+	fprintf(stderr, "init_shader error: %s\n", info_log);
+}
+
 static void			init_program(t_engine *e, GLuint vs, GLuint fs)
 {
+	int				success;
+
     e->program = glCreateProgram();
     glAttachShader(e->program, vs);
     glAttachShader(e->program, fs);
     glLinkProgram(e->program);
+    glGetProgramiv(e->program, GL_LINK_STATUS, &success);
+    if (!success)
+		print_shader_error(e->program, 0);
  }
 
 int					init_shader(t_engine *e)

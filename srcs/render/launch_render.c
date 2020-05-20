@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:19:54 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/03 12:31:49 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/20 19:49:05 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void		terminate_reader(t_gdata *gdata)
 
 static void	render(t_gdata *gdata)
 {
+	glEnable(GL_PROGRAM_POINT_SIZE);  
 	//create_texture(gdata, "data/ressources/image.bmp"); // Need to check.
 	while (!glfwWindowShouldClose(gdata->win))
 	{
