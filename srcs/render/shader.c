@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 18:10:47 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/20 20:06:45 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 10:51:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int					init_shader(t_engine *e)
 	GLuint			fs;
 	const GLchar	*s;
 	const GLchar	*f;
+	int				success;
 
 	s = get_shader("shaders/vertex_custom_shader");
 	f = get_shader("shaders/fragment_custom_shader");
@@ -76,6 +77,9 @@ int					init_shader(t_engine *e)
     fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &f, NULL);
     glCompileShader(fs);
+    glGetProgramiv(e->program, GL_LINK_STATUS, &success);
+	if (!success)
+		print_shader_error(e->program, 1);
 	init_program(e, vs, fs);
     glDeleteShader(vs);
     glDeleteShader(fs);

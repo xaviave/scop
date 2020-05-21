@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/20 20:13:10 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 16:14:38 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ typedef struct      		s_gdata
 	t_engine				*engine;
 	double					time;
 	float					*vertices;
-	float					*color;
-	int						size_color;
 	int						actual_obj;
 }                   		t_gdata;
 

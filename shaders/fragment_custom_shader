@@ -11,7 +11,7 @@ void main()
 	if (sample_text == 1)
 		FragColor = texture(texture2d, Color.xy);
 	else if (gl_FrontFacing)
-		FragColor = vec4(Color, 1.0f);
-	else
 		FragColor = vec4(Color.zyx, 1.0f);
+	else
+		FragColor = vec4(Color, 1.0f);
 }

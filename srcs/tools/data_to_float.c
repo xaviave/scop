@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/24 17:58:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 21:21:38 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 17:36:18 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,55 @@ static void	create_indices(t_obj *obj)
 	}
 }
 
+void		rand_color(int face_id, int len_face, float c[3])
+{
+	float	f;
+
+	f = face_id / (double)len_face;
+	if (face_id % 3 == 0)
+	{
+		fprintf(stderr, "3 - %d %f\n", face_id, f);
+		c[0] = (exp(f) - exp(-pow(f, 2)));
+		c[1] = (exp(f) + exp(1) * log(f));
+		c[2] = f;
+	}
+	else if (face_id % 2 == 0)
+	{
+		fprintf(stderr, "2 - %d %f\n", face_id, f);
+		c[0] = cos(f) - exp(f);
+		c[1] = f;
+		c[2] = f + exp(-pow(f, 3));
+	}
+	else
+	{
+		fprintf(stderr, "1 - %d %f\n", face_id, f);
+		c[0] = f;
+		c[1] = f;
+		c[2] = f;
+	}
+}
+
 static void	create_vertices(t_obj *obj)
 {
 	int		i;
 	int		v_id;
-	int		uv_id;
+	float	c[3];
 	
 	i = -1;
 	v_id = -1;
-	uv_id = -1;
-	obj->size_vertices = obj->len_vertexes * 3;
-	obj->size_uv = obj->len_vertexes * 2;
+	obj->size_vertices = obj->len_vertexes * 6;
 	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
-		return ;
-	if (!(obj->uv = malloc(sizeof(float) * obj->size_uv)))
 		return ;
 	while (++i < obj->len_vertexes)
 	{
+		rand_color(i / 3, obj->len_faces / 3, c);
+		fprintf(stderr, "%f %f %f\n", c[0], c[1], c[2]);
 		obj->vertices[++v_id] = obj->vertexes[i].x - (obj->axis[0] / 2);
 		obj->vertices[++v_id] = obj->vertexes[i].y - (obj->axis[1] / 2);
 		obj->vertices[++v_id] = obj->vertexes[i].z - (obj->axis[2] / 2);
+		obj->vertices[++v_id] = c[0];
+		obj->vertices[++v_id] = c[1];
+		obj->vertices[++v_id] = c[2];
 	}
 }
 
