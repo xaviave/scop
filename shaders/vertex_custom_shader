@@ -26,7 +26,7 @@ void main()
 
 	float rand_x = rand(aColor.xy);
 	float rand_y = rand(aColor.yz);
-	float rand_z = rand(aColor.zx);
+	float rand_z = rand(aColor.zx);	
 	if (grey == 1)
 	{
 		if (random == 1)
