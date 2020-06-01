@@ -69,19 +69,20 @@ int					init_shader(t_engine *e)
 {
 	GLuint			vs;
 	GLuint			fs;
-	const GLchar	*s;
-	const GLchar	*f;
+	const GLchar	*shad;
 	int				success;
 
-	s = get_shader("shaders/vertex_custom_shader");
-	f = get_shader("shaders/fragment_custom_shader");
-	if (!s || !f)
-		return (0);
+	if (!(shad = get_shader("shaders/vertex_custom_shader")))
+	    return (0);
     vs = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vs, 1, &s, NULL);
+    glShaderSource(vs, 1, &shad, NULL);
+    ft_strdel((char **)&shad);
+    if (!(shad = get_shader("shaders/fragment_custom_shader")))
+        return (0);
     glCompileShader(vs);
     fs = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fs, 1, &f, NULL);
+    glShaderSource(fs, 1, &shad, NULL);
+    ft_strdel((char **)&shad);
     glCompileShader(fs);
     glGetProgramiv(e->program, GL_LINK_STATUS, &success);
 	if (!success)

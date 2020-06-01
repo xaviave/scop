@@ -21,6 +21,6 @@
 */
 
 void        handle_error_parser(char *message, t_addr **addr);
-void		handle_error_sdl(char *message, ...);
+void		handle_error_render(char *message, t_addr **addr);
 
 #endif

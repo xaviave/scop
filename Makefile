@@ -35,7 +35,7 @@ TESTER = "data/tests/test_code.py"
 
 # FILES
 SRC_NAME =	main.c \
-			error/handle_error_sdl.c \
+			error/handle_error_render.c \
 			error/handle_error_parser.c \
 			parser/reader.c \
 			parser/launch_parser.c \
@@ -65,6 +65,7 @@ SRC_NAME =	main.c \
 			tools/length_parser.c \
 			tools/pass_whitespace.c \
 			tools/manage_addr.c \
+			tools/clear_parser_memory.c \
 			tools/spec_delete_obj.c \
 			tools/details_delete_obj.c \
 			tools/optional_argument.c \

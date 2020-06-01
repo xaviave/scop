@@ -27,6 +27,10 @@
 
 # define SHADER_READ 1000
 
+# define M_WIN_ 10
+# define M_ENG_ 11
+# define M_BUF_ 12
+
 typedef struct				s_matrix
 {
 	int						rows;
@@ -93,6 +97,7 @@ typedef struct      		s_gdata
 	double					time;
 	float					*vertices;
 	int						actual_obj;
+    t_addr                  *addr;
 }                   		t_gdata;
 
 #endif

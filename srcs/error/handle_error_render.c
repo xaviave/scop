@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error_sdl.c                                 :+:      :+:    :+:   */
+/*   handle_error_render.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,24 @@
 
 #include "error.h"
 
-void     handle_error_sdl(char *message, ...)
+void        delete_addr_render(t_addr **addr)
+{
+    int     i;
+
+    if (*addr)
+    {
+        i = 0;
+        printf("addr_content_type -> %d\n", (*addr)->content_type);
+        if ((*addr)->next)
+            delete_addr_render(&((*addr)->next));
+        ft_memdel((void **)addr);
+    }
+}
+
+void        handle_error_render(char *message, t_addr **addr)
 {
 	ft_printf("%s\n", message);
+	if (addr)
+	    delete_addr_render(addr);
+    exit(EXIT_FAILURE);
 }
