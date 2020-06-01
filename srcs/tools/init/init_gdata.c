@@ -24,7 +24,6 @@ static int	init_graphic_context(t_gdata *gdata)
 	gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL);
 	if (!gdata->win)
 		return (0);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_REFRESH_RATE, 30);
 	glfwSetInputMode(gdata->win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetKeyCallback(gdata->win, key_callback);

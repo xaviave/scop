@@ -49,6 +49,11 @@ int		 	launch_render(t_gdata *gdata, t_parser *parser)
 {
 	if (!init_gdata(gdata, parser))
 		return (0);
+	gdata = NULL;
+	parser = NULL;
+	while (1)
+	    ;
+	exit(0);
 	render(gdata);
 	return (1);
 }
