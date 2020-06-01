@@ -35,9 +35,9 @@ void main()
 			Color = vec3(aColor.z / 2, aColor.z / 2, aColor.z / 2);
 	}
 	else if (random == 1)
-		Color = vec3(rand_x * gl_Position.x, rand_y * gl_Position.y, rand_z * gl_Position.z);
+	    Color = vec3(rand_x, rand_y, rand_z);
 	else if (texture == 1)
 		Color = vec3(gl_Position.x, gl_Position.y, 1.0f);
 	else
-		Color = aColor;
+	    Color = vec3(aColor * 0.3f + 0.3f);
 }

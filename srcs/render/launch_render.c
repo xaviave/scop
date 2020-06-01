@@ -24,8 +24,8 @@ void		terminate_reader(t_gdata *gdata)
 
 static void	render(t_gdata *gdata)
 {
-	glEnable(GL_PROGRAM_POINT_SIZE);  
-	//create_texture(gdata, "data/ressources/image.bmp"); // Need to check.
+	glEnable(GL_PROGRAM_POINT_SIZE);
+	create_texture(gdata, "data/ressources/image.bmp"); // Need to check.
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

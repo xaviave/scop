@@ -68,8 +68,8 @@ static void	create_indices(t_obj *obj)
 		obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
 		obj->indices[++v_id] = obj->faces[i].vertexes_id[1] - 1;
 		obj->indices[++v_id] = obj->faces[i].vertexes_id[2] - 1;
-		rand_color(i, obj, obj->faces[i].vertexes_id[0] - 1,
-			obj->faces[i].vertexes_id[1] - 1, obj->faces[i].vertexes_id[2] - 1);
+//		rand_color(i, obj, obj->faces[i].vertexes_id[0] - 1,
+//			obj->faces[i].vertexes_id[1] - 1, obj->faces[i].vertexes_id[2] - 1);
 		if (obj->faces[i].nb_vertexes == 4)
 		{
 			obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
@@ -83,20 +83,26 @@ static void	create_vertices(t_obj *obj)
 {
 	int		i;
 	int		v_id;
-	
+	int     uv_id;
+
 	i = -1;
 	v_id = -1;
-	obj->size_vertices = obj->len_vertexes * 6;
+	uv_id = -1;
+    obj->size_vertices = obj->len_vertexes * 3;
+    obj->size_uv = obj->len_vertexes * 2;
+//	obj->size_vertices = obj->len_vertexes * 6;
 	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
 		return ;
+    if (!(obj->uv = malloc(sizeof(float) * obj->size_uv)))
+        return ;
 	while (++i < obj->len_vertexes)
 	{
 		obj->vertices[++v_id] = obj->vertexes[i].x - (obj->axis[0] / 2);
 		obj->vertices[++v_id] = obj->vertexes[i].y - (obj->axis[1] / 2);
 		obj->vertices[++v_id] = obj->vertexes[i].z - (obj->axis[2] / 2);
-		obj->vertices[++v_id] = 0;
-		obj->vertices[++v_id] = 0;
-		obj->vertices[++v_id] = 0;
+//		obj->vertices[++v_id] = 0;
+//		obj->vertices[++v_id] = 0;
+//		obj->vertices[++v_id] = 0;
 	}
 }
 

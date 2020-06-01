@@ -39,10 +39,10 @@ int			init_buffer(t_gdata *gdata)
 		sizeof(int) * gdata->obj[0].size_indices,
 			gdata->obj[0].indices, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-		6 * sizeof(float), (void*)0);
+		3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
-		(void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
+		(void*)0);
 	glEnableVertexAttribArray(1);
 	put_uniform(gdata);
 	return (1);
