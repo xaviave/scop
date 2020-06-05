@@ -22,10 +22,11 @@ void		terminate_reader(t_gdata *gdata)
 	glfwTerminate();
 }
 
-static void	render(t_gdata *gdata)
+static int	render(t_gdata *gdata)
 {
 	glEnable(GL_PROGRAM_POINT_SIZE);
-	create_texture(gdata, "data/ressources/image.bmp"); // Need to check.
+	if (!(create_texture(gdata, "data/ressources/image.bmp")))
+	    return (0); // Need to check.
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -43,6 +44,7 @@ static void	render(t_gdata *gdata)
 		handle_event(gdata);
 	}
 	terminate_reader(gdata);
+	return (1);
 }
 
 int		 	launch_render(t_gdata *gdata, t_parser *parser)
@@ -50,6 +52,7 @@ int		 	launch_render(t_gdata *gdata, t_parser *parser)
     gdata->addr = parser->addr;
 	if (!init_gdata(gdata, parser))
 		handle_error_render("Error during init render.", &gdata->addr);
-	render(gdata);
+	if (!(render(gdata)))
+        handle_error_render("Error during render.", &gdata->addr);
 	return (1);
 }
