@@ -50,9 +50,6 @@ int		 	launch_render(t_gdata *gdata, t_parser *parser)
     gdata->addr = parser->addr;
 	if (!init_gdata(gdata, parser))
 		handle_error_render("Error during init render.", &gdata->addr);
-	while (1)
-	    ;
-	exit(0);
 	render(gdata);
 	return (1);
 }
