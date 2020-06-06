@@ -20,7 +20,6 @@ static int			reader_file(char *name, char **data)
 	char			*tmp;
 	char			line[IMG_BUFFER];
 
-	*data = NULL;
 	if (!(fd = open(name, O_RDONLY)))
 	    return (0);
 	file_size = 0;
@@ -30,7 +29,8 @@ static int			reader_file(char *name, char **data)
 		if (!(*data = ft_memalloc(file_size + ret)))
         {
 		    ft_strdel(&tmp);
-            return (close(fd) == -1 ? 0 : 0);
+		    close(fd);
+		    return (0);
         }
 		if (tmp)
 			ft_memcpy(*data, tmp, file_size);
@@ -64,17 +64,16 @@ static int			read_bmp(t_img *img, char *name, unsigned int sl)
 	int				h;
 	unsigned int	j;
 	unsigned int	i;
-	int				size;
 	char			*tmp;
 
 	h = 0;
 	i = sl * img->heigth;
-	size = i * 2;
-	if (!(img->data = (unsigned char *)malloc(sizeof(unsigned char) * size))
-	    || (!(reader_file(name, &tmp))))
+	tmp = NULL;
+	if (!(reader_file(name, &tmp)))
         return (0);
-    while (i > 0 && (i -= sl))
+    while (i > 0)
 	{
+        i -= sl;
 		j = 0;
 		while (j < sl)
 		{
@@ -85,6 +84,7 @@ static int			read_bmp(t_img *img, char *name, unsigned int sl)
 		}
 		h += sl;
 	}
+    ft_strdel(&tmp);
 	return (1);
 }
 
@@ -92,17 +92,14 @@ int					parse_bmp(t_img *img, char *name)
 {
 	unsigned int	sl;
 
+	img->data = NULL;
 	if (!(sl = read_header(name, img)))
-    {
-	    printf("Error during parsing texture.\n");
         return (0);
-    }
+	if (!(img->data = (unsigned char *)ft_memalloc(sizeof(unsigned char) *
+	        (sl * img->heigth) * 2)))
+	    return (0);
 	if (!(read_bmp(img, name, sl)))
-    {
-        printf("Error during parsing texture.\n");
-	    ft_memdel((void **)&img->data);
         return (0);
-    }
 	return (1);
 }
 

@@ -22,6 +22,6 @@ int             main(int ac, char **av)
 //	handle_error_parser("test exit after parser.", &parser.addr);
     clear_parser_memory(&parser.addr);
 	launch_render(&g, &parser);
-//	handle_error_render("test exit after render.", &g.addr);
+	handle_error_render("test exit after render.", &g.addr);
     return (0);
 }

@@ -17,7 +17,11 @@ int 				create_texture(t_gdata *gdata, char *name)
 	t_img			img;
 
 	if (!(parse_bmp(&img, name)))
-	    return (0); // check img free
+    {
+	    printf("Error during parsing texture.\n");
+        ft_memdel((void **)&img.data);
+        return (0);
+    }
 	glGenTextures(1, &gdata->engine->texture_id);
 	glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -28,5 +32,6 @@ int 				create_texture(t_gdata *gdata, char *name)
 		img.heigth, 0, GL_RGB, GL_UNSIGNED_BYTE, img.data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	ft_memdel((void **)&img.data);
 	return (1);
 }
