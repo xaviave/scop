@@ -47,7 +47,7 @@ void	error_callback(int error, const char* description);
 
 int 	create_texture(t_gdata *gdata, char *name);
 
-void	update_matrix(t_gdata *gdata);
+int 	update_matrix(t_gdata *gdata);
 
 void	handle_event(t_gdata *gdata);
 

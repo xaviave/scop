@@ -145,11 +145,11 @@ void						ortho_matrix4x4(t_matrix *m, float tab[6]);
 ** srcs/tools/matrixes/rotate_matrix4x4.c
 */
 
-void						rotate_matrix4x4_x(t_matrix *rotate,
+int 						rotate_matrix4x4_x(t_matrix *rotate,
 	t_matrix *m, float angle);
-void						rotate_matrix4x4_y(t_matrix *rotate,
+int 						rotate_matrix4x4_y(t_matrix *rotate,
 	t_matrix *m, float angle);
-void						rotate_matrix4x4_z(t_matrix *rotate,
+int 						rotate_matrix4x4_z(t_matrix *rotate,
 	t_matrix *m, float angle);
 
 /*
@@ -203,7 +203,7 @@ void						vertex4_row_matrix4x4(float r[4], t_matrix *m, int i);
 
 t_matrix					*new_matrix(int rows, int columns);
 void						identity_matrix4x4(t_matrix *m);
-t_matrix					*init_identity_matrix4x4();
+t_matrix					*init_identity_matrix4x4(t_matrix *source);
 void						*free_matrix(t_matrix *m);
 
 // http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-17-quaternions/

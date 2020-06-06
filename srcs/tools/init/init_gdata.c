@@ -74,10 +74,10 @@ int			init_gdata(t_gdata *gdata, t_parser *parser)
     gdata->nb_objs = parser->nb_args;
     gdata->obj = parser->obj;
     gdata->mtl = parser->mtl;
-	if (!(gdata->engine = addr_add((t_engine *)malloc(sizeof(t_engine)),
+	if (!(gdata->engine = addr_add((t_engine *)ft_memalloc(sizeof(t_engine)),
 	        M_ENG_, &gdata->addr)))
 		return (0);
-	if (!(gdata->buffer = addr_add((t_buffer *)malloc(sizeof(t_buffer)),
+	if (!(gdata->buffer = addr_add((t_buffer *)ft_memalloc(sizeof(t_buffer)),
 	        M_BUF_, &gdata->addr)))
 		return (0);
 	if (!init_engine(gdata) || !init_all_obj(gdata) ||

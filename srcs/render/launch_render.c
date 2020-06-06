@@ -31,7 +31,8 @@ static int	render(t_gdata *gdata)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id);
-		update_matrix(gdata);
+		if (!(update_matrix(gdata)))
+		    return (0);
 		glUniform1i(gdata->buffer->grey_loc, gdata->engine->grey);
 		glUniform1i(gdata->buffer->sample_loc, gdata->engine->texture);
 		glUniform1i(gdata->buffer->texture_loc, gdata->engine->texture);
