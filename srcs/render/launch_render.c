@@ -12,7 +12,7 @@
 
 #include "render.h"
 
-void		terminate_reader(t_gdata *gdata)
+static void	terminate_render(t_gdata *gdata)
 {
 	glfwDestroyWindow(gdata->win);
 	glDeleteVertexArrays(1, &gdata->buffer->vao);
@@ -44,7 +44,7 @@ static int	render(t_gdata *gdata)
 		glfwSwapBuffers(gdata->win);
 		handle_event(gdata);
 	}
-	terminate_reader(gdata);
+	terminate_render(gdata);
 	return (1);
 }
 
