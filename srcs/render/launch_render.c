@@ -39,6 +39,7 @@ static int	render(t_gdata *gdata)
 		glBindVertexArray(gdata->buffer->vao);
 		glDrawElements(GL_TRIANGLES,
 			gdata->obj[gdata->actual_obj].size_indices, GL_UNSIGNED_INT, 0);
+		// last leaks is there. (glDrawElements)
 		glBindVertexArray(0);
 		glfwSwapBuffers(gdata->win);
 		handle_event(gdata);
