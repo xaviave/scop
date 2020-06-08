@@ -56,7 +56,7 @@ void        handle_error_render(char *message, t_addr **addr)
 	ft_printf("%s\n", message);
 	if (addr)
 	    delete_addr_render(addr);
-	while (1)
-	    ;
+//	while (1)
+//	    ;
     exit(EXIT_FAILURE);
 }

@@ -18,7 +18,6 @@ static void	terminate_render(t_gdata *gdata)
 	glDeleteVertexArrays(1, &gdata->buffer->vao);
 	glDeleteBuffers(1, &gdata->buffer->vbo_indices);
 	glDeleteBuffers(1, &gdata->buffer->vbo_vertices);
-	// need to free gdata->obj | gdata->mtl | in each obj vertices | indices
 	glfwTerminate();
 }
 
@@ -55,5 +54,6 @@ int		 	launch_render(t_gdata *gdata, t_parser *parser)
 		handle_error_render("Error during init render.", &gdata->addr);
 	if (!(render(gdata)))
         handle_error_render("Error during render.", &gdata->addr);
+	delete_addr_render(&gdata->addr);
 	return (1);
 }

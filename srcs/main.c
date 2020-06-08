@@ -20,8 +20,9 @@ int             main(int ac, char **av)
 
 	launch_parser(&parser, ac, av);
 //	handle_error_parser("test exit after parser.", &parser.addr);
-    clear_parser_memory(&parser.addr);
 	launch_render(&g, &parser);
-	handle_error_render("test exit after render.", &g.addr);
+//	handle_error_render("test exit after render.", &g.addr);
+    while (1)
+        ;
     return (0);
 }

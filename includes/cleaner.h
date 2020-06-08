@@ -25,6 +25,7 @@
 void			free_str(char *str);
 void            *addr_add(void *content, int type, t_addr **addr);
 void            delete_addr(t_addr **addr);
+void            delete_addr_render(t_addr **addr);
 void            delete_t_transparent(t_transparent *obj);
 void            delete_t_specular_exponent(t_specular_exponent *obj);
 void            delete_t_bump(t_bump *obj);
