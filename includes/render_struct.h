@@ -27,9 +27,8 @@
 
 # define SHADER_READ 1000
 
-# define M_WIN_ 10
-# define M_ENG_ 11
-# define M_BUF_ 12
+# define M_ENG_ 10
+# define M_BUF_ 11
 
 typedef struct				s_matrix
 {

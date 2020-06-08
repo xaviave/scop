@@ -14,7 +14,7 @@
 #include "error.h"
 #include "cleaner.h"
 
-static void     delete_t_mtl(t_mtl mtl)
+void            delete_t_mtl(t_mtl mtl)
 {
     delete_tab_len(mtl.groups, mtl.nb_groups);
     if (mtl.ac)
@@ -41,7 +41,9 @@ static void     delete_t_mtl(t_mtl mtl)
 
 static void     delete_obj_memory(t_obj obj)
 {
-
+    ft_memdel((void **)&obj.vertices);
+    ft_memdel((void **)&obj.indices);
+    ft_memdel((void **)&obj.uv);
     ft_memdel((void **)&obj.faces);
     ft_memdel((void **)&obj.groups);
     ft_memdel((void **)&obj.lines);
@@ -51,7 +53,7 @@ static void     delete_obj_memory(t_obj obj)
     ft_memdel((void **)&obj.vertexes);
 }
 
-static void     delete_t_obj(t_obj obj)
+void            delete_t_obj(t_obj obj)
 {
     int         i;
 
@@ -73,8 +75,6 @@ static void     delete_t_obj(t_obj obj)
         ft_memdel((void **)&obj.lines[i].vertexes_id);
         ft_memdel((void **)&obj.lines[i].textures_id);
     }
-    // add data_to_float datas to delete:
-    // obj->uv / obj->vertices / obj->indices
     i = -1;
     while (++i < obj.len_objects)
         ft_strdel(&obj.objects[i].name);

@@ -21,8 +21,7 @@ static int	init_graphic_context(t_gdata *gdata)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	if (!(gdata->win = addr_add(glfwCreateWindow(W, H, PROG_NAME, NULL, NULL),
-	        M_WIN_, &gdata->addr)))
+	if (!(gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL)))
 		return (0);
 	glfwWindowHint(GLFW_REFRESH_RATE, 30);
 	glfwSetInputMode(gdata->win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
