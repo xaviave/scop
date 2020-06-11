@@ -58,13 +58,13 @@ static void	input_w_s_rotate(t_gdata *gdata, float camera_speed)
 		vertex3_mul_float(tmp, gdata->engine->camera_front, camera_speed);
 		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
-	if (glfwGetKey(gdata->win, GLFW_KEY_KP_0) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_1) == GLFW_PRESS)
 		gdata->engine->rotate = 0;
-	if (glfwGetKey(gdata->win, GLFW_KEY_KP_1) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_2) == GLFW_PRESS)
 		gdata->engine->rotate = 1;
-	if (glfwGetKey(gdata->win, GLFW_KEY_KP_2) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_3) == GLFW_PRESS)
 		gdata->engine->rotate = 2;
-	if (glfwGetKey(gdata->win, GLFW_KEY_KP_3) == GLFW_PRESS)
+	if (glfwGetKey(gdata->win, GLFW_KEY_4) == GLFW_PRESS)
 		gdata->engine->rotate = 3;
 }
 

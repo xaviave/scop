@@ -40,7 +40,7 @@ void		reset(t_gdata *gdata)
 	gdata->engine->random = 0;
 	gdata->engine->texture = 0;
 	gdata->engine->fix = 1;
-	gdata->engine->rotate = 0;
+	gdata->engine->rotate = 2;
 	gdata->engine->angle = degree_to_radians(90);
 	gdata->engine->fov = 45.0f;
 	gdata->engine->camera_pos[0] = gdata->obj[gdata->actual_obj].max[0] * 2;

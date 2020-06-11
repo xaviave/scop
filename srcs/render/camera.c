@@ -50,22 +50,27 @@ static int 			update_matrix_angle(t_gdata *gdata)
 
     if (!(tmp = init_identity_matrix4x4(NULL)))
         return (0);
-    gdata->engine->angle = glfwGetTime();
     translate_matrix4x4(tmp, 0.0f, 0.0f, 0.0f);
-    if ((gdata->engine->rotate == 1) &&
-        !(rotate_matrix4x4_x(gdata->engine->model, tmp, gdata->engine->angle)))
-        return (0);
-    else if ((gdata->engine->rotate == 3) &&
-             !(rotate_matrix4x4_z(gdata->engine->model, tmp,
-                     gdata->engine->angle)))
-        return (0);
-    else if (!(rotate_matrix4x4_y(gdata->engine->model, tmp,
-            gdata->engine->rotate != 2 ? gdata->engine->angle : 90)))
+    if (gdata->engine->rotate == 1)
+    {
+        if (!(rotate_matrix4x4_x(gdata->engine->model, tmp, gdata->engine->angle)))
+            return (0);
+    }
+    else if (gdata->engine->rotate == 2)
+    {
+        if (!(rotate_matrix4x4_y(gdata->engine->model, tmp, gdata->engine->angle)))
+            return (0);
+    }
+    else if (gdata->engine->rotate == 3)
+    {
+        if (!(rotate_matrix4x4_z(gdata->engine->model, tmp, gdata->engine->angle)))
+            return (0);
+    }
+    else if (!(rotate_matrix4x4_y(gdata->engine->model, tmp, 90)))
         return (0);
     if (!(create_texture_data(gdata, gdata->engine->model, "model")))
         return (0);
-    free_matrix(tmp);
-    return (1);
+    return (free_matrix(tmp) == NULL ? 1 : 1);
 }
 
 int 				update_matrix(t_gdata *gdata)
@@ -87,6 +92,7 @@ int 				update_matrix(t_gdata *gdata)
 	    return (0);
 	if (!(gdata->engine->model = init_identity_matrix4x4(gdata->engine->model)))
 	    return (0);
+    gdata->engine->angle = glfwGetTime();
     if (!(update_matrix_angle(gdata)))
         return (0);
     return (1);
