@@ -14,11 +14,12 @@
 
 static void	terminate_render(t_gdata *gdata)
 {
-	glfwDestroyWindow(gdata->win);
+    glfwMakeContextCurrent(NULL);
+    glfwDefaultWindowHints();
 	glDeleteVertexArrays(1, &gdata->buffer->vao);
 	glDeleteBuffers(1, &gdata->buffer->vbo_indices);
 	glDeleteBuffers(1, &gdata->buffer->vbo_vertices);
-	glfwTerminate();
+    glDeleteProgram(gdata->engine->program);
 }
 
 static int	render(t_gdata *gdata)
@@ -39,7 +40,6 @@ static int	render(t_gdata *gdata)
 		glBindVertexArray(gdata->buffer->vao);
 		glDrawElements(GL_TRIANGLES,
 			gdata->obj[gdata->actual_obj].size_indices, GL_UNSIGNED_INT, 0);
-		// last leaks is there. (glDrawElements)
 		glBindVertexArray(0);
 		glfwSwapBuffers(gdata->win);
 		handle_event(gdata);

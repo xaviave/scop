@@ -19,11 +19,7 @@ int             main(int ac, char **av)
     t_gdata      g;
 
 	launch_parser(&parser, ac, av);
-//	handle_error_parser("test exit after parser.", &parser.addr);
 	launch_render(&g, &parser);
-//	handle_error_render("test exit after render.", &g.addr);
     system("leaks scop");
-//    while (1)
-//        ;
     return (0);
 }

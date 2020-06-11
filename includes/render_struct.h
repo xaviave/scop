@@ -78,7 +78,6 @@ typedef struct				s_buffer
 	unsigned int			vao;
 	unsigned int			vbo_vertices;
 	unsigned int			vbo_indices;
-	unsigned int			vbo_uv;
 	unsigned int			grey_loc;
 	unsigned int			sample_loc;
 	unsigned int			random_loc;

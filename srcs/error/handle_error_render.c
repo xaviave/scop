@@ -28,7 +28,6 @@ void        delete_addr_render(t_addr **addr)
     if (*addr)
     {
         i = 0;
-        printf("addr_content_type: render -> %d\n", (*addr)->content_type);
         if ((*addr)->content_type == M_OBJ_)
         {
             while (i < ((t_obj *)(*addr)->content_addr)->nb_args)
@@ -56,7 +55,6 @@ void        handle_error_render(char *message, t_addr **addr)
 	ft_printf("%s\n", message);
 	if (addr)
 	    delete_addr_render(addr);
-//	while (1)
-//	    ;
+    system("leaks scop");
     exit(EXIT_FAILURE);
 }
