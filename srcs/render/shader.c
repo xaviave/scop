@@ -20,22 +20,26 @@ static char			*get_shader(char *name)
 	char			*file;
 	char			line[SHADER_READ];	
 
-	fd = open(name, O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(name, O_RDONLY)) == -1)
 		return (NULL);
-	file = ft_strnew(SHADER_READ);
+	if (!(file = ft_strnew(SHADER_READ)))
+	    return (close(fd) == -1 ? NULL : NULL);
 	while ((ret = read(fd, &line, SHADER_READ)) > 0)
 	{
 		line[ret] = '\0';
 		tmp = file;
-		file = ft_strjoin(file, line);
+		if (!(file = ft_strjoin(file, line)))
+        {
+		    ft_strdel(&tmp);
+            return (close(fd) == -1 ? NULL : NULL);
+        }
 		ft_strdel(&tmp);
 	}
 	close(fd);
 	return (file);
 }
 
-static void			print_shader_error(GLint addr, int opt)
+static int			print_shader_error(GLint addr, int opt)
 {
     char			info_log[1024];
 
@@ -44,9 +48,10 @@ static void			print_shader_error(GLint addr, int opt)
 	else
 		glGetProgramInfoLog(addr, 1024, NULL, info_log);
 	fprintf(stderr, "init_shader error: %s\n", info_log);
+	return (0);
 }
 
-static void			init_program(t_engine *e, GLuint vs, GLuint fs)
+static int			init_program(t_engine *e, GLuint vs, GLuint fs)
 {
 	int				success;
 
@@ -56,31 +61,34 @@ static void			init_program(t_engine *e, GLuint vs, GLuint fs)
     glLinkProgram(e->program);
     glGetProgramiv(e->program, GL_LINK_STATUS, &success);
     if (!success)
-		print_shader_error(e->program, 0);
+		return (print_shader_error(e->program, 0));
+    return (1);
  }
 
 int					init_shader(t_engine *e)
 {
 	GLuint			vs;
 	GLuint			fs;
-	const GLchar	*s;
-	const GLchar	*f;
+	const GLchar	*shad;
 	int				success;
 
-	s = get_shader("shaders/vertex_custom_shader");
-	f = get_shader("shaders/fragment_custom_shader");
-	if (!s || !f)
-		return (0);
+	if (!(shad = get_shader("shaders/vertex_custom_shader")))
+	    return (0);
     vs = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vs, 1, &s, NULL);
+    glShaderSource(vs, 1, &shad, NULL);
+    ft_strdel((char **)&shad);
+    if (!(shad = get_shader("shaders/fragment_custom_shader")))
+        return (0);
     glCompileShader(vs);
     fs = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fs, 1, &f, NULL);
+    glShaderSource(fs, 1, &shad, NULL);
+    ft_strdel((char **)&shad);
     glCompileShader(fs);
     glGetProgramiv(e->program, GL_LINK_STATUS, &success);
 	if (!success)
-		print_shader_error(e->program, 1);
-	init_program(e, vs, fs);
+		return (print_shader_error(e->program, 1));
+	if (!(init_program(e, vs, fs)))
+	    return (0);
     glDeleteShader(vs);
     glDeleteShader(fs);
 	return (1);

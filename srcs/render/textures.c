@@ -12,11 +12,16 @@
 
 #include "render.h"
 
-void				create_texture(t_gdata *gdata, char *name)
+int 				create_texture(t_gdata *gdata, char *name)
 {
 	t_img			img;
 
-	parse_bmp(&img, name);
+	if (!(parse_bmp(&img, name)))
+    {
+	    printf("Error during parsing texture.\n");
+        ft_memdel((void **)&img.data);
+        return (0);
+    }
 	glGenTextures(1, &gdata->engine->texture_id);
 	glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -27,4 +32,6 @@ void				create_texture(t_gdata *gdata, char *name)
 		img.heigth, 0, GL_RGB, GL_UNSIGNED_BYTE, img.data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	ft_memdel((void **)&img.data);
+	return (1);
 }

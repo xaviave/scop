@@ -20,20 +20,25 @@ static int			reader_file(char *name, char **data)
 	char			*tmp;
 	char			line[IMG_BUFFER];
 
-	fd = open(name, O_RDONLY);
+	if (!(fd = open(name, O_RDONLY)))
+	    return (0);
 	file_size = 0;
 	while ((ret = read(fd, &line, IMG_BUFFER)) > 0)
 	{
 		tmp = *data;
-		*data = ft_memalloc(file_size + ret);
+		if (!(*data = ft_memalloc(file_size + ret)))
+        {
+		    ft_strdel(&tmp);
+		    close(fd);
+		    return (0);
+        }
 		if (tmp)
 			ft_memcpy(*data, tmp, file_size);
 		ft_memcpy(*data + file_size, line, ret);
 		file_size += ret;
-		if (tmp)
-			free(tmp);
+		ft_strdel(&tmp);
 	}
-	return (1);
+    return (close(fd) == -1 ? 0 : 1);
 }
 
 unsigned int		read_header(char *filename, t_img *img)
@@ -54,23 +59,21 @@ unsigned int		read_header(char *filename, t_img *img)
 	return (img->width * (bpp / 8));
 }
 
-static void			read_bmp(t_img *img, char *name, unsigned int sl)
+static int			read_bmp(t_img *img, char *name, unsigned int sl)
 {
 	int				h;
 	unsigned int	j;
 	unsigned int	i;
-	int				size;
 	char			*tmp;
 
 	h = 0;
 	i = sl * img->heigth;
-	size = i * 2;
 	tmp = NULL;
-	img->data = (unsigned char *)malloc(sizeof(unsigned char) * size);
-	reader_file(name, &tmp);
-	while (i > 0)
+	if (!(reader_file(name, &tmp)))
+        return (0);
+    while (i > 0)
 	{
-		i -= sl;
+        i -= sl;
 		j = 0;
 		while (j < sl)
 		{
@@ -81,14 +84,22 @@ static void			read_bmp(t_img *img, char *name, unsigned int sl)
 		}
 		h += sl;
 	}
+    ft_strdel(&tmp);
+	return (1);
 }
 
 int					parse_bmp(t_img *img, char *name)
 {
 	unsigned int	sl;
 
-	sl = read_header(name, img);
-	read_bmp(img, name, sl);
+	img->data = NULL;
+	if (!(sl = read_header(name, img)))
+        return (0);
+	if (!(img->data = (unsigned char *)ft_memalloc(sizeof(unsigned char) *
+	        (sl * img->heigth) * 2)))
+	    return (0);
+	if (!(read_bmp(img, name, sl)))
+        return (0);
 	return (1);
 }
 

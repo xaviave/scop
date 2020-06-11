@@ -27,6 +27,9 @@
 
 # define SHADER_READ 1000
 
+# define M_ENG_ 10
+# define M_BUF_ 11
+
 typedef struct				s_matrix
 {
 	int						rows;
@@ -75,7 +78,6 @@ typedef struct				s_buffer
 	unsigned int			vao;
 	unsigned int			vbo_vertices;
 	unsigned int			vbo_indices;
-	unsigned int			vbo_uv;
 	unsigned int			grey_loc;
 	unsigned int			sample_loc;
 	unsigned int			random_loc;
@@ -93,6 +95,7 @@ typedef struct      		s_gdata
 	double					time;
 	float					*vertices;
 	int						actual_obj;
+    t_addr                  *addr;
 }                   		t_gdata;
 
 #endif

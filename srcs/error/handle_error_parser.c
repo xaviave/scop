@@ -14,7 +14,7 @@
 #include "error.h"
 #include "cleaner.h"
 
-static void     delete_t_mtl(t_mtl mtl)
+void            delete_t_mtl(t_mtl mtl)
 {
     delete_tab_len(mtl.groups, mtl.nb_groups);
     if (mtl.ac)
@@ -41,7 +41,9 @@ static void     delete_t_mtl(t_mtl mtl)
 
 static void     delete_obj_memory(t_obj obj)
 {
-
+    ft_memdel((void **)&obj.vertices);
+    ft_memdel((void **)&obj.indices);
+    ft_memdel((void **)&obj.uv);
     ft_memdel((void **)&obj.faces);
     ft_memdel((void **)&obj.groups);
     ft_memdel((void **)&obj.lines);
@@ -51,7 +53,7 @@ static void     delete_obj_memory(t_obj obj)
     ft_memdel((void **)&obj.vertexes);
 }
 
-static void     delete_t_obj(t_obj obj)
+void            delete_t_obj(t_obj obj)
 {
     int         i;
 
@@ -86,7 +88,6 @@ void                delete_addr(t_addr **addr)
     if (*addr)
     {
         i = 0;
-        printf("addr_content_type -> %d\n", (*addr)->content_type);
         if ((*addr)->content_type == M_CHAR__)
             delete_str_tab((char **)(*addr)->content_addr);
         else if ((*addr)->content_type == M_L_PAR_)
@@ -114,7 +115,6 @@ void            handle_error_parser(char *message, t_addr **addr)
 	ft_printf("%s\n", message);
     if (addr)
 	    delete_addr(addr);
-//	while (1)
-//	    ;
+    system("leaks scop");
     exit(EXIT_FAILURE);
 }

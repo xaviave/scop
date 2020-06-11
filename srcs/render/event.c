@@ -132,6 +132,10 @@ void		handle_event(t_gdata *gdata)
 	current_frame = glfwGetTime();
 	camera_speed = 2.5f * (current_frame - gdata->engine->last_frame);
 	gdata->engine->last_frame = current_frame;
+    if (glfwGetKey(gdata->win, GLFW_KEY_L) == GLFW_PRESS)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    else if (glfwGetKey(gdata->win, GLFW_KEY_P) == GLFW_PRESS)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	input_w_s_rotate(gdata, camera_speed);
 	input_a_d_grey(gdata, camera_speed);
 	input_move_shift_ctrl(gdata);

@@ -21,10 +21,8 @@ static int	init_graphic_context(t_gdata *gdata)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL);
-	if (!gdata->win)
+	if (!(gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL)))
 		return (0);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_REFRESH_RATE, 30);
 	glfwSetInputMode(gdata->win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetKeyCallback(gdata->win, key_callback);
@@ -75,9 +73,11 @@ int			init_gdata(t_gdata *gdata, t_parser *parser)
     gdata->nb_objs = parser->nb_args;
     gdata->obj = parser->obj;
     gdata->mtl = parser->mtl;
-	if (!(gdata->engine = (t_engine *)malloc(sizeof(t_engine))))
+	if (!(gdata->engine = addr_add((t_engine *)ft_memalloc(sizeof(t_engine)),
+	        M_ENG_, &gdata->addr)))
 		return (0);
-	if (!(gdata->buffer = (t_buffer *)malloc(sizeof(t_buffer))))
+	if (!(gdata->buffer = addr_add((t_buffer *)ft_memalloc(sizeof(t_buffer)),
+	        M_BUF_, &gdata->addr)))
 		return (0);
 	if (!init_engine(gdata) || !init_all_obj(gdata) ||
 		!init_shader(gdata->engine) || !init_buffer(gdata))

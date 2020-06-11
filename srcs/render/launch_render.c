@@ -12,25 +12,27 @@
 
 #include "render.h"
 
-void		terminate_reader(t_gdata *gdata)
+static void	terminate_render(t_gdata *gdata)
 {
-	glfwDestroyWindow(gdata->win);
+    glfwMakeContextCurrent(NULL);
+    glfwDefaultWindowHints();
 	glDeleteVertexArrays(1, &gdata->buffer->vao);
 	glDeleteBuffers(1, &gdata->buffer->vbo_indices);
 	glDeleteBuffers(1, &gdata->buffer->vbo_vertices);
-	// need to free gdata->obj | gdata->mtl | in each obj vertices | indices
-	glfwTerminate();
+    glDeleteProgram(gdata->engine->program);
 }
 
-static void	render(t_gdata *gdata)
+static int	render(t_gdata *gdata)
 {
-	glEnable(GL_PROGRAM_POINT_SIZE);  
-	//create_texture(gdata, "data/ressources/image.bmp"); // Need to check.
+	glEnable(GL_PROGRAM_POINT_SIZE);
+	if (!(create_texture(gdata, "data/ressources/image.bmp")))
+	    return (0); // Need to check.
 	while (!glfwWindowShouldClose(gdata->win))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glBindTexture(GL_TEXTURE_2D, gdata->engine->texture_id);
-		update_matrix(gdata);
+		if (!(update_matrix(gdata)))
+		    return (0);
 		glUniform1i(gdata->buffer->grey_loc, gdata->engine->grey);
 		glUniform1i(gdata->buffer->sample_loc, gdata->engine->texture);
 		glUniform1i(gdata->buffer->texture_loc, gdata->engine->texture);
@@ -42,13 +44,17 @@ static void	render(t_gdata *gdata)
 		glfwSwapBuffers(gdata->win);
 		handle_event(gdata);
 	}
-	terminate_reader(gdata);
+	terminate_render(gdata);
+	return (1);
 }
 
 int		 	launch_render(t_gdata *gdata, t_parser *parser)
 {
+    gdata->addr = parser->addr;
 	if (!init_gdata(gdata, parser))
-		return (0);
-	render(gdata);
+		handle_error_render("Error during init render.", &gdata->addr);
+	if (!(render(gdata)))
+        handle_error_render("Error during render.", &gdata->addr);
+	delete_addr_render(&gdata->addr);
 	return (1);
 }

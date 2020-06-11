@@ -45,9 +45,9 @@ void	mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 void	error_callback(int error, const char* description);
 
-void	create_texture(t_gdata *gdata, char *name);
+int 	create_texture(t_gdata *gdata, char *name);
 
-void	update_matrix(t_gdata *gdata);
+int 	update_matrix(t_gdata *gdata);
 
 void	handle_event(t_gdata *gdata);
 

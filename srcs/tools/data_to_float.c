@@ -51,7 +51,7 @@ void		rand_color(int face_id, t_obj *obj, int v0, int v1, int v2)
 		obj->vertices[v2 * 6 + 5] = f;
 }
 
-static void	create_indices(t_obj *obj)
+static int	create_indices(t_obj *obj)
 {
 	int		i;
 	int		j;
@@ -59,7 +59,7 @@ static void	create_indices(t_obj *obj)
 
 	get_len_indices(obj);
 	if (!(obj->indices = malloc(sizeof(float) * obj->size_indices)))
-		return ;
+		return (0);
 	i = -1;
 	v_id = -1;
 	while (++i < obj->len_faces)
@@ -68,8 +68,6 @@ static void	create_indices(t_obj *obj)
 		obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
 		obj->indices[++v_id] = obj->faces[i].vertexes_id[1] - 1;
 		obj->indices[++v_id] = obj->faces[i].vertexes_id[2] - 1;
-		rand_color(i, obj, obj->faces[i].vertexes_id[0] - 1,
-			obj->faces[i].vertexes_id[1] - 1, obj->faces[i].vertexes_id[2] - 1);
 		if (obj->faces[i].nb_vertexes == 4)
 		{
 			obj->indices[++v_id] = obj->faces[i].vertexes_id[0] - 1;
@@ -77,27 +75,31 @@ static void	create_indices(t_obj *obj)
 			obj->indices[++v_id] = obj->faces[i].vertexes_id[3] - 1;
 		}
 	}
+	return (1);
 }
 
-static void	create_vertices(t_obj *obj)
+static int	create_vertices(t_obj *obj)
 {
 	int		i;
 	int		v_id;
-	
+	int     uv_id;
+
 	i = -1;
 	v_id = -1;
-	obj->size_vertices = obj->len_vertexes * 6;
+	uv_id = -1;
+    obj->size_vertices = obj->len_vertexes * 3;
+    obj->size_uv = obj->len_vertexes * 2;
 	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
-		return ;
+		return (0);
+    if (!(obj->uv = malloc(sizeof(float) * obj->size_uv)))
+        return (0);
 	while (++i < obj->len_vertexes)
 	{
 		obj->vertices[++v_id] = obj->vertexes[i].x - (obj->axis[0] / 2);
 		obj->vertices[++v_id] = obj->vertexes[i].y - (obj->axis[1] / 2);
 		obj->vertices[++v_id] = obj->vertexes[i].z - (obj->axis[2] / 2);
-		obj->vertices[++v_id] = 0;
-		obj->vertices[++v_id] = 0;
-		obj->vertices[++v_id] = 0;
 	}
+	return (1);
 }
 
 static void	get_center(t_obj *obj)
@@ -132,9 +134,10 @@ int			init_all_obj(t_gdata *gdata)
 	while (++i < gdata->nb_objs)
 	{
 		get_center(&(gdata->obj[i]));
-		create_vertices(&(gdata->obj[i]));
-		create_indices(&(gdata->obj[i]));
+		if (!(create_vertices(&(gdata->obj[i]))))
+		    return (0);
+		if (!(create_indices(&(gdata->obj[i]))))
+		    return (0);
 	}
-	// need to catch the error from the 2 create
 	return (1);
 }
