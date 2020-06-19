@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:59:41 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:11:22 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:37:52 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		init_parser(t_parser *parser, int ac, char **av)
 			handle_error_parser("Error during memory allocation.",
 				&parser->addr);
 }
+
 
 void		init_parser_mtl(t_parser *parser)
 {
