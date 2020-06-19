@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:32:53 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:33:17 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:43:12 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void		key_callback(GLFWwindow *win, int key, int scancode,
 		return ;
 }
 
-void		mouse_callback(GLFWwindow* window, double xpos, double ypos)
+void		mouse_callback(GLFWwindow *window, double xpos, double ypos)
 {
 	if (window || xpos || ypos)
 		return ;
 }
 
-void		error_callback(int error, const char* description)
+void		error_callback(int error, const char *description)
 {
 	printf("Error %d: %s\n", error, description);
 }
