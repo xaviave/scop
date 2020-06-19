@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 15:11:07 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 15:15:39 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:51:11 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,5 @@ int				main(int ac, char **av)
 
 	launch_parser(&parser, ac, av);
 	launch_render(&g, &parser);
-	system("leaks scop");
 	return (0);
 }
