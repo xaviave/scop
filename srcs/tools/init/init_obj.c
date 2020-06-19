@@ -6,11 +6,12 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:59:06 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:59:24 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:02:09 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../.././../includes/tools.h"
+
 static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
 		t_addr **addr)
 {
@@ -41,10 +42,10 @@ static void			init_obj_ptr(t_obj *obj, t_parser_option *opt,
 }
 
 void				init_obj(t_obj *obj, t_parser_option *opt, int id,
-		int nb_args, t_addr **addr)
+		t_parser *parser)
 {
 	ft_memset(obj, 0, sizeof(t_obj));
 	obj->id = id;
-	obj->nb_args = nb_args;
-	init_obj_ptr(obj, opt, addr);
+	obj->nb_args = parser->nb_args;
+	init_obj_ptr(obj, opt, &parser->addr);
 }

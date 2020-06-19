@@ -76,7 +76,7 @@ int							len_tab(char **tab);
 int							len_list_parser_id(t_list_parser *list);
 
 void						init_obj(t_obj *obj, t_parser_option *opt,
-		int id, int nb_args, t_addr **addr);
+		int id, t_parser *parser);
 
 void						init_mtl(t_mtl *mtl, int id,
 		t_parser *parser, int nb_groups);

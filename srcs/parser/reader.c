@@ -60,7 +60,7 @@ void					reader_obj(t_parser *parser)
 	{
 		init_parser_option(&opt, parser->args[i + 1], i, P_OBJ);
 		list = reader(&opt, &parser->addr);
-		init_obj(&parser->obj[i], &opt, i, parser->nb_args, &parser->addr);
+		init_obj(&parser->obj[i], &opt, i, parser);
 		if (!list_parser_to_obj(&parser->obj[i], list, &parser->addr))
 			handle_error_parser("Error during parsing obj.", &parser->addr);
 	}

@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:58:27 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:58:34 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:01:57 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	init_graphic_context(t_gdata *gdata)
 	glfwSetKeyCallback(gdata->win, key_callback);
 	glfwSetCursorPosCallback(gdata->win, mouse_callback);
 	glfwMakeContextCurrent(gdata->win);
-	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		return (0);
 	glfwSwapInterval(1);
 	return (1);
