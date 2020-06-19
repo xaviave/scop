@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:59:41 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:39:33 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:41:11 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	init_parser(t_parser *parser, int ac, char **av)
 	parser->path[ac - 1] = NULL;
 	i = -1;
 	while (++i < parser->nb_args)
+	{
 		if (!(parser->path[i] = get_path(av[i + 1])))
 			handle_error_parser("Error during memory allocation.",
 				&parser->addr);
+	}
 }
 
 void	init_parser_mtl(t_parser *parser)
@@ -42,11 +44,13 @@ void	init_parser_mtl(t_parser *parser)
 	i = -1;
 	len_mtl = 0;
 	while (++i < parser->nb_args)
+	{
 		if (parser->obj[i].mtllib)
 		{
 			parser->obj[i].mtl_id = len_mtl;
 			len_mtl++;
 		}
+	}
 	if (len_mtl)
 	{
 		if (!(parser->mtl = addr_add((t_mtl *)ft_memalloc(sizeof(
@@ -55,6 +59,8 @@ void	init_parser_mtl(t_parser *parser)
 			&parser->addr);
 		i = 0;
 		while (i < len_mtl)
+		{
 			parser->mtl[i++].nb_args = len_mtl;
+		}
 	}
 }
