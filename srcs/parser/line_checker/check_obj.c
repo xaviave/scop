@@ -6,25 +6,25 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:53:27 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:53:51 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:06:21 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
 
 static int			dispatch_f_l_g_o(char *raw_data, int i,
-        char tmp[3], int nb_args[2])
+		char tmp[3], int nb_args[2])
 {
 	if ((tmp[0] == 'g' || tmp[0] == 'o') &&
 		(tmp[1] == ' ' || tmp[1] == '\t'))
-		return check_line_str(raw_data, (int)ft_strlen(raw_data), 1);
+		return (check_line_str(raw_data, (int)ft_strlen(raw_data), 1));
 	else if ((tmp[0] == 'f' || tmp[0] == 'l') &&
 		(tmp[1] == ' ' || tmp[1] == '\t'))
 	{
 		nb_args[0] = (tmp[0] == 'f') ? 3 : 2;
 		nb_args[1] = (tmp[0] == 'f') ? 4 : 3;
 		return (check_lines_faces(&raw_data[i], nb_args,
-		        (int)ft_strlen(raw_data)));
+				(int)ft_strlen(raw_data)));
 	}
 	return (0);
 }
@@ -54,7 +54,7 @@ static int			dispatch_by_header(char *raw_data,
 			check_vertexes(&raw_data[i], tmp));
 	}
 	if ((tmp[0] == 'f' || tmp[0] == 'l') &&
-		 (tmp[1] == ' ' || tmp[1] == '\t') && current->len_ver == 0)
+		(tmp[1] == ' ' || tmp[1] == '\t') && current->len_ver == 0)
 		return (0);
 	return (dispatch_f_l_g_o(raw_data, i, tmp, nb_args));
 }
@@ -69,5 +69,6 @@ int					check_obj_raw_data(char *raw_data, t_parser_option *opt)
 
 	if (opt->data_len == 2 && raw_data[0] == 'g')
 		return (1);
-	return (opt->data_len > 2 ? dispatch_by_header(raw_data, opt, &current) : 0);
+	return (opt->data_len > 2 ?
+		dispatch_by_header(raw_data, opt, &current) : 0);
 }
