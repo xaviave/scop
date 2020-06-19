@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:44:41 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:50:10 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 13:51:40 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,23 @@ typedef struct				s_matrix
 }							t_matrix;
 
 /*
+** *projection;
 ** put the world in the camera view
 ** projection matrix 1x4 = (degree_to_rs) and 30° (quite zoomed in)
-*/
-typedef struct				s_engine
-{
-	t_matrix				*projection;
-/*
+**
+** *view;
 ** to put the model on the worl
-*/
-	t_matrix				*view;
-/*
+**
+** *model;
 ** one matrix per object to move them individually ?
 ** center of each object
 ** apply on every point with move_matrix()
 */
+
+typedef struct				s_engine
+{
+	t_matrix				*projection;
+	t_matrix				*view;
 	t_matrix				*model;
 	float					camera_up[3];
 	float					camera_pos[3];
