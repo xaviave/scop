@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 20:21:16 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:21:19 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:23:20 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void			vertex3_mul_cross(float r[3],
 	float const a[3], float const b[3])
 {
-	r[0] = a[1]*b[2] - a[2]*b[1];
-	r[1] = a[2]*b[0] - a[0]*b[2];
-	r[2] = a[0]*b[1] - a[1]*b[0];
+	r[0] = a[1] * b[2] - a[2] * b[1];
+	r[1] = a[2] * b[0] - a[0] * b[2];
+	r[2] = a[0] * b[1] - a[1] * b[0];
 }
 
 void			vertex3_sub(float r[3], float const a[3], float const b[3])
@@ -71,7 +71,7 @@ void			vertex3_scale(float r[3], float const v[3], float const s)
 void			vertex3_norm(float r[3], float const v[3])
 {
 	float		k;
-	
+
 	k = 1.0f / sqrtf(vertex3_mul_inner(v, v));
 	vertex3_scale(r, v, k);
 }

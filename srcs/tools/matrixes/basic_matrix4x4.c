@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 20:18:25 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:18:30 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:23:46 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void			multiply_matrix4x4(t_matrix *result,t_matrix *m,
 		while (++r < 4)
 		{
 			k = -1;
-			result->values[c][r] = 0.0f; 
+			result->values[c][r] = 0.0f;
 			while (++k < 4)
-				result->values[c][r] += 
-					m->values[k][r] * multiply->values[c][k]; 
+				result->values[c][r] +=
+					m->values[k][r] * multiply->values[c][k];
 		}
 	}
 }
