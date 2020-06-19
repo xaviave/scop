@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 20:18:51 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:19:04 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:27:13 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_matrix		*new_matrix(int rows, int columns)
 {
 	int			i;
 	int			j;
-	t_matrix 	*m;
+	t_matrix	*m;
 
 	if (!(m = (t_matrix *)ft_memalloc(sizeof(t_matrix))))
 		return (NULL);
@@ -31,7 +31,7 @@ t_matrix		*new_matrix(int rows, int columns)
 		if (!(m->values[i] = (float *)ft_memalloc(sizeof(float) * rows)))
 			return (free_matrix(m));
 		while (++j < m->rows)
-			m->values[i][j]= 0.0f;
+			m->values[i][j] = 0.0f;
 	}
 	return (m);
 }
@@ -64,10 +64,9 @@ void			identity_matrix4x4(t_matrix *m)
 		m->values[i][i] = 1.0f;
 }
 
-
 t_matrix		*init_identity_matrix4x4(t_matrix *source)
 {
-	t_matrix 	*m;
+	t_matrix	*m;
 
 	if (source)
 		free_matrix(source);

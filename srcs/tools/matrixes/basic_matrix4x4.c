@@ -6,13 +6,13 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 20:18:25 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:23:46 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:25:10 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/tools.h"
 
-void			multiply_matrix4x4(t_matrix *result,t_matrix *m,
+void			multiply_matrix4x4(t_matrix *result, t_matrix *m,
 	t_matrix *multiply)
 {
 	int			c;
@@ -49,7 +49,7 @@ t_matrix		*scale_matrix4x4(double scale, t_matrix *m)
 		while (++j < m->rows)
 			m->values[i][j] *= scale;
 	}
-	return result;
+	return (result);
 }
 
 void			clear_matrix4x4(t_matrix *m)
