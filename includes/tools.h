@@ -169,13 +169,6 @@ float						degree_to_radians(float angle);
 float						*transform_matrix4x4_to_float(t_matrix *m);
 
 /*
-** srcs/tools/matrixes/print_matrix.c
-*/
-
-void						print_matrix(t_matrix *m, char *str);
-void						print_mat4x4(mat4x4 m, char *str);
-
-/*
 ** srcs/tools/matrixes/vertex3.c
 */
 

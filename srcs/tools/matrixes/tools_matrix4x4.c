@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools_matrix4x4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 22:51:01 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/20 21:40:19 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:20:59 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:21:04 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
 float			degree_to_radians(float angle)
 {
@@ -21,7 +21,7 @@ float			*transform_matrix4x4_to_float(t_matrix *m)
 {
 	int			i;
 	float		*flat_data;
-	
+
 	i = -1;
 	if (!(flat_data = (float *)ft_memalloc(sizeof(float) * 16)))
 		return (NULL);

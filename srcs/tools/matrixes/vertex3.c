@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vertex3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 22:44:26 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/23 11:42:58 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:21:16 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:21:19 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
 void			vertex3_mul_cross(float r[3],
 	float const a[3], float const b[3])

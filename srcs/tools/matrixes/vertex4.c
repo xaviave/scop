@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vertex4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 22:43:57 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/21 23:16:37 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:21:44 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:21:48 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
 float			vertex4_mul_inner(float a[4], float b[4])
 {

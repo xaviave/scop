@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   basic_matrix4x4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 22:49:03 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/22 19:03:43 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:18:25 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:18:30 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
 void			multiply_matrix4x4(t_matrix *result,t_matrix *m,
 	t_matrix *multiply)
