@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:50:12 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:50:59 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:06:58 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int							check_vertexes(char *raw_data, char tmp[3])
 		}
 		if ((!ft_isdigit(raw_data[i]) &&
 			raw_data[i] != '.' && raw_data[i] != '-' && raw_data[i] != '\0') ||
-			(raw_data[i] == '.' && ++p > 1 ) || (raw_data[i] == '-' && ++l > 1))
+			(raw_data[i] == '.' && ++p > 1) || (raw_data[i] == '-' && ++l > 1))
 			return (0);
 	}
 	return (return_vertexes(tmp, i, nb_vertexes, raw_data));
