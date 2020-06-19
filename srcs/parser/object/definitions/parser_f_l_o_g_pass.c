@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:07:08 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:27:25 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:28:01 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,13 @@ int					parser_mtl(t_obj *obj, char *raw_data, int o_id, int g_id)
 }
 
 /*
-** "s off" mean no smoothing, ft_atoi return 0 as default value else the smoothing value
+** "s off" mean no smoothing, ft_atoi return 0 as default value
+**else the smoothing value
 ** if smooth > 0, it means on
 */
 
-int					parser_pass_obj(t_obj *obj, char *raw_data, int o_id, int g_id)
+int					parser_pass_obj(t_obj *obj, char *raw_data, int o_id,
+	int g_id)
 {
 	int				i;
 	short			smooth;
