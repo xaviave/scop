@@ -18,7 +18,7 @@ static t_list_parser	*open_file(int fd, t_parser_option *opt, t_addr **addr)
 	t_list_parser		*list;
 
     list = NULL;
-	ft_printf("Opening file: %s\n", opt->file);
+	printf("Opening file: %s\n", opt->file);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line && (opt->data_len = ft_strlen(line)) > 1)
@@ -27,7 +27,7 @@ static t_list_parser	*open_file(int fd, t_parser_option *opt, t_addr **addr)
                 add_list_parser(&list, line, opt, addr);
 			else
 			{
-				ft_printf("\n%s\n", line);
+				printf("\n%s\n", line);
                 ft_strdel(&line);
                 handle_error_parser("Error in line.", addr);
 			}
@@ -89,7 +89,7 @@ void					reader_mtl(t_parser *parser)
 			init_parser_option(&opt, parser->obj[i].mtllib, i, P_MTL);
 			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
-			ft_printf("Parsing file: %s\n", parser->obj[i].mtllib);
+			printf("Parsing file: %s\n", parser->obj[i].mtllib);
 			init_mtl(&parser->mtl[index], i, parser, count_group_mtl(list));
 			if (!list_parser_to_mtl(&parser->mtl[index], list, &parser->addr))
 				handle_error_parser("Error during parsing mtl.", &parser->addr);

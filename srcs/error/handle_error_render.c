@@ -52,7 +52,7 @@ void        delete_addr_render(t_addr **addr)
 
 void        handle_error_render(char *message, t_addr **addr)
 {
-	ft_printf("%s\n", message);
+	printf("%s\n", message);
 	if (addr)
 	    delete_addr_render(addr);
     system("leaks scop");

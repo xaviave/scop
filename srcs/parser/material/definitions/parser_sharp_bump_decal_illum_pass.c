@@ -88,6 +88,6 @@ int 				parser_pass_mtl(t_mtl *mtl, char *raw_data, int group_id)
             return (0);
     }
 	else
-		ft_printf("This line is ignored | mtl id = %d | data = %s\n", mtl->id, raw_data);
+		printf("This line is ignored | mtl id = %d | data = %s\n", mtl->id, raw_data);
 	return (1);
 }

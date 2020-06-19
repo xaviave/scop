@@ -26,7 +26,7 @@ static int			check_mtl(t_mtl *mtl)
 	        while (++j < mtl->nb_groups)
 	            if (!ft_strcmp(mtl->groups[i], mtl->groups[j]))
                 {
-	                ft_printf("Duplicate newmtl: %s\n", mtl->groups[j]);
+	                printf("Duplicate newmtl: %s\n", mtl->groups[j]);
                     return (0);
                 }
         }

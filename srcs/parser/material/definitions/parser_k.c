@@ -28,7 +28,7 @@ void					parser_color_file(t_texture_color *s, char *raw_data)
 {
 	if (ft_strstr(raw_data, "spectral"))
 	{
-		ft_printf("Spectral color type not supported, use white rgb color\n");
+		printf("Spectral color type not supported, use white rgb color\n");
 		parse_color(&(s->color), "0 0 0", 0);
 	}
 	else

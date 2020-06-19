@@ -112,7 +112,7 @@ void                delete_addr(t_addr **addr)
 
 void            handle_error_parser(char *message, t_addr **addr)
 {
-	ft_printf("%s\n", message);
+	printf("%s\n", message);
     if (addr)
 	    delete_addr(addr);
     system("leaks scop");

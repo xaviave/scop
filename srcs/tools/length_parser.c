@@ -62,7 +62,7 @@ int							len_list_parser_id(t_list_parser *list)
 
 	if (list->next == NULL)
 	{
-	    ft_printf("%s\n", list->data);
+	    printf("%s\n", list->data);
         handle_error_parser("Error in line", NULL);
     }
 	tmp = list->next;
@@ -70,7 +70,7 @@ int							len_list_parser_id(t_list_parser *list)
 	    tmp = tmp->next;
 	if (tmp == NULL)
 	{
-        ft_printf("%s\n", list->data);
+        printf("%s\n", list->data);
         handle_error_parser("Error in line", NULL);
     }
     return (list->id == ID_O ? calc_id_o(tmp) : calc_id_g(tmp));
