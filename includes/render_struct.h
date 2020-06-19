@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:44:41 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:47:58 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 13:48:20 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "scop.h"
 
 # ifdef __APPLE__
-#define GL_SILENCE_DEPRECATION
-#include "../external_lib/glfw/deps/linmath.h"
-#include <GLFW/glfw3.h>
+#  define GL_SILENCE_DEPRECATION
+#  include "../external_lib/glfw/deps/linmath.h"
+#  include <GLFW/glfw3.h>
 # else
-#include "../external_lib/glfw/deps/linmath.h"
-#include "../external_lib/glfw/deps/glad/gl.h"
-#include <GLFW/glfw3.h>
+#  include "../external_lib/glfw/deps/linmath.h"
+#  include "../external_lib/glfw/deps/glad/gl.h"
+#  include <GLFW/glfw3.h>
 # endif
 
 # define SHADER_READ 1000
