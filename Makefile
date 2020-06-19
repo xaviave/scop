@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/06/19 20:19:28 by ltoussai         ###   ########lyon.fr    #
+#    Updated: 2020/06/19 20:28:48 by ltoussai         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC_NAME =	main.c \
 			tools/init/init_parser_option.c \
 			tools/init/init_texture_option.c \
 			tools/matrixes/vertex3.c \
+			tools/matrixes/vertex3_bis.c \
 			tools/matrixes/vertex4.c \
 			tools/matrixes/tools_matrix4x4.c \
 			tools/matrixes/basic_matrix4x4.c \
