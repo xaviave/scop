@@ -42,7 +42,7 @@ void		init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *, int))
 
 void		pass_lol(char *str)
 {
-	ft_printf("Awesome shadding algorithme using machine learning number: %s\n", str);
+	printf("Awesome shadding algorithme using machine learning number: %s\n", str);
 }
 
 void		init_shading_ptr(void (*f[11])(char *))

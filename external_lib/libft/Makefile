@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kbedene <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/07 13:50:54 by kbedene           #+#    #+#              #
-#    Updated: 2018/06/25 13:42:34 by tduverge    ###    #+. /#+    ###.fr      #
+#    Created: 2020/06/19 14:20:54 by ltoussai          #+#    #+#              #
+#    Updated: 2020/06/19 14:20:56 by ltoussai         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,23 +23,12 @@ SRC =\
 	ft_strncat ft_strncmp ft_strncpy ft_strnequ ft_strnew ft_strnstr ft_strrchr\
 	ft_strrev ft_strsplit ft_strstr ft_strsub ft_strtolower ft_strtoupper\
 	ft_strtrim ft_swap ft_tolower ft_toupper ft_lstpush ft_lstlen ft_del\
-	ft_bubble_sort ft_merge_sort ft_strnjoin ft_lstprint_nb\
+	ft_bubble_sort ft_merge_sort ft_strnjoin \
 	get_next_line ft_atol ft_pow ft_strisdigit ft_strndup
 
-SRC_PRINTF = fd_printf\
-		   ft_printf flags\
-		   pf_litoa_base pf_luitoa_base\
-		   pf_applyflags_nb pf_applyflags_str pf_applyflags_x\
-		   pf_applyflags_o\
-		   pf_special pf_str pf_d pf_s pf_u pf_c pf_p\
-		   pf_upper_c pf_upper_s pf_base pf_percent pf_unicode
-
-SRCS = $(addprefix libft_files/, $(addsuffix .c, $(SRC)))\
-	   $(addprefix printf/, $(addsuffix .c, $(SRC_PRINTF)))
+SRCS = $(addprefix libft_files/, $(addsuffix .c, $(SRC)))
 
 LIB_OBJ = $(addprefix libft_files/, $(addsuffix .o, $(SRC)))
-
-PRINTF_OBJ = $(addprefix printf/, $(addsuffix .o, $(SRC_PRINTF)))
 
 CC = gcc
 
@@ -49,18 +38,15 @@ FLAGS = -Wall -Wextra -Werror -O2
 
 all: $(NAME)
 
-$(NAME): $(LIB_OBJ) $(PRINTF_OBJ)
-	@ar rcs $(NAME) $(LIB_OBJ) $(PRINTF_OBJ)
+$(NAME): $(LIB_OBJ)
+	@ar rcs $(NAME) $(LIB_OBJ)
 	@echo "\033[32mLibft created.\033[0m"
 
 ./libft_files/%.o: ./libft_files/%.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
-./printf/%.o: ./printf/%.c
-	@$(CC) $(FLAGS) -c $< -o $@
-
 clean:
-	@/bin/rm -f $(LIB_OBJ) $(PRINTF_OBJ)
+	@/bin/rm -f $(LIB_OBJ)
 	@echo "\033[31mLibft objects deleted.\033[0m"
 
 fclean: clean

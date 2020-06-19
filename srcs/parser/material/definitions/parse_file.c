@@ -106,6 +106,6 @@ int					parse_bmp(t_img *img, char *name)
 int 				parse_file(t_file *file, char *raw_data, char *path)
 {
 	if (file)
-		ft_printf("Can't parse file: %s%s\n", path, raw_data);
+		printf("Can't parse file: %s%s\n", path, raw_data);
 	return (0);
 }

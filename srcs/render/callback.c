@@ -28,5 +28,5 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
 void		error_callback(int error, const char* description)
 {
-	ft_printf("Error %d: %s\n", error, description);
+	printf("Error %d: %s\n", error, description);
 }
