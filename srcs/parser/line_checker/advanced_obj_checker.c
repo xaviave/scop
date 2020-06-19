@@ -6,14 +6,13 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:50:12 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:06:58 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:45:06 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
 
-static int					return_vertexes(char tmp[3], int i, int nb_v,
-		char *raw_data)
+static int					return_vertexes(char tmp[3], int i, int nb_v)
 {
 	int						check_nb_v;
 
@@ -46,10 +45,10 @@ int							check_vertexes(char *raw_data, char tmp[3])
 			(raw_data[i] == '.' && ++p > 1) || (raw_data[i] == '-' && ++l > 1))
 			return (0);
 	}
-	return (return_vertexes(tmp, i, nb_vertexes, raw_data));
+	return (return_vertexes(tmp, i, nb_vertexes));
 }
 
-static int					check_ids_group(char *raw_data, int nb_delim)
+static int					check_ids_group(char *raw_data)
 {
 	int						i;
 	int						delim;
@@ -85,7 +84,7 @@ int							check_lines_faces(char *raw_data,
 	nb_id = 0;
 	while (i != len && ++nb_id <= nb_args[1])
 	{
-		if (!check_ids_group(&raw_data[i], nb_delim))
+		if (!check_ids_group(&raw_data[i]))
 			return (0);
 		i = pass_whitespace_str(i, raw_data);
 	}

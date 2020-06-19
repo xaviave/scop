@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/06/19 20:28:48 by ltoussai         ###   ########lyon.fr    #
+#    Updated: 2020/06/19 20:44:13 by ltoussai         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ LIB_PATH = ./external_lib/
 INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glad/include
 
 # FLAGS
-GCC_FLGS = -Wall -Wextra -g3 # comment this line and uncomment next line for memory tools and make re. leaks don't work with the tool but information is print on output of the program if there is problem.
-#GCC_FLGS = -Wall -Wextra -g3 -ggdb -fsanitize=address -fno-omit-frame-pointer
+GCC_FLGS = -Wall -Wextra -Werror -g3
 GCC_LIBS = -lglfw -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
 # TESTS
