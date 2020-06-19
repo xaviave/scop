@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:54:29 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:55:02 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:57:10 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_list_parser		*new_list_parser(char *raw_data,
 		return (NULL);
 	}
 	new->id = (opt->parsing_type == P_OBJ) ?
-		  define_id_obj(raw_data, opt) : define_id_mtl(raw_data);
+		define_id_obj(raw_data, opt) : define_id_mtl(raw_data);
 	new->next = NULL;
 	opt->list_parser_len++;
 	return (new);
