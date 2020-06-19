@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:52:15 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:03:34 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 14:03:55 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,7 +427,7 @@ typedef struct				s_shading
 typedef struct				s_mtl
 {
 	int						id;
-	int						 nb_args;
+	int						nb_args;
 	char					*path;
 	int						nb_groups;
 	char					**groups;
