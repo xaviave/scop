@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 20:20:59 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:21:04 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:27:55 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ float			*transform_matrix4x4_to_float(t_matrix *m)
 	i = -1;
 	if (!(flat_data = (float *)ft_memalloc(sizeof(float) * 16)))
 		return (NULL);
-	while  (++i < 16)
+	while (++i < 16)
 		flat_data[i] = m->values[i / 4][i % 4];
 	return (flat_data);
 }
