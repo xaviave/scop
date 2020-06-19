@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture_option.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/02 12:18:16 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:34:24 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:18:38 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 18:19:07 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../../../includes/parser.h"
 
 static int				get_on_off(char *option_str)
 {
@@ -43,7 +43,8 @@ static void				get_double_tab(char *option_str, double *tab, int size)
 }
 
 /*
-** define value for option by searching specific value | shitty way to avoid the norm error
+** define value for option by searching specific value
+**| shitty way to avoid the norm error
 */
 
 static void				define_value_by_option(t_texture_option *new,
@@ -77,7 +78,7 @@ static void				define_value_by_option(t_texture_option *new,
 		new->boost = get_value(&option_tab[3], 1);
 }
 
-int 					parsing_texture_option(t_texture_option *new,
+int						parsing_texture_option(t_texture_option *new,
 	t_file *file, char *raw_data, short type, char *path)
 {
 	int					i;
@@ -87,22 +88,22 @@ int 					parsing_texture_option(t_texture_option *new,
 	if (raw_data[0] != '-')
 		return (1);
 	if (!(tmp = ft_strsub(raw_data, 0, pass_texture_option(raw_data))))
-	    return (0);
+		return (0);
 	if (!(option_tab = ft_strsplit(tmp, '-')))
-    {
-	    ft_strdel(&tmp);
-        return (0);
-    }
+	{
+		ft_strdel(&tmp);
+		return (0);
+	}
 	ft_strdel(&tmp);
 	i = -1;
 	while (option_tab[++i])
 		define_value_by_option(new, option_tab[i], type);
 	i = -1;
 	while (option_tab[++i])
-	    ft_strdel(&option_tab[i]);
+		ft_strdel(&option_tab[i]);
 	free(option_tab);
 	option_tab = NULL;
 	if (!(parse_file(file, &raw_data[pass_texture_option(raw_data)], path)))
-	    return (0);
+		return (0);
 	return (1);
 }
