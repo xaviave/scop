@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:44:41 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:48:57 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 13:50:10 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ typedef struct				s_matrix
 	float					**values;
 }							t_matrix;
 
-typedef struct				s_engine
-{
 /*
 ** put the world in the camera view
 ** projection matrix 1x4 = (degree_to_rs) and 30° (quite zoomed in)
 */
+typedef struct				s_engine
+{
 	t_matrix				*projection;
 /*
 ** to put the model on the worl
