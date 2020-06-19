@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 15:56:28 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 15:57:31 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 17:28:45 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void			delete_t_obj(t_obj obj)
 	delete_obj_memory(obj);
 }
 
-void				delete_addr(t_addr **addr)
+void			delete_addr(t_addr **addr)
 {
-	int				i;
+	int			i;
 
 	if (*addr)
 	{
