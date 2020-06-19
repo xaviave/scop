@@ -6,18 +6,19 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:52:07 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:53:09 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 17:56:56 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
 
-static int			check_pass_line(char **content)
-{
 	/*
 	** line not parsed but valid.
 	** else error.
 	*/
+
+static int			check_pass_line(char **content)
+{
 	if (!ft_strcmp(content[0], "Ke") || content[0][0] == '#')
 		return (1);
 	return (0);
@@ -37,7 +38,7 @@ static int			dispatch_by_header(char **content, t_status *current)
 		return (check_header_illum(content, current));
 	else if (!ft_strncmp(content[0], "map_", 4))
 		return (check_header_map_(content, current));
-   return (check_pass_line(content));
+	return (check_pass_line(content));
 }
 
 static void			init_current(t_status *current, t_parser_option *opt)
