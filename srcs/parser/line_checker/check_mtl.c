@@ -6,16 +6,16 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:52:07 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:56:56 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 17:57:20 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/parser.h"
 
-	/*
-	** line not parsed but valid.
-	** else error.
-	*/
+/*
+** line not parsed but valid.
+** else error.
+*/
 
 static int			check_pass_line(char **content)
 {
