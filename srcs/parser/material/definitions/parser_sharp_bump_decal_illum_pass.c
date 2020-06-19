@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 18:48:25 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:55:08 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:00:02 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,5 @@ int					parser_disp(t_mtl *mtl, char *raw_data, int group_id)
 	if (!(parsing_texture_option(&mtl->disp->option, &mtl->disp->file,
 		&raw_data[i], mtl->path)))
 		return (0);
-	return (1);
-}
-
-int					parser_pass_mtl(t_mtl *mtl, char *raw_data, int group_id)
-{
-	if (raw_data[0] != '#' && ft_strstr(raw_data, "newmtl"))
-	{
-		if (!(mtl->groups[group_id] = ft_strtrim(&raw_data[6])))
-			return (0);
-	}
-	else
-		printf("This line is ignored | mtl id = %d | data = %s\n",
-			mtl->id, raw_data);
 	return (1);
 }

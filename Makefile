@@ -55,6 +55,7 @@ SRC_NAME =	main.c \
 			parser/material/definitions/parser_tf_d_s_ni.c \
 			parser/material/definitions/parsing_texture_option.c \
 			parser/material/definitions/parser_sharp_bump_decal_illum_pass.c \
+			parser/material/definitions/parser_pass_mtl.c \
 			tools/char.c \
 			tools/path.c \
 			tools/ft_atof.c \
