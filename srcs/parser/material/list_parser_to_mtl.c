@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 18:07:53 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:08:30 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:14:37 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int					list_parser_to_mtl(t_mtl *mtl, t_list_parser *list,
 {
 	int				group_id;
 	t_list_parser	*tmp;
-	int 			(*f[13])(t_mtl *, char *, int);
+	int				(*f[13])(t_mtl *, char *, int);
 
 	group_id = -1;
 	tmp = list;
