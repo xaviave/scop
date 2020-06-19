@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:42:50 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:43:14 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 13:44:06 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	reset(t_gdata *gdata);
 
 int		launch_render(t_gdata *gdata, t_parser *parser);
 
-void	key_callback(GLFWwindow* window, int key,
-	int scancode, int action, int mods);
-void	mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void	key_callback(GLFWwindow *window, int key,
+		int scancode, int action, int mods);
+void	mouse_callback(GLFWwindow *window, double xpos, double ypos);
 
-void	error_callback(int error, const char* description);
+void	error_callback(int error, const char *description);
 
 int		create_texture(t_gdata *gdata, char *name);
 
