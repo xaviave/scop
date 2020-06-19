@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 14:04:24 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:08:14 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:12:16 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,6 @@ void						add_list_parser(t_list_parser **list,
 int							last_char(char *str, char c);
 int							count_char(char *str, int c);
 int							nb_char(char *str, int c);
-
-void						print_obj(t_obj *obj);
-
-void						print_mtl(t_mtl *mtl);
 
 int							count_group_mtl(t_list_parser *list);
 
