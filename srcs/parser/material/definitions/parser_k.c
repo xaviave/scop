@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 18:16:36 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:17:26 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:48:07 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 18:56:04 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,16 @@ void					parser_color_file(t_texture_color *s, char *raw_data)
 	}
 }
 
-int					parser_ka(t_mtl *mtl, char *raw_data, int group_id)
+int						parser_ka(t_mtl *mtl, char *raw_data, int group_id)
 {
-	int				i;
+	int					i;
 
 	if (mtl->ac)
 	{
+		mtl->ac->option.type = ID_KA;
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->ac->option, &mtl->ac->file,
-			&raw_data[i], ID_KA, mtl->path)))
+			&raw_data[i], mtl->path)))
 			return (0);
 	}
 	else
@@ -63,15 +64,16 @@ int					parser_ka(t_mtl *mtl, char *raw_data, int group_id)
 	return (1);
 }
 
-int					parser_kd(t_mtl *mtl, char *raw_data, int group_id)
+int						parser_kd(t_mtl *mtl, char *raw_data, int group_id)
 {
-	int				i;
+	int					i;
 
 	if (mtl->dc)
 	{
+		mtl->dc->option.type = ID_KD;
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->dc->option, &mtl->dc->file,
-			&raw_data[i], ID_KD, mtl->path)))
+			&raw_data[i], mtl->path)))
 			return (0);
 	}
 	else
@@ -87,15 +89,16 @@ int					parser_kd(t_mtl *mtl, char *raw_data, int group_id)
 	return (1);
 }
 
-int					parser_ks(t_mtl *mtl, char *raw_data, int group_id)
+int						parser_ks(t_mtl *mtl, char *raw_data, int group_id)
 {
-	int				i;
+	int					i;
 
 	if (mtl->sc)
 	{
+		mtl->sc->option.type = ID_KS;
 		i = pass_whitespace(6, raw_data);
 		if (!(parsing_texture_option(&mtl->sc->option, &mtl->sc->file,
-			&raw_data[i], ID_KS, mtl->path)))
+			&raw_data[i], mtl->path)))
 			return (0);
 	}
 	else

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 18:18:38 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:32:32 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:48:38 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 18:48:39 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void				define_value_by_option(t_texture_option *new,
 }
 
 int						parsing_texture_option(t_texture_option *new,
-	t_file *file, char *raw_data, short type, char *path)
+	t_file *file, char *raw_data, char *path)
 {
 	int					i;
 	char				*tmp;
@@ -95,7 +95,7 @@ int						parsing_texture_option(t_texture_option *new,
 	ft_strdel(&tmp);
 	i = -1;
 	while (option_tab[++i])
-		define_value_by_option(new, option_tab[i], type);
+		define_value_by_option(new, option_tab[i], new->type);
 	i = -1;
 	while (option_tab[++i])
 		ft_strdel(&option_tab[i]);

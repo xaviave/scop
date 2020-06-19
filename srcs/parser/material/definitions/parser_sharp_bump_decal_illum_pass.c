@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 18:17:34 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:34:37 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:48:25 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 18:55:08 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int					parser_bump(t_mtl *mtl, char *raw_data, int group_id)
 	i = pass_whitespace(4, raw_data);
 	if (!(init_texture_option(&mtl->bump->option)))
 		return (0);
+	mtl->bump->option.type = ID_BUMP;
 	if (!(parsing_texture_option(&mtl->bump->option, &mtl->bump->file,
-		&raw_data[i], ID_BUMP, mtl->path)))
+		&raw_data[i], mtl->path)))
 		return (0);
 	return (1);
 }
@@ -38,8 +39,9 @@ int					parser_decal(t_mtl *mtl, char *raw_data, int group_id)
 	i = pass_whitespace(5, raw_data);
 	if (!(init_texture_option(&mtl->decal->option)))
 		return (0);
+	mtl->decal->option.type = ID_DECAL;
 	if (!(parsing_texture_option(&mtl->decal->option, &mtl->decal->file,
-		&raw_data[i], ID_DECAL, mtl->path)))
+		&raw_data[i], mtl->path)))
 		return (0);
 	return (1);
 }
@@ -75,8 +77,9 @@ int					parser_disp(t_mtl *mtl, char *raw_data, int group_id)
 	i = pass_whitespace(4, raw_data);
 	if (!(init_texture_option(&mtl->disp->option)))
 		return (0);
+	mtl->disp->option.type = ID_DISP;
 	if (!(parsing_texture_option(&mtl->disp->option, &mtl->disp->file,
-		&raw_data[i], ID_DISP, mtl->path)))
+		&raw_data[i], mtl->path)))
 		return (0);
 	return (1);
 }

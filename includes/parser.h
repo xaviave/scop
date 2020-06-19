@@ -94,7 +94,7 @@ int				parser_decal(t_mtl *mtl, char *raw_data, int group_id);
 int				parser_illum(t_mtl *mtl, char *raw_data, int group_id);
 int				parser_pass_mtl(t_mtl *mtl, char *raw_data, int group_id);
 int				parsing_texture_option(t_texture_option *new,
-		t_file *file, char *raw_data, short type, char *path);
+		t_file *file, char *raw_data, char *path);
 
 void			clear_parser_memory(t_addr **addr);
 void			delete_t_obj(t_obj obj);
