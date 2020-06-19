@@ -6,16 +6,16 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:59:41 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:59:52 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:08:10 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/tools.h"
 #include "../../../includes/cleaner.h"
 
-void	init_parser(t_parser *parser, int ac, char **av)
+void		init_parser(t_parser *parser, int ac, char **av)
 {
-	int	i;
+	int		i;
 
 	parser->nb_args = ac - 1;
 	parser->args = av;
@@ -34,10 +34,10 @@ void	init_parser(t_parser *parser, int ac, char **av)
 					&parser->addr);
 }
 
-void	init_parser_mtl(t_parser *parser)
+void		init_parser_mtl(t_parser *parser)
 {
-	int	i;
-	int	len_mtl;
+	int		i;
+	int		len_mtl;
 
 	i = -1;
 	len_mtl = 0;
