@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pass_whitespace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/22 11:41:02 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/26 18:13:46 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:55:47 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:55:58 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "tools.h"
+#include "../../includes/tools.h"
 
 /*
 ** pass_whitespace_double pass all whitespaces and the first double
@@ -19,17 +19,17 @@
 
 int			pass_whitespace_str(int i, char *str)
 {
-    i = pass_whitespace(i, str);
+	i = pass_whitespace(i, str);
 	while (str[i] && str[i] != '\t' && str[i] != ' ')
 		i++;
 	return (i);
 }
 
-int         pass_whitespace(int i, char *str)
+int			pass_whitespace(int i, char *str)
 {
-    while (str[i] && (str[i] == '\t' || str[i] == ' ' || str[i] == 13))
-        i++;
-    return (i);
+	while (str[i] && (str[i] == '\t' || str[i] == ' ' || str[i] == 13))
+		i++;
+	return (i);
 }
 
 int			pass_texture_option(char *str)

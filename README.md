@@ -1,3 +1,0 @@
-# scop
-
-Master Branch

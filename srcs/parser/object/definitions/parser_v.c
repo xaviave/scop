@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_v.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 14:24:18 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/12 18:33:36 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:14:01 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:27:29 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "parser.h"
+#include "../../../../includes/parser.h"
 
-int 				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
+int					parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	int				id;
@@ -30,7 +30,7 @@ int 				parser_vt(t_obj *obj, char *raw_data, int o_id, int g_id)
 	return (1);
 }
 
-int 				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id)
+int					parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	int				id;
@@ -45,10 +45,10 @@ int 				parser_vn(t_obj *obj, char *raw_data, int o_id, int g_id)
 	i = pass_whitespace_str(i, raw_data);
 	obj->normals[id].z = ft_atof(&raw_data[i]);
 	obj->len_normals++;
-    return (1);
+	return (1);
 }
 
-int 				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id)
+int					parser_v(t_obj *obj, char *raw_data, int o_id, int g_id)
 {
 	int				i;
 	int				id;
@@ -65,5 +65,5 @@ int 				parser_v(t_obj *obj, char *raw_data, int o_id, int g_id)
 	i = pass_whitespace_str(i, raw_data);
 	obj->vertexes[id].w = optional_value_double(&raw_data[i], 1.0);
 	obj->len_vertexes++;
-    return (1);
+	return (1);
 }

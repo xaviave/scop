@@ -3,54 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   char.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/29 16:13:12 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:37:29 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:45:26 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:46:10 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../includes/tools.h"
 
-int     is_num_or_float(char *str)
+int		is_num_or_float(char *str)
 {
-    int i;
-    int point;
+	int	i;
+	int	point;
 
-    i = str[0] == '-' ? 1 : 0;
-    if (!ft_isdigit(str[i]) || str[ft_strlen(str) - 1] == '.')
-        return (0);
-    point = 0;
-    while (str[i])
-    {
-        if (str[i] == '.')
-            point++;
-        else if (!ft_isdigit(str[i]))
-            return (0);
-        i++;
-    }
-    return (point > 1 ? FALSE : TRUE);
+	i = str[0] == '-' ? 1 : 0;
+	if (!ft_isdigit(str[i]) || str[ft_strlen(str) - 1] == '.')
+		return (0);
+	point = 0;
+	while (str[i])
+	{
+		if (str[i] == '.')
+			point++;
+		else if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (point > 1 ? FALSE : TRUE);
 }
 
-char    *change_chr(char *str, char c, char new_c)
+char	*change_chr(char *str, char c, char new_c)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (str[++i])
-        if (str[i] == c)
-            str[i] = new_c;
-    return (str);
+	i = -1;
+	while (str[++i])
+		if (str[i] == c)
+			str[i] = new_c;
+	return (str);
 }
 
-int     len_tab(char **tab)
+int		len_tab(char **tab)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (tab[i])
-        i++;
-    return (i);
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }
 
 int		count_char(char *str, int c)
@@ -69,10 +69,10 @@ int		count_char(char *str, int c)
 int		last_char(char *str, char c)
 {
 	int	i;
-	int len;
+	int	len;
 
-    if (!count_char(str, c))
-        return (0);
+	if (!count_char(str, c))
+		return (0);
 	len = ft_strlen(str);
 	i = len;
 	while (--i)

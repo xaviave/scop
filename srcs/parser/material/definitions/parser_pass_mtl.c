@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser_pass_mtl.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 15:11:07 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 21:03:27 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:00:11 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:01:20 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-#include "render.h"
+#include "../../../../includes/parser.h"
 
-int				main(int ac, char **av)
+int					parser_pass_mtl(t_mtl *mtl, char *raw_data, int group_id)
 {
-	t_parser	parser;
-	t_gdata		g;
-
-	launch_parser(&parser, ac, av);
-	launch_render(&g, &parser);
-	return (0);
+	if (raw_data[0] != '#' && ft_strstr(raw_data, "newmtl"))
+	{
+		if (!(mtl->groups[group_id] = ft_strtrim(&raw_data[6])))
+			return (0);
+	}
+	return (1);
 }

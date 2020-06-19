@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 14:04:24 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:08:14 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:12:16 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int							len_tab(char **tab);
 int							len_list_parser_id(t_list_parser *list);
 
 void						init_obj(t_obj *obj, t_parser_option *opt,
-		int id, int nb_args, t_addr **addr);
+		int id, t_parser *parser);
 
 void						init_mtl(t_mtl *mtl, int id,
 		t_parser *parser, int nb_groups);
@@ -108,10 +108,6 @@ void						add_list_parser(t_list_parser **list,
 int							last_char(char *str, char c);
 int							count_char(char *str, int c);
 int							nb_char(char *str, int c);
-
-void						print_obj(t_obj *obj);
-
-void						print_mtl(t_mtl *mtl);
 
 int							count_group_mtl(t_list_parser *list);
 
@@ -159,7 +155,7 @@ int							rotate_matrix4x4_z(t_matrix *rotate,
 */
 
 void						perspective_matrix4x4(t_matrix *m, float y_fov,
-		float aspect, float n, float f);
+		float aspect, float n);
 void						translate_in_place_matrix4x4(t_matrix *m,
 		float x, float y, float z);
 void						look_at_matrix4x4(t_matrix *m, float eye[3],
@@ -171,13 +167,6 @@ void						look_at_matrix4x4(t_matrix *m, float eye[3],
 
 float						degree_to_radians(float angle);
 float						*transform_matrix4x4_to_float(t_matrix *m);
-
-/*
-** srcs/tools/matrixes/print_matrix.c
-*/
-
-void						print_matrix(t_matrix *m, char *str);
-void						print_mat4x4(mat4x4 m, char *str);
 
 /*
 ** srcs/tools/matrixes/vertex3.c

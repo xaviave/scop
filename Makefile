@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/05/03 13:26:41 by xamartin         ###   ########lyon.fr    #
+#    Updated: 2020/06/19 20:44:13 by ltoussai         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ LIB_PATH = ./external_lib/
 INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glad/include
 
 # FLAGS
-GCC_FLGS = -Wall -Wextra -g3 # comment this line and uncomment next line for memory tools and make re. leaks don't work with the tool but information is print on output of the program if there is problem.
-#GCC_FLGS = -Wall -Wextra -g3 -ggdb -fsanitize=address -fno-omit-frame-pointer
+GCC_FLGS = -Wall -Wextra -Werror -g3
 GCC_LIBS = -lglfw -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
 # TESTS
@@ -45,11 +44,10 @@ SRC_NAME =	main.c \
 			parser/line_checker/basic_line_checker.c \
 			parser/line_checker/advanced_obj_checker.c \
 			parser/line_checker/mtl_header_checker.c \
-			parser/object/print_obj.c \
 			parser/object/list_parser_to_obj.c \
 			parser/object/definitions/parser_v.c \
 			parser/object/definitions/parser_f_l_o_g_pass.c \
-			parser/material/print_mtl.c \
+			parser/object/definitions/parser_f_l.c \
 			parser/material/list_parser_to_mtl.c \
 			parser/material/definitions/parse_file.c \
 			parser/material/definitions/parser_k.c \
@@ -57,6 +55,7 @@ SRC_NAME =	main.c \
 			parser/material/definitions/parser_tf_d_s_ni.c \
 			parser/material/definitions/parsing_texture_option.c \
 			parser/material/definitions/parser_sharp_bump_decal_illum_pass.c \
+			parser/material/definitions/parser_pass_mtl.c \
 			tools/char.c \
 			tools/path.c \
 			tools/ft_atof.c \
@@ -78,8 +77,8 @@ SRC_NAME =	main.c \
 			tools/init/init_parser_option.c \
 			tools/init/init_texture_option.c \
 			tools/matrixes/vertex3.c \
+			tools/matrixes/vertex3_bis.c \
 			tools/matrixes/vertex4.c \
-			tools/matrixes/print_matrix.c \
 			tools/matrixes/tools_matrix4x4.c \
 			tools/matrixes/basic_matrix4x4.c \
 			tools/matrixes/rotate_matrix4x4.c \

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   basic_matrix4x4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 22:49:03 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/22 19:03:43 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:18:25 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:25:10 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
-void			multiply_matrix4x4(t_matrix *result,t_matrix *m,
+void			multiply_matrix4x4(t_matrix *result, t_matrix *m,
 	t_matrix *multiply)
 {
 	int			c;
@@ -26,10 +26,10 @@ void			multiply_matrix4x4(t_matrix *result,t_matrix *m,
 		while (++r < 4)
 		{
 			k = -1;
-			result->values[c][r] = 0.0f; 
+			result->values[c][r] = 0.0f;
 			while (++k < 4)
-				result->values[c][r] += 
-					m->values[k][r] * multiply->values[c][k]; 
+				result->values[c][r] +=
+					m->values[k][r] * multiply->values[c][k];
 		}
 	}
 }
@@ -49,7 +49,7 @@ t_matrix		*scale_matrix4x4(double scale, t_matrix *m)
 		while (++j < m->rows)
 			m->values[i][j] *= scale;
 	}
-	return result;
+	return (result);
 }
 
 void			clear_matrix4x4(t_matrix *m)

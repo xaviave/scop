@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_delete_matrix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 14:06:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/18 15:54:56 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:18:51 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:27:13 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
 t_matrix		*new_matrix(int rows, int columns)
 {
 	int			i;
 	int			j;
-	t_matrix 	*m;
+	t_matrix	*m;
 
 	if (!(m = (t_matrix *)ft_memalloc(sizeof(t_matrix))))
 		return (NULL);
@@ -31,7 +31,7 @@ t_matrix		*new_matrix(int rows, int columns)
 		if (!(m->values[i] = (float *)ft_memalloc(sizeof(float) * rows)))
 			return (free_matrix(m));
 		while (++j < m->rows)
-			m->values[i][j]= 0.0f;
+			m->values[i][j] = 0.0f;
 	}
 	return (m);
 }
@@ -41,7 +41,7 @@ void			*free_matrix(t_matrix *m)
 	int			i;
 
 	if (!m)
-	    return (NULL);
+		return (NULL);
 	i = -1;
 	while (++i < m->columns)
 	{
@@ -60,19 +60,18 @@ void			identity_matrix4x4(t_matrix *m)
 	int			i;
 
 	i = -1;
-	while (++i < m->columns)	
+	while (++i < m->columns)
 		m->values[i][i] = 1.0f;
 }
 
-
 t_matrix		*init_identity_matrix4x4(t_matrix *source)
 {
-	t_matrix 	*m;
+	t_matrix	*m;
 
 	if (source)
-        free_matrix(source);
-    if (!(m = new_matrix(4, 4)))
-        return (NULL);
+		free_matrix(source);
+	if (!(m = new_matrix(4, 4)))
+		return (NULL);
 	identity_matrix4x4(m);
 	return (m);
 }

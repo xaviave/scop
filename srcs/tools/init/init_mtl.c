@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init_mtl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/25 23:07:53 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:38:12 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:58:48 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:58:58 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "tools.h"
+#include "../../../includes/tools.h"
 
 void					init_mtl(t_mtl *mtl, int id,
 	t_parser *parser, int nb_group)
 {
-    int                 tmp;
+	int					tmp;
 
-    tmp = mtl->nb_args;
+	tmp = mtl->nb_args;
 	ft_memset(mtl, 0, sizeof(t_mtl));
 	mtl->id = id;
 	mtl->nb_args = tmp;

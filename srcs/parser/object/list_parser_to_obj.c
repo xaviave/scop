@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   list_parser_to_obj.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:33:31 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:02:05 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:06:33 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../../includes/parser.h"
 
 /*
 ** check_obj simply check the lenght of every obj
@@ -24,20 +24,16 @@ static int			check_obj(t_obj *obj)
 	err = 0;
 	if (obj)
 		return (1);
-	print_obj(obj);
-	// need to check if there's vertexes and faces
-	// need to check all the v - vn - vt ids in lines and faces
-	// if s != 0 in groups or objects, need vn ids
 	return (1);
 }
 
 int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
-        t_addr **addr)
+		t_addr **addr)
 {
 	int				o_id;
 	int				g_id;
 	t_list_parser	*tmp;
-    int 			(*f[7])(t_obj *, char *, int, int);
+	int				(*f[7])(t_obj *, char *, int, int);
 
 	init_parser_obj_ptr(f);
 	o_id = -1;
@@ -46,17 +42,15 @@ int					list_parser_to_obj(t_obj *obj, t_list_parser *list,
 	while (tmp)
 	{
 		if (tmp->id == ID_G || tmp->id == ID_O)
-        {
-			if (tmp->id == ID_O)
-				o_id = obj->len_objects;
-			else
-				g_id = obj->len_groups;
+		{
+			o_id = tmp->id == ID_O ? obj->len_objects : o_id;
+			g_id = tmp->id != ID_O ? obj->len_groups : g_id;
 			if (!(tmp->id == ID_G ?
 			parser_g(obj, tmp->data, o_id) : parser_o(obj, tmp->data)))
-			    handle_error_parser("Error during memory allocation.", addr);
-        }
+				handle_error_parser("Error during memory allocation.", addr);
+		}
 		else if (tmp->id < ID_G && !(f[tmp->id](obj, tmp->data, o_id, g_id)))
-			    handle_error_parser("Error during memory allocation.", addr);
+			handle_error_parser("Error during memory allocation.", addr);
 		tmp = tmp->next;
 	}
 	return (check_obj(obj));

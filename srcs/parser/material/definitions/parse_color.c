@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/02 15:03:56 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/13 12:56:05 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:15:28 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 18:15:58 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../../../includes/parser.h"
 
 /*
 ** Transform xyz color type to rgb using a matrix
-** type define the value of the matrix, each colors have different matrix value 
+** type define the value of the matrix, each colors have different matrix value
 ** type = [x = 0, y = 1, z = 2]
 **
 ** R =  3.2404542*X - 1.5371385*Y - 0.4985314*Z
@@ -61,7 +61,6 @@ static double				xyz_to_rgb(double x, double y, double z, short type)
 	ft_memset(&matrix, 0, sizeof(matrix));
 	matrix_values(type, matrix);
 	c = matrix[0] * x + matrix[1] * y + matrix[2] * z;
-	dprintf(1, "0-1 c = %f | 0-255 c = %f\n", c, c * 255);
 	return (gradient_corrector(c));
 }
 
@@ -79,7 +78,7 @@ static int					pass_header_xyz(char *raw_data)
 void						parse_color(t_color *color, char *raw_data, int xyz)
 {
 	int						i;
-	size_t                  data_len;
+	size_t					data_len;
 
 	data_len = ft_strlen(raw_data);
 	i = (xyz) ? pass_header_xyz(raw_data) : 2;

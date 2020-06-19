@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:52:15 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:03:55 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:50:01 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
-# include <../external_lib/glad/include/glad/glad.h>
+# include "../external_lib/glad/include/glad/glad.h"
 # include "../external_lib/libft/header/libft.h"
 
 /*
@@ -287,6 +287,7 @@ typedef struct				s_texture_option
 	double					texres;
 	double					boost;
 	int						bm;
+	short					type;
 }							t_texture_option;
 
 /*
