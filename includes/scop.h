@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:52:15 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:59:37 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 14:03:34 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,20 +118,12 @@ typedef struct				s_line
 	int						*textures_id;
 }							t_line;
 
-/*
-**
-*/
-
 typedef struct				s_group
 {
 	char					*name;
 	short					smooth;
 	int						object_id;
 }							t_group;
-
-/*
-**
-*/
 
 typedef struct				s_object
 {
@@ -172,7 +164,7 @@ typedef struct				s_obj
 
 	t_texture				*textures;
 	int						len_textures;
-	
+
 	t_vertex				*vertexes;
 	int						len_vertexes;
 
@@ -226,12 +218,12 @@ typedef struct				s_file
 **	//  blendu turns texture blending in horizontal direction
 **	short					blendv; //  default on
 **	//  blendv turns texture blending in vertical direction
-**	short					cc; //  default on  
+**	short					cc; //  default on
 **	//  Only for Ka | Kd | Ks
 **	//  turns on color correction for the texture
 **	short					clamp; //  default off
 **	//  texturea are restrict to 0-1 in the uvw range | refer to the doc
-**	short					imfchan; // default for bump is l and m for decal 
+**	short					imfchan; // default for bump is l and m for decal
 **	//  Not for Ka | Kd | Ks
 **	//  choose between [r | g | m | l | z] to create a scalar or bump texture
 **	//  transparency - specular exponent - decal - displacement
@@ -243,27 +235,37 @@ typedef struct				s_file
 **	//  z -> z-depth channel.
 **	double					*mm; // use to be like this [2];
 **	// modify the range over | scalar or color values may vary during rendering
-**	// mm[0] is the base, it adds values to texture. default 0 | change the brigther or dimmer
-**	// mm[1] is the gain, it expands the range of texture values and create contrast. default is 1
+**	// mm[0] is the base, it adds values to texture. default 0 | change the
+**brigther or dimmer
+**	// mm[1] is the gain, it expands the range of texture values and create
+**contrast. default is 1
 **	double					*o; // use to be like this [3];
-**	// offset the position of the texture map on the surface | shift the position of the map origin. default [0, 0, 0]
+**	// offset the position of the texture map on the surface | shift the
+**position of the map origin. default [0, 0, 0]
 **	// o[0] is u horizontal direction
 **	// o[1] is v vertical direction | optional
-**	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+**	// o[2] is w depth for 3D texture and used for the amount of tesselation of
+**the displacement | optional
 **	double					*s; // use to be like this [3];
-**	// scale the size of the texture pattern on the textured surface by expanding or shrinking the pattern. default [1, 1, 1]
+**	// scale the size of the texture pattern on the textured surface by
+**expanding or shrinking the pattern. default [1, 1, 1]
 **	// s[0] is u horizontal direction
 **	// s[1] is v vertical direction | optional
-**	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+**	// s[2] is w depth for 3D texture and used for the amount of tesselation
+**of the displacement | optional
 **	double					*t; // use to be like this [3];
-**	// turns on turbulence for texture. Adding turbulence to a texture along a specified direction adds variance to the original image
-**	// and allows a simple image to be repeated over a larger area without noticeable tiling effects. default [0, 0, 0]
+**	// turns on turbulence for texture. Adding turbulence to a texture along
+**a specified direction adds variance to the original image
+**	// and allows a simple image to be repeated over a larger area without
+**noticeable tiling effects. default [0, 0, 0]
 **	// t[0] is u horizontal direction
 **	// t[1] is v vertical direction | optional
-**	// t[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+**	// t[2] is w depth for 3D texture and used for the amount of tesselation
+**of the displacement | optional
 **	double					texres;
 **	// specifie the resolution of texture created when an image is used.
-**	// The default texture size is the largest power of two that does not exceed the original image size. Refere to doc
+**	// The default texture size is the largest power of two that does not
+**exceed the original image size. Refere to doc
 **	double					boost; // always positive
 **	// increase the sharpness, or clarity, of mip-mapped texture files
 **	int						bm; // best between 0 and 1
@@ -361,7 +363,8 @@ typedef struct				s_optical_density
 }							t_optical_density;
 
 /*
-** Specifies that a bump texture file or a bump procedural texture file is linked to the material.
+** Specifies that a bump texture file or a bump procedural texture file is
+**linked to the material.
 */
 
 typedef struct				s_bump
@@ -372,7 +375,8 @@ typedef struct				s_bump
 }							t_bump;
 
 /*
-** disp specifies that a scalar texture is used to deform the surface of an object, creating surface roughness.
+** disp specifies that a scalar texture is used to deform the surface of an
+**object, creating surface roughness.
 */
 
 typedef struct				s_disp
@@ -383,9 +387,9 @@ typedef struct				s_disp
 }							t_disp;
 
 /*
-** decal replaces the material color with the texture color 
+** decal replaces the material color with the texture color
 **
-** During rendering, the Ka, Kd, and Ks values and the map_Ka, map_Kd, and 
+** During rendering, the Ka, Kd, and Ks values and the map_Ka, map_Kd, and
 ** map_Ks values are blended according to the following formula:
 **  vt == tv
 ** result_color=tex_color(tv)*decal(tv)+mtl_color*(1.0-decal(tv))
