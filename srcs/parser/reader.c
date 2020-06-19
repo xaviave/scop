@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:36:04 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:48:00 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 17:49:04 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void					reader_obj(t_parser *parser)
 	}
 }
 
-static void				get_path_mtllib(t_parser *parser)
+static void				get_path_mtllib(t_parser *parser, int i)
 {
 	char				*tmp;
 
@@ -84,7 +84,6 @@ void					reader_mtl(t_parser *parser)
 {
 	int					i;
 	int					index;
-	char				*tmp;
 	t_parser_option		opt;
 	t_list_parser		*list;
 
@@ -93,7 +92,7 @@ void					reader_mtl(t_parser *parser)
 	while (++i < parser->nb_args)
 		if (parser->obj[i].mtllib)
 		{
-			get_path_mtllib(parser);
+			get_path_mtllib(parser, i);
 			init_parser_option(&opt, parser->obj[i].mtllib, i, P_MTL);
 			list = reader(&opt, &parser->addr);
 			parser->obj[i].mtl_id = i;
