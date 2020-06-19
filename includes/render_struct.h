@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/05 12:16:09 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/21 16:14:38 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 13:44:41 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 13:51:40 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "scop.h"
 
 # ifdef __APPLE__
-# define GL_SILENCE_DEPRECATION
-# include "../external_lib/glfw/deps/linmath.h"
-# include <GLFW/glfw3.h>
+#  define GL_SILENCE_DEPRECATION
+#  include "../external_lib/glfw/deps/linmath.h"
+#  include <GLFW/glfw3.h>
 # else
-# include "../external_lib/glfw/deps/linmath.h"
-# include "../external_lib/glfw/deps/glad/gl.h"
-# include <GLFW/glfw3.h>
+#  include "../external_lib/glfw/deps/linmath.h"
+#  include "../external_lib/glfw/deps/glad/gl.h"
+#  include <GLFW/glfw3.h>
 # endif
 
 # define SHADER_READ 1000
@@ -37,18 +37,25 @@ typedef struct				s_matrix
 	float					**values;
 }							t_matrix;
 
+/*
+** *projection;
+** put the world in the camera view
+** projection matrix 1x4 = (degree_to_rs) and 30° (quite zoomed in)
+**
+** *view;
+** to put the model on the worl
+**
+** *model;
+** one matrix per object to move them individually ?
+** center of each object
+** apply on every point with move_matrix()
+*/
+
 typedef struct				s_engine
 {
-	// put the world in the camera view
-	// projection matrix 1x4 = (degree_to_rs) and 30° (quite zoomed in)
 	t_matrix				*projection;
-	// to put the model on the worl
 	t_matrix				*view;
-	// one matrix per object to move them individually ?
-	// center of each object
-	// apply on every point with move_matrix()
 	t_matrix				*model;
-	
 	float					camera_up[3];
 	float					camera_pos[3];
 	float					camera_tmp[3];
@@ -84,7 +91,7 @@ typedef struct				s_buffer
 	unsigned int			texture_loc;
 }							t_buffer;
 
-typedef struct      		s_gdata
+typedef struct				s_gdata
 {
 	int						nb_objs;
 	t_obj					*obj;
@@ -95,7 +102,7 @@ typedef struct      		s_gdata
 	double					time;
 	float					*vertices;
 	int						actual_obj;
-    t_addr                  *addr;
-}                   		t_gdata;
+	t_addr					*addr;
+}							t_gdata;
 
 #endif

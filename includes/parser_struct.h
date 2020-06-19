@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/05 12:14:29 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/15 18:59:27 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 13:41:11 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 13:42:21 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,21 @@
 ** Structures
 */
 
-typedef struct      		s_addr
+typedef struct			s_addr
 {
-    void            		*content_addr;
-    int             		content_type;
-    struct s_addr   		*next;
-}                   		t_addr;
+	void				*content_addr;
+	int					content_type;
+	struct s_addr		*next;
+}						t_addr;
 
-typedef struct				s_parser
+typedef struct			s_parser
 {
-	int						nb_args;
-	char					**path;
-	char					**args;
-    t_addr                  *addr;
-	t_obj					*obj;
-	t_mtl					*mtl;
-}							t_parser;
+	int					nb_args;
+	char				**path;
+	char				**args;
+	t_addr				*addr;
+	t_obj				*obj;
+	t_mtl				*mtl;
+}						t_parser;
 
 #endif
