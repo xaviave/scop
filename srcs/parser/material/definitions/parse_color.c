@@ -61,7 +61,6 @@ static double				xyz_to_rgb(double x, double y, double z, short type)
 	ft_memset(&matrix, 0, sizeof(matrix));
 	matrix_values(type, matrix);
 	c = matrix[0] * x + matrix[1] * y + matrix[2] * z;
-	dprintf(1, "0-1 c = %f | 0-255 c = %f\n", c, c * 255);
 	return (gradient_corrector(c));
 }
 

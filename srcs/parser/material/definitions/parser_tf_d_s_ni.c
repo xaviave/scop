@@ -21,7 +21,6 @@ int					parser_tf(t_mtl *mtl, char *raw_data, int group_id)
 		return (0);
 	mtl->tf->group_id = group_id;
 	parser_color_file((t_texture_color *)mtl->tf, raw_data);
-	dprintf(1, "ue pourquoi pas %f", mtl->tf->color.r);
 	return (1);
 }
 
