@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 11:28:47 by tduverge          #+#    #+#             */
-/*   Updated: 2020/03/21 12:24:38 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 14:56:26 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 14:56:26 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../header/libft.h"
 

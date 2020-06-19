@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 11:28:58 by tduverge          #+#    #+#             */
-/*   Updated: 2020/04/10 15:15:05 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 14:56:28 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 14:56:28 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../header/libft.h"
 
