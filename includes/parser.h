@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 13:32:27 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:35:18 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 13:40:36 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 ** Functions
 */
 
-int				launch_parser(t_parser *parser,  int ac, char **av);
+int				launch_parser(t_parser *parser, int ac, char **av);
 void			reader_obj(t_parser *parser);
 void			reader_mtl(t_parser *parser);
 
