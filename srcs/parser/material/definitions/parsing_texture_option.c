@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 18:18:38 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:19:07 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:32:32 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,34 +48,32 @@ static void				get_double_tab(char *option_str, double *tab, int size)
 */
 
 static void				define_value_by_option(t_texture_option *new,
-	char *option_tab, short type)
+	char *option, short t)
 {
-	if (ft_strchr(option_tab, 'u'))
-		new->blendu = get_on_off(&option_tab[7]);
-	else if (ft_strchr(option_tab, 'v'))
-		new->blendv = get_on_off(&option_tab[7]);
-	else if (ft_strchr(option_tab, 'l'))
-		new->clamp = get_on_off(&option_tab[6]);
-	else if (ft_strchr(option_tab, 'c') &&
-		(type == ID_KA || type == ID_KD || type == ID_KS))
-		new->cc = get_on_off(&option_tab[3]);
-	else if (ft_strchr(option_tab, 'f') &&
-		type != ID_KA & type != ID_KD && type != ID_KS)
-		new->imfchan = get_value(&option_tab[8], 0);
-	else if (ft_strchr(option_tab, 'x'))
-		new->texres = get_on_off(&option_tab[3]);
-	else if (ft_strchr(option_tab, 'o'))
-		get_double_tab(&option_tab[2], new->o, 3);
-	else if (ft_strchr(option_tab, 's'))
-		get_double_tab(&option_tab[2], new->s, 3);
-	else if (ft_strchr(option_tab, 't'))
-		get_double_tab(&option_tab[2], new->t, 3);
-	else if (ft_strstr(option_tab, "bm") && type == ID_BUMP)
-		new->bm = get_value(&option_tab[3], 0);
-	else if (ft_strchr(option_tab, 'm'))
-		get_double_tab(&option_tab[2], new->mm, 2);
-	else if (ft_strchr(option_tab, 'b'))
-		new->boost = get_value(&option_tab[3], 1);
+	if (ft_strchr(option, 'u'))
+		new->blendu = get_on_off(&option[7]);
+	else if (ft_strchr(option, 'v'))
+		new->blendv = get_on_off(&option[7]);
+	else if (ft_strchr(option, 'l'))
+		new->clamp = get_on_off(&option[6]);
+	else if (ft_strchr(option, 'c') && (t == ID_KA || t == ID_KD || t == ID_KS))
+		new->cc = get_on_off(&option[3]);
+	else if (ft_strchr(option, 'f') && t != ID_KA && t != ID_KD && t != ID_KS)
+		new->imfchan = get_value(&option[8], 0);
+	else if (ft_strchr(option, 'x'))
+		new->texres = get_on_off(&option[3]);
+	else if (ft_strchr(option, 'o'))
+		get_double_tab(&option[2], new->o, 3);
+	else if (ft_strchr(option, 's'))
+		get_double_tab(&option[2], new->s, 3);
+	else if (ft_strchr(option, 't'))
+		get_double_tab(&option[2], new->t, 3);
+	else if (ft_strstr(option, "bm") && t == ID_BUMP)
+		new->bm = get_value(&option[3], 0);
+	else if (ft_strchr(option, 'm'))
+		get_double_tab(&option[2], new->mm, 2);
+	else if (ft_strchr(option, 'b'))
+		new->boost = get_value(&option[3], 1);
 }
 
 int						parsing_texture_option(t_texture_option *new,

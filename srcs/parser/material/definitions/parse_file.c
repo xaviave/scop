@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 18:16:05 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:16:11 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:33:24 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int					parse_bmp(t_img *img, char *name)
 	return (1);
 }
 
-int 				parse_file(t_file *file, char *raw_data, char *path)
+int					parse_file(t_file *file, char *raw_data, char *path)
 {
 	if (file)
 		printf("Can't parse file: %s%s\n", path, raw_data);

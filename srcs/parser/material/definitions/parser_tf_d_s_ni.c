@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 18:18:08 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:18:27 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:21:20 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int					parser_d(t_mtl *mtl, char *raw_data, int group_id)
 
 	if (mtl->t)
 	{
-		i = pass_whitespace(5, raw_data);
 		if (!(parsing_texture_option(&mtl->t->option, &mtl->t->file,
-			&raw_data[i], ID_D, mtl->path)))
+			&raw_data[pass_whitespace(5, raw_data)], ID_D, mtl->path)))
 			return (0);
 	}
 	else

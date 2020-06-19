@@ -6,7 +6,7 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 13:08:17 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:33:31 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:25:45 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ static int			check_obj(t_obj *obj)
 	err = 0;
 	if (obj)
 		return (1);
-	print_obj(obj);
-	// need to check if there's vertexes and faces
-	// need to check all the v - vn - vt ids in lines and faces
-	// if s != 0 in groups or objects, need vn ids
 	return (1);
 }
 

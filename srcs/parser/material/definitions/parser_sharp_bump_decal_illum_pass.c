@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 18:17:34 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:18:00 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:34:37 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int					parser_bump(t_mtl *mtl, char *raw_data, int group_id)
 {
 	int				i;
-	
+
 	if (!(mtl->bump = (t_bump *)ft_memalloc(sizeof(t_bump))))
 		return (0);
 	mtl->bump->group_id = group_id;
@@ -31,6 +31,7 @@ int					parser_bump(t_mtl *mtl, char *raw_data, int group_id)
 int					parser_decal(t_mtl *mtl, char *raw_data, int group_id)
 {
 	int				i;
+
 	if (!(mtl->decal = (t_decal *)ft_memalloc(sizeof(t_decal))))
 		return (0);
 	mtl->decal->group_id = group_id;
@@ -67,7 +68,7 @@ int					parser_sharp(t_mtl *mtl, char *raw_data, int group_id)
 int					parser_disp(t_mtl *mtl, char *raw_data, int group_id)
 {
 	int				i;
-	
+
 	if (!(mtl->disp = (t_disp *)ft_memalloc(sizeof(t_disp))))
 		return (0);
 	mtl->disp->group_id = group_id;
