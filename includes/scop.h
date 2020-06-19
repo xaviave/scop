@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scop.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 11:03:24 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/27 17:16:20 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 13:52:15 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 13:59:37 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
-# include <glad/glad.h>
+# include <../external_lib/glad/include/glad/glad.h>
 # include "../external_lib/libft/header/libft.h"
 
 /*
@@ -47,12 +47,12 @@
 ** parsing: v x, y, z[, w]
 */
 
-typedef struct      		s_vertex
+typedef struct				s_vertex
 {
 	double					x;
 	double					y;
 	double					z;
-	double					w; // optional | default value 1.0
+	double					w;
 	int						group_id;
 	int						object_id;
 }							t_vertex;
@@ -65,8 +65,8 @@ typedef struct      		s_vertex
 typedef struct				s_texture
 {
 	double					u;
-	double					v; //need to be between 0 and 1 | default 0
-	double					w; //need to be between 0 and 1 | default 0
+	double					v;
+	double					w;
 	int						group_id;
 	int						object_id;
 }							t_texture;
@@ -149,7 +149,7 @@ typedef struct				s_obj
 	int						mtl_id;
 	int						error;
 	int						nb_default;
-    int                     nb_args;
+	int						nb_args;
 	char					*mtllib;
 
 	char					**mtl;
@@ -194,9 +194,9 @@ typedef struct				s_obj
 
 typedef struct				s_color
 {
-	double					r; // between 0 and 1
-	double					g; // equal to r if not given
-	double					b; // equal to r if not given
+	double					r;
+	double					g;
+	double					b;
 }							t_color;
 
 typedef struct				s_img
@@ -219,54 +219,72 @@ typedef struct				s_file
 ** All thoses values modify the texture map statements
 */
 
+/*
+**typedef struct				s_texture_option
+**{
+**	short					blendu; //  default on
+**	//  blendu turns texture blending in horizontal direction
+**	short					blendv; //  default on
+**	//  blendv turns texture blending in vertical direction
+**	short					cc; //  default on  
+**	//  Only for Ka | Kd | Ks
+**	//  turns on color correction for the texture
+**	short					clamp; //  default off
+**	//  texturea are restrict to 0-1 in the uvw range | refer to the doc
+**	short					imfchan; // default for bump is l and m for decal 
+**	//  Not for Ka | Kd | Ks
+**	//  choose between [r | g | m | l | z] to create a scalar or bump texture
+**	//  transparency - specular exponent - decal - displacement
+**	//  r -> red channel.
+**	//  g -> green channel.
+**	//  b -> blue channel.
+**	//  m -> matte channel.
+**	//  l -> luminance channel.
+**	//  z -> z-depth channel.
+**	double					*mm; // use to be like this [2];
+**	// modify the range over | scalar or color values may vary during rendering
+**	// mm[0] is the base, it adds values to texture. default 0 | change the brigther or dimmer
+**	// mm[1] is the gain, it expands the range of texture values and create contrast. default is 1
+**	double					*o; // use to be like this [3];
+**	// offset the position of the texture map on the surface | shift the position of the map origin. default [0, 0, 0]
+**	// o[0] is u horizontal direction
+**	// o[1] is v vertical direction | optional
+**	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+**	double					*s; // use to be like this [3];
+**	// scale the size of the texture pattern on the textured surface by expanding or shrinking the pattern. default [1, 1, 1]
+**	// s[0] is u horizontal direction
+**	// s[1] is v vertical direction | optional
+**	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+**	double					*t; // use to be like this [3];
+**	// turns on turbulence for texture. Adding turbulence to a texture along a specified direction adds variance to the original image
+**	// and allows a simple image to be repeated over a larger area without noticeable tiling effects. default [0, 0, 0]
+**	// t[0] is u horizontal direction
+**	// t[1] is v vertical direction | optional
+**	// t[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+**	double					texres;
+**	// specifie the resolution of texture created when an image is used.
+**	// The default texture size is the largest power of two that does not exceed the original image size. Refere to doc
+**	double					boost; // always positive
+**	// increase the sharpness, or clarity, of mip-mapped texture files
+**	int						bm; // best between 0 and 1
+**	// -options but inly for bump
+**}							t_texture_option;
+*/
+
 typedef struct				s_texture_option
 {
-	short					blendu; //  default on
-	//  blendu turns texture blending in horizontal direction
-	short					blendv; //  default on
-	//  blendv turns texture blending in vertical direction
-	short					cc; //  default on  
-	//  Only for Ka | Kd | Ks
-	//  turns on color correction for the texture
-	short					clamp; //  default off
-	//  texturea are restrict to 0-1 in the uvw range | refer to the doc
-	short					imfchan; // default for bump is l and m for decal 
-	//  Not for Ka | Kd | Ks
-	//  choose between [r | g | m | l | z] to create a scalar or bump texture
-	//  transparency - specular exponent - decal - displacement
-	//  r -> red channel.
-	//  g -> green channel.
-	//  b -> blue channel.
-	//  m -> matte channel.
-	//  l -> luminance channel.
-	//  z -> z-depth channel.
-	double					*mm; // use to be like this [2];
-	// modify the range over | scalar or color values may vary during rendering
-	// mm[0] is the base, it adds values to texture. default 0 | change the brigther or dimmer
-	// mm[1] is the gain, it expands the range of texture values and create contrast. default is 1
-	double					*o; // use to be like this [3];
-	// offset the position of the texture map on the surface | shift the position of the map origin. default [0, 0, 0]
-	// o[0] is u horizontal direction
-	// o[1] is v vertical direction | optional
-	// o[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
-	double					*s; // use to be like this [3];
-	// scale the size of the texture pattern on the textured surface by expanding or shrinking the pattern. default [1, 1, 1]
-	// s[0] is u horizontal direction
-	// s[1] is v vertical direction | optional
-	// s[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
-	double					*t; // use to be like this [3];
-	// turns on turbulence for texture. Adding turbulence to a texture along a specified direction adds variance to the original image
-	// and allows a simple image to be repeated over a larger area without noticeable tiling effects. default [0, 0, 0]
-	// t[0] is u horizontal direction
-	// t[1] is v vertical direction | optional
-	// t[2] is w depth for 3D texture and used for the amount of tesselation of the displacement | optional
+	short					blendu;
+	short					blendv;
+	short					cc;
+	short					clamp;
+	short					imfchan;
+	double					*mm;
+	double					*o;
+	double					*s;
+	double					*t;
 	double					texres;
-	// specifie the resolution of texture created when an image is used.
-	// The default texture size is the largest power of two that does not exceed the original image size. Refere to doc
-	double					boost; // always positive
-	// increase the sharpness, or clarity, of mip-mapped texture files
-	int						bm; // best between 0 and 1
-	// -options but inly for bump
+	double					boost;
+	int						bm;
 }							t_texture_option;
 
 /*
@@ -288,7 +306,6 @@ typedef struct				s_texture_color
 
 typedef struct				s_transmission_filter
 {
-	// code: Tf
 	int						group_id;
 	t_color					color;
 	t_file					file;
@@ -300,10 +317,9 @@ typedef struct				s_transmission_filter
 
 typedef struct				s_transparent
 {
-	// code: d
 	int						group_id;
-	short					halo; // default 0 | formula =1.0 - (N*v)(1.0-factor)
-	double					factor; // between 0 and 1 | 1 is opaque
+	short					halo;
+	double					factor;
 	t_file					file;
 	t_texture_option		option;
 }							t_transparent;
@@ -314,9 +330,8 @@ typedef struct				s_transparent
 
 typedef struct				s_specular_exponent
 {
-	// code: Ns
 	int						group_id;
-	double					value; // between 0 to 1000
+	double					value;
 	t_file					file;
 	t_texture_option		option;
 }							t_specular_exponent;
@@ -331,9 +346,8 @@ typedef struct				s_specular_exponent
 
 typedef struct				s_sharpness
 {
-	//  code: sharpness
 	int						group_id;
-	double					value; // between 0 to 1000 | default 60
+	double					value;
 }							t_sharpness;
 
 /*
@@ -342,9 +356,8 @@ typedef struct				s_sharpness
 
 typedef struct				s_optical_density
 {
-	//  code: Ni
 	int						group_id;
-	double					value; //  between 0.001 to 10
+	double					value;
 }							t_optical_density;
 
 /*
@@ -353,9 +366,6 @@ typedef struct				s_optical_density
 
 typedef struct				s_bump
 {
-	// code: bump
-	// bm defines the bump multiplier
-	// values stored with the texture or procedural texture file are multiplied by this value before they are applied to the surface.
 	int						group_id;
 	t_file					file;
 	t_texture_option		option;
@@ -367,7 +377,6 @@ typedef struct				s_bump
 
 typedef struct				s_disp
 {
-	// code: disp
 	int						group_id;
 	t_file					file;
 	t_texture_option		option;
@@ -384,54 +393,44 @@ typedef struct				s_disp
 
 typedef struct				s_decal
 {
-	// code: decal
 	int						group_id;
 	t_file					file;
 	t_texture_option		option;
 }							t_decal;
 
-/* 
-	algorithm:
-		0. Color on and Ambient off
-		1. Color on and Ambient on
-		2. Highlight on
-		3. Reflection on and Ray trace on
-		4. Transparency: Glass on, Reflection: Ray trace on
-		5. Reflection: Fresnel on and Ray trace on
-		6. Transparency: Refraction on, Reflection: Fresnel off and Ray trace on
-		7. Transparency: Refraction on, Reflection: Fresnel on and Ray trace on
-		8. Reflection on and Ray trace off
-		9. Transparency: Glass on, Reflection: Ray trace off
-		10. Casts shadows onto invisible surfaces
+/*
+**	algorithm:
+**		0. Color on and Ambient off
+**		1. Color on and Ambient on
+**		2. Highlight on
+**		3. Reflection on and Ray trace on
+**		4. Transparency: Glass on, Reflection: Ray trace on
+**		5. Reflection: Fresnel on and Ray trace on
+**		6. Transparency: Refraction on, Reflection: Fresnel off and Ray trace on
+**		7. Transparency: Refraction on, Reflection: Fresnel on and Ray trace on
+**		8. Reflection on and Ray trace off
+**		9. Transparency: Glass on, Reflection: Ray trace off
+**		10. Casts shadows onto invisible surfaces
 */
 
 typedef struct				s_shading
 {
-	// code: illum
 	int						group_id;
 	int						type;
-	void					(*f[11])(char *); // pointer to the shading algorithm
+	void					(*f[11])(char *);
 }							t_shading;
 
 typedef struct				s_mtl
 {
 	int						id;
-	int                     nb_args;
-	char					*path; // copy of parser->path | be careful with free
-	//no space else error
+	int						 nb_args;
+	char					*path;
 	int						nb_groups;
-	char					**groups; // the id define the group | (char *) is the name
+	char					**groups;
 
-	//  No malloc here | using addr
 	t_texture_color			*ac;
-	//  code Ka
-	//  Ambient color describes the ambiance reflectivity of a color
 	t_texture_color			*dc;
-	//  code: Kd
-	//  Diffuse color describes the reflectivity of a color
 	t_texture_color			*sc;
-	//  code: Ks
-	//  Specular color describes the specular reflectivity of a color
 	t_transmission_filter	*tf;
 	t_transparent			*t;
 	t_specular_exponent		*se;
