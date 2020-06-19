@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/15 23:25:13 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/26 17:16:54 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:34:59 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:35:31 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "../../includes/render.h"
 
-static void process_mouse(t_gdata *gdata)
+static void	process_mouse(t_gdata *gdata)
 {
 	double	xpos;
 	double	ypos;
@@ -76,7 +76,8 @@ static void	input_a_d_grey(t_gdata *gdata, float camera_speed)
 	if (glfwGetKey(gdata->win, GLFW_KEY_A) == GLFW_PRESS &&
 		!gdata->engine->fix)
 	{
-		vertex3_mul_cross(tmp, gdata->engine->camera_front, gdata->engine->camera_up);
+		vertex3_mul_cross(tmp, gdata->engine->camera_front,
+			gdata->engine->camera_up);
 		vertex3_norm(tmp, tmp);
 		vertex3_mul_float(tmp, tmp, camera_speed);
 		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
@@ -84,7 +85,8 @@ static void	input_a_d_grey(t_gdata *gdata, float camera_speed)
 	if (glfwGetKey(gdata->win, GLFW_KEY_D) == GLFW_PRESS &&
 		!gdata->engine->fix)
 	{
-		vertex3_mul_cross(tmp, gdata->engine->camera_front, gdata->engine->camera_up);
+		vertex3_mul_cross(tmp, gdata->engine->camera_front,
+			gdata->engine->camera_up);
 		vertex3_norm(tmp, tmp);
 		vertex3_mul_float(tmp, tmp, camera_speed);
 		vertex3_add(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
@@ -132,10 +134,10 @@ void		handle_event(t_gdata *gdata)
 	current_frame = glfwGetTime();
 	camera_speed = 2.5f * (current_frame - gdata->engine->last_frame);
 	gdata->engine->last_frame = current_frame;
-    if (glfwGetKey(gdata->win, GLFW_KEY_L) == GLFW_PRESS)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    else if (glfwGetKey(gdata->win, GLFW_KEY_P) == GLFW_PRESS)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if (glfwGetKey(gdata->win, GLFW_KEY_L) == GLFW_PRESS)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	else if (glfwGetKey(gdata->win, GLFW_KEY_P) == GLFW_PRESS)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	input_w_s_rotate(gdata, camera_speed);
 	input_a_d_grey(gdata, camera_speed);
 	input_move_shift_ctrl(gdata);

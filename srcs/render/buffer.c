@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   buffer.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/24 18:15:33 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/21 16:15:06 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:29:06 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:29:21 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "render.h"
+#include "../../includes/render.h"
 
-static void put_uniform(t_gdata *gdata)
+static void	put_uniform(t_gdata *gdata)
 {
 	gdata->buffer->grey_loc =
 		glGetUniformLocation(gdata->engine->program, "grey");
