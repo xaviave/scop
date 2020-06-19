@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:29:32 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:35:08 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 17:35:31 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	check_args(int ac, char **av)
 	}
 }
 
-int 		launch_parser(t_parser *parser, int ac, char **av)
+int			launch_parser(t_parser *parser, int ac, char **av)
 {
 	check_args(ac, av);
 	init_parser(parser, ac, av);
