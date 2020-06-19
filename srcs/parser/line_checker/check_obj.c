@@ -13,17 +13,18 @@
 #include "../../../includes/parser.h"
 
 static int			dispatch_f_l_g_o(char *raw_data, int i,
-	t_parser_option *opt, char tmp[3], int nb_args[2])
+        char tmp[3], int nb_args[2])
 {
 	if ((tmp[0] == 'g' || tmp[0] == 'o') &&
 		(tmp[1] == ' ' || tmp[1] == '\t'))
-		return check_line_str(raw_data, opt->data_len, 1);
+		return check_line_str(raw_data, (int)ft_strlen(raw_data), 1);
 	else if ((tmp[0] == 'f' || tmp[0] == 'l') &&
 		(tmp[1] == ' ' || tmp[1] == '\t'))
 	{
 		nb_args[0] = (tmp[0] == 'f') ? 3 : 2;
 		nb_args[1] = (tmp[0] == 'f') ? 4 : 3;
-		return (check_lines_faces(&raw_data[i], nb_args, opt->data_len));
+		return (check_lines_faces(&raw_data[i], nb_args,
+		        (int)ft_strlen(raw_data)));
 	}
 	return (0);
 }
@@ -55,7 +56,7 @@ static int			dispatch_by_header(char *raw_data,
 	if ((tmp[0] == 'f' || tmp[0] == 'l') &&
 		 (tmp[1] == ' ' || tmp[1] == '\t') && current->len_ver == 0)
 		return (0);
-	return (dispatch_f_l_g_o(raw_data, i, opt, tmp, nb_args));
+	return (dispatch_f_l_g_o(raw_data, i, tmp, nb_args));
 }
 
 /*
