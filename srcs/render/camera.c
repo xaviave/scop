@@ -80,7 +80,7 @@ int					update_matrix(t_gdata *gdata)
 			gdata->engine->projection)))
 		return (0);
 	perspective_matrix4x4(gdata->engine->projection, degree_to_radians(
-			gdata->engine->fov), (W / (float)H), 0.1f, 100.0f);
+			gdata->engine->fov), (W / (float)H), 0.1f);
 	if (!(create_texture_data(gdata, gdata->engine->projection, "projection")))
 		return (0);
 	if (!(gdata->engine->view = init_identity_matrix4x4(gdata->engine->view)))

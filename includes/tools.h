@@ -155,7 +155,7 @@ int							rotate_matrix4x4_z(t_matrix *rotate,
 */
 
 void						perspective_matrix4x4(t_matrix *m, float y_fov,
-		float aspect, float n, float f);
+		float aspect, float n);
 void						translate_in_place_matrix4x4(t_matrix *m,
 		float x, float y, float z);
 void						look_at_matrix4x4(t_matrix *m, float eye[3],

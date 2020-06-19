@@ -6,17 +6,19 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 20:15:26 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:32:00 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:35:55 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/tools.h"
 
 void			perspective_matrix4x4(t_matrix *m, float y_fov,
-	float aspect, float n, float f)
+	float aspect, float n)
 {
 	float		a;
-	
+	float		f;
+
+	f = 100.0f;
 	a = 1.f / tanf(y_fov / 2.f);
 	m->values[0][0] = a / aspect;
 	m->values[0][1] = 0.f;
