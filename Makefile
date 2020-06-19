@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/06/19 18:11:58 by ltoussai         ###   ########lyon.fr    #
+#    Updated: 2020/06/19 19:17:46 by ltoussai         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC_NAME =	main.c \
 			parser/object/list_parser_to_obj.c \
 			parser/object/definitions/parser_v.c \
 			parser/object/definitions/parser_f_l_o_g_pass.c \
+			parser/object/definitions/parser_f_l.c \
 			parser/material/list_parser_to_mtl.c \
 			parser/material/definitions/parse_file.c \
 			parser/material/definitions/parser_k.c \
