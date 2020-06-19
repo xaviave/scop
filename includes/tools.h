@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 14:04:24 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:07:17 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 14:08:14 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void						init_file_ptr(int (*f[10])(t_file *));
 
 void						init_parser_option(t_parser_option *opt, char *file,
 		int index, short parsing_type);
-int 						init_texture_option(t_texture_option *new);
+int							init_texture_option(t_texture_option *new);
 
 void						init_parser(t_parser *parser, int ac, char **av);
 void						init_parser_mtl(t_parser *parser);
@@ -183,11 +183,16 @@ void						print_mat4x4(mat4x4 m, char *str);
 ** srcs/tools/matrixes/vertex3.c
 */
 
-void						vertex3_scale(float r[3], float const v[3], float const s);
-float						vertex3_mul_inner(float const a[3], float const b[3]);
-void						vertex3_mul_float(float r[3], float const a[3], float const b);
-void						vertex3_sub(float r[3], float const a[3], float const b[3]);
-void						vertex3_add(float r[3], float const a[3], float const b[3]);
+void						vertex3_scale(float r[3],
+		float const v[3], float const s);
+float						vertex3_mul_inner(float const a[3],
+		float const b[3]);
+void						vertex3_mul_float(float r[3],
+		float const a[3], float const b);
+void						vertex3_sub(float r[3],
+		float const a[3], float const b[3]);
+void						vertex3_add(float r[3],
+		float const a[3], float const b[3]);
 void						vertex3_mul_cross(float r[3],
 		float const a[3], float const b[3]);
 void						vertex3_norm(float r[3], float const v[3]);
@@ -197,7 +202,8 @@ void						vertex3_norm(float r[3], float const v[3]);
 */
 
 float						vertex4_mul_inner(float a[4], float b[4]);
-void						vertex4_row_matrix4x4(float r[4], t_matrix *m, int i);
+void						vertex4_row_matrix4x4(float r[4],
+		t_matrix *m, int i);
 
 /*
 ** srcs/tools/matrixes/init_delete_matrix.c
