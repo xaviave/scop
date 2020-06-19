@@ -6,11 +6,11 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:07:08 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:17:30 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:27:20 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../../includes/parser.h"
+#include "../../../../includes/parser.h"
 
 int					count_entity(char *str)
 {

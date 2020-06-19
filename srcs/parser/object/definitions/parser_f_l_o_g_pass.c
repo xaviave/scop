@@ -6,11 +6,11 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:07:08 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:26:20 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:27:25 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../../../includes/parser.h"
+#include "../../../../includes/parser.h"
 
 int					parser_o(t_obj *obj, char *raw_data)
 {
