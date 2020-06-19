@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:33:29 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:34:51 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:42:23 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,36 @@ static void			fix_camera(t_gdata *gdata)
 		gdata->engine->camera_tmp[0] = gdata->engine->camera_front[0];
 		gdata->engine->camera_tmp[1] = gdata->engine->camera_front[1];
 		gdata->engine->camera_tmp[2] = gdata->engine->camera_front[2];
-	}	
+	}
 }
 
 static int			update_matrix_angle(t_gdata *gdata)
 {
-	t_matrix		*tmp;
+	t_matrix		*t;
 
-	if (!(tmp = init_identity_matrix4x4(NULL)))
+	if (!(t = init_identity_matrix4x4(NULL)))
 		return (0);
-	translate_matrix4x4(tmp, 0.0f, 0.0f, 0.0f);
+	translate_matrix4x4(t, 0.0f, 0.0f, 0.0f);
 	if (gdata->engine->rotate == 1)
 	{
-		if (!(rotate_matrix4x4_x(gdata->engine->model, tmp,
-			gdata->engine->angle)))
+		if (!rotate_matrix4x4_x(gdata->engine->model, t, gdata->engine->angle))
 			return (0);
 	}
 	else if (gdata->engine->rotate == 2)
 	{
-		if (!(rotate_matrix4x4_y(gdata->engine->model, tmp,
-			gdata->engine->angle)))
+		if (!rotate_matrix4x4_y(gdata->engine->model, t, gdata->engine->angle))
 			return (0);
 	}
 	else if (gdata->engine->rotate == 3)
 	{
-		if (!(rotate_matrix4x4_z(gdata->engine->model, tmp,
-			gdata->engine->angle)))
+		if (!rotate_matrix4x4_z(gdata->engine->model, t, gdata->engine->angle))
 			return (0);
 	}
-	else if (!(rotate_matrix4x4_y(gdata->engine->model, tmp, 90)))
+	else if (!(rotate_matrix4x4_y(gdata->engine->model, t, 90)))
 		return (0);
 	if (!(create_texture_data(gdata, gdata->engine->model, "model")))
 		return (0);
-	return (free_matrix(tmp) == NULL ? 1 : 1);
+	return (free_matrix(t) == NULL ? 1 : 1);
 }
 
 int					update_matrix(t_gdata *gdata)
