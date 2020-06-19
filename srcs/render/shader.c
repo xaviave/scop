@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:36:07 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:36:17 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:38:47 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int			init_program(t_engine *e, GLuint vs, GLuint fs)
 	if (!success)
 		return (print_shader_error(e->program, 0));
 	return (1);
- }
+}
 
 int					init_shader(t_engine *e)
 {

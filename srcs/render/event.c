@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 19:34:59 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:35:31 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 19:39:47 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ static void	input_a_d_grey(t_gdata *gdata, float camera_speed)
 	float	tmp[3];
 
 	ft_bzero(tmp, sizeof(float[3]));
-	if (glfwGetKey(gdata->win, GLFW_KEY_A) == GLFW_PRESS &&
-		!gdata->engine->fix)
+	if (glfwGetKey(gdata->win, GLFW_KEY_A) == GLFW_PRESS && !gdata->engine->fix)
 	{
 		vertex3_mul_cross(tmp, gdata->engine->camera_front,
 			gdata->engine->camera_up);
@@ -82,8 +81,7 @@ static void	input_a_d_grey(t_gdata *gdata, float camera_speed)
 		vertex3_mul_float(tmp, tmp, camera_speed);
 		vertex3_sub(gdata->engine->camera_pos, gdata->engine->camera_pos, tmp);
 	}
-	if (glfwGetKey(gdata->win, GLFW_KEY_D) == GLFW_PRESS &&
-		!gdata->engine->fix)
+	if (glfwGetKey(gdata->win, GLFW_KEY_D) == GLFW_PRESS && !gdata->engine->fix)
 	{
 		vertex3_mul_cross(tmp, gdata->engine->camera_front,
 			gdata->engine->camera_up);
@@ -129,7 +127,7 @@ void		handle_event(t_gdata *gdata)
 {
 	float	current_frame;
 	float	camera_speed;
-	
+
 	glfwPollEvents();
 	current_frame = glfwGetTime();
 	camera_speed = 2.5f * (current_frame - gdata->engine->last_frame);
