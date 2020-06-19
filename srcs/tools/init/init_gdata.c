@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_gdata.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/04 22:44:10 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/03 13:30:14 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:58:27 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:58:34 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "../../../includes/render.h"
 
 static int	init_graphic_context(t_gdata *gdata)
 {
 	if (!glfwInit())
 		return (0);
 	glfwSetErrorCallback(error_callback);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	if (!(gdata->win = glfwCreateWindow(W, H, PROG_NAME, NULL, NULL)))
 		return (0);
 	glfwWindowHint(GLFW_REFRESH_RATE, 30);
@@ -30,7 +30,7 @@ static int	init_graphic_context(t_gdata *gdata)
 	glfwMakeContextCurrent(gdata->win);
 	if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
 		return (0);
-    glfwSwapInterval(1);
+	glfwSwapInterval(1);
 	return (1);
 }
 
@@ -70,14 +70,14 @@ int			init_gdata(t_gdata *gdata, t_parser *parser)
 {
 	if (!init_graphic_context(gdata))
 		return (0);
-    gdata->nb_objs = parser->nb_args;
-    gdata->obj = parser->obj;
-    gdata->mtl = parser->mtl;
+	gdata->nb_objs = parser->nb_args;
+	gdata->obj = parser->obj;
+	gdata->mtl = parser->mtl;
 	if (!(gdata->engine = addr_add((t_engine *)ft_memalloc(sizeof(t_engine)),
-	        M_ENG_, &gdata->addr)))
+			M_ENG_, &gdata->addr)))
 		return (0);
 	if (!(gdata->buffer = addr_add((t_buffer *)ft_memalloc(sizeof(t_buffer)),
-	        M_BUF_, &gdata->addr)))
+			M_BUF_, &gdata->addr)))
 		return (0);
 	if (!init_engine(gdata) || !init_all_obj(gdata) ||
 		!init_shader(gdata->engine) || !init_buffer(gdata))

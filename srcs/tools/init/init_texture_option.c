@@ -6,22 +6,19 @@
 /*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/03 16:30:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/12 18:37:34 by xamartin         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 20:01:07 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
+#include "../../../includes/tools.h"
 
-int     	init_texture_option(t_texture_option *new)
+int			init_texture_option(t_texture_option *new)
 {
 	ft_memset(new, 0, sizeof(t_texture_option));
 	new->blendu = 1;
 	new->blendv = 1;
 	new->cc = 1;
-	new->imfchan = -1; // mean no imfchan
-	// louis go to scop.h:265 if you want explanation of malloc 
-	// it is to be a tmp[x] tab
-	// those tabs are not bzero'd
+	new->imfchan = -1;
 	if (!(new->mm = (double *)ft_memalloc(sizeof(double) * 2)))
 		return (0);
 	if (!(new->o = (double *)ft_memalloc(sizeof(double) * 3)))

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_ptr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 21:45:59 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/13 13:26:37 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:00:22 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 20:00:32 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../../includes/parser.h"
 
 void		init_parser_obj_ptr(int (*f[7])(t_obj *, char *, int, int))
 {
@@ -42,7 +42,8 @@ void		init_parser_mtl_ptr(int (*f[13])(t_mtl *, char *, int))
 
 void		pass_lol(char *str)
 {
-	printf("Awesome shadding algorithme using machine learning number: %s\n", str);
+	printf("Awesome shadding algorithme using machine learning number: %s\n",
+		str);
 }
 
 void		init_shading_ptr(void (*f[11])(char *))
