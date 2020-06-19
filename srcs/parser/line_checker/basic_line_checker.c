@@ -6,7 +6,7 @@
 /*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 17:51:19 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 17:51:57 by ltoussai         ###   ########lyon.fr   */
+/*   Updated: 2020/06/19 18:00:52 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int					check_int(char *raw_data, int *i, int neg)
 	if (!neg && raw_data[*i] == '-')
 		return (0);
 	else if (raw_data[*i] == '-')
-		*i = *i + 1;	
+		*i = *i + 1;
 	while (raw_data[*i] && raw_data[*i] != ' ' && raw_data[*i] != '\t')
 	{
 		if (neg && raw_data[*i] == '.')
