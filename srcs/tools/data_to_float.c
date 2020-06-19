@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   data_to_float.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/24 17:58:45 by xamartin          #+#    #+#             */
-/*   Updated: 2020/05/22 17:33:35 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:49:24 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:49:48 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "render.h"
+#include "../../includes/render.h"
 
 static void	get_len_indices(t_obj *obj)
 {
@@ -82,17 +82,17 @@ static int	create_vertices(t_obj *obj)
 {
 	int		i;
 	int		v_id;
-	int     uv_id;
+	int		uv_id;
 
 	i = -1;
 	v_id = -1;
 	uv_id = -1;
-    obj->size_vertices = obj->len_vertexes * 3;
-    obj->size_uv = obj->len_vertexes * 2;
+	obj->size_vertices = obj->len_vertexes * 3;
+	obj->size_uv = obj->len_vertexes * 2;
 	if (!(obj->vertices = malloc(sizeof(float) * obj->size_vertices)))
 		return (0);
-    if (!(obj->uv = malloc(sizeof(float) * obj->size_uv)))
-        return (0);
+	if (!(obj->uv = malloc(sizeof(float) * obj->size_uv)))
+		return (0);
 	while (++i < obj->len_vertexes)
 	{
 		obj->vertices[++v_id] = obj->vertexes[i].x - (obj->axis[0] / 2);
@@ -135,9 +135,9 @@ int			init_all_obj(t_gdata *gdata)
 	{
 		get_center(&(gdata->obj[i]));
 		if (!(create_vertices(&(gdata->obj[i]))))
-		    return (0);
+			return (0);
 		if (!(create_indices(&(gdata->obj[i]))))
-		    return (0);
+			return (0);
 	}
 	return (1);
 }

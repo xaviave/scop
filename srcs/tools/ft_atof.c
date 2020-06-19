@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 17:10:50 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/12 18:37:08 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:53:21 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:53:26 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "tools.h"
+#include "../../includes/tools.h"
 
 static double	get_decimal(char *str)
 {

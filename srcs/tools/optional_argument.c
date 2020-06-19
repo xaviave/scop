@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   optional_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/20 17:00:54 by xavier_mart       #+#    #+#             */
-/*   Updated: 2020/04/12 18:36:44 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:55:31 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:55:36 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "tools.h"
+#include "../../includes/tools.h"
 
 double		optional_value_double(char *str, double d)
 {

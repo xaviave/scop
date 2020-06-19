@@ -3,67 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   details_delete_obj.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/12 18:37:15 by xamartin          #+#    #+#             */
-/*   Updated: 2020/04/25 21:59:07 by xamartin         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:52:57 by ltoussai          #+#    #+#             */
+/*   Updated: 2020/06/19 19:53:11 by ltoussai         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tools.h"
-#include "cleaner.h"
+#include "../../includes/tools.h"
+#include "../../includes/cleaner.h"
 
-void            delete_tab_len(char **tab, int len)
+void			delete_tab_len(char **tab, int len)
 {
-    int         i;
+	int			i;
 
-    i = 0;
-    if (!tab)
-        return ;
-    while (i < len)
-        ft_strdel(&tab[i++]);
-    free(tab);
-    tab = NULL;
+	i = 0;
+	if (!tab)
+		return ;
+	while (i < len)
+		ft_strdel(&tab[i++]);
+	free(tab);
+	tab = NULL;
 }
 
-void            delete_str_tab(char **tab)
+void			delete_str_tab(char **tab)
 {
-    int         i;
+	int			i;
 
-    i = 0;
-    if (!tab)
-        return ;
-    while (tab[i])
-        ft_strdel(&tab[i++]);
-    free(tab);
-    tab = NULL;
+	i = 0;
+	if (!tab)
+		return ;
+	while (tab[i])
+		ft_strdel(&tab[i++]);
+	free(tab);
+	tab = NULL;
 }
 
-void            delete_list_parser(t_list_parser **list)
+void			delete_list_parser(t_list_parser **list)
 {
-    if (*list)
-    {
-        ft_strdel(&(*list)->data);
-        if ((*list)->next)
-            delete_list_parser(&((*list)->next));
-        ft_memdel((void **)list);
-    }
+	if (*list)
+	{
+		ft_strdel(&(*list)->data);
+		if ((*list)->next)
+			delete_list_parser(&((*list)->next));
+		ft_memdel((void **)list);
+	}
 }
 
-void            delete_texture_option(t_texture_option *to)
+void			delete_texture_option(t_texture_option *to)
 {
-    ft_memdel((void **)&to->mm);
-    ft_memdel((void **)&to->o);
-    ft_memdel((void **)&to->s);
-    ft_memdel((void **)&to->t);
+	ft_memdel((void **)&to->mm);
+	ft_memdel((void **)&to->o);
+	ft_memdel((void **)&to->s);
+	ft_memdel((void **)&to->t);
 }
 
-void            delete_t_file(t_file *file)
+void			delete_t_file(t_file *file)
 {
-    t_img       img;
+	t_img		img;
 
-    ft_strdel(&file->name);
-    ft_strdel(&file->path);
-    img = file->img;
-    ft_memdel((void **)&img.data);
+	ft_strdel(&file->name);
+	ft_strdel(&file->path);
+	img = file->img;
+	ft_memdel((void **)&img.data);
 }
