@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/06/19 20:44:13 by ltoussai         ###   ########lyon.fr    #
+#    Updated: 2020/06/20 12:10:38 by ltoussai         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRC_NAME =	main.c \
 			tools/init/init_mtl.c \
 			tools/init/init_gdata.c \
 			tools/init/init_parser.c \
+			tools/init/init_parser_mtl.c \
 			tools/init/init_parser_option.c \
 			tools/init/init_texture_option.c \
 			tools/matrixes/vertex3.c \
