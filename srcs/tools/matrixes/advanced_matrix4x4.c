@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   advanced_matrix4x4.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 20:15:26 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:35:55 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:15:26 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:25 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

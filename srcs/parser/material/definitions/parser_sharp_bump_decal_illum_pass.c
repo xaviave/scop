@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_sharp_bump_decal_illum_pass.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 18:48:25 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:00:02 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:48:25 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

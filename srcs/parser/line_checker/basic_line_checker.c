@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_line_checker.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 17:51:19 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:00:52 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 17:51:19 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:07 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

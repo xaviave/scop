@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture_option.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 18:48:38 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:48:39 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:48:38 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:13 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

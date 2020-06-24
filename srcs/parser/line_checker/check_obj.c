@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_obj.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 17:53:27 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:06:21 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 17:53:27 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:08 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

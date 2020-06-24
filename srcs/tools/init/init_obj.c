@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 19:59:06 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:02:09 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:59:06 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

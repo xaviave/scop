@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mtl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 19:58:48 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:58:58 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:58:48 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:23 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 14:56:25 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:56:25 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 14:56:25 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:09:58 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

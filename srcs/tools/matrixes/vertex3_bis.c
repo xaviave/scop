@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertex3_bis.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 20:21:16 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 20:29:03 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 20:21:16 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:26 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

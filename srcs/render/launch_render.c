@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 19:35:40 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:36:00 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:35:40 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:14:53 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	terminate_render(t_gdata *gdata)
 	glDeleteBuffers(1, &gdata->buffer->vbo_indices);
 	glDeleteBuffers(1, &gdata->buffer->vbo_vertices);
 	glDeleteProgram(gdata->engine->program);
+	while (1)
+		;
 }
 
 static int	render(t_gdata *gdata)

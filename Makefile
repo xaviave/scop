@@ -6,7 +6,7 @@
 #    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/15 13:25:38 by xamartin          #+#    #+#              #
-#    Updated: 2020/06/20 12:10:38 by ltoussai         ###   ########lyon.fr    #
+#    Updated: 2020/06/24 13:02:39 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIB_PATH = ./external_lib/
 INC_PATH = ./includes/ $(LIB_PATH)libft/header/ $(LIB_PATH)glfw/include/ $(LIB_PATH)glad/include
 
 # FLAGS
-GCC_FLGS = -Wall -Wextra -Werror -g3
+GCC_FLGS = -Wall -Wextra -Werror -o3
 GCC_LIBS = -lglfw -framework AppKit -framework OpenGL -framework IOKit -framework CoreVideo
 
 # TESTS

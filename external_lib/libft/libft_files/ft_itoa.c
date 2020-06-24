@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 14:56:12 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 14:56:12 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 14:56:12 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:09:43 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

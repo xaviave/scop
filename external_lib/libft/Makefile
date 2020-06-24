@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/06/19 14:20:54 by ltoussai          #+#    #+#              #
-#    Updated: 2020/06/19 14:20:56 by ltoussai         ###   ########lyon.fr    #
+#    Created: 2020/06/19 14:20:54 by xamartin          #+#    #+#              #
+#    Updated: 2020/06/24 13:09:35 by xamartin         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 

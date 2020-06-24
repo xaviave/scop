@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tf_d_s_ni.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 18:18:08 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 18:54:13 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 18:18:08 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:12 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

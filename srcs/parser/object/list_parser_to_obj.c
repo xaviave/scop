@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_parser_to_obj.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 19:02:05 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 19:06:33 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 19:02:05 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:13 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

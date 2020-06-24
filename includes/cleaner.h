@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltoussai <lotoussa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: xamartin <xamartin@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/19 13:29:28 by ltoussai          #+#    #+#             */
-/*   Updated: 2020/06/19 13:29:57 by ltoussai         ###   ########lyon.fr   */
+/*   Created: 2020/06/19 13:29:28 by xamartin          #+#    #+#             */
+/*   Updated: 2020/06/24 13:10:01 by xamartin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
